@@ -206,7 +206,7 @@ header {
 }
 
 .card-img-wrap {
-  position: relative; height: 115px; overflow: hidden;
+  position: relative; height: 150px; overflow: hidden;
   background: var(--surface2);
   filter: grayscale(100%) contrast(1.15);
   transition: filter 0.35s; flex-shrink: 0;
@@ -995,9 +995,19 @@ function createNewsCard(article){
       <div class="card-desc">${article.description}</div>
       <div class="card-footer">
         <span class="card-date">${d}</span>
-        <a href="${article.url}" target="_blank" class="card-link">Read</a>
+        <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="card-link">Read</a>
       </div>
     </div>`;
+  
+  // Make entire card clickable to open article in new tab
+  if(article.url){
+    card.addEventListener('click',function(e){
+      if(e.target.tagName!=='A'){
+        window.open(article.url,'_blank','noopener,noreferrer');
+      }
+    });
+  }
+  
   return card;
 }
 
