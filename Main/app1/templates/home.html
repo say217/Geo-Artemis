@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AETHER — Global Hazard Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════ */
+:root{
+  --ink:#000000;
+  --deep:#070918;
+  --panel:#0a0d1f;
+  --glass:rgba(10,13,31,.55);
+  --rim:rgba(255,255,255,.07);
+  --rim2:rgba(255,255,255,.13);
+
+  --cyan:#06e5ff;
+  --cyan2:rgba(6,229,255,.18);
+  --cyan3:rgba(6,229,255,.06);
+  --violet:#9b6dff;
+  --violet2:rgba(155,109,255,.2);
+  --violet3:rgba(155,109,255,.07);
+  --blue:#3b7bff;
+  --blue2:rgba(59,123,255,.18);
+  --gold:#f0c97a;
+  --gold2:rgba(240,201,122,.12);
+  --rose:#ff6b9d;
+  --snow:#ffffff;
+  --fog:#9aa5c4;
+  --mist:#5a6380;
+
+  --ff-d:'Space Grotesk',sans-serif;
+  --ff-b:'Space Grotesk',sans-serif;
+  --ff-m:'JetBrains Mono',monospace;
+  --g:80px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--snow);font-family:var(--ff-b);font-weight:300;overflow-x:hidden}
+img{display:block}
+a{text-decoration:none}
+::-webkit-scrollbar{width:2px}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--cyan),var(--violet))}
+
+/* ── GRAIN OVERLAY ── */
+body::before{content:'';display:none}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:800;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--g);
+  /* Always-on separation: dark frosted panel, crisp bottom border, subtle top glow line */
+  background:rgba(4,5,12,.88);
+  border-bottom:1px solid rgba(255,255,255,.09);
+  backdrop-filter:blur(28px) saturate(1.4);
+  -webkit-backdrop-filter:blur(28px) saturate(1.4);
+  box-shadow:0 1px 0 0 rgba(6,229,255,.08), 0 8px 32px rgba(0,0,0,.45);
+  transition:background .4s,box-shadow .4s;
+}
+/* Thin cyan accent line along very top edge */
+nav::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(6,229,255,.35) 30%,rgba(155,109,255,.25) 60%,transparent 100%);
+  pointer-events:none;
+}
+nav.stuck{
+  background:rgba(3,4,10,.95);
+  box-shadow:0 1px 0 0 rgba(6,229,255,.12), 0 12px 48px rgba(0,0,0,.6);
+}
+.nav-brand{display:flex;align-items:center;gap:11px}
+.nav-ring{width:22px;height:22px;border-radius:50%;background:conic-gradient(#e6e6e6 0 180deg,var(--cyan) 180deg 360deg);-webkit-mask:radial-gradient(circle,transparent 62%,#000 63%);mask:radial-gradient(circle,transparent 62%,#000 63%)}
+.brand-name{font-family:var(--ff-d);font-weight:600;font-size:16px;letter-spacing:.2em;text-transform:uppercase;color:#edf0ff;line-height:1}
+.nav-mid{display:flex;gap:12px;position:absolute;left:50%;transform:translateX(-50%);list-style:none}
+.nav-mid a{font-family:var(--ff-b);font-weight:400;font-size:13px;letter-spacing:.05em;color:#8892b8;position:relative;padding-bottom:2px}
+.nav-sep{color:#5a6380;font-family:var(--ff-m);font-size:11px;letter-spacing:.2em}
+.nav-mid a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:#18e8ff;transition:width .3s}
+.nav-mid a:hover{color:#edf0ff}.nav-mid a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-badge{display:flex;align-items:center;gap:7px;font-family:var(--ff-m);font-size:10px;letter-spacing:.12em;color:#5a6380}
+.live-orb{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:orb-pulse 2s ease-in-out infinite}
+@keyframes orb-pulse{0%,100%{box-shadow:0 0 0 0 rgba(6,229,255,.5)}50%{box-shadow:0 0 0 7px rgba(6,229,255,0)}}
+.btn-nav{font-family:var(--ff-b);font-weight:500;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:10px 26px;border:1px solid rgba(6,229,255,.4);color:var(--cyan);position:relative;overflow:hidden;transition:color .3s}
+.btn-nav::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--cyan),var(--blue));transform:translateY(101%);transition:transform .38s cubic-bezier(.77,0,.18,1)}
+.btn-nav:hover::before{transform:translateY(0)}.btn-nav span{position:relative;z-index:1;transition:color .3s}.btn-nav:hover span{color:var(--ink)}
+
+/* ═══════════════════════════════════════════
+   HERO — CLEAN BLACK BACKGROUND
+═══════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: right;
+  padding: 150px var(--g) 120px;
+  background: #000000;
+  background-image: url("/static/images/earth.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* hero content */
+.hero-inner{position:relative;z-index:2;max-width:560px;margin-left:auto}
+.hero-kicker{display:inline-flex;align-items:center;gap:10px;font-family:var(--ff-m);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#18e8ff;border:1px solid rgba(6,229,255,.32);padding:7px 18px;margin-bottom:44px;opacity:0;animation:fadeUp .8s .2s forwards;background:rgba(6,229,255,.04)}
+.kicker-dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);animation:orb-pulse 1.4s ease-in-out infinite}
+.hero-h1{font-family:var(--ff-d);font-weight:700;font-size:clamp(32px,3.9vw,60px);line-height:1.05;letter-spacing:-.01em;margin-bottom:18px;opacity:0;animation:fadeUp .95s .35s forwards;color:#ffffff;text-shadow:none}
+.hero-h1 em{font-style:italic;color:#e6e6e6;font-weight:500;text-shadow:none}
+.hero-h1 .outline-text{color:#ffffff}
+.hero-rule{width:1px;height:52px;background:linear-gradient(to bottom,var(--cyan),transparent);margin:0 0 20px auto;opacity:0;animation:fadeUp .8s .55s forwards}
+.hero-sub{font-family:var(--ff-b);font-weight:300;font-size:15px;line-height:1.8;color:#c4cce8;max-width:520px;margin:0 0 36px auto;opacity:0;animation:fadeUp .9s .65s forwards;letter-spacing:.01em}
+.hero-actions{display:flex;gap:16px;justify-content:flex-end;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .8s forwards}
+
+/* primary CTA */
+.btn-p{display:inline-flex;align-items:center;gap:10px;font-family:var(--ff-b);font-weight:500;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:16px 40px;background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;position:relative;overflow:hidden;transition:opacity .3s;box-shadow:0 0 40px rgba(59,123,255,.25)}
+.btn-p::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--cyan),var(--blue));opacity:0;transition:opacity .3s}
+.btn-p:hover::after{opacity:1}.btn-p .bt,.btn-p .ba{position:relative;z-index:1}
+.btn-p:hover .ba{transform:translateX(4px)}.ba{transition:transform .3s;display:inline-block}
+.btn-sec{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-b);font-weight:400;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:15px 34px;border:1px solid var(--rim2);color:#9aa5c4;transition:border-color .3s,color .3s}
+.btn-sec:hover{border-color:rgba(155,109,255,.5);color:var(--violet)}
+
+/* hero scroll badge */
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1s 1.5s forwards;z-index:2}
+.scroll-track{width:1px;height:48px;background:linear-gradient(to bottom,var(--cyan),transparent);position:relative;overflow:hidden}
+.scroll-track::after{content:'';position:absolute;top:0;left:0;width:100%;height:40%;background:white;animation:scroll-drop 2s ease-in-out infinite}
+@keyframes scroll-drop{0%{top:-40%;opacity:1}100%{top:130%;opacity:0}}
+.scroll-label{font-family:var(--ff-m);font-size:8px;letter-spacing:.26em;text-transform:uppercase;color:#3e4660}
+
+/* floating graphic ornaments — original + extra rings & constellation */
+.hero-orb-1,.hero-orb-2,.hero-orb-3,.hero-constellation,.hero-chip,.aurora,.geo-grid{display:none}
+
+/* ═══════════════════════════════════════════
+   ALL OTHER SECTIONS — 100% UNCHANGED
+═══════════════════════════════════════════ */
+.trust-bar{padding:32px var(--g);border-top:1px solid var(--rim);border-bottom:1px solid var(--rim);display:flex;align-items:center;justify-content:center;gap:64px;flex-wrap:wrap;background:rgba(7,9,24,.4)}
+.trust-item{display:flex;align-items:center;gap:12px;font-family:var(--ff-b);font-weight:400;font-size:13px;letter-spacing:.05em;color:#9aa5c4}
+.trust-icon{width:32px;height:32px;border:1px solid var(--rim2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.trust-sep{width:1px;height:28px;background:var(--rim2)}
+
+.section{padding:130px var(--g)}
+.s-kicker{display:inline-flex;align-items:center;gap:10px;font-family:var(--ff-m);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#18e8ff;margin-bottom:18px}
+.s-kicker::before{content:'';width:22px;height:1px;background:#18e8ff}
+.s-title{font-family:var(--ff-d);font-weight:700;font-size:clamp(40px,5vw,72px);line-height:.96;letter-spacing:-.015em;margin-bottom:24px;color:#edf0ff}
+.s-title em{font-style:italic;color:#18e8ff;font-weight:400}
+.s-title .dim{color:rgba(220,228,255,.2)}
+.s-title .gold{color:#f0c97a}
+.s-title .vio{color:#b48aff}
+.s-lead{font-family:var(--ff-b);font-weight:300;font-size:16px;color:#b8c3e0;line-height:1.85;max-width:500px;letter-spacing:.01em}
+
+.feature-split{padding:130px var(--g);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;overflow:hidden;border-top:1px solid var(--rim)}
+.feature-split::before{content:'';position:absolute;right:-10%;top:50%;transform:translateY(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(155,109,255,.1) 0%,transparent 70%);pointer-events:none}
+.feature-split.rev{direction:rtl}.feature-split.rev>*{direction:ltr}
+
+.glass-card{background:var(--glass);border:1px solid var(--rim2);backdrop-filter:blur(20px);padding:28px 32px;position:relative;overflow:hidden}
+.glass-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#18e8ff,transparent);opacity:.5}
+.glass-card-title{font-family:var(--ff-d);font-weight:500;font-size:18px;letter-spacing:.01em;margin-bottom:10px;color:#dce4ff}
+.glass-card-sub{font-family:var(--ff-b);font-weight:300;font-size:13px;color:#9aa5c4;line-height:1.7}
+
+.pipeline-section{padding:130px var(--g);border-top:1px solid var(--rim);position:relative;overflow:hidden}
+.pipeline-section::before{content:'';position:absolute;left:50%;top:30%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(6,229,255,.05) 0%,transparent 70%);pointer-events:none}
+.pipe-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rim);margin-top:72px;border:1px solid var(--rim)}
+.pipe-card{background:var(--deep);padding:44px 32px 40px;position:relative;overflow:hidden;transition:background .35s}
+.pipe-card:hover{background:var(--panel)}
+.pipe-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity .4s}
+.pipe-card:hover::after{opacity:1}
+.pipe-n{font-family:var(--ff-m);font-size:10px;letter-spacing:.18em;color:#7a84a8;margin-bottom:28px}
+.pipe-n span{color:#18e8ff}
+.pipe-ico{width:50px;height:50px;border:1px solid rgba(6,229,255,.22);display:flex;align-items:center;justify-content:center;margin-bottom:26px;position:relative}
+.pipe-ico::after{content:'';position:absolute;inset:-5px;border:1px solid rgba(6,229,255,.06)}
+.pipe-t{font-family:var(--ff-d);font-weight:600;font-size:20px;margin-bottom:12px;color:#edf0ff;letter-spacing:-.005em}
+.pipe-b{font-family:var(--ff-b);font-weight:300;font-size:13px;color:#9aa5c4;line-height:1.8}
+.pipe-badge{display:inline-block;margin-top:22px;font-family:var(--ff-m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:5px 12px;background:rgba(6,229,255,.06);border:1px solid rgba(6,229,255,.22);color:#18e8ff}
+.pipe-connector{position:absolute;right:-10px;top:44px;font-size:12px;color:rgba(6,229,255,.3);z-index:2}
+
+.hazard-section{padding:0 var(--g) 130px;border-top:1px solid var(--rim)}
+.hz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:72px}
+.hz-card{position:relative;overflow:hidden;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;padding:36px 32px;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+.hz-card:hover{transform:translateY(-6px)}
+.hz-card-bg{position:absolute;inset:0;z-index:0;transition:transform .7s cubic-bezier(.25,.46,.45,.94);background:none}
+.hz-card-img{position:absolute;inset:0;z-index:0;opacity:.3;filter:grayscale(1) contrast(1.05)}
+.hz-card-img img{width:100%;height:100%;object-fit:cover}
+.hz-card:hover .hz-card-bg{transform:scale(1.04)}
+.hz-card-orb{position:absolute;top:16px;right:16px;z-index:2}
+.hz-card-content{position:relative;z-index:2}
+.hz-cat{font-family:var(--ff-m);font-size:9px;letter-spacing:.26em;text-transform:uppercase;margin-bottom:12px}
+.hz-name{font-family:var(--ff-d);font-weight:700;font-size:clamp(36px,3.5vw,54px);line-height:.92;margin-bottom:16px;color:#edf0ff;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+.hz-meta{display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.1);padding-top:16px;margin-top:4px}
+.hz-stat{font-family:var(--ff-m);font-size:10px;letter-spacing:.1em;color:rgba(180,195,230,.55)}
+.hz-stat strong{display:block;color:#dce4ff;font-weight:400;font-size:13px;margin-top:2px}
+.hz-arrow{position:absolute;top:28px;right:28px;z-index:3;width:38px;height:38px;border:1px solid rgba(255,255,255,.14);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .25s,border-color .25s,transform .4s}
+.hz-card:hover .hz-arrow{background:var(--cyan);border-color:var(--cyan);transform:rotate(45deg)}
+
+.eruption-section{padding:130px var(--g);border-top:1px solid var(--rim)}
+.eruption-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+.eruption-media{position:relative;min-height:380px;border:1px solid rgba(255,255,255,.12);background:rgba(4,5,12,.7);overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.55)}
+.eruption-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,.7) 100%)}
+.eruption-media img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02)}
+.eruption-card{position:relative;padding:0;border:none;background:none;backdrop-filter:none}
+.eruption-title{font-family:var(--ff-d);font-weight:700;font-size:clamp(30px,3.2vw,50px);line-height:1.05;color:#edf0ff;margin-bottom:14px}
+.eruption-text{font-family:var(--ff-b);font-weight:300;font-size:15px;line-height:1.8;color:#b8c3e0}
+.eruption-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.eruption-chip{font-family:var(--ff-m);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:7px 12px;border:1px solid rgba(6,229,255,.25);color:#18e8ff;background:rgba(6,229,255,.06)}
+.eruption-chip strong{font-weight:500;color:#f0c97a;margin-left:6px}
+
+.cyber-map-section{padding:130px var(--g);border-top:1px solid var(--rim);position:relative}
+.cyber-map-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:center}
+.cyber-map-wrap{position:relative;height:440px;border:1px solid rgba(255,255,255,.12);overflow:hidden;background:#000}
+#cyber-map{height:100%;width:100%}
+.cyber-grid{pointer-events:none;position:absolute;inset:0;background-image:linear-gradient(rgba(255,0,60,.05) 1px, transparent 1px),linear-gradient(90deg, rgba(255,0,60,.05) 1px, transparent 1px);background-size:56px 56px;z-index:400}
+.cyber-title{font-family:var(--ff-d);font-weight:700;font-size:clamp(30px,3.2vw,52px);line-height:1.05;color:#edf0ff;margin-bottom:14px}
+.cyber-text{font-family:var(--ff-b);font-weight:300;font-size:15px;line-height:1.8;color:#b8c3e0;max-width:520px}
+.hazard-tag{padding:6px 10px;background:rgba(0,0,0,.7);border:1px solid rgba(255,0,60,.5);color:#ffffff;font-family:var(--ff-m);font-size:9px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;box-shadow:0 0 12px rgba(255,0,60,.2)}
+
+.bento-section{padding:0 var(--g) 130px}
+.bento-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:16px;margin-top:72px}
+.bento{background:var(--panel);border:1px solid var(--rim);position:relative;overflow:hidden;padding:36px;transition:border-color .35s,background .35s}
+.bento:hover{border-color:var(--rim2);background:var(--deep)}
+.bento::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity .4s}
+.bento:hover::before{opacity:.7}
+.bento-lg{grid-column:span 5;grid-row:span 2}
+.bento-md{grid-column:span 4;grid-row:span 1}
+.bento-sm{grid-column:span 3;grid-row:span 1}
+.bento-wide{grid-column:span 7;grid-row:span 1}
+.bento-tall{grid-column:span 4;grid-row:span 2}
+.bento-n{font-family:var(--ff-m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#6b7494;margin-bottom:18px}
+.bento-n span{color:#18e8ff}
+.bento-title{font-family:var(--ff-d);font-weight:600;font-size:22px;margin-bottom:10px;color:#edf0ff;letter-spacing:-.005em}
+.bento-sub{font-family:var(--ff-b);font-weight:300;font-size:13px;color:#9aa5c4;line-height:1.75}
+.bento-number{font-family:var(--ff-d);font-weight:700;font-size:clamp(48px,5vw,72px);letter-spacing:-.025em;line-height:1;margin-top:auto;color:#edf0ff}
+.bento-number .unit{font-size:.4em;color:#7a84a8;font-weight:400;letter-spacing:.05em}
+.bento-graphic{position:absolute;bottom:0;right:0;pointer-events:none;opacity:.35}
+.bento-tag{display:inline-block;margin-top:18px;font-family:var(--ff-m);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;background:rgba(155,109,255,.08);border:1px solid rgba(155,109,255,.22);color:#b48aff}
+
+.intel-split{padding:130px var(--g);border-top:1px solid var(--rim);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;overflow:hidden}
+.intel-split::after{content:'';position:absolute;left:-8%;top:50%;transform:translateY(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(59,123,255,.1) 0%,transparent 70%);pointer-events:none}
+.intel-visual{position:relative;height:560px}
+.intel-feature-list{margin-top:44px;display:flex;flex-direction:column;gap:20px}
+.intel-feat{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border:1px solid var(--rim);transition:border-color .3s,background .3s}
+.intel-feat:hover{border-color:rgba(6,229,255,.2);background:var(--cyan3)}
+.intel-feat-ico{width:40px;height:40px;border:1px solid rgba(6,229,255,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.intel-feat-t{font-family:var(--ff-d);font-weight:600;font-size:17px;margin-bottom:4px;color:#dce4ff;letter-spacing:.01em}
+.intel-feat-d{font-family:var(--ff-b);font-weight:300;font-size:13px;color:#9aa5c4;line-height:1.7}
+
+.quote-section{padding:130px var(--g);border-top:1px solid var(--rim);position:relative;overflow:hidden;text-align:center}
+.quote-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(155,109,255,.1) 0%,rgba(59,123,255,.06) 40%,transparent 70%);pointer-events:none}
+.q-ornament{font-family:var(--ff-d);font-size:200px;line-height:.5;color:rgba(155,109,255,.1);user-select:none;position:relative;z-index:1}
+.q-text{font-family:var(--ff-d);font-style:italic;font-weight:400;font-size:clamp(22px,2.8vw,40px);line-height:1.45;color:#dce4ff;max-width:820px;margin:0 auto 36px;position:relative;z-index:1;letter-spacing:.005em}
+.q-text em{font-style:normal;color:#18e8ff;text-shadow:0 0 40px rgba(6,229,255,.3)}
+.q-attr{font-family:var(--ff-b);font-weight:400;font-size:14px;color:#8892b8;letter-spacing:.06em;position:relative;z-index:1}
+.q-attr strong{color:#c8d4f0;font-weight:500}
+.q-stars{display:flex;justify-content:center;gap:6px;margin-bottom:28px;position:relative;z-index:1}
+.q-star{width:16px;height:16px;fill:#f0c97a}
+
+.stats-banner{border-top:1px solid var(--rim);border-bottom:1px solid var(--rim);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-cell{padding:60px 48px;border-right:1px solid var(--rim);position:relative;overflow:hidden;transition:background .4s}
+.stat-cell:last-child{border-right:none}
+.stat-cell:hover{background:var(--cyan3)}
+.stat-cell::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.stat-cell:nth-child(1)::after{background:var(--cyan)}
+.stat-cell:nth-child(2)::after{background:#e05252}
+.stat-cell:nth-child(3)::after{background:var(--violet)}
+.stat-cell:nth-child(4)::after{background:var(--gold)}
+.stat-cell:hover::after{transform:scaleX(1)}
+.stat-ico{margin-bottom:18px;opacity:.75}
+.stat-n{font-family:var(--ff-d);font-weight:700;font-size:clamp(48px,5vw,72px);line-height:1;letter-spacing:-.025em;margin-bottom:8px;color:#edf0ff}
+.stat-u{font-size:.38em;color:#7a84a8;font-weight:400;margin-left:2px}
+.stat-l{font-family:var(--ff-b);font-weight:400;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9aa5c4}
+.stat-d{font-family:var(--ff-m);font-size:10px;color:#18e8ff;margin-top:6px;letter-spacing:.08em}
+
+.ticker-wrap{border-top:1px solid var(--rim);display:flex;align-items:center;background:rgba(7,9,24,.5);backdrop-filter:blur(8px)}
+.ticker-badge{flex-shrink:0;padding:11px 24px;font-family:var(--ff-m);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#18e8ff;border-right:1px solid var(--rim);display:flex;align-items:center;gap:8px;white-space:nowrap}
+.t-dot{width:5px;height:5px;border-radius:50%;background:#18e8ff;animation:orb-pulse 1.2s step-end infinite}
+.ticker-track{flex:1;overflow:hidden;padding:11px 0}
+.ticker-run{display:inline-block;white-space:nowrap;font-family:var(--ff-m);font-size:10px;letter-spacing:.08em;color:#7a84a8;animation:tickrun 42s linear infinite}
+@keyframes tickrun{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+.cta-section{padding:180px var(--g);text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(59,123,255,.12) 0%,rgba(155,109,255,.08) 40%,transparent 70%);pointer-events:none}
+.cta-section::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 30% 50% at 50% 50%,rgba(6,229,255,.06) 0%,transparent 60%);pointer-events:none}
+.cta-ring{position:absolute;border-radius:50%;border:1px solid;pointer-events:none}
+.cta-r1{width:480px;height:480px;top:50%;left:50%;transform:translate(-50%,-50%);border-color:rgba(6,229,255,.06);animation:spin-slow 60s linear infinite}
+.cta-r2{width:340px;height:340px;top:50%;left:50%;transform:translate(-50%,-50%);border-color:rgba(155,109,255,.08);animation:spin-slow 40s linear infinite reverse}
+.cta-r3{width:200px;height:200px;top:50%;left:50%;transform:translate(-50%,-50%);border-color:rgba(6,229,255,.1);animation:spin-slow 25s linear infinite}
+.cta-eyebrow{font-family:var(--ff-m);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#f0c97a;margin-bottom:22px;position:relative;z-index:1}
+.cta-h{font-family:var(--ff-d);font-weight:700;font-size:clamp(58px,7.5vw,116px);line-height:.9;letter-spacing:-.02em;margin-bottom:52px;position:relative;z-index:1;color:#edf0ff}
+.cta-h em{font-style:italic;color:#18e8ff;font-weight:400;text-shadow:0 0 80px rgba(6,229,255,.3)}
+.cta-h .co{-webkit-text-stroke:1.5px rgba(180,200,255,.3);color:transparent}
+.cta-acts{display:flex;justify-content:center;gap:16px;position:relative;z-index:1;flex-wrap:wrap}
+
+footer{border-top:1px solid var(--rim);padding:64px var(--g);display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:56px}
+.f-col-brand .f-logo{display:flex;align-items:center;gap:11px;margin-bottom:18px}
+.f-logo-name{font-family:var(--ff-d);font-weight:600;font-size:18px;letter-spacing:.28em;text-transform:uppercase;color:#dce4ff}
+.f-tagline{font-family:var(--ff-b);font-weight:300;font-size:13px;color:#8892b8;line-height:1.75;max-width:260px;margin-bottom:24px}
+.f-socials{display:flex;gap:10px}
+.f-social{width:34px;height:34px;border:1px solid var(--rim2);display:flex;align-items:center;justify-content:center;color:#8892b8;font-family:var(--ff-m);font-size:11px;transition:border-color .2s,color .2s}
+.f-social:hover{border-color:#18e8ff;color:#18e8ff}
+.f-col-title{font-family:var(--ff-d);font-weight:600;font-size:15px;letter-spacing:.06em;margin-bottom:20px;color:#dce4ff}
+.f-links{display:flex;flex-direction:column;gap:10px}
+.f-links a{font-family:var(--ff-b);font-weight:300;font-size:13px;color:#8892b8;transition:color .2s}
+.f-links a:hover{color:#18e8ff}
+.f-bottom{border-top:1px solid var(--rim);padding:24px var(--g);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.f-copy{font-family:var(--ff-m);font-size:10px;letter-spacing:.1em;color:#4e566e}
+.f-legal{display:flex;gap:24px}
+.f-legal a{font-family:var(--ff-m);font-size:10px;letter-spacing:.1em;color:#4e566e;transition:color .2s}
+.f-legal a:hover{color:#18e8ff}
+
+/* REVEAL & KEYFRAMES */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}.rd4{transition-delay:.4s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  :root{--g:32px}
+  .nav-mid{display:none}
+  .feature-split,.intel-split{grid-template-columns:1fr;gap:60px}
+  .feature-split.rev{direction:ltr}
+  .pipe-grid{grid-template-columns:1fr 1fr}
+  .hz-grid{grid-template-columns:1fr}
+  .bento-lg,.bento-md,.bento-sm,.bento-wide,.bento-tall{grid-column:span 12}
+  .stats-banner{grid-template-columns:1fr 1fr}
+  .stat-cell:nth-child(2){border-right:none}
+  .stat-cell:nth-child(3){border-top:1px solid var(--rim)}
+  footer{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .pipe-grid{grid-template-columns:1fr}
+  .stats-banner{grid-template-columns:1fr}
+  .hero-h1{font-size:46px}
+  .cta-h{font-size:48px}
+  footer{grid-template-columns:1fr}
+  .hero-chip{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="/" class="nav-brand">
+    <div class="nav-ring"></div>
+    <div class="brand-name">Geo Artemis</div>
+  </a>
+  <ul class="nav-mid">
+    <li><a href="/app1/">App 1</a></li>
+    <li class="nav-sep">|</li>
+    <li><a href="/app3/">App 3</a></li>
+    <li class="nav-sep">|</li>
+    <li><a href="/app4/">App 4</a></li>
+    <li class="nav-sep">|</li>
+    <li><a href="/app2/logout">Log out</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-badge"><span class="live-orb"></span>14 Active Zones</div>
+    <a href="/signup" class="btn-nav"><span>Request Access</span></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-inner">
+    <div class="hero-kicker"><span class="kicker-dot"></span>Satellite · AI · Real-Time Intelligence</div>
+
+    <h1 class="hero-h1">
+      Planetary<br>
+      <em>Hazard</em><br>
+      <span class="outline-text">Intelligence</span>
+    </h1>
+
+    <div class="hero-rule"></div>
+
+    <p class="hero-sub">
+      Machine intelligence fused with multi-spectral satellite data — detecting, clustering, and forecasting wildfires, earthquakes, and cyclones across the entire planet, seconds after they occur.
+    </p>
+
+    <div class="hero-actions">
+      <a href="/globe" class="btn-p"><span class="bt">Launch Platform</span> <span class="ba">→</span></a>
+      <a href="#intelligence" class="btn-sec">Explore Capabilities</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span class="scroll-label">Discover</span>
+    <div class="scroll-track"></div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar reveal">
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="var(--cyan)" stroke-width="1"/><path d="M5 8l2 2 4-4" stroke="var(--cyan)" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </div>
+    SOC 2 Type II Certified
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="1" stroke="var(--cyan)" stroke-width="1"/><path d="M5 8h6M8 5v6" stroke="var(--cyan)" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </div>
+    99.98% Platform Uptime
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polygon points="8,1 15,5 15,11 8,15 1,11 1,5" stroke="var(--cyan)" stroke-width="1" fill="none"/><circle cx="8" cy="8" r="2" fill="var(--cyan)"/></svg>
+    </div>
+    UN-OCHA Partner Network
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1C5 5 3 7 3 10a5 5 0 0010 0c0-3-2-5-5-9z" stroke="var(--cyan)" stroke-width="1" fill="none"/></svg>
+    </div>
+    14 800+ Monitored Zones
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h3l2-6 2 12 2-6h3" stroke="var(--cyan)" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>
+    </div>
+    &lt; 90 sec Alert Latency
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-badge"><span class="t-dot"></span>Live Intelligence Feed</div>
+  <div class="ticker-track">
+    <span class="ticker-run">
+      ◆ WILDFIRE — Cerrado, Brazil · Severity: Critical · Spread +2.3 km/h &nbsp;&nbsp;&nbsp;
+      ◆ CYCLONE — Bay of Bengal, Cat 3 · Winds 185 km/h · Landfall 14h &nbsp;&nbsp;&nbsp;
+      ◆ EARTHQUAKE — Türkiye, M 5.8 · Depth 12 km · Aftershock 67% &nbsp;&nbsp;&nbsp;
+      ◆ HEAT DOME — Central Europe · +8°C anomaly · 72h &nbsp;&nbsp;&nbsp;
+      ◆ WILDFIRE — Alberta, Canada · 23 400 ha perimeter &nbsp;&nbsp;&nbsp;
+      ◆ VOLCANIC — Mt. Etna, Italy · Orange Alert · Ash 4.2 km &nbsp;&nbsp;&nbsp;
+      ◆ WILDFIRE — Cerrado, Brazil · Severity: Critical · Spread +2.3 km/h &nbsp;&nbsp;&nbsp;
+      ◆ CYCLONE — Bay of Bengal, Cat 3 · Winds 185 km/h · Landfall 14h &nbsp;&nbsp;&nbsp;
+      ◆ EARTHQUAKE — Türkiye, M 5.8 · Depth 12 km · Aftershock 67% &nbsp;&nbsp;&nbsp;
+      ◆ HEAT DOME — Central Europe · +8°C anomaly · 72h &nbsp;&nbsp;&nbsp;
+    </span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-banner reveal">
+  <div class="stat-cell">
+    <div class="stat-ico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C8 6 5 8 5 12a6 6 0 0012 0c0-4-3-6-6-10z" stroke="var(--cyan)" stroke-width="1.2" fill="none"/></svg></div>
+    <div class="stat-n" id="s1">—</div>
+    <div class="stat-l">Active Wildfires</div>
+    <div class="stat-d">↑ 12 in last 6 hours</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-ico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M2 11h5l3-8 3 16 2-8h5" stroke="#e05252" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div>
+    <div class="stat-n" id="s2">—</div>
+    <div class="stat-l">Seismic Events M≥4</div>
+    <div class="stat-d">Last 24 hours global</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-ico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 4a7 7 0 100 14A7 7 0 0011 4z" stroke="var(--violet)" stroke-width="1.2" fill="none"/><path d="M7 11c0-2.2 1.8-4 4-4M15 11c0 2.2-1.8 4-4 4" stroke="var(--violet)" stroke-width="1" stroke-dasharray="2 2"/></svg></div>
+    <div class="stat-n" id="s3">—</div>
+    <div class="stat-l">Active Cyclones</div>
+    <div class="stat-d">Cat 3+ tracked globally</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-ico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="1.5" stroke="var(--gold)" stroke-width="1.2" fill="none"/><path d="M7 7h8M7 11h5M7 15h7" stroke="var(--gold)" stroke-width="1" stroke-linecap="round"/></svg></div>
+    <div class="stat-n" id="s4">—<span class="stat-u">k+</span></div>
+    <div class="stat-l">Zones Monitored</div>
+    <div class="stat-d">Across all 6 continents</div>
+  </div>
+</div>
+
+<!-- INTELLIGENCE SPLIT -->
+<div class="intel-split reveal" id="intelligence">
+  <div>
+    <div class="s-kicker">Platform Intelligence</div>
+    <h2 class="s-title">Not just a map.<br><em>A decision</em><br><span class="dim">engine.</span></h2>
+    <p class="s-lead">Every signal, every anomaly, every escalating threat — processed, ranked, and narrated in plain language by AI before your team even receives the alert.</p>
+    <div class="intel-feature-list">
+      <div class="intel-feat">
+        <div class="intel-feat-ico">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4" stroke="var(--cyan)" stroke-width="1"/><circle cx="10" cy="10" r="8" stroke="var(--cyan)" stroke-width=".7" stroke-dasharray="2 2"/></svg>
+        </div>
+        <div><div class="intel-feat-t">Real-Time Satellite Ingest</div><div class="intel-feat-d">Multi-spectral passes every 6 minutes. MODIS, VIIRS, and Sentinel-2 streams unified in one pipeline.</div></div>
+      </div>
+      <div class="intel-feat">
+        <div class="intel-feat-ico">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><polyline points="2,16 6,9 10,12 15,4 18,7" stroke="var(--violet)" stroke-width="1.2" fill="none" stroke-linecap="round"/><circle cx="15" cy="4" r="2" fill="var(--violet)"/></svg>
+        </div>
+        <div><div class="intel-feat-t">ML-Powered Escalation Forecast</div><div class="intel-feat-d">Physics-informed neural nets simulate 6h, 24h, and 72h propagation for every active hazard zone.</div></div>
+      </div>
+      <div class="intel-feat">
+        <div class="intel-feat-ico">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h4l2-8 2 16 2-8h4" stroke="var(--gold)" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>
+        </div>
+        <div><div class="intel-feat-t">AI Narrative Intelligence Briefs</div><div class="intel-feat-d">Every active zone generates a plain-language brief updated every 15 minutes — what is happening, why it matters, and what comes next.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="intel-visual">
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+      <svg width="480" height="520" viewBox="0 0 480 520" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+        <polygon points="240,20 380,80 440,220 440,300 380,440 240,500 100,440 40,300 40,220 100,80" stroke="rgba(6,229,255,.1)" stroke-width="1" fill="none"/>
+        <polygon points="240,40 365,93 420,225 420,295 365,427 240,480 115,427 60,295 60,225 115,93" stroke="rgba(6,229,255,.06)" stroke-width="1" fill="none"/>
+        <circle cx="240" cy="260" r="160" stroke="rgba(6,229,255,.08)" stroke-width="1" fill="none"/>
+        <circle cx="240" cy="260" r="130" stroke="rgba(155,109,255,.07)" stroke-width="1" fill="none"/>
+        <circle cx="240" cy="260" r="100" stroke="rgba(6,229,255,.05)" stroke-width="1" fill="none"/>
+        <path d="M 240 100 A 160 160 0 0 1 380 320" stroke="rgba(6,229,255,.35)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 240 390 A 130 130 0 0 1 125 185" stroke="rgba(155,109,255,.3)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M 310 168 A 100 100 0 0 1 258 360" stroke="rgba(59,123,255,.25)" stroke-width="1" stroke-linecap="round"/>
+        <circle cx="240" cy="260" r="40" fill="rgba(6,229,255,.04)" stroke="rgba(6,229,255,.2)" stroke-width="1"/>
+        <circle cx="240" cy="260" r="22" fill="rgba(6,229,255,.08)" stroke="rgba(6,229,255,.4)" stroke-width="1"/>
+        <circle cx="240" cy="260" r="8" fill="var(--cyan)" opacity=".85"/>
+        <line x1="240" y1="100" x2="240" y2="212" stroke="rgba(6,229,255,.25)" stroke-width="1"/>
+        <line x1="240" y1="308" x2="240" y2="420" stroke="rgba(6,229,255,.15)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="80" y1="260" x2="212" y2="260" stroke="rgba(6,229,255,.2)" stroke-width="1"/>
+        <line x1="268" y1="260" x2="400" y2="260" stroke="rgba(6,229,255,.12)" stroke-width="1" stroke-dasharray="3 4"/>
+        <path d="M 60 80 L 60 60 L 80 60" stroke="rgba(6,229,255,.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M 420 80 L 420 60 L 400 60" stroke="rgba(6,229,255,.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M 60 440 L 60 460 L 80 460" stroke="rgba(6,229,255,.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M 420 440 L 420 460 L 400 460" stroke="rgba(6,229,255,.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <circle cx="240" cy="100" r="6" fill="var(--cyan)" opacity=".9"/>
+        <circle cx="396" cy="344" r="5" fill="#e05252" opacity=".85"/>
+        <circle cx="112" cy="180" r="5" fill="var(--violet)" opacity=".8"/>
+        <circle cx="360" cy="168" r="4" fill="var(--gold)" opacity=".75"/>
+        <circle cx="130" cy="352" r="4" fill="var(--cyan)" opacity=".6"/>
+        <text x="252" y="94" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(6,229,255,.7)" letter-spacing="1">WILDFIRE</text>
+        <text x="400" y="348" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(224,82,82,.8)" letter-spacing="1">SEISMIC</text>
+        <text x="68" y="175" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(155,109,255,.8)" letter-spacing="1">CYCLONE</text>
+        <g opacity=".3">
+          <line x1="240" y1="80" x2="240" y2="88" stroke="var(--cyan)" stroke-width="1"/>
+          <line x1="300" y1="87" x2="296" y2="95" stroke="var(--cyan)" stroke-width="1"/>
+          <line x1="349" y1="111" x2="343" y2="118" stroke="var(--cyan)" stroke-width="1"/>
+          <line x1="380" y1="152" x2="373" y2="157" stroke="var(--cyan)" stroke-width="1"/>
+          <line x1="400" y1="200" x2="392" y2="202" stroke="var(--cyan)" stroke-width="1"/>
+        </g>
+        <rect x="330" y="380" width="140" height="62" rx="2" fill="rgba(10,13,31,.85)" stroke="rgba(6,229,255,.18)"/>
+        <text x="342" y="398" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(6,229,255,.6)" letter-spacing="1.5">SEVERITY SCORE</text>
+        <text x="342" y="418" font-family="Playfair Display, serif" font-size="22" fill="rgba(6,229,255,.95)">87</text>
+        <text x="366" y="418" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(6,229,255,.4)">/100</text>
+        <rect x="342" y="428" width="70" height="3" rx="1.5" fill="rgba(255,255,255,.06)"/>
+        <rect x="342" y="428" width="61" height="3" rx="1.5" fill="rgba(6,229,255,.7)"/>
+        <rect x="10" y="300" width="140" height="62" rx="2" fill="rgba(10,13,31,.85)" stroke="rgba(155,109,255,.18)"/>
+        <text x="22" y="318" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(155,109,255,.6)" letter-spacing="1.5">CONFIDENCE</text>
+        <text x="22" y="338" font-family="Playfair Display, serif" font-size="22" fill="rgba(155,109,255,.95)">97.4</text>
+        <text x="60" y="338" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(155,109,255,.4)">%</text>
+        <rect x="22" y="348" width="70" height="3" rx="1.5" fill="rgba(255,255,255,.06)"/>
+        <rect x="22" y="348" width="68" height="3" rx="1.5" fill="rgba(155,109,255,.7)"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- HAZARD SHOWCASE -->
+<section class="section hazard-section reveal" id="hazards" style="padding-top:80px">
+  <div class="s-kicker">Threat Taxonomy</div>
+  <h2 class="s-title">Three pillars of<br><em>planetary hazard</em></h2>
+  <div class="hz-grid">
+    <div class="hz-card">
+      <div class="hz-card-img">
+        <img src="/static/images/wildfire.png" alt="Wildfire">
+      </div>
+      <div class="hz-card-bg"></div>
+      <div class="hz-card-orb">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="40" r="36" stroke="rgba(6,229,255,.15)" stroke-width="1"/>
+          <circle cx="40" cy="40" r="26" stroke="rgba(6,229,255,.09)" stroke-width="1" stroke-dasharray="3 4"/>
+          <circle cx="40" cy="40" r="12" fill="rgba(6,229,255,.06)" stroke="rgba(6,229,255,.25)" stroke-width="1"/>
+          <circle cx="40" cy="40" r="4" fill="var(--cyan)" opacity=".8"/>
+          <line x1="40" y1="4" x2="40" y2="14" stroke="var(--cyan)" stroke-width="1" opacity=".4"/>
+          <line x1="76" y1="40" x2="66" y2="40" stroke="var(--cyan)" stroke-width="1" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="hz-arrow">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.3"/></svg>
+      </div>
+      <div class="hz-card-content">
+        <div class="hz-cat" style="color:var(--cyan)">01 — Thermal Detection</div>
+        <h3 class="hz-name">Wild<br>fires</h3>
+        <div class="hz-meta">
+          <div class="hz-stat"><span>Satellite Pass</span><strong>Every 6 min</strong></div>
+          <div class="hz-stat"><span>ML Confidence</span><strong>97.4%</strong></div>
+          <div class="hz-stat"><span>Active Now</span><strong style="color:var(--cyan)">847</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="hz-card">
+      <div class="hz-card-img">
+        <img src="/static/images/earthquake.png" alt="Earthquake">
+      </div>
+      <div class="hz-card-bg"></div>
+      <div class="hz-card-orb">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <rect x="4" y="4" width="72" height="72" stroke="rgba(224,82,82,.15)" stroke-width="1" rx="2"/>
+          <rect x="16" y="16" width="48" height="48" stroke="rgba(224,82,82,.09)" stroke-width="1" stroke-dasharray="3 3"/>
+          <circle cx="40" cy="40" r="12" fill="rgba(224,82,82,.06)" stroke="rgba(224,82,82,.3)" stroke-width="1"/>
+          <path d="M20 40 H28 L31 33 L35 47 L38 40 L41 36 L44 40 H52" stroke="#e05252" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="hz-arrow">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.3"/></svg>
+      </div>
+      <div class="hz-card-content">
+        <div class="hz-cat" style="color:#e05252">02 — Seismic Events</div>
+        <h3 class="hz-name">Earth<br>quakes</h3>
+        <div class="hz-meta">
+          <div class="hz-stat"><span>Alert Latency</span><strong>&lt; 90 sec</strong></div>
+          <div class="hz-stat"><span>Forecast Window</span><strong>72 hours</strong></div>
+          <div class="hz-stat"><span>Threshold</span><strong style="color:#e05252">M 2.5+</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="hz-card">
+      <div class="hz-card-img">
+        <img src="/static/images/hurrican.png" alt="Cyclone">
+      </div>
+      <div class="hz-card-bg"></div>
+      <div class="hz-card-orb">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="40" r="36" stroke="rgba(155,109,255,.14)" stroke-width="1"/>
+          <path d="M40 40 m-28,0 a28,28 0 1,0 28,-28" stroke="rgba(155,109,255,.4)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M40 40 m-20,0 a20,20 0 1,0 20,-20" stroke="rgba(155,109,255,.25)" stroke-width="1" stroke-linecap="round"/>
+          <path d="M40 40 m-12,0 a12,12 0 1,0 12,-12" stroke="rgba(155,109,255,.15)" stroke-width="1" stroke-linecap="round"/>
+          <circle cx="40" cy="40" r="4" fill="var(--violet)" opacity=".8"/>
+        </svg>
+      </div>
+      <div class="hz-arrow">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.3"/></svg>
+      </div>
+      <div class="hz-card-content">
+        <div class="hz-cat" style="color:var(--violet)">03 — Atmospheric Systems</div>
+        <h3 class="hz-name">Cyclones<br>& Storms</h3>
+        <div class="hz-meta">
+          <div class="hz-stat"><span>Track Accuracy</span><strong>±28 km</strong></div>
+          <div class="hz-stat"><span>Update Cycle</span><strong>6 h refresh</strong></div>
+          <div class="hz-stat"><span>Active Now</span><strong style="color:var(--violet)">23</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="eruption-section reveal">
+  <div class="eruption-grid">
+    <div class="eruption-media">
+      <img src="/static/images/image.png" alt="Volcano eruption">
+    </div>
+    <div class="eruption-content">
+      <div class="s-kicker">Volcanic Risk</div>
+      <div class="eruption-card">
+        <h2 class="eruption-title">Volcano eruptions are high-impact, fast-moving hazards</h2>
+        <p class="eruption-text">
+          Eruptions can release ash, toxic gases, and lava flows that overwhelm air quality,
+          contaminate water, and damage infrastructure. In densely populated regions, a single
+          event can force mass evacuations and disrupt millions of lives across transport and
+          health systems in just hours.
+        </p>
+        <div class="eruption-meta">
+          <span class="eruption-chip">Displacement <strong>Millions</strong></span>
+          <span class="eruption-chip">Ash Reach <strong>500+ km</strong></span>
+          <span class="eruption-chip">Air Quality <strong>Severe</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="pipeline-section reveal" id="analytics">
+  <div style="max-width:600px">
+    <div class="s-kicker">Intelligence Pipeline</div>
+    <h2 class="s-title">Raw signal<br><span class="dim">→ Actionable</span> <em>insight</em></h2>
+  </div>
+  <div class="pipe-grid">
+    <div class="pipe-card">
+      <div class="pipe-n">STEP <span>01</span></div>
+      <div class="pipe-n" style="position:absolute;right:20px;top:44px;font-size:56px;letter-spacing:0;color:rgba(255,255,255,.03);font-family:var(--ff-d);font-weight:700">01</div>
+      <div class="pipe-ico">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="var(--cyan)" stroke-width="1"/><circle cx="12" cy="12" r="9" stroke="var(--cyan)" stroke-width=".8" stroke-dasharray="2 2"/><line x1="12" y1="1" x2="12" y2="5" stroke="var(--cyan)" stroke-width="1"/><line x1="12" y1="19" x2="12" y2="23" stroke="var(--cyan)" stroke-width="1"/><line x1="1" y1="12" x2="5" y2="12" stroke="var(--cyan)" stroke-width="1"/><line x1="19" y1="12" x2="23" y2="12" stroke="var(--cyan)" stroke-width="1"/></svg>
+      </div>
+      <div class="pipe-t">Satellite Ingest</div>
+      <div class="pipe-b">Multi-spectral passes every 6 minutes across 14 000 orbital segments. MODIS, VIIRS, and Sentinel-2 streams unified.</div>
+      <span class="pipe-badge">Data Layer</span>
+      <span class="pipe-connector">→</span>
+    </div>
+    <div class="pipe-card">
+      <div class="pipe-n">STEP <span>02</span></div>
+      <div class="pipe-n" style="position:absolute;right:20px;top:44px;font-size:56px;letter-spacing:0;color:rgba(255,255,255,.03);font-family:var(--ff-d);font-weight:700">02</div>
+      <div class="pipe-ico">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="9" height="9" stroke="var(--cyan)" stroke-width="1"/><rect x="13" y="2" width="9" height="9" stroke="var(--cyan)" stroke-width=".6" opacity=".45"/><rect x="2" y="13" width="9" height="9" stroke="var(--cyan)" stroke-width=".6" opacity=".45"/><rect x="13" y="13" width="9" height="9" stroke="var(--cyan)" stroke-width="1"/></svg>
+      </div>
+      <div class="pipe-t">ML Clustering</div>
+      <div class="pipe-b">Geospatial DBSCAN and transformer anomaly detection groups pixel signals into coherent hazard zones within 30 seconds.</div>
+      <span class="pipe-badge">ML Layer</span>
+      <span class="pipe-connector">→</span>
+    </div>
+    <div class="pipe-card">
+      <div class="pipe-n">STEP <span>03</span></div>
+      <div class="pipe-n" style="position:absolute;right:20px;top:44px;font-size:56px;letter-spacing:0;color:rgba(255,255,255,.03);font-family:var(--ff-d);font-weight:700">03</div>
+      <div class="pipe-ico">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><polyline points="2,20 7,11 12,15 17,5 22,8" stroke="var(--cyan)" stroke-width="1.3" fill="none" stroke-linecap="round"/><circle cx="17" cy="5" r="2.5" fill="var(--cyan)"/></svg>
+      </div>
+      <div class="pipe-t">Severity Scoring</div>
+      <div class="pipe-b">Each zone scored 0–100 across spread velocity, population exposure, infrastructure proximity, and atmospheric indices.</div>
+      <span class="pipe-badge">Risk Layer</span>
+      <span class="pipe-connector">→</span>
+    </div>
+    <div class="pipe-card">
+      <div class="pipe-n">STEP <span>04</span></div>
+      <div class="pipe-n" style="position:absolute;right:20px;top:44px;font-size:56px;letter-spacing:0;color:rgba(255,255,255,.03);font-family:var(--ff-d);font-weight:700">04</div>
+      <div class="pipe-ico">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="var(--cyan)" stroke-width=".6" opacity=".3"/><path d="M12 2 A10 10 0 0 1 22 12" stroke="var(--cyan)" stroke-width="1.5" fill="none"/><circle cx="12" cy="2" r="2.5" fill="var(--cyan)"/></svg>
+      </div>
+      <div class="pipe-t">Escalation Forecast</div>
+      <div class="pipe-b">Physics-informed neural nets simulate 6h, 24h, and 72h propagation for every active hazard zone, updated continuously.</div>
+      <span class="pipe-badge">Prediction Layer</span>
+    </div>
+  </div>
+</section>
+
+<!-- BENTO PLATFORM -->
+<section class="section bento-section reveal" id="platform" style="padding-top:0">
+  <div class="s-kicker">Platform Capabilities</div>
+  <h2 class="s-title">Everything you need.<br><span class="dim">Nothing you don't.</span></h2>
+  <div class="bento-grid">
+    <div class="bento bento-lg" style="background:linear-gradient(145deg,rgba(10,13,31,.95),rgba(7,9,24,.98));border-color:rgba(6,229,255,.12)">
+      <div class="bento-n">CAPABILITY <span>01</span></div>
+      <div class="bento-title">Interactive 3D Globe</div>
+      <div class="bento-sub">WebGL-powered rotating Earth with real-time hazard overlays at 60 fps. Click any cluster for a full AI intelligence brief with predictive trajectories.</div>
+      <a href="/globe" class="plat-link" style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-family:var(--ff-b);font-weight:400;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#18e8ff">Open Globe →</a>
+      <div class="bento-graphic" style="opacity:.2">
+        <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+          <circle cx="100" cy="100" r="80" stroke="rgba(6,229,255,1)" stroke-width=".8"/>
+          <circle cx="100" cy="100" r="60" stroke="rgba(6,229,255,1)" stroke-width=".6" stroke-dasharray="3 3"/>
+          <ellipse cx="100" cy="100" rx="40" ry="80" stroke="rgba(6,229,255,1)" stroke-width=".5" stroke-dasharray="2 3"/>
+          <ellipse cx="100" cy="100" rx="80" ry="30" stroke="rgba(6,229,255,1)" stroke-width=".5"/>
+          <ellipse cx="100" cy="100" rx="80" ry="55" stroke="rgba(6,229,255,.6)" stroke-width=".4"/>
+          <line x1="20" y1="100" x2="180" y2="100" stroke="rgba(6,229,255,.6)" stroke-width=".5"/>
+          <line x1="100" y1="20" x2="100" y2="180" stroke="rgba(6,229,255,.6)" stroke-width=".5"/>
+        </svg>
+      </div>
+    </div>
+    <div class="bento bento-md rd1">
+      <div class="bento-n">CAPABILITY <span>02</span></div>
+      <div class="bento-title">2D Tactical Map</div>
+      <div class="bento-sub">Flat-projection with customisable layers — severity heatmaps, cluster boundaries, wind vectors, and live imagery.</div>
+      <span class="bento-tag">Geospatial</span>
+    </div>
+    <div class="bento bento-sm rd2">
+      <div class="bento-n">SLA <span>UPT</span></div>
+      <div class="bento-title">Uptime</div>
+      <div class="bento-number">99.98<span class="unit">%</span></div>
+    </div>
+    <div class="bento bento-wide rd1">
+      <div class="bento-n">CAPABILITY <span>03</span></div>
+      <div class="bento-title">AI Narrative Intelligence Briefs</div>
+      <div class="bento-sub">Every active zone generates a plain-language intelligence brief updated every 15 minutes. What is happening, why it matters, what comes next.</div>
+      <a href="/ai" class="plat-link" style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-family:var(--ff-b);font-weight:400;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#b48aff">Try AI Console →</a>
+    </div>
+    <div class="bento bento-tall rd2">
+      <div class="bento-n">LATENCY <span>AVG</span></div>
+      <div class="bento-title">Alert Speed</div>
+      <div class="bento-sub">From satellite detection to your incident stack in under two seconds.</div>
+      <div class="bento-number" style="margin-top:24px;color:#18e8ff">&lt;2<span class="unit">sec</span></div>
+    </div>
+    <div class="bento bento-md rd1">
+      <div class="bento-n">CAPABILITY <span>04</span></div>
+      <div class="bento-title">Alert API & Webhooks</div>
+      <div class="bento-sub">Push critical events to your stack. Full SDKs for Python, JavaScript, and Go.</div>
+      <span class="bento-tag">Developer</span>
+    </div>
+    <div class="bento bento-sm rd3">
+      <div class="bento-n">ZONES <span>MON</span></div>
+      <div class="bento-title">Coverage</div>
+      <div class="bento-number" style="color:#b48aff">14.8<span class="unit">k+</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cyber-map-section reveal">
+  <div class="cyber-map-grid">
+    <div class="cyber-map-wrap">
+      <div id="cyber-map"></div>
+      <div class="cyber-grid"></div>
+    </div>
+    <div class="cyber-content">
+      <div class="s-kicker">Live Mapping</div>
+      <h2 class="cyber-title">Live hazards event mapping</h2>
+      <p class="cyber-text">
+        Real-time global tracking of cyclones, prescribed fires, wildfires, and eruption risks
+        displayed as live geospatial tags for rapid situational awareness.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FEATURE SPLIT -->
+<div class="feature-split reveal rev">
+  <div class="feat-left">
+    <div class="s-kicker">Operational Excellence</div>
+    <h2 class="s-title">Built for the<br><em>most critical</em><br><span class="gold">decisions.</span></h2>
+    <p class="s-lead" style="margin-bottom:36px">Designed alongside emergency response teams, intelligence analysts, and satellite engineers to meet the demands of real-world crisis operations — not simulations.</p>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;gap:12px;font-family:var(--ff-b);font-weight:300;font-size:14px;color:#9aa5c4;letter-spacing:.01em">
+        <span style="width:5px;height:5px;border-radius:50%;background:#18e8ff;flex-shrink:0;box-shadow:0 0 6px rgba(6,229,255,.5)"></span>Ensemble NWP models with probabilistic cone output
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;font-family:var(--ff-b);font-weight:300;font-size:14px;color:#9aa5c4;letter-spacing:.01em">
+        <span style="width:5px;height:5px;border-radius:50%;background:#b48aff;flex-shrink:0;box-shadow:0 0 6px rgba(155,109,255,.5)"></span>Sub-pixel thermal anomaly detection via VIIRS IR bands
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;font-family:var(--ff-b);font-weight:300;font-size:14px;color:#9aa5c4;letter-spacing:.01em">
+        <span style="width:5px;height:5px;border-radius:50%;background:#f0c97a;flex-shrink:0;box-shadow:0 0 6px rgba(240,201,122,.5)"></span>USGS and EMSC seismic network real-time integration
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;font-family:var(--ff-b);font-weight:300;font-size:14px;color:#9aa5c4;letter-spacing:.01em">
+        <span style="width:5px;height:5px;border-radius:50%;background:#ff6b9d;flex-shrink:0;box-shadow:0 0 6px rgba(255,107,157,.5)"></span>SOC 2 Type II certified, end-to-end encrypted pipelines
+      </div>
+    </div>
+    <div style="margin-top:40px">
+      <a href="/signup" class="btn-p"><span class="bt">Request Full Access</span> <span class="ba">→</span></a>
+    </div>
+  </div>
+  <div class="feat-graphic">
+    <div style="position:relative;width:100%;height:100%">
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(155,109,255,.12) 0%,transparent 70%);pointer-events:none"></div>
+      <div class="glass-card" style="position:absolute;top:10%;left:5%;right:10%;padding:32px;transform:rotate(-1.5deg)">
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet),transparent);opacity:.55"></div>
+        <div style="font-family:var(--ff-m);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#5a6380;margin-bottom:12px">INTELLIGENCE BRIEF · 14:28 UTC</div>
+        <div style="font-family:var(--ff-d);font-weight:600;font-size:18px;margin-bottom:10px;color:#dce4ff;letter-spacing:.01em">M5.8 Earthquake — Türkiye</div>
+        <div style="font-family:var(--ff-b);font-weight:300;font-size:13px;color:#8892b8;line-height:1.7;margin-bottom:16px">Seismic event recorded at 37.4°N, 36.8°E. Depth 12 km indicates shallow crustal activity. Aftershock probability 67% within 24h. Population exposure: 240,000 within 50 km radius.</div>
+        <div style="display:flex;gap:10px">
+          <div style="font-family:var(--ff-m);font-size:9px;padding:4px 10px;background:rgba(224,82,82,.12);border:1px solid rgba(224,82,82,.22);color:#e05252;letter-spacing:.1em">CRITICAL</div>
+          <div style="font-family:var(--ff-m);font-size:9px;padding:4px 10px;background:rgba(6,229,255,.06);border:1px solid rgba(6,229,255,.22);color:#18e8ff;letter-spacing:.12em">AI VERIFIED</div>
+        </div>
+      </div>
+      <div class="glass-card" style="position:absolute;bottom:28%;right:0%;width:168px;padding:18px 20px;transform:rotate(1.5deg)">
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5"></div>
+        <div style="font-family:var(--ff-m);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#5a6380;margin-bottom:8px">ZONES UPDATED</div>
+        <div style="font-family:var(--ff-d);font-weight:700;font-size:32px;line-height:1;color:#f0c97a">14.8k</div>
+        <div style="font-family:var(--ff-m);font-size:9px;color:#18e8ff;margin-top:6px;letter-spacing:.08em">↑ +3 in last 6h</div>
+      </div>
+      <div style="position:absolute;bottom:10%;left:5%;right:18%;background:rgba(224,82,82,.08);border:1px solid rgba(224,82,82,.2);padding:14px 18px;display:flex;align-items:center;gap:12px">
+        <div style="width:8px;height:8px;border-radius:50%;background:#e05252;animation:orb-pulse 1.4s ease-in-out infinite;flex-shrink:0"></div>
+        <div>
+          <div style="font-family:var(--ff-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#e05252">CRITICAL ALERT</div>
+          <div style="font-family:var(--ff-b);font-weight:300;font-size:12px;color:#8892b8;margin-top:2px">Cyclone Cat 3 · Bay of Bengal · Landfall 14h</div>
+        </div>
+      </div>
+      <svg style="position:absolute;bottom:0;right:0;opacity:.15" width="100" height="100" viewBox="0 0 100 100" fill="none">
+        <path d="M100 0 L100 100 L0 100" stroke="var(--cyan)" stroke-width="1"/>
+        <path d="M100 20 L100 100 L20 100" stroke="var(--cyan)" stroke-width=".6" stroke-dasharray="3 3"/>
+        <path d="M100 40 L100 100 L40 100" stroke="var(--cyan)" stroke-width=".4"/>
+      </svg>
+      <svg style="position:absolute;top:0;left:0;opacity:.12" width="80" height="80" viewBox="0 0 80 80" fill="none">
+        <path d="M0 80 L0 0 L80 0" stroke="var(--violet)" stroke-width="1"/>
+        <path d="M0 60 L0 0 L60 0" stroke="var(--violet)" stroke-width=".6" stroke-dasharray="2 3"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <div class="cta-ring cta-r1"></div>
+  <div class="cta-ring cta-r2"></div>
+  <div class="cta-ring cta-r3"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0">
+    <svg width="600" height="600" viewBox="0 0 600 600" fill="none" opacity=".04">
+      <polygon points="300,20 580,300 300,580 20,300" stroke="var(--cyan)" stroke-width="1"/>
+      <polygon points="300,80 520,300 300,520 80,300" stroke="var(--cyan)" stroke-width="1"/>
+      <polygon points="300,140 460,300 300,460 140,300" stroke="var(--violet)" stroke-width="1"/>
+      <polygon points="300,200 400,300 300,400 200,300" stroke="var(--cyan)" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="cta-eyebrow">Ready to Deploy</div>
+  <h2 class="cta-h">
+    See the<br>
+    <em>planet</em><br>
+    <span class="co">clearly</span>
+  </h2>
+  <div class="cta-acts">
+    <a href="/globe" class="btn-p" style="padding:16px 52px;font-size:13px"><span class="bt">Launch Platform</span><span class="ba">→</span></a>
+    <a href="/signup" class="btn-sec" style="padding:15px 40px;font-size:12px">Request API Access</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-col-brand">
+    <div class="f-logo">
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none" opacity=".5">
+        <polygon points="18,2 34,18 18,34 2,18" stroke="var(--cyan)" stroke-width="1" fill="none"/>
+        <circle cx="18" cy="18" r="3" fill="var(--cyan)"/>
+      </svg>
+      <div class="f-logo-name">Aether</div>
+    </div>
+    <p class="f-tagline">Global Hazard Intelligence Platform. Real-time satellite signals, machine learning, and AI narrative — unified.</p>
+    <div class="f-socials">
+      <a href="#" class="f-social">X</a>
+      <a href="#" class="f-social">Li</a>
+      <a href="#" class="f-social">Gh</a>
+    </div>
+  </div>
+  <div>
+    <div class="f-col-title">Platform</div>
+    <div class="f-links">
+      <a href="#">Live Globe</a>
+      <a href="#">2D Tactical Map</a>
+      <a href="#">AI Console</a>
+      <a href="#">Alert API</a>
+      <a href="#">Webhooks</a>
+    </div>
+  </div>
+  <div>
+    <div class="f-col-title">Company</div>
+    <div class="f-links">
+      <a href="#">About</a>
+      <a href="#">Careers</a>
+      <a href="#">Press</a>
+      <a href="#">Partners</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div>
+    <div class="f-col-title">Resources</div>
+    <div class="f-links">
+      <a href="#">Documentation</a>
+      <a href="#">API Reference</a>
+      <a href="#">Status</a>
+      <a href="#">Blog</a>
+      <a href="#">Security</a>
+    </div>
+  </div>
+</footer>
+<div class="f-bottom">
+  <div class="f-copy">© 2025 Aether Intelligence Systems Ltd. All rights reserved.</div>
+  <div class="f-legal">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="#">Cookie Settings</a>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+/* CURSOR */
+const c1=document.getElementById('cur'),c2=document.getElementById('cur2');
+document.addEventListener('mousemove',e=>{c1.style.left=e.clientX+'px';c1.style.top=e.clientY+'px';c2.style.left=e.clientX+'px';c2.style.top=e.clientY+'px'});
+
+/* NAV STUCK */
+window.addEventListener('scroll',()=>document.getElementById('main-nav').classList.toggle('stuck',scrollY>60));
+
+/* REVEAL */
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+/* COUNTERS */
+function countUp(el,end,sfx,dur=1800){
+  let t0=null;
+  (function run(ts){
+    if(!t0)t0=ts;
+    const p=Math.min((ts-t0)/dur,1),v=Math.round(p*end);
+    el.innerHTML=v.toLocaleString()+(sfx?`<span class="stat-u">${sfx}</span>`:'');
+    if(p<1)requestAnimationFrame(run);
+  })(performance.now());
+}
+const co=new IntersectionObserver(es=>{
+  if(es[0].isIntersecting){
+    countUp(document.getElementById('s1'),847,'');
+    countUp(document.getElementById('s2'),1204,'');
+    countUp(document.getElementById('s3'),23,'');
+    countUp(document.getElementById('s4'),14,'k+');
+    co.disconnect();
+  }
+},{threshold:.3});
+co.observe(document.querySelector('.stats-banner'));
+
+/* CANVAS PARTICLES */
+(function(){
+  const c=document.createElement('canvas');
+  c.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:0';
+  document.body.appendChild(c);
+  const ctx=c.getContext('2d');
+  let W,H,nodes=[];
+  function resize(){W=c.width=innerWidth;H=c.height=innerHeight;nodes=Array.from({length:80},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.18,r:Math.random()*1.2+.2}));}
+  window.addEventListener('resize',resize);resize();
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    nodes.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;
+      ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fillStyle='rgba(6,229,255,.18)';ctx.fill();
+    });
+    for(let i=0;i<nodes.length;i++){for(let j=i+1;j<nodes.length;j++){
+      const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<140){ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle=`rgba(6,229,255,${.06*(1-d/140)})`;ctx.lineWidth=.5;ctx.stroke();}
+    }}
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* CYBER MAP */
+const mapEl=document.getElementById('cyber-map');
+if(mapEl){
+  const cyberMap=L.map('cyber-map',{zoomControl:false,attributionControl:false}).setView([5,0],2);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(cyberMap);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png',{pane:'overlayPane',opacity:1}).addTo(cyberMap);
+  const hazardIcon=(label)=>L.divIcon({
+    className:'',
+    html:`<div class="hazard-tag">${label}</div>`,
+    iconSize:[140,20],
+    iconAnchor:[10,10]
+  });
+
+  [
+    {label:'Tropical Cyclone Maila',lat:-9.1,lon:155.1},
+    {label:'Tropical Cyclone Indusa',lat:-19.1,lon:70.5},
+    {label:'Julie Pond Wildfire',lat:38.396085,lon:-75.97625},
+    {label:'Rx Prescribed Fire',lat:45.7153853,lon:-92.6888328},
+    {label:'Hall Thompson Lane Wildfire',lat:33.4077778,lon:-86.5408333}
+  ].forEach(h=>L.marker([h.lat,h.lon],{icon:hazardIcon(h.label)}).addTo(cyberMap));
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+fastapi_modular/
+│
+├── run.py
+├── requirements.txt
+│
+├── app1/
+│   ├── __init__.py
+│   ├── routes.py
+│   └── templates/
+│       └── home1.html
+│
+├── app2/
+│   ├── __init__.py
+│   ├── routes.py
+│   └── templates/
+│       └── home2.html
+│
+└── core/
+    └── config.py
+
+
+
+
+
+
+
+
+    Then open:
+    
+uvicorn Main.run:app --reload
+
+
+
+http://127.0.0.1:8000/ (main)
+http://127.0.0.1:8000/app1/
+http://127.0.0.1:8000/app2/
+http://127.0.0.1:8000/app3/
+http://127.0.0.1:8000/app4/
+
+
+
+cloud console-----====-----
+
+    https://console.cloud.google.com/apis/api/firestore.googleapis.com/metrics?project=geoartemis-ffe3a
+
