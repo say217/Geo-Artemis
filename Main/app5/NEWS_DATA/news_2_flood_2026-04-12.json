@@ -1,0 +1,54 @@
+{
+    "fetched_at": "2026-04-13T19:46:23.140771",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "flood",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "NZ \u2018getting a cyclone season\u2019: Cyclone Vaianu\u2019s impacts felt across the North Island",
+            "source": "New Zealand Herald",
+            "url": "https://www.nzherald.co.nz/nz/nz-getting-a-cyclone-season-cyclone-vaianus-impacts-felt-across-the-north-island/OYPN3WNK7NG7DBAOBYY66VQTCU/",
+            "image": "https://www.nzherald.co.nz/resizer/v2/5SDIHLHKLRDGNLGTGMZCON353A.jpg?auth=ca56e326b3dac30a9ab062f97f398e6eb090c8db86407a8a8af4faf6046c02d4&width=1200&height=675&quality=70&focal=365%2C342&smart=false",
+            "published_at": "2026-04-12T19:45:13Z",
+            "description": "Two hundred and seventy households in \u014chope and Thornton had to evacuate."
+        },
+        {
+            "headline": "Report: Federal Regulatory Compliance Costs $2 Trillion Annually",
+            "source": "Reason",
+            "url": "https://reason.com/2026/04/13/report-federal-regulatory-compliance-costs-2-trillion-annually/",
+            "image": "https://d2eehagpk5cl65.cloudfront.net/img/q60/uploads/2026/04/CEI-Budte-Dtat-v1.jpg",
+            "published_at": "2026-04-12T19:29:47Z",
+            "description": "Red tape issued by bureaucrats outstrips the impact of legislation."
+        },
+        {
+            "headline": "A Necessary Critique of Fontcuberta\u2019s Algorithmic Photography",
+            "source": "PetaPixel",
+            "url": "https://petapixel.com/2026/04/12/a-necessary-critique-of-fontcubertas-algorithmic-photography/",
+            "image": "https://petapixel.com/assets/uploads/2026/04/ai-photography-essay-feat.jpg",
+            "published_at": "2026-04-12T19:00:34Z",
+            "description": "This March, Spanish conceptual artist and photographer Joan Fontcuberta published a new book in Italy. Immagini Latenti concludes with a chapter on AI and photography, referencing the debates surrounding Boris Eldagsen\u2019s submission of an AI-generated image to\u2026"
+        },
+        {
+            "headline": "Project Him Sarovar: Centre\u2019s push for year-round water security in Ladakh",
+            "source": "The Times of India",
+            "url": "https://economictimes.indiatimes.com/news/india/project-him-sarovar-centres-push-for-year-round-water-security-in-ladakh/articleshow/130218487.cms",
+            "image": "https://img.etimg.com/thumb/msid-130218552,width-1200,height-630,imgsize-304750,overlay-economictimes/articleshow.jpg",
+            "published_at": "2026-04-12T18:47:16Z",
+            "description": "A new initiative, Project Him Sarovar, is set to secure water for Ladakh. The project will build storage ponds to collect melting snow and glacial water. These ponds will support irrigation and rural water needs. The initiative also aims to develop a local mo\u2026"
+        },
+        {
+            "headline": "\u201cHow Old Are We?\u201d: McDonald\u2019s CEO Blames His Mom For His Viral Big Arch Burger Reaction",
+            "source": "Boredpanda.com",
+            "url": "https://www.boredpanda.com/mcdonalds-ceo-blames-his-moms-advice-for-his-viral-reaction/",
+            "image": "https://static.boredpanda.com/blog/wp-content/uploads/2026/04/fb_image_69dbd757e0531.png",
+            "published_at": "2026-04-12T18:29:38Z",
+            "description": "\u201cBro is grown, and he\u2019s gonna blame his mom?\u201d one comment read."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_flood_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_flood_2026-04-12_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_flood_2026-04-12_3.jpg"
+    ]
+}

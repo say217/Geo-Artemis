@@ -1,0 +1,53 @@
+{
+    "fetched_at": "2026-04-13T19:46:21.997094",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "cyclone",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "NZ \u2018getting a cyclone season\u2019: Cyclone Vaianu\u2019s impacts felt across the North Island",
+            "source": "New Zealand Herald",
+            "url": "https://www.nzherald.co.nz/nz/nz-getting-a-cyclone-season-cyclone-vaianus-impacts-felt-across-the-north-island/OYPN3WNK7NG7DBAOBYY66VQTCU/",
+            "image": "https://www.nzherald.co.nz/resizer/v2/5SDIHLHKLRDGNLGTGMZCON353A.jpg?auth=ca56e326b3dac30a9ab062f97f398e6eb090c8db86407a8a8af4faf6046c02d4&width=1200&height=675&quality=70&focal=365%2C342&smart=false",
+            "published_at": "2026-04-12T19:45:13Z",
+            "description": "Two hundred and seventy households in \u014chope and Thornton had to evacuate."
+        },
+        {
+            "headline": "Letters: NZ\u2019s future rugby test first-five hidden in plain sight",
+            "source": "New Zealand Herald",
+            "url": "https://www.nzherald.co.nz/nz/letters-future-abs-first-five-hidden-in-plain-sight/premium/W5EYAS7G7FGXXFCDK37RHY5A3E/",
+            "image": "https://www.nzherald.co.nz/resizer/v2/YPZMVXMQ3NA7FLEJJPKKY2LXQE.jpg?auth=f2dcf7084bf80ad93abb1a475a0046a3382ee6eb31c6d07cbb4fafccc1f8fbc3&width=1200&height=675&quality=70&smart=true",
+            "published_at": "2026-04-12T17:00:00Z",
+            "description": "Opinion: It is shocking that our government debt is growing by $60 million per day."
+        },
+        {
+            "headline": "Cyclone Vaianu live updates: States of emergency continue as cyclone moves away from New Zealand",
+            "source": "New Zealand Herald",
+            "url": "https://www.nzherald.co.nz/nz/cyclone-vaianu-live-updates-states-of-emergency-continue-as-cyclone-moves-away-from-new-zealand/6O2KIZK7CRCWPGCIDP2PA3SZ6I/",
+            "image": "https://www.nzherald.co.nz/resizer/v2/ORSMUDYPNNCG7L3WT4Y45TEWUY.png?auth=65c9c3c529bee7e0090af4693b71bf4aa8593b18779e3a22d2ae94bf5368bd58&width=1200&height=675&quality=70&focal=224%2C197&smart=false",
+            "published_at": "2026-04-12T17:00:00Z",
+            "description": "New Zealand has been battered by the 'multi-hazard' event."
+        },
+        {
+            "headline": "A decrease in firecracker production due to observed losses",
+            "source": "Gossiplankanews.com",
+            "url": "https://english.gossiplankanews.com/2026/04/a-decrease-in-firecracker-production.html",
+            "image": "https://lh3.googleusercontent.com/blogger_img_proxy/AEn0k_tpAY6Lno_tGWAJAIrfYsSPaxf1dVaAAlcwWBOB-DJpClhfItE4Oa8n_oGSoLjKqGPzUJ1zS6HD65NwSXEUxfoGjoSZ2BF-tGmHdpFzVlWF82pruDWCWkmVAY60hbD6bt3ias0Ym8SeghcfBnMf_ctXx0Y3v8QxARDgeOY=w1600",
+            "published_at": "2026-04-12T09:30:20Z",
+            "description": "The All Ceylon Firecracker Manufacturers' Association states that despite a high demand for firecrackers and fireworks in the market for the upcoming Sinhala and Tamil New Year season, their supply has been severely disrupted due to the impact of the recent '\u2026"
+        },
+        {
+            "headline": "Cyclone lashes New Zealand's North Island, hundreds evacuated",
+            "source": "CNA",
+            "url": "https://www.channelnewsasia.com/world/new-zealand-cyclone-vaianu-north-island-hundreds-evacuate-6051366",
+            "image": "https://dam.mediacorp.sg/image/upload/s--jGkY5NeS--/c_crop,h_509,w_905,x_1,y_16/c_fill,g_auto,h_676,w_1200/f_auto,q_auto/v1/mediacorp/cna/image/2026/04/12/screenshot_2026-04-12_153806.png?itok=_tR1NKZL",
+            "published_at": "2026-04-12T07:43:00Z",
+            "description": "Conditions will ease as Cyclone\u00a0Vaianu works its way down the North Island before exiting on Sunday evening at Hawke's Bay, New Zealand's MetService said."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_cyclone_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_cyclone_2026-04-12_2.jpg"
+    ]
+}

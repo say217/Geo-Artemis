@@ -1,0 +1,22 @@
+{
+    "fetched_at": "2026-04-13T19:46:22.702903",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "volcano eruption",
+    "total_articles": 1,
+    "articles": [
+        {
+            "headline": "Weekly Update 12-Apr-2026",
+            "source": "Nikonians.org",
+            "url": "https://blog.nikonians.org/archives/2026/04/news_update_weekly_2026_04_12_194.html",
+            "image": null,
+            "published_at": "2026-04-12T03:40:59Z",
+            "description": "This weeks Editor's Choice images and top discussions at Nikonians - 12 April 2026"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_volcano_eruption_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_volcano_eruption_2026-04-12_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_volcano_eruption_2026-04-12_3.jpg"
+    ]
+}

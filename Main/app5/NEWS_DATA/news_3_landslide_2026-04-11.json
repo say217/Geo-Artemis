@@ -1,0 +1,46 @@
+{
+    "fetched_at": "2026-04-13T19:46:40.602936",
+    "day_index": 3,
+    "day_date": "2026-04-11",
+    "incident": "landslide",
+    "total_articles": 4,
+    "articles": [
+        {
+            "headline": "The definitive MVP argument for Victor Wembanyama",
+            "source": "Yahoo Entertainment",
+            "url": "https://sports.yahoo.com/nba/article/the-definitive-mvp-argument-for-victor-wembanyama-160005192.html",
+            "image": "https://s.yimg.com/ny/api/res/1.2/L4IYLSqqX.J1E3ZccOrtiQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02MDA7Y2Y9d2VicA--/https://d29szjachogqwa.cloudfront.net/images/user-uploaded/ed_040326_nbamvprace_wemby_4772.jpg",
+            "published_at": "2026-04-11T16:00:05Z",
+            "description": "Yahoo Sports is breaking down the cases for the top three MVP candidates. Can Wemby actually win it?"
+        },
+        {
+            "headline": "Virginia: A New Extreme in Gerrymandering",
+            "source": "Daily Signal",
+            "url": "https://www.dailysignal.com/2026/04/11/virginia-a-new-extreme-in-gerrymandering/",
+            "image": "https://www.dailysignal.com/wp-content/uploads/2026/04/GettyImages-2262915940.jpg",
+            "published_at": "2026-04-11T16:00:00Z",
+            "description": "This year\u2019s midterm elections aren\u2019t just about who wins in November; they\u2019re about who wins fights over gerrymandering taking place right now. Nowhere is the... Read More\nThe post Virginia: A New Extreme in Gerrymandering appeared first on The Daily Signal."
+        },
+        {
+            "headline": "Intel Core Ultra 7 270K Plus vs Ryzen 7 9700X faceoff \u2014 a new midrange CPU champ emerges",
+            "source": "Tom's Hardware UK",
+            "url": "https://www.tomshardware.com/pc-components/cpus/intel-core-ultra-7-270k-plus-vs-ryzen-7-9700x-cpu-faceoff",
+            "image": "https://cdn.mos.cms.futurecdn.net/XHsoYwx6ZzwmK8fePVU4bH-2560-80.jpg",
+            "published_at": "2026-04-11T12:00:00Z",
+            "description": "Intel's new Core Ultra 7 270K Plus is going after the Ryzen 7 9700X with its $300 price point. We put the two head-to-head in a series of rounds based on our own testing to see which comes out on top."
+        },
+        {
+            "headline": "\"Full account of 15 years,\" PM Modi vows \"white paper\" on TMC corruption, Rs 3,000 monthly aid for women",
+            "source": "The Times of India",
+            "url": "https://economictimes.indiatimes.com/news/elections/assembly-elections/west-bengal/full-account-of-15-years-pm-modi-vows-white-paper-on-tmc-corruption-rs-3000-monthly-aid-for-women/articleshow/130188613.cms",
+            "image": "https://img.etimg.com/thumb/msid-130189575,width-1200,height-630,imgsize-132062,overlay-economictimes/articleshow.jpg",
+            "published_at": "2026-04-11T10:38:31Z",
+            "description": "West Bengal elections 2026: Prime Minister Narendra Modi has pledged a strong legal response to alleged corruption by the Trinamool Congress syndicate. He announced a BJP government would release a white paper detailing 15 years of alleged TMC misrule. Modi a\u2026"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_landslide_2026-04-11_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_landslide_2026-04-11_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_landslide_2026-04-11_3.jpg"
+    ]
+}

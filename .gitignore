@@ -1,5 +1,36 @@
+# Python
 __pycache__/
-Main/__pycache__/
-Clustering_Events/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+
+# OS
+.DS_Store
+Thumbs.db
+.env
+.env.local
+
+
+
+# Temporary files
+*.tmp
+*.log
 test/
-*.env
+Clustering_Events/

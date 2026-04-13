@@ -1,0 +1,54 @@
+{
+    "fetched_at": "2026-04-13T19:46:37.224538",
+    "day_index": 3,
+    "day_date": "2026-04-11",
+    "incident": "earthquake",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "Trial, Triumph, and the Art of the Possible: The Remarkable Story Behind Beethoven\u2019s \u201cOde to Joy\u201d",
+            "source": "Themarginalian.org",
+            "url": "https://www.themarginalian.org/2026/04/11/beethoven-ode-to-joy/",
+            "image": "https://www.themarginalian.org/wp-content/uploads/2022/05/odetojoy_Marginalian.jpg?fit=1200%2C630&ssl=1",
+            "published_at": "2026-04-11T17:28:10Z",
+            "description": "A hymn of rage, a hymn of redemption, and a timeless love letter to the possible."
+        },
+        {
+            "headline": "Iran\u2019s untraced mines in Strait of Hormuz: Why naval mines are difficult to detect",
+            "source": "The Indian Express",
+            "url": "https://indianexpress.com/article/explained/explained-global/strait-of-hormuz-naval-mines-explained-10631446/",
+            "image": "https://images.indianexpress.com/2026/04/strait-of-hormuz-2.jpg",
+            "published_at": "2026-04-11T13:50:21Z",
+            "description": "Iran may not be able to reopen the Strait of Hormuz as it cannot locate the mines it laid along the waterway, a New York Times report has said. Indeed, while laying naval mines is easy, detecting and clearing them is a long, painstaking process. Here's why"
+        },
+        {
+            "headline": "earthquake-mcp-server 0.1.0",
+            "source": "Pypi.org",
+            "url": "https://pypi.org/project/earthquake-mcp-server/0.1.0/",
+            "image": null,
+            "published_at": "2026-04-11T08:00:19Z",
+            "description": "MCP Server for real-time earthquake data and seismic monitoring via USGS Earthquake Catalog API"
+        },
+        {
+            "headline": "earthquake-mcp-server added to PyPI",
+            "source": "Pypi.org",
+            "url": "https://pypi.org/project/earthquake-mcp-server/",
+            "image": null,
+            "published_at": "2026-04-11T08:00:19Z",
+            "description": "MCP Server for real-time earthquake data and seismic monitoring via USGS Earthquake Catalog API"
+        },
+        {
+            "headline": "From the \u201cflying priest\u201d of Chios to the \u201cGloria\u201d of Zakynthos \u2013 The First Resurrection marked by deafening noise (video)",
+            "source": "Protothema.gr",
+            "url": "https://en.protothema.gr/2026/04/11/from-the-flying-priest-of-chios-to-the-gloria-of-zakynthos-the-first-resurrection-marked-by-deafening-noise-video/",
+            "image": "https://en.protothema.gr/wp-content/uploads/2026/04/gloria.webp",
+            "published_at": "2026-04-11T06:28:00Z",
+            "description": "The sounds of the First Resurrection have already been heard in several cities across the country, where these traditional \u201csmall Resurrections\u201d take place\nThe post From the \u201cflying priest\u201d of Chios to the \u201cGloria\u201d of Zakynthos \u2013 The First Resurrection marked\u2026"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_earthquake_2026-04-11_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_earthquake_2026-04-11_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_earthquake_2026-04-11_3.jpg"
+    ]
+}

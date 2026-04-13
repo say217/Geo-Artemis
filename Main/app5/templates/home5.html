@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hazard News Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #060608;
+  --surface: #0c0c10;
+  --surface2: #111118;
+  --surface3: #16161e;
+  --border: rgba(255,255,255,0.06);
+  --border-hi: rgba(255,255,255,0.18);
+  --text-primary: #ececec;
+  --text-secondary: #686878;
+  --text-muted: #333340;
+  --red: #e03030;
+  --red-dim: rgba(224,48,48,0.12);
+  --red-bright: #ff4444;
+  --red-glow: rgba(255,68,68,0.25);
+  --green: #3dba78;
+  --green-dim: rgba(61,186,120,0.15);
+  --cyan: #38c8d8;
+  --cyan-dim: rgba(56,200,216,0.1);
+  --amber: #e8a020;
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-ui: 'Rajdhani', sans-serif;
+  --font-hud: 'Orbitron', sans-serif;
+  --panel-w: 290px;
+  --header-h: 50px;
+  --footer-h: 34px;
+}
+
+html, body { height: 100%; overflow: hidden; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* scanlines */
+body::after {
+  content: ''; position: fixed; inset: 0;
+  pointer-events: none; z-index: 9998;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 3px,
+    rgba(0,0,0,0.018) 3px, rgba(0,0,0,0.018) 4px
+  );
+}
+
+/* ── HEADER ── */
+header {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--header-h);
+  background: rgba(6,6,8,0.95);
+  border-bottom: 1px solid var(--border-hi);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1.5rem;
+  z-index: 300;
+  backdrop-filter: blur(12px);
+}
+
+.logo {
+  font-family: var(--font-hud);
+  font-size: 11px; font-weight: 700;
+  color: var(--text-primary); letter-spacing: 5px; text-transform: uppercase;
+  display: flex; align-items: center; gap: 12px; user-select: none;
+}
+
+.logo-badge {
+  display: flex; align-items: center; gap: 5px;
+  padding: 3px 8px;
+  border: 1px solid rgba(255,68,68,0.4);
+  background: rgba(255,68,68,0.08);
+}
+
+.logo-tri {
+  width: 7px; height: 7px;
+  background: var(--red-bright);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  animation: blink 2s infinite;
+  filter: drop-shadow(0 0 4px var(--red-bright));
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+
+.header-meta {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 9px; color: var(--text-muted);
+}
+.header-meta span { color: var(--red-bright); }
+
+.nav-links { display: flex; gap: 1.5rem; align-items: center; }
+.nav-links a {
+  color: var(--text-secondary); text-decoration: none;
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s;
+}
+.nav-links a::before { content: '//'; color: var(--text-muted); margin-right: 3px; }
+.nav-links a:hover { color: var(--text-primary); }
+
+.fetch-status {
+  display: none; align-items: center; gap: 5px;
+  font-family: var(--font-mono); font-size: 8px;
+  color: var(--green); letter-spacing: 2px; text-transform: uppercase;
+}
+.fetch-status.active { display: flex; }
+.status-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.15} }
+
+/* ── LAYOUT ── */
+.layout {
+  position: fixed;
+  top: var(--header-h); bottom: var(--footer-h);
+  left: 0; right: 0;
+  display: flex;
+}
+
+/* ── NEWS FEED ── */
+.news-feed {
+  flex: 1; overflow-y: auto;
+  padding: 1rem 1.1rem;
+  border-right: 1px solid var(--border-hi);
+}
+.news-feed::-webkit-scrollbar { width: 3px; }
+.news-feed::-webkit-scrollbar-track { background: transparent; }
+.news-feed::-webkit-scrollbar-thumb { background: rgba(255,68,68,0.3); border-radius: 2px; }
+
+.feed-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 0.9rem; padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+.feed-title {
+  font-family: var(--font-hud); font-size: 7px;
+  letter-spacing: 5px; color: var(--text-muted); text-transform: uppercase;
+}
+.feed-meta { font-family: var(--font-mono); font-size: 9px; color: var(--text-muted); }
+
+.section-label {
+  font-family: var(--font-mono); font-size: 8px;
+  color: var(--text-secondary); letter-spacing: 3px; text-transform: uppercase;
+  margin: 1.1rem 0 0.55rem;
+  display: flex; align-items: center; gap: 6px;
+}
+.section-label::before {
+  content: ''; width: 16px; height: 1px;
+  background: var(--red-bright); display: block;
+  box-shadow: 0 0 4px var(--red-bright);
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+
+/* ── NEWS CARD ── */
+.news-card {
+  background: var(--surface);
+  display: flex; flex-direction: column;
+  cursor: pointer; position: relative; overflow: hidden;
+  transition: background 0.25s;
+}
+
+.news-card::after {
+  content: ''; position: absolute;
+  inset: 0; opacity: 0;
+  background: linear-gradient(135deg, rgba(255,68,68,0.04) 0%, transparent 60%);
+  transition: opacity 0.25s;
+  pointer-events: none;
+}
+.news-card::before {
+  content: ''; position: absolute; top:0; left:0;
+  width: 2px; height: 0; background: var(--red-bright);
+  box-shadow: 0 0 6px var(--red-bright);
+  transition: height 0.3s ease; z-index: 2;
+}
+.news-card:hover { background: var(--surface2); }
+.news-card:hover::before { height: 100%; }
+.news-card:hover::after { opacity: 1; }
+
+.card-corner {
+  position: absolute; top: 0; right: 0;
+  width: 10px; height: 10px;
+  border-top: 1px solid rgba(255,68,68,0.4);
+  border-right: 1px solid rgba(255,68,68,0.4);
+  z-index: 3;
+}
+
+.card-img-wrap {
+  position: relative; height: 115px; overflow: hidden;
+  background: var(--surface2);
+  filter: grayscale(100%) contrast(1.15);
+  transition: filter 0.35s; flex-shrink: 0;
+}
+.news-card:hover .card-img-wrap { filter: grayscale(20%) contrast(1.05) brightness(1.05); }
+.card-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: 0.55; transition: opacity 0.35s, transform 0.5s; display: block;
+}
+.news-card:hover .card-img-wrap img { opacity: 0.75; transform: scale(1.06); }
+.img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(6,6,8,0.85) 0%, transparent 55%);
+}
+.img-src-tag {
+  position: absolute; bottom: 5px; left: 7px;
+  font-family: var(--font-mono); font-size: 7px;
+  color: rgba(255,255,255,0.3); letter-spacing: 1px;
+  text-transform: uppercase; z-index: 1;
+}
+
+.card-body { padding: 8px 10px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.card-source {
+  font-family: var(--font-mono); font-size: 7px;
+  color: var(--red-bright); letter-spacing: 2px; text-transform: uppercase;
+}
+.card-headline {
+  font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+  color: var(--text-primary); line-height: 1.3;
+}
+.card-desc {
+  font-size: 10px; font-weight: 300; color: var(--text-secondary);
+  line-height: 1.45; flex: 1;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--border); padding-top: 5px; margin-top: 4px;
+}
+.card-date { font-family: var(--font-mono); font-size: 7px; color: var(--text-muted); }
+.card-link {
+  font-family: var(--font-mono); font-size: 7px; color: var(--text-muted);
+  text-decoration: none; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s;
+}
+.card-link:hover { color: var(--red-bright); }
+.card-link::after { content: ' ›'; }
+
+/* Empty state */
+.empty-state {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 12px; padding: 5rem 2rem; text-align: center;
+}
+.empty-glyph { font-family: var(--font-hud); font-size: 20px; color: var(--text-muted); letter-spacing: 8px; }
+.empty-label { font-family: var(--font-mono); font-size: 8px; color: var(--text-muted); letter-spacing: 3px; text-transform: uppercase; }
+.active-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 8px; color: var(--green);
+  border: 1px solid rgba(61,186,120,0.25); padding: 4px 10px;
+  letter-spacing: 2px; text-transform: uppercase;
+}
+
+/* ══════════════════════════════
+   INFO PANEL — scrollable
+══════════════════════════════ */
+.info-panel {
+  width: var(--panel-w);
+  background: var(--surface);
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+  border-left: 1px solid var(--border-hi);
+}
+.info-panel::-webkit-scrollbar { width: 2px; }
+.info-panel::-webkit-scrollbar-track { background: transparent; }
+.info-panel::-webkit-scrollbar-thumb { background: rgba(255,68,68,0.2); border-radius: 2px; }
+
+/* panel section header */
+.p-section {
+  padding: 7px 12px 0;
+  display: flex; align-items: center; gap: 6px;
+  flex-shrink: 0;
+}
+.p-section-label {
+  font-family: var(--font-mono); font-size: 7px;
+  color: var(--text-muted); letter-spacing: 3px; text-transform: uppercase;
+  display: flex; align-items: center; gap: 5px;
+}
+.p-dot {
+  width: 3px; height: 3px;
+  background: var(--red-bright);
+  box-shadow: 0 0 4px var(--red-bright);
+  display: inline-block;
+  animation: blink 2.5s infinite;
+}
+
+.p-divider {
+  height: 1px; background: var(--border);
+  margin: 0; flex-shrink: 0;
+}
+
+/* ── CLOCK BLOCK ── */
+.clock-block {
+  padding: 10px 12px 12px;
+  display: flex; flex-direction: column; gap: 4px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, rgba(255,68,68,0.03) 0%, transparent 100%);
+}
+.clock-display {
+  font-family: var(--font-hud); font-size: 26px; font-weight: 400;
+  color: var(--text-primary); letter-spacing: 3px; line-height: 1;
+  text-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+.clock-secs {
+  font-family: var(--font-hud); font-size: 11px;
+  color: var(--red-bright); letter-spacing: 2px;
+  box-shadow: 0 0 8px var(--red-glow);
+}
+.date-display {
+  font-family: var(--font-mono); font-size: 8px;
+  color: var(--text-muted); letter-spacing: 1px; margin-top: 2px;
+}
+
+/* ── ORB GLOBE ── */
+.orb-block {
+  padding: 8px 12px 10px; flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.orb-wrap {
+  position: relative; width: 120px; height: 120px;
+}
+canvas#orbCanvas { display: block; }
+.orb-ring-outer {
+  position: absolute; inset: -6px;
+  border: 1px solid rgba(255,68,68,0.15);
+  border-radius: 50%;
+  animation: spin-slow 20s linear infinite;
+}
+.orb-ring-outer::before {
+  content: ''; position: absolute;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--red-bright); top: 8px; left: 50%; transform: translateX(-50%);
+  box-shadow: 0 0 6px var(--red-bright);
+}
+.orb-ring-inner {
+  position: absolute; inset: 3px;
+  border: 1px dashed rgba(255,255,255,0.04);
+  border-radius: 50%;
+  animation: spin-slow 12s linear infinite reverse;
+}
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+
+.orb-stats {
+  display: flex; gap: 12px; justify-content: center;
+}
+.orb-stat {
+  text-align: center;
+}
+.orb-stat-val {
+  font-family: var(--font-hud); font-size: 11px;
+  color: var(--red-bright); letter-spacing: 1px; line-height: 1;
+}
+.orb-stat-lbl {
+  font-family: var(--font-mono); font-size: 6px;
+  color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px;
+}
+
+/* ── WEATHER ── */
+.weather-block { padding: 8px 12px 10px; flex-shrink: 0; }
+.weather-main-row { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 4px; }
+.weather-temp {
+  font-family: var(--font-hud); font-size: 28px; font-weight: 400;
+  color: var(--text-primary); letter-spacing: 1px; line-height: 1;
+}
+.weather-glyph { font-family: var(--font-mono); font-size: 20px; color: var(--text-secondary); line-height: 1; }
+.weather-condition { font-family: var(--font-mono); font-size: 8px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+.panel-btn {
+  width: 100%; background: transparent;
+  color: var(--text-muted); border: 1px solid var(--border);
+  padding: 4px 8px; font-family: var(--font-mono); font-size: 7px;
+  letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+  clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+}
+.panel-btn:hover { border-color: rgba(255,68,68,0.4); color: var(--red-bright); background: var(--red-dim); }
+
+/* ── BAR CHART ── */
+.chart-block { padding: 8px 12px 10px; flex-shrink: 0; }
+.chart-area {
+  display: flex; align-items: flex-end; gap: 3px;
+  height: 52px;
+}
+.bar-col {
+  flex: 1; border-radius: 1px 1px 0 0;
+  background: rgba(255,255,255,0.06);
+  position: relative; cursor: default;
+  transition: height 0.8s ease, background 0.3s;
+}
+.bar-col.high { background: rgba(255,68,68,0.45); box-shadow: 0 0 6px rgba(255,68,68,0.2) inset; }
+.bar-col.med  { background: rgba(232,160,32,0.35); }
+.bar-col.now  {
+  background: var(--red-bright);
+  box-shadow: 0 0 8px var(--red-glow), 0 -2px 8px rgba(255,68,68,0.4);
+  animation: now-pulse 1.5s infinite ease-in-out;
+}
+@keyframes now-pulse { 0%,100%{box-shadow: 0 0 8px var(--red-glow)} 50%{box-shadow: 0 0 16px rgba(255,68,68,0.5)} }
+
+.chart-labels {
+  display: flex; justify-content: space-between; margin-top: 3px;
+}
+.chart-labels span { font-family: var(--font-mono); font-size: 6px; color: var(--text-muted); }
+
+/* ── SIGNAL METERS ── */
+.signal-block { padding: 8px 12px 10px; flex-shrink: 0; }
+.signal-row { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+.signal-label { font-family: var(--font-mono); font-size: 7px; color: var(--text-muted); letter-spacing: 1px; width: 26px; flex-shrink: 0; }
+.signal-bars { display: flex; gap: 2px; align-items: flex-end; flex: 1; }
+.sig-b {
+  flex: 1; border-radius: 1px;
+  transition: opacity 0.3s;
+}
+.sig-b.on  { opacity: 1; }
+.sig-b.off { opacity: 0.1; }
+.sig-b:nth-child(1) { height: 5px;  background: var(--green); }
+.sig-b:nth-child(2) { height: 8px;  background: var(--green); }
+.sig-b:nth-child(3) { height: 11px; background: var(--green); }
+.sig-b:nth-child(4) { height: 14px; background: var(--amber); }
+.sig-b:nth-child(5) { height: 17px; background: var(--red-bright); }
+.signal-pct { font-family: var(--font-mono); font-size: 7px; color: var(--text-secondary); width: 24px; text-align: right; flex-shrink: 0; }
+
+/* ── NODE MATRIX ── */
+.matrix-block { padding: 8px 12px 10px; flex-shrink: 0; }
+.matrix-grid {
+  display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px;
+  align-items: center; justify-items: center;
+}
+.mx-hex {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: rgba(255,255,255,0.06);
+  border: 0px;
+  animation: mx-pulse 3s infinite ease-in-out;
+}
+.mx-hex.r { background: rgba(255,68,68,0.25); animation-delay: 0.3s; }
+.mx-hex.c { background: rgba(56,200,216,0.2); animation-delay: 0.6s; }
+.mx-hex.g { background: rgba(61,186,120,0.2); animation-delay: 0.9s; }
+
+.mx-diamond {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  background: rgba(255,255,255,0.08);
+  animation: mx-pulse 2.5s infinite ease-in-out; animation-delay: 0.4s;
+}
+.mx-circle {
+  border-radius: 50%;
+  border: 1px solid rgba(255,68,68,0.3);
+  background: transparent;
+  animation: mx-pulse 3.5s infinite ease-in-out; animation-delay: 1.2s;
+}
+.mx-cross {
+  position: relative;
+  animation: mx-pulse 4s infinite ease-in-out; animation-delay: 0.8s;
+}
+.mx-cross::before, .mx-cross::after {
+  content: ''; position: absolute;
+  background: rgba(255,255,255,0.15); border-radius: 1px;
+}
+.mx-cross::before { width: 100%; height: 1px; top: 50%; transform: translateY(-50%); }
+.mx-cross::after  { width: 1px; height: 100%; left: 50%; transform: translateX(-50%); }
+
+@keyframes mx-pulse { 0%,100%{opacity:0.35} 50%{opacity:1} }
+
+/* ── FREQUENCY WAVE ── */
+.wave-block { padding: 8px 12px 10px; flex-shrink: 0; }
+canvas#waveCanvas { display: block; width: 100%; }
+
+/* ── LOCATION ── */
+.location-block { padding: 8px 12px 10px; flex-shrink: 0; }
+.location-info {
+  font-family: var(--font-mono); font-size: 8px; color: var(--text-secondary);
+  line-height: 1.7; letter-spacing: 0.5px; word-break: break-word; margin-bottom: 6px;
+}
+.coord-row { display: flex; gap: 8px; margin-bottom: 5px; }
+.coord-val { font-family: var(--font-mono); font-size: 7px; color: var(--cyan); letter-spacing: 1px; }
+
+/* ── USER ── */
+.user-block { padding: 8px 12px 12px; flex-shrink: 0; }
+.user-row { display: flex; align-items: center; gap: 10px; }
+.user-avatar {
+  width: 36px; height: 36px; flex-shrink: 0;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: var(--surface3);
+  border: 0px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-hud); font-size: 12px; color: var(--text-primary);
+  position: relative;
+  box-shadow: 0 0 10px rgba(255,68,68,0.15);
+}
+.user-info { flex: 1; min-width: 0; }
+.user-name { font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--text-primary); letter-spacing: 1px; }
+.user-status {
+  font-family: var(--font-mono); font-size: 7px; color: var(--green);
+  letter-spacing: 2px; text-transform: uppercase;
+  display: flex; align-items: center; gap: 4px; margin-top: 3px;
+}
+.user-status::before {
+  content: ''; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--green); box-shadow: 0 0 5px var(--green); display: inline-block;
+}
+.user-clearance {
+  font-family: var(--font-mono); font-size: 7px; color: var(--amber);
+  letter-spacing: 1px; margin-top: 2px;
+  border: 1px solid rgba(232,160,32,0.25); display: inline-block;
+  padding: 1px 5px;
+}
+
+/* ── FOOTER ── */
+footer {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: var(--footer-h);
+  background: rgba(6,6,8,0.95);
+  border-top: 1px solid var(--border-hi);
+  padding: 0 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 300; backdrop-filter: blur(12px);
+}
+.footer-text { font-family: var(--font-mono); font-size: 7px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+.footer-live {
+  display: flex; align-items: center; gap: 5px;
+  font-family: var(--font-mono); font-size: 7px; color: var(--red-bright); letter-spacing: 1px;
+}
+.footer-live::before {
+  content: ''; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--red-bright); box-shadow: 0 0 5px var(--red-bright);
+  animation: pulse 1.5s infinite; display: inline-block;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <div class="logo-badge">
+      <div class="logo-tri"></div>
+      HAZARD.NEWS
+    </div>
+  </div>
+  <div class="header-meta">
+    SYS<span>ONLINE</span> &nbsp;|&nbsp; FEED<span>ACTIVE</span> &nbsp;|&nbsp; ENC<span>AES-256</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:1.5rem;">
+    <nav class="nav-links">
+      <a href="/app1/">App 1</a>
+      <a href="/app4/">Dashboard</a>
+      <a href="/app2/logout">Logout</a>
+    </nav>
+    <span id="fetchStatus" class="fetch-status">
+      <span class="status-dot"></span>Fetching
+    </span>
+  </div>
+</header>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- NEWS FEED -->
+  <div class="news-feed">
+    <div class="feed-header">
+      <span class="feed-title">Live Intel Feed</span>
+      <span class="feed-meta" id="feedMeta">-- articles</span>
+    </div>
+    <div id="newsContainer"></div>
+  </div>
+
+  <!-- INFO PANEL -->
+  <aside class="info-panel">
+
+    <!-- CLOCK -->
+    <div class="p-section"><div class="p-section-label"><div class="p-dot"></div>System Time</div></div>
+    <div class="clock-block">
+      <div style="display:flex;align-items:baseline;gap:6px;">
+        <div class="clock-display" id="clockHM">--:--</div>
+        <div class="clock-secs" id="clockS">--</div>
+      </div>
+      <div class="date-display" id="dateDisplay">---</div>
+    </div>
+    <div class="p-divider"></div>
+
+    <!-- ORB GLOBE -->
+    <div class="p-section"><div class="p-section-label"><div class="p-dot"></div>Geo Pulse</div></div>
+    <div class="orb-block">
+      <div class="orb-wrap">
+        <div class="orb-ring-outer"></div>
+        <div class="orb-ring-inner"></div>
+        <canvas id="orbCanvas" width="120" height="120"></canvas>
+      </div>
+      <div class="orb-stats">
+        <div class="orb-stat"><div class="orb-stat-val" id="orbIncidents">08</div><div class="orb-stat-lbl">Incidents</div></div>
+        <div class="orb-stat"><div class="orb-stat-val" id="orbCountries">14</div><div class="orb-stat-lbl">Countries</div></div>
+        <div class="orb-stat"><div class="orb-stat-val" id="orbAlerts">03</div><div class="orb-stat-lbl">Alerts</div></div>
+      </div>
+    </div>
+    <div class="p-divider"></div>
+
+    <!-- WEATHER -->
+    <div class="p-section"><div class="p-section-label"><div class="p-dot"></div>Atmosphere</div></div>
+    <div class="weather-block">
+      <div class="weather-main-row">
+        <div class="weather-temp" id="weatherTemp">--°</div>
+        <div class="weather-glyph" id="weatherIcon">—</div>
+      </div>
+      <div class="weather-condition" id="weatherCondition">no signal</div>
+      <button class="panel-btn" onclick="requestWeatherLocation()">↻ Refresh Signal</button>
+    </div>
+    <div class="p-divider"></div>
+
+    <!-- BAR CHART -->
+    <div class="p-section"><div class="p-section-label"><div class="p-dot"></div>Incident Activity — 24h</div></div>
+    <div class="chart-block">
+      <div class="chart-area" id="barChart"></div>
+      <div class="chart-labels">
+        <span>00</span><span>03</span><span>06</span><span>09</span>
+        <span>12</span><span>15</span><span>18</span><span>21</span><span>NOW</span>
+      </div>
+    </div>
+    <div class="p-divider"></div>
+
+    <!-- FREQUENCY WAVE -->
+    <div class="p-section"><div class="p-section-label"><div class="p-dot"></div>Signal Frequency</div></div>
+    <div class="wave-block">
+      <canvas id="waveCanvas" height="36"></canvas>
+    </div>
+    <div class="p-divider"></div>
+
+    <!-- SIGNAL METERS -->
+    <div class="p-section"><div class="p-section-label"><div class="p-dot"></div>Link Status</div></div>
+    <div class="signal-block">
+      <div class="signal-row">
+        <span class="signal-label">SAT</span>
+        <div class="signal-bars">
+          <div class="sig-b on"></div><div class="sig-b on"></div>
+          <div class="sig-b on"></div><div class="sig-b on"></div><div class="sig-b off"></div>
+        </div>
+        <span class="signal-pct">82%</span>
+      </div>
+      <div class="signal-row">
+        <span class="signal-label">NET</span>
+        <div class="signal-bars">
+          <div class="sig-b on"></div><div class="sig-b on"></div>
+          <div class="sig-b on"></div><div class="sig-b off"></div><div class="sig-b off"></div>
+        </div>
+        <span class="signal-pct">61%</span>
+      </div>
+      <div class="signal-row">
+        <span class="signal-label">GEO</span>
+        <div class="signal-bars">
+          <div class="sig-b on"></div><div class="sig-b on"></div>
+          <div class="sig-b on"></div><div class="sig-b on"></div><div class="sig-b on"></div>
+        </div>
+        <span class="signal-pct">100%</span>
+      </div>
+      <div class="signal-row">
+        <span class="signal-label">ENC</span>
+        <div class="signal-bars">
+          <div class="sig-b on"></div><div class="sig-b on"></div>
+          <div class="sig-b on"></div><div class="sig-b on"></div><div class="sig-b off"></div>
+        </div>
+        <span class="signal-pct">90%</span>
+      </div>
+    </div>
+    <div class="p-divider"></div>
+
+    <!-- NODE MATRIX -->
+    <div class="p-section"><div class="p-section-label"><div class="p-dot"></div>Node Matrix</div></div>
+    <div class="matrix-block">
+      <div class="matrix-grid" id="matrixGrid"></div>
+    </div>
+    <div class="p-divider"></div>
+
+    <!-- LOCATION -->
+    <div class="p-section"><div class="p-section-label"><div class="p-dot"></div>Location</div></div>
+    <div class="location-block">
+      <div class="coord-row">
+        <span class="coord-val" id="coordLat">LAT --</span>
+        <span class="coord-val" id="coordLon">LON --</span>
+      </div>
+      <div class="location-info" id="locationDisplay">awaiting signal</div>
+      <button class="panel-btn" onclick="requestLocationPermission()">⊕ Acquire Lock</button>
+    </div>
+    <div class="p-divider"></div>
+
+    <!-- USER -->
+    <div class="p-section"><div class="p-section-label"><div class="p-dot"></div>Operator</div></div>
+    <div class="user-block">
+      <div class="user-row">
+        <div class="user-avatar" id="userAvatar">?</div>
+        <div class="user-info">
+          <div class="user-name" id="userName">Unknown</div>
+          <div class="user-status">Online</div>
+          <div class="user-clearance">LVL-2 ACCESS</div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-text">Geo Artemis // Real-time Hazard Intelligence // v4.2.1</span>
+  <span class="footer-live">Live</span>
+  <span class="footer-text" id="footerTime">--:--:--</span>
+</footer>
+
+<script>
+/* ══════════════════════════════
+   ORB GLOBE
+══════════════════════════════ */
+(function(){
+  const canvas = document.getElementById('orbCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const cx = W/2, cy = H/2, R = 52;
+  let t = 0;
+
+  function latLon(lat, lon, rot) {
+    const phi = (90 - lat) * Math.PI / 180;
+    const theta = (lon + rot) * Math.PI / 180;
+    return {
+      x: R * Math.sin(phi) * Math.cos(theta),
+      y: R * Math.cos(phi),
+      z: R * Math.sin(phi) * Math.sin(theta)
+    };
+  }
+
+  const hotspots = [
+    {lat:35,lon:139},{lat:28,lon:77},{lat:-23,lon:-46},
+    {lat:51,lon:0},{lat:40,lon:-74},{lat:-33,lon:151},
+    {lat:19,lon:72},{lat:6,lon:1},{lat:25,lon:55},{lat:-1,lon:37}
+  ];
+
+  function draw(rot) {
+    ctx.clearRect(0,0,W,H);
+
+    // sphere base
+    const g = ctx.createRadialGradient(cx-14,cy-14,2,cx,cy,R);
+    g.addColorStop(0,'rgba(30,30,40,1)');
+    g.addColorStop(0.6,'rgba(12,12,18,1)');
+    g.addColorStop(1,'rgba(6,6,10,1)');
+    ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
+    ctx.fillStyle = g; ctx.fill();
+
+    // lat lines
+    for(let lat=-60;lat<=60;lat+=30){
+      ctx.beginPath(); let first=true;
+      for(let lon=-180;lon<=180;lon+=3){
+        const p=latLon(lat,lon,rot);
+        if(p.z<0){first=true;continue;}
+        const sx=cx+p.x,sy=cy-p.y;
+        first?ctx.moveTo(sx,sy):ctx.lineTo(sx,sy); first=false;
+      }
+      ctx.strokeStyle='rgba(255,255,255,0.045)'; ctx.lineWidth=0.5; ctx.stroke();
+    }
+    // lon lines
+    for(let lon=0;lon<360;lon+=30){
+      ctx.beginPath(); let first=true;
+      for(let lat=-90;lat<=90;lat+=3){
+        const p=latLon(lat,lon,rot);
+        if(p.z<0){first=true;continue;}
+        const sx=cx+p.x,sy=cy-p.y;
+        first?ctx.moveTo(sx,sy):ctx.lineTo(sx,sy); first=false;
+      }
+      ctx.strokeStyle='rgba(255,255,255,0.03)'; ctx.lineWidth=0.5; ctx.stroke();
+    }
+
+    // hotspots
+    hotspots.forEach((hs,i)=>{
+      const p=latLon(hs.lat,hs.lon,rot);
+      if(p.z<4) return;
+      const sx=cx+p.x, sy=cy-p.y;
+      const alpha=Math.min(1,p.z/R);
+      const pulse=0.5+0.5*Math.sin(t*2.2+i*0.9);
+
+      ctx.beginPath(); ctx.arc(sx,sy,3+pulse*2.5,0,Math.PI*2);
+      ctx.strokeStyle=`rgba(255,68,68,${alpha*0.4*pulse})`; ctx.lineWidth=0.8; ctx.stroke();
+
+      ctx.beginPath(); ctx.arc(sx,sy,1.5,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,80,80,${alpha*0.95})`; ctx.fill();
+
+      if(pulse>0.85){
+        ctx.beginPath(); ctx.arc(sx,sy,5+pulse*3,0,Math.PI*2);
+        ctx.strokeStyle=`rgba(255,68,68,${alpha*0.15})`; ctx.lineWidth=0.5; ctx.stroke();
+      }
+    });
+
+    // rim
+    ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
+    ctx.strokeStyle='rgba(255,255,255,0.1)'; ctx.lineWidth=0.8; ctx.stroke();
+
+    // highlight
+    const hl=ctx.createRadialGradient(cx-20,cy-20,1,cx-20,cy-20,28);
+    hl.addColorStop(0,'rgba(255,255,255,0.07)');
+    hl.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
+    ctx.fillStyle=hl; ctx.fill();
+  }
+
+  function animate(){
+    t+=0.012;
+    draw(t*18);
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+/* ══════════════════════════════
+   BAR CHART
+══════════════════════════════ */
+(function(){
+  const vals=[22,38,19,55,42,70,61,49,0];
+  const chart=document.getElementById('barChart');
+  const maxV=Math.max(...vals.filter((_,i)=>i<vals.length-1));
+  vals.forEach((v,i)=>{
+    const bar=document.createElement('div');
+    bar.className='bar-col';
+    if(i===vals.length-1){
+      bar.classList.add('now');
+      bar.style.height='75%';
+      bar.id='nowBar';
+    } else {
+      const pct=(v/maxV)*100;
+      bar.style.height=pct+'%';
+      if(v>55) bar.classList.add('high');
+      else if(v>35) bar.classList.add('med');
+    }
+    bar.style.animationDelay=(i*0.07)+'s';
+    chart.appendChild(bar);
+  });
+  // Animate NOW bar
+  setInterval(()=>{
+    const b=document.getElementById('nowBar');
+    if(b){ b.style.height=(55+Math.random()*40)+'%'; }
+  }, 1800);
+})();
+
+/* ══════════════════════════════
+   WAVE CANVAS
+══════════════════════════════ */
+(function(){
+  const canvas=document.getElementById('waveCanvas');
+  const ctx=canvas.getContext('2d');
+  let t=0;
+
+  function resize(){
+    canvas.width=canvas.offsetWidth||266;
+  }
+  resize();
+
+  function drawWave(){
+    const W=canvas.width, H=canvas.height;
+    ctx.clearRect(0,0,W,H);
+
+    // Wave 1
+    ctx.beginPath();
+    for(let x=0;x<=W;x++){
+      const y=H/2 + Math.sin((x/W)*Math.PI*6 + t)*8 + Math.sin((x/W)*Math.PI*10+t*1.3)*4;
+      x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle='rgba(255,68,68,0.6)'; ctx.lineWidth=1; ctx.stroke();
+
+    // Wave 2
+    ctx.beginPath();
+    for(let x=0;x<=W;x++){
+      const y=H/2 + Math.sin((x/W)*Math.PI*8 + t*0.8)*5 + Math.cos((x/W)*Math.PI*4+t*1.6)*3;
+      x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle='rgba(56,200,216,0.3)'; ctx.lineWidth=0.8; ctx.stroke();
+
+    // Center line
+    ctx.beginPath();
+    ctx.moveTo(0,H/2); ctx.lineTo(W,H/2);
+    ctx.strokeStyle='rgba(255,255,255,0.04)'; ctx.lineWidth=0.5; ctx.stroke();
+
+    t+=0.06;
+    requestAnimationFrame(drawWave);
+  }
+  drawWave();
+})();
+
+/* ══════════════════════════════
+   NODE MATRIX
+══════════════════════════════ */
+(function(){
+  const grid=document.getElementById('matrixGrid');
+  const types=['hex','hex','hex','hex','hex','r','c','g','diamond','circle','cross','hex','hex','r','c','g'];
+  const sizes=[12,10,14,10,12,10,12,10,12,10,12,10,10,14,10,12];
+  types.forEach((type,i)=>{
+    const el=document.createElement('div');
+    const s=sizes[i]+'px';
+    if(type==='hex'||type==='r'||type==='c'||type==='g'){
+      el.className='mx-hex'+(type!=='hex'?' '+type:'');
+      el.style.width=s; el.style.height=s;
+    } else if(type==='diamond'){
+      el.className='mx-diamond'; el.style.width=s; el.style.height=s;
+    } else if(type==='circle'){
+      el.className='mx-circle'; el.style.width=s; el.style.height=s;
+    } else {
+      el.className='mx-cross'; el.style.width=s; el.style.height=s;
+    }
+    el.style.animationDelay=(i*0.15)+'s';
+    grid.appendChild(el);
+  });
+})();
+
+/* ══════════════════════════════
+   NEWS FEED
+══════════════════════════════ */
+let autoRefreshInterval=null;
+
+async function checkFetcherStatus(){
+  try{
+    const res=await fetch('/app5/fetch-status');
+    const data=await res.json();
+    const el=document.getElementById('fetchStatus');
+    if(res.ok&&data.is_running) el.classList.add('active');
+    else el.classList.remove('active');
+  }catch(e){}
+}
+
+async function loadNewsData(){
+  try{
+    const res=await fetch('/app5/get-news-data');
+    const result=await res.json();
+    if(!res.ok){showEmptyState();return;}
+    const newsData=result.data||result;
+    const container=document.getElementById('newsContainer');
+    container.innerHTML='';
+    if(Object.keys(newsData).length===0){showEmptyState();return;}
+
+    const byIncident={};
+    Object.entries(newsData).forEach(([key,data])=>{
+      const inc=data.incident||'Unknown';
+      if(!byIncident[inc]) byIncident[inc]=[];
+      byIncident[inc].push(data);
+    });
+
+    let total=0;
+    Object.entries(byIncident).forEach(([incident,dataList])=>{
+      const section=document.createElement('div');
+      const label=document.createElement('div');
+      label.className='section-label'; label.textContent=incident;
+      section.appendChild(label);
+      const grid=document.createElement('div');
+      grid.className='news-grid';
+      let hasCards=false;
+      dataList.forEach(data=>{
+        if(data.articles){
+          data.articles.forEach(article=>{
+            if(article.image){
+              hasCards=true; total++;
+              grid.appendChild(createNewsCard(article));
+            }
+          });
+        }
+      });
+      if(hasCards){section.appendChild(grid);container.appendChild(section);}
+    });
+
+    document.getElementById('feedMeta').textContent=`${total} articles`;
+    if(container.children.length===0) showEmptyState();
+  }catch(e){showEmptyState();}
+}
+
+function createNewsCard(article){
+  const card=document.createElement('div');
+  card.className='news-card';
+  const d=new Date(article.published_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  card.innerHTML=`
+    <div class="card-corner"></div>
+    <div class="card-img-wrap">
+      <img src="${article.image}" alt="" onerror="this.parentElement.style.display='none'">
+      <div class="img-overlay"></div>
+      <div class="img-src-tag">${article.source||'SRC'}</div>
+    </div>
+    <div class="card-body">
+      <div class="card-source">${article.source||'---'}</div>
+      <div class="card-headline">${article.headline}</div>
+      <div class="card-desc">${article.description}</div>
+      <div class="card-footer">
+        <span class="card-date">${d}</span>
+        <a href="${article.url}" target="_blank" class="card-link">Read</a>
+      </div>
+    </div>`;
+  return card;
+}
+
+function showEmptyState(){
+  document.getElementById('newsContainer').innerHTML=`
+    <div class="empty-state">
+      <div class="empty-glyph">[ ]</div>
+      <div class="empty-label">Awaiting Data Stream</div>
+      <div class="active-badge">
+        <span style="width:4px;height:4px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 5px var(--green)"></span>
+        Background Fetcher Active
+      </div>
+    </div>`;
+  document.getElementById('feedMeta').textContent='0 articles';
+}
+
+/* ── Clock ── */
+function updateClock(){
+  const now=new Date();
+  const hm=[now.getHours(),now.getMinutes()].map(n=>String(n).padStart(2,'0')).join(':');
+  const s=String(now.getSeconds()).padStart(2,'0');
+  document.getElementById('clockHM').textContent=hm;
+  document.getElementById('clockS').textContent=s;
+  document.getElementById('footerTime').textContent=hm+':'+s;
+  const d=now.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'});
+  document.getElementById('dateDisplay').textContent=d;
+  setTimeout(updateClock,1000);
+}
+
+/* ── Location / Weather ── */
+function requestLocationPermission(){
+  if(!navigator.geolocation){document.getElementById('locationDisplay').textContent='Not supported';return;}
+  document.getElementById('locationDisplay').textContent='Acquiring lock...';
+  navigator.geolocation.getCurrentPosition(
+    pos=>fetchLocationName(pos.coords.latitude,pos.coords.longitude),
+    ()=>{document.getElementById('locationDisplay').textContent='Signal denied';}
+  );
+}
+
+function fetchLocationName(lat,lon){
+  document.getElementById('coordLat').textContent='LAT '+lat.toFixed(4);
+  document.getElementById('coordLon').textContent='LON '+lon.toFixed(4);
+  fetch(`https://geocoding-api.open-meteo.com/v1/get_location?latitude=${lat}&longitude=${lon}&language=en`)
+    .then(r=>r.json())
+    .then(data=>{
+      if(data.results&&data.results.length>0){
+        const r=data.results[0];
+        document.getElementById('locationDisplay').textContent=[r.name,r.admin1,r.country].filter(Boolean).join(', ');
+      } else {
+        document.getElementById('locationDisplay').textContent=`${lat.toFixed(3)}N  ${lon.toFixed(3)}E`;
+      }
+      fetchWeatherData(lat,lon);
+    })
+    .catch(()=>{
+      document.getElementById('locationDisplay').textContent=`${lat.toFixed(3)}N  ${lon.toFixed(3)}E`;
+      fetchWeatherData(lat,lon);
+    });
+}
+
+function requestWeatherLocation(){
+  if(!navigator.geolocation) return;
+  document.getElementById('weatherCondition').textContent='Scanning...';
+  navigator.geolocation.getCurrentPosition(
+    pos=>fetchWeatherData(pos.coords.latitude,pos.coords.longitude),
+    ()=>{document.getElementById('weatherCondition').textContent='Signal lost';}
+  );
+}
+
+function fetchWeatherData(lat,lon){
+  fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,wind_speed_10m&temperature_unit=celsius`)
+    .then(r=>r.json())
+    .then(data=>{
+      if(data.current){
+        const temp=Math.round(data.current.temperature_2m);
+        const code=data.current.weather_code;
+        document.getElementById('weatherTemp').textContent=temp+'°C';
+        document.getElementById('weatherCondition').textContent=getWeatherDescription(code);
+        document.getElementById('weatherIcon').textContent=getWeatherGlyph(code);
+      }
+    }).catch(()=>{});
+}
+
+function getWeatherGlyph(c){
+  if(c===0||c===1) return '◯';
+  if(c===2) return '◑'; if(c===3) return '●';
+  if(c>=45&&c<=48) return '▒';
+  if((c>=51&&c<=67)||(c>=80&&c<=82)) return '▽';
+  if((c>=71&&c<=77)||(c>=85&&c<=86)) return '❄';
+  if(c>=95) return '▲'; return '◈';
+}
+
+function getWeatherDescription(code){
+  const d={0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Foggy',
+    51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Slight rain',63:'Moderate rain',65:'Heavy rain',
+    71:'Slight snow',73:'Moderate snow',75:'Heavy snow',77:'Snow grains',
+    80:'Rain showers',81:'Moderate showers',82:'Violent showers',
+    85:'Snow showers',86:'Heavy snow showers',95:'Thunderstorm',99:'Thunderstorm/hail'};
+  return d[code]||'Unknown';
+}
+
+function loadUserInfo(){
+  const userName=document.body.getAttribute('data-username')||'User';
+  document.getElementById('userName').textContent=userName;
+  document.getElementById('userAvatar').textContent=userName.charAt(0).toUpperCase();
+}
+
+function startAutoRefresh(){
+  if(autoRefreshInterval) clearInterval(autoRefreshInterval);
+  autoRefreshInterval=setInterval(loadNewsData,30000);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  checkFetcherStatus(); loadNewsData(); startAutoRefresh();
+  updateClock(); loadUserInfo();
+  setInterval(checkFetcherStatus,5000);
+});
+
+window.addEventListener('beforeunload',()=>{
+  if(autoRefreshInterval) clearInterval(autoRefreshInterval);
+});
+</script>
+</body>
+</html>

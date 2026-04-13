@@ -1,0 +1,45 @@
+{
+    "fetched_at": "2026-04-13T19:46:17.849837",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "hurricane",
+    "total_articles": 4,
+    "articles": [
+        {
+            "headline": "Years of drought has Corpus Christi, Texas, wrestling with water crisis",
+            "source": "Abcnews.com",
+            "url": "https://abcnews.com/US/wireStory/years-drought-major-energy-port-corpus-christi-texas-131967871",
+            "image": "https://s.abcnews.com/images/US/abc_news_default_2000x2000_update_16x9_992.jpg",
+            "published_at": "2026-04-12T18:23:09Z",
+            "description": "Threat not just to residential use but also to refineries, petrochemical plants."
+        },
+        {
+            "headline": "The Weekly Dirt: Implosion of Mandarin Hotel on Brickell Key closes a chapter in Miami",
+            "source": "The Real Deal",
+            "url": "https://therealdeal.com/miami/2026/04/12/implosion-of-miamis-brickell-key-closes-a-chapter/",
+            "image": "https://static.therealdeal.com/wp-content/uploads/2026/04/The-Weekly-Dirt-Implosion-of-Mandarin-Hotel-on-Brickell-Key-closes-a-chapter-in-Miami.jpg",
+            "published_at": "2026-04-12T17:00:00Z",
+            "description": "A team of engineers, contractors and construction workers imploded the former Mandarin Hotel in Miami on Sunday morning.\u00a0 The demolition by explosives of the iconic Brickell Key property is reflective of the city\u2019s new development market, where developers are\u2026"
+        },
+        {
+            "headline": "Arc Raiders Launches Map Conditions tracker - here's what the tracker tells us",
+            "source": "Eurogamer.net",
+            "url": "https://www.eurogamer.net/arc-raiders-launches-map-conditions-tracker-heres-what-the-tracker-tells-us",
+            "image": "https://assetsio.gnwcdn.com/arc-raiders-review-header-(1).png?width=1200&height=630&fit=crop&enable=upscale&auto=webp",
+            "published_at": "2026-04-12T16:18:28Z",
+            "description": "Embark Studios has released a new tracker to help players monitor map conditions across Arc Raiders. Read more"
+        },
+        {
+            "headline": "Never to Return: Universal Closing Original Epic Universe Center on April 13",
+            "source": "Inside the Magic",
+            "url": "https://insidethemagic.net/2026/04/universal-to-close-original-epic-universe-center-on-april-13-ad1/",
+            "image": "https://insidethemagic.net/wp-content/uploads/2026/02/universal-epic-universe-guest-at-entrance.jpg",
+            "published_at": "2026-04-12T15:45:31Z",
+            "description": "Universal CityWalk has always functioned as more than a shopping and dining buffer between the parking structure and the theme park gates. At Universal Orlando Resort, CityWalk carries its own identity as an entertainment destination, branded by Universal its\u2026"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_hurricane_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_hurricane_2026-04-12_2.jpg"
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "fetched_at": "2026-04-13T19:46:48.470628",
+    "day_index": 3,
+    "day_date": "2026-04-11",
+    "incident": "flood",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "Iran war lands 'triple blow' to flood-ravaged Sri Lankans",
+            "source": "BBC News",
+            "url": "https://www.bbc.com/news/articles/c4gvkpj0024o",
+            "image": "https://ichef.bbci.co.uk/news/1024/branded_news/8d07/live/44c20dc0-33c8-11f1-8a4b-e50328a0dcd2.jpg",
+            "published_at": "2026-04-11T23:06:49Z",
+            "description": "The Iran war could not have come at a worse time for Sri Lanka, reeling from devastating floods and an economic crisis."
+        },
+        {
+            "headline": "Partygoers descend on unlikely LA landmark for stealth shindigs: \u2018Might be ugly but the vibe is great\u2019",
+            "source": "New York Post",
+            "url": "https://nypost.com/2026/04/11/us-news/partygoers-descend-on-unlikely-la-landmark-for-stealth-shindigs-might-be-ugly-but-the-vibe-is-great/",
+            "image": "https://nypost.com/wp-content/uploads/sites/2/2026/04/dancing-comp.jpg?quality=75&strip=all&w=1200",
+            "published_at": "2026-04-11T22:00:27Z",
+            "description": "A pop-up dance party tucked beneath a Los Angeles freeway overpass is drawing crowds, colorful characters, and plenty of online chatter."
+        },
+        {
+            "headline": "Bruno Mars\u2019 Romantic Tour Kickoff in Las Vegas: Best Moments",
+            "source": "Billboard",
+            "url": "http://www.billboard.com/lists/bruno-mars-romantic-tour-las-vegas-best-moments/",
+            "image": "https://www.billboard.com/wp-content/uploads/2026/04/bruno-mars-2026-romantic-tour-las-vegas-billboard-1800.jpg?w=1024",
+            "published_at": "2026-04-11T21:52:27Z",
+            "description": "Bruno Mars took the stage at Allegiant Stadium in Las Vegas on April 10 to launch The Romantic Tour. These were the highlights of the kickoff concert."
+        },
+        {
+            "headline": "Artemis II lunar mission draws flood of conspiracy theories",
+            "source": "Japan Today",
+            "url": "https://japantoday.com/category/world/artemis-ii-lunar-mission-draws-flood-of-conspiracy-theories",
+            "image": null,
+            "published_at": "2026-04-11T21:08:29Z",
+            "description": "From false claims that a historic lunar fly-by was staged in a movie studio to unfounded narratives that footage of the crew was AI-generated, the Artemis II mission has been clouded by a blizzard of misinformation. The falsehoods -- circulating across tech p\u2026"
+        },
+        {
+            "headline": "Beware these 10 medications that can make you grow man boobs",
+            "source": "New York Post",
+            "url": "https://nypost.com/2026/04/11/health/beware-these-10-medications-that-can-make-you-grow-man-boobs/",
+            "image": "https://nypost.com/wp-content/uploads/sites/2/2026/04/newspress-collage-594ey2v18-1775938432382.jpg?quality=75&strip=all&1775924077&w=1200",
+            "published_at": "2026-04-11T20:16:00Z",
+            "description": "Some treatments may come with more than you bargained for."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_flood_2026-04-11_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_flood_2026-04-11_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_flood_2026-04-11_3.jpg"
+    ]
+}

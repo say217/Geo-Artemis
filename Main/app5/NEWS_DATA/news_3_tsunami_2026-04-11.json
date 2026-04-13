@@ -1,0 +1,54 @@
+{
+    "fetched_at": "2026-04-13T19:46:36.472291",
+    "day_index": 3,
+    "day_date": "2026-04-11",
+    "incident": "tsunami",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "Iran war lands 'triple blow' to flood-ravaged Sri Lankans",
+            "source": "BBC News",
+            "url": "https://www.bbc.com/news/articles/c4gvkpj0024o",
+            "image": "https://ichef.bbci.co.uk/news/1024/branded_news/8d07/live/44c20dc0-33c8-11f1-8a4b-e50328a0dcd2.jpg",
+            "published_at": "2026-04-11T23:06:49Z",
+            "description": "The Iran war could not have come at a worse time for Sri Lanka, reeling from devastating floods and an economic crisis."
+        },
+        {
+            "headline": "Virtual Patching: Guarding Against a Tsunami of AI-discovered Exploits with vDefend and Avi",
+            "source": "Vmware.com",
+            "url": "http://blogs.vmware.com/security/2026/04/virtual-patch-guard-tsunami-ai.html",
+            "image": "https://blogs.vmware.com/security/wp-content/uploads/sites/26/2026/04/GettyImages-1268601565.png",
+            "published_at": "2026-04-11T19:49:58Z",
+            "description": "As the digital landscape enters the age of Artificial Intelligence, the traditional methods of securing applications are being fundamentally challenged. The emergence of advanced AI models has shifted the advantage towards attackers. With AI, even a novice at\u2026"
+        },
+        {
+            "headline": "Virtual Patching: Guarding Against a Tsunami of AI-discovered Exploits with vDefend and Avi",
+            "source": "Vmware.com",
+            "url": "http://blogs.vmware.com/security/2026/04/virtual-patching-guarding-against-a-tsunami-of-ai-discovered-exploits-with-vdefend-and-avi.html",
+            "image": "https://blogs.vmware.com/security/wp-content/uploads/sites/26/2026/04/GettyImages-1268601565.png",
+            "published_at": "2026-04-11T19:49:58Z",
+            "description": "As the digital landscape enters the age of Artificial Intelligence, the traditional methods of securing applications are being fundamentally challenged. The emergence of advanced AI models has shifted the advantage towards attackers. With AI, even a novice at\u2026"
+        },
+        {
+            "headline": "Brain Injury May Reverse Pre-Injury Trauma Work",
+            "source": "Psychology Today",
+            "url": "https://www.psychologytoday.com/us/blog/concussion-is-brain-injury/202604/brain-injury-may-reverse-pre-injury-trauma-work",
+            "image": "https://cdn2.psychologytoday.com/assets/styles/manual_crop_1_91_1_1528x800/public/field_blog_entry_images/2026-04/trauma_teddy_bear_pexels-pixabay-42230.jpg?itok=O2_CfC7E",
+            "published_at": "2026-04-11T19:01:52Z",
+            "description": "Personal Perspective: Trauma can reanimate after a brain injury. I found that this type of \"unhealing\" is not discussed during neuro-rehab."
+        },
+        {
+            "headline": "Trial, Triumph, and the Art of the Possible: The Remarkable Story Behind Beethoven\u2019s \u201cOde to Joy\u201d",
+            "source": "Themarginalian.org",
+            "url": "https://www.themarginalian.org/2026/04/11/beethoven-ode-to-joy/",
+            "image": "https://www.themarginalian.org/wp-content/uploads/2022/05/odetojoy_Marginalian.jpg?fit=1200%2C630&ssl=1",
+            "published_at": "2026-04-11T17:28:10Z",
+            "description": "A hymn of rage, a hymn of redemption, and a timeless love letter to the possible."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_tsunami_2026-04-11_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_tsunami_2026-04-11_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_tsunami_2026-04-11_3.jpg"
+    ]
+}

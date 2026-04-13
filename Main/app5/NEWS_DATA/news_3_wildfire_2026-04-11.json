@@ -1,0 +1,54 @@
+{
+    "fetched_at": "2026-04-13T19:46:45.369121",
+    "day_index": 3,
+    "day_date": "2026-04-11",
+    "incident": "wildfire",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "7,648 disaster incidents reported in a year",
+            "source": "Khabarhub.com",
+            "url": "https://english.khabarhub.com/2026/12/543766/",
+            "image": "https://english.khabarhub.com/wp-content/uploads/2025/07/rasuwa-Flood11.jpg",
+            "published_at": "2026-04-11T23:30:18Z",
+            "description": "KATHMANDU: A total of 7,648 disaster incidents were recorded over the past year, with fire-related incidents\u2014including wildfires\u2014making up the largest share. According to the National Disaster Risk Reduction and Management Authority, the high number of fire i\u2026"
+        },
+        {
+            "headline": "No, BBC, Disaster Losses Can\u2019t Be Tied to Climate Change",
+            "source": "Wattsupwiththat.com",
+            "url": "https://wattsupwiththat.com/2026/04/11/no-bbc-disaster-losses-cant-be-tied-to-climate-change/",
+            "image": "https://i0.wp.com/wattsupwiththat.com/wp-content/uploads/2026/04/BBC-disaster-fabrication.webp?fit=1024%2C512&quality=75&ssl=1",
+            "published_at": "2026-04-11T17:00:00Z",
+            "description": "Presenting trillion-dollar model outputs as settled economic fact is bad journalism and the BBC should be ashamed for presenting such easily falsified rubbish as fact. That\u2019s the true disaster here."
+        },
+        {
+            "headline": "Trump: US Clearing Strait of Hormuz, Says Iran Forces 'Gone'",
+            "source": "Freerepublic.com",
+            "url": "https://freerepublic.com/focus/f-bloggers/4374494/posts",
+            "image": null,
+            "published_at": "2026-04-11T14:57:46Z",
+            "description": "President Donald Trump said Saturday the U.S. military has begun clearing the Strait of Hormuz, declaring Iran\u2019s naval and air capabilities have been wiped out. \"Their Navy is gone, their Air Force is gone, their Anti Aircraft apparatus is nonexistent, Radar \u2026"
+        },
+        {
+            "headline": "More warm weather on the way",
+            "source": "YLE News",
+            "url": "https://yle.fi/a/74-20220084",
+            "image": "https://images.cdn.yle.fi/image/upload/c_crop,x_0,y_409,w_5472,h_3078/w_1200,h_628,c_fill/q_auto:eco,f_auto,fl_lossy/v1775904577/39-162566769da26b64cdb2",
+            "published_at": "2026-04-11T13:32:00Z",
+            "description": "The mercury could hit 17 degrees Celsius by Tuesday."
+        },
+        {
+            "headline": "Hakeem Jeffries statement on the Serious Accusations against Rep. Eric Swalwell",
+            "source": "Freerepublic.com",
+            "url": "https://freerepublic.com/focus/f-bloggers/4374488/posts",
+            "image": null,
+            "published_at": "2026-04-11T12:58:35Z",
+            "description": "Statement on the Serious Accusations against Rep. Eric Swalwell."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_wildfire_2026-04-11_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_wildfire_2026-04-11_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_wildfire_2026-04-11_3.jpg"
+    ]
+}

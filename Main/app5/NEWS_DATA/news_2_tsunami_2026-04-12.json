@@ -1,0 +1,54 @@
+{
+    "fetched_at": "2026-04-13T19:46:25.911777",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "tsunami",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "Anthropic Seeks Guidance from Christian Leaders on AI Ethics and Morality",
+            "source": "Breitbart News",
+            "url": "https://www.breitbart.com/tech/2026/04/12/anthropic-seeks-guidance-from-christian-leaders-on-ai-ethics-and-morality/",
+            "image": "https://media.breitbart.com/media/2026/04/Dario-Amodei-seems-to-pray-for-help-640x335.jpg",
+            "published_at": "2026-04-12T15:48:30Z",
+            "description": "Anthropic, the company behind the AI chatbot Claude and a massive battle with the War Department playing out in the court system, recently consulted with a group of Christian religious leaders for advice on developing ethical AI systems.\nThe post Anthropic Se\u2026"
+        },
+        {
+            "headline": "Full transcript: IMF's Kristalina Georgieva on \"Face the Nation with Margaret Brennan\"",
+            "source": "CBS News",
+            "url": "https://www.cbsnews.com/news/kristalina-georgieva-face-the-nation-full-transcript-04-12-2026/",
+            "image": "https://assets1.cbsnewsstatic.com/hub/i/r/2026/04/11/987a7490-403e-45b3-a58f-87c5be15c06e/thumbnail/1200x630/42d6dba4deeb52682234b26fcbdb2e9e/screenshot-2026-04-11-at-5-16-39-pm.png",
+            "published_at": "2026-04-12T15:18:41Z",
+            "description": "The following is the full transcript of an interview with Kristalina Georgieva, managing director of IMF, that aired on \"Face the Nation with Margaret Brennan\" on April 12, 2026."
+        },
+        {
+            "headline": "Artificial general intelligence and the future of surgery",
+            "source": "Kevinmd.com",
+            "url": "https://kevinmd.com/2026/04/artificial-general-intelligence-and-the-future-of-surgery.html",
+            "image": "https://kevinmd.com/wp-content/uploads/b101fb60-0a90-4715-9143-0e5939257a4d.jpeg",
+            "published_at": "2026-04-12T13:00:22Z",
+            "description": "It is no secret that the hyperscalers (e.g., Google Cloud, Amazon AWS, etc.) and the frontier AI labs (e.g., OpenAI, Anthropic, DeepMind) are devoting extraordinary attention, time, and capital to the AI buildout. The big four (Amazon, Google, Microsoft, Meta\u2026"
+        },
+        {
+            "headline": "How 10-year-old Tilly Smith helped save dozens of lives on Thailand beach during 2004 tsunami",
+            "source": "Snopes.com",
+            "url": "https://www.snopes.com//fact-check/10-year-old-tsunami/",
+            "image": "https://mediaproxy.snopes.com/width/1200/https://media.snopes.com/2026/04/tilly_smith_wall_photo.jpg",
+            "published_at": "2026-04-12T13:00:00Z",
+            "description": "Officials credit 10-year-old English girl Tilly Smith with helping to save about 100 lives just before the Indian Ocean tsunami of 2004 struck the island of Phuket in Thailand."
+        },
+        {
+            "headline": "Lessons learned in 70s have made US, world economies less vulnerable to oil shocks",
+            "source": "The Times of India",
+            "url": "https://economictimes.indiatimes.com/news/international/business/lessons-learned-in-70s-have-made-us-world-economies-less-vulnerable-to-oil-shocks/articleshow/130205896.cms",
+            "image": "https://img.etimg.com/thumb/msid-130205917,width-1200,height-630,imgsize-367585,overlay-economictimes/articleshow.jpg",
+            "published_at": "2026-04-12T10:06:48Z",
+            "description": "The world economy is experiencing a significant oil price surge reminiscent of the 1970s. However, countries are now better prepared. Decades of efforts have increased energy efficiency and reduced reliance on Middle Eastern oil. New energy sources and stockp\u2026"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_tsunami_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_tsunami_2026-04-12_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_tsunami_2026-04-12_3.jpg"
+    ]
+}

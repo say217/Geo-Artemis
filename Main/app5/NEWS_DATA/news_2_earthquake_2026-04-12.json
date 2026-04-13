@@ -1,0 +1,54 @@
+{
+    "fetched_at": "2026-04-13T19:46:22.002101",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "earthquake",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "How Eric Swalwell\u2019s implosion changes the race for governor",
+            "source": "New York Post",
+            "url": "https://nypost.com/2026/04/12/opinion/eric-swalwells-implosion-and-the-governors-race/",
+            "image": "https://nypost.com/wp-content/uploads/sites/2/2026/04/125440925.jpg?quality=75&strip=all&w=1200",
+            "published_at": "2026-04-12T15:04:35Z",
+            "description": "One candidate\u2019s fall just altered the odds for everybody."
+        },
+        {
+            "headline": "At least 30 dead in stampede at Haiti\u2019s historic Citadelle Laferriere",
+            "source": "Al Jazeera English",
+            "url": "https://www.aljazeera.com/news/2026/4/12/at-least-30-dead-in-stampede-at-haitis-historic-citadelle-laferriere",
+            "image": "https://www.aljazeera.com/wp-content/uploads/2026/04/2024-04-26T225011Z_612874140_RC2HE7AKC3WO_RTRMADP_3_HAITI-POLITICS-1775998848.jpg?resize=1920%2C1440",
+            "published_at": "2026-04-12T14:36:54Z",
+            "description": "The fortress was packed before the annual celebration at the UNESCO World Heritage Site, authorities say."
+        },
+        {
+            "headline": "How 10-year-old Tilly Smith helped save dozens of lives on Thailand beach during 2004 tsunami",
+            "source": "Snopes.com",
+            "url": "https://www.snopes.com//fact-check/10-year-old-tsunami/",
+            "image": "https://mediaproxy.snopes.com/width/1200/https://media.snopes.com/2026/04/tilly_smith_wall_photo.jpg",
+            "published_at": "2026-04-12T13:00:00Z",
+            "description": "Officials credit 10-year-old English girl Tilly Smith with helping to save about 100 lives just before the Indian Ocean tsunami of 2004 struck the island of Phuket in Thailand."
+        },
+        {
+            "headline": "An SF library book was checked out before the 1906 earthquake. It was finally returned.",
+            "source": "SFGate",
+            "url": "https://www.sfgate.com/sf-culture/article/sf-library-book-earthquake-22191831.php",
+            "image": null,
+            "published_at": "2026-04-12T11:10:24Z",
+            "description": "The \"soot-spotted\" book was returned over 100 years late."
+        },
+        {
+            "headline": "Lessons learned in 70s have made US, world economies less vulnerable to oil shocks",
+            "source": "The Times of India",
+            "url": "https://economictimes.indiatimes.com/news/international/business/lessons-learned-in-70s-have-made-us-world-economies-less-vulnerable-to-oil-shocks/articleshow/130205896.cms",
+            "image": "https://img.etimg.com/thumb/msid-130205917,width-1200,height-630,imgsize-367585,overlay-economictimes/articleshow.jpg",
+            "published_at": "2026-04-12T10:06:48Z",
+            "description": "The world economy is experiencing a significant oil price surge reminiscent of the 1970s. However, countries are now better prepared. Decades of efforts have increased energy efficiency and reduced reliance on Middle Eastern oil. New energy sources and stockp\u2026"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_earthquake_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_earthquake_2026-04-12_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_earthquake_2026-04-12_3.jpg"
+    ]
+}

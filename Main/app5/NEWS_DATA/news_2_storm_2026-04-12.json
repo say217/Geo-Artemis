@@ -1,0 +1,54 @@
+{
+    "fetched_at": "2026-04-13T19:46:28.003049",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "storm",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "Barcelona pounce on Madrid slip with Yamal brilliance",
+            "source": "The Times of India",
+            "url": "https://economictimes.indiatimes.com/news/sports/barcelona-pounce-on-madrid-slip-with-yamal-brilliance/articleshow/130219398.cms",
+            "image": "https://img.etimg.com/thumb/msid-130219424,width-1200,height-630,imgsize-94658,overlay-economictimes/articleshow.jpg",
+            "published_at": "2026-04-12T19:09:45Z",
+            "description": "Barcelona defeated Espanyol 4-1. Lamine Yamal was instrumental, providing assists and scoring a goal. This victory extended Barcelona's lead in La Liga. The team now focuses on their Champions League match. Ferran Torres ended a scoring drought with two goals\u2026"
+        },
+        {
+            "headline": "Sparks trade Rickea Jackson to Sky for Ariel Atkins in WNBA free agency splash",
+            "source": "USA Today",
+            "url": "https://www.usatoday.com/story/sports/wnba/2026/04/12/rickea-jackson-trade-sparks-sky-details/89580161007/",
+            "image": "https://s.yimg.com/ny/api/res/1.2/3pksKw7vmmQD1Lbg3JhObA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/usa_today_sports_articles_558/15df530275945c2e9868ed4b45de5bfa",
+            "published_at": "2026-04-12T18:36:28Z",
+            "description": "The Los Angeles Sparks traded Rickea Jackson to the Chicago Sky for Ariel Atkins in a WNBA free agency player swap."
+        },
+        {
+            "headline": "Penalty flag takes ride on SkyCam during Columbus-Dallas UFL game",
+            "source": "USA Today",
+            "url": "https://thelistwire.usatoday.com/story/sports/2026/04/12/penalty-flag-lskycam-united-football-league/89580677007/",
+            "image": "https://s.yimg.com/ny/api/res/1.2/7cwTPtFwGHrW0N8a2MP29g--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD03ODc7Y2Y9d2VicA--/https://media.zenfs.com/en/list_wire_usa_today_articles_325/30bbb0112115bad05ced68053c8059d1",
+            "published_at": "2026-04-12T18:21:01Z",
+            "description": "Penalty flags continuned to make news in the third week of the United Football League season."
+        },
+        {
+            "headline": "Show HN: Revdiff \u2013 TUI diff reviewer with inline annotations for AI agents",
+            "source": "Github.com",
+            "url": "https://github.com/umputun/revdiff",
+            "image": "https://opengraph.githubassets.com/e7259f0359800262b08172927a7c891c1b62c155c55a3c6b10208881e573b66e/umputun/revdiff",
+            "published_at": "2026-04-12T17:52:48Z",
+            "description": "I built a terminal diff viewer for a workflow I couldn't do comfortably with existing tools: reviewing AI-generated code changes without leaving the terminal session where the agent runs, annotating what needs to change, and feeding those annotations straight\u2026"
+        },
+        {
+            "headline": "Reports of multiple people shot inside Chick-fil-A in Union, New Jersey; investigation ongoing - ABC7 New York",
+            "source": "Slashdot.org",
+            "url": "https://slashdot.org/firehose.pl?op=view&amp;id=181645884",
+            "image": null,
+            "published_at": "2026-04-12T17:52:28Z",
+            "description": "Reports of multiple people shot inside Chick-fil-A in Union, New Jersey; investigation ongoingABC7 New York 1 dead in NJ Chick-fil-A mass shooting after masked gunmen storm restaurantNew York Post Several people reportedly shot inside Union, NJ Chick-Fil-A re\u2026"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_storm_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_storm_2026-04-12_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_storm_2026-04-12_3.jpg"
+    ]
+}

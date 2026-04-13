@@ -1,0 +1,52 @@
+{
+    "fetched_at": "2026-04-13T19:46:20.439246",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "wildfire",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "Special Weather Statement until MON 1:00 AM EDT",
+            "source": "Roanoke Times",
+            "url": "https://roanoke.com/news/local/weather/article_ef6cf878-389a-5c74-beb6-460fbd3364b5.html",
+            "image": "https://bloximages.newyork1.vip.townnews.com/roanoke.com/content/tncms/custom/image/00f1ee32-f2d0-11e6-9926-f7249dbfe53a.jpg?resize=600%2C315",
+            "published_at": "2026-04-12T18:03:00Z",
+            "description": "Elevated Fire Danger in Central, Southern, and Southwest Virginia on Monday"
+        },
+        {
+            "headline": "WATCH: Politician drops \u2018mother of all\u2019 woke acronyms",
+            "source": "Wnd.com",
+            "url": "https://www.wnd.com/2026/04/watch-politician-drops-mother-all-woke-acronyms/",
+            "image": "https://www.wnd.com/wp-content/uploads/2026/01/stupid-doh-confused-hmm-black-man-men-unsplash.jpg",
+            "published_at": "2026-04-12T16:30:10Z",
+            "description": "'Murdered is now a queer identity. This is the kind of innovation we get'"
+        },
+        {
+            "headline": "Today\u2019s News in a Nutshell",
+            "source": "Khabarhub.com",
+            "url": "https://english.khabarhub.com/2026/12/543815/",
+            "image": "https://english.khabarhub.com/wp-content/uploads/2024/05/News-Nutshell.jpg",
+            "published_at": "2026-04-12T16:15:26Z",
+            "description": "KATHMANDU: Khabarhub brings you a glimpse of major developments of the day in Nepal, including politics, business/economy, sports, entertainment, and more. PM Balen Shah discloses assets, reports Rs 14.6 million in bank account Prime Minister Balen Shah has m\u2026"
+        },
+        {
+            "headline": "Benjamin Nygren is a key player but Celtic can\u2019t turn down \u00a326m",
+            "source": "The Celtic Star",
+            "url": "https://thecelticstar.com/benjamin-nygren-is-a-key-player-but-celtic-cant-turn-down-26m/",
+            "image": "https://s.yimg.com/ny/api/res/1.2/2gA_3hVXS40ehPQver.gXA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD03ODI7Y2Y9d2VicA--/https://media.zenfs.com/en/the_celtic_star_articles_180/2b530a0628d1e4492fd55b89fb8f6418",
+            "published_at": "2026-04-12T16:15:00Z",
+            "description": "Benjamin Nygren is a key player for Celtic, so if you sell, sell, sell at the reported price of \u00a326m and not for any less\u2026Benjamin Nygren of Celtic makes a pass during the Scottish Premiership betw..."
+        },
+        {
+            "headline": "Snow to help buffer against threat of spring wildfires in N.L. but summer still risky, say scientists",
+            "source": "CBC News",
+            "url": "https://www.cbc.ca/news/canada/newfoundland-labrador/nl-weather-risk-9.7159179",
+            "image": "https://i.cbc.ca/ais/1.7603014,1754562004000/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C122%2C2371%2C1333%29%3BResize%3D620",
+            "published_at": "2026-04-12T08:30:00Z",
+            "description": "Snow lingering across Newfoundland and Labrador is a good sign for those worried about the possibility of spring fires but scientists say it\u2019s too early to say if there will be another historic wildfire season this summer."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_wildfire_2026-04-12_3.jpg"
+    ]
+}

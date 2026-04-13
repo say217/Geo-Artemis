@@ -1,0 +1,45 @@
+{
+    "fetched_at": "2026-04-13T19:46:39.262314",
+    "day_index": 3,
+    "day_date": "2026-04-11",
+    "incident": "hurricane",
+    "total_articles": 4,
+    "articles": [
+        {
+            "headline": "Buccaneers Draft Profile: T.J. Parker, Edge, Clemson",
+            "source": "Roundtable.io",
+            "url": "https://roundtable.io/sports/nfl/bucs/news/buccaneers-draft-profile-t-j-parker-edge-clemson",
+            "image": "https://s.yimg.com/ny/api/res/1.2/yolEZvinR1Vt8skA3m6yyQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MTA7Y2Y9d2VicA--/https://media.zenfs.com/en/roundtable_sports_ny_jets_articles_795/153d43c1e7f28ddd5e1258e5147bc656",
+            "published_at": "2026-04-11T22:16:10Z",
+            "description": "Clemson's T.J. Parker could be Tampa's edge-rushing answer. Will the Buccaneers prioritize this dynamic defender in the draft?"
+        },
+        {
+            "headline": "Some communities are enduring unprecedented long waits on federal disaster requests, and Democrat-led states say they\u2019re being denied",
+            "source": "Fortune",
+            "url": "https://fortune.com/2026/04/11/disaster-declaration-requests-fema-dhs-unprecedented-long-waits-democratic-states-denials/",
+            "image": "https://fortune.com/img-assets/wp-content/uploads/2026/04/AP26097681262351-e1775940136989.jpg?resize=1200,600",
+            "published_at": "2026-04-11T20:51:56Z",
+            "description": "About 15 requests for assistance from others states and tribes for extreme weather events this year and last seem to be pending, along with three appeals of previous denials."
+        },
+        {
+            "headline": "2026 NFL mock draft roundup: Saints linked to multiple wide receivers",
+            "source": "USA Today",
+            "url": "https://saintswire.usatoday.com/story/sports/nfl/saints/2026/04/11/2026-nfl-mock-draft-roundup-saints-carnell-tate-rueben-bain-jordyn-tyson/89569386007/",
+            "image": "https://s.yimg.com/ny/api/res/1.2/2yJYRdHVr9FU9Xe9aMGGaQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/new_orleans_saints_wire_usa_today_sports_articles_211/e182552331a14883b06599deeb77c0aa",
+            "published_at": "2026-04-11T19:54:49Z",
+            "description": "Who are the New Orleans Saints picking in the latest mock drafts? Almost half of them link the Saints to wide receivers inside the top 10 picks."
+        },
+        {
+            "headline": "When to Visit Disney\u2019s Hollywood Studios for 1/10 Crowds in Summer 2026!",
+            "source": "Disneytouristblog.com",
+            "url": "https://www.disneytouristblog.com/when-to-visit-disneys-hollywood-studios-for-1-10-crowds-in-summer-2026/",
+            "image": "https://www.disneytouristblog.com/wp-content/uploads/2025/11/slinky-dog-dash-early-entry-morning-hollywood-studios-disney-world-2679.jpg",
+            "published_at": "2026-04-11T19:50:24Z",
+            "description": "Disney\u2019s Hollywood Studios will soon have its lowest crowd date of the first 8 months of 2026, and perhaps #1 of the entire year once the dust settles. Here\u2019s when to visit for almost guaranteed 1/10 crowd levels, pros & cons of doing this day, plus a list of\u2026"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_hurricane_2026-04-11_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_hurricane_2026-04-11_3.jpg"
+    ]
+}

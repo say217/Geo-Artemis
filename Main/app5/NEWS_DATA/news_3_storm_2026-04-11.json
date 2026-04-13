@@ -1,0 +1,54 @@
+{
+    "fetched_at": "2026-04-13T19:46:44.351595",
+    "day_index": 3,
+    "day_date": "2026-04-11",
+    "incident": "storm",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "Why romantasy is everywhere for women: Stories that promise what real life can\u2019t \u2013 love that lasts",
+            "source": "CNA",
+            "url": "https://cnalifestyle.channelnewsasia.com/women/romantasy-women-love-relationships-581286",
+            "image": "https://dam.mediacorp.sg/image/upload/s--ZQTvjiO0--/c_crop,h_682,w_1213,x_1,y_916/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2021-08:cna,w_0.1/f_auto,q_auto/v1/mediacorp/cna/image/2026/04/09/hero-2-romantasy.jpg?itok=q5bto6g4",
+            "published_at": "2026-04-11T23:41:09Z",
+            "description": "Romantasy \u2013 fantasy stories packed with romance, danger and increasingly \u201cspicy\u201d scenes \u2013 has surged in popularity. For many women, these stories offer something rare: The promise that emotional effort will be rewarded and love will last."
+        },
+        {
+            "headline": "Masked gunmen storm New Jersey Chick-fil-A",
+            "source": "Yahoo Entertainment",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_363e957d-8929-4a2a-b2ce-7c479d994f20",
+            "image": null,
+            "published_at": "2026-04-11T23:40:00Z",
+            "description": "If you click 'Accept all', we and our partners, including 251 who are part of the IAB Transparency &amp; Consent Framework, will also store and / or access information on a device (in other words, us\u2026 [+1046 chars]"
+        },
+        {
+            "headline": "Megyn Kelly rips Melania Trump's Epstein denial: 'Why did she do this?'",
+            "source": "Raw Story",
+            "url": "https://www.rawstory.com/megyn-kelly-melania-trump-epstein/",
+            "image": "https://www.rawstory.com/media-library/conservative-podcaster-megyn-kelly-expressed-her-views-on-first-lady-melania-trump-s-decision-this-week-to-publicly-deny-having.png?id=65510206&width=1200&height=600&coordinates=0%2C42%2C0%2C42",
+            "published_at": "2026-04-11T23:38:12Z",
+            "description": "MAGA podcaster Megyn Kelly slammed First lady Melania Trump's denial of a relationship with late convicted child sex offender and financier Jeffrey Epstein. Kelly was responding to the bombshell comments this week and posed several questions during her podcas\u2026"
+        },
+        {
+            "headline": "Stray bullet enters family's car on forest service road outside Mission, police issue warning",
+            "source": "CBC News",
+            "url": "https://www.cbc.ca/news/canada/british-columbia/mission-police-gun-safety-9.7160625",
+            "image": "https://i.cbc.ca/ais/e1624afc-c4dc-4c02-a7c2-23ed3c8239b3,1775941966959/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C898%2C2252%2C1266%29%3BResize%3D620",
+            "published_at": "2026-04-11T23:31:52Z",
+            "description": "Officials issue reminder about gun safety following a close call where a stray bullet entered a family\u2019s car outside Mission, B.C."
+        },
+        {
+            "headline": "swat-dg added to PyPI",
+            "source": "Pypi.org",
+            "url": "https://pypi.org/project/swat-dg/",
+            "image": "https://pypi.org/static/images/twitter.abaf4b19.webp",
+            "published_at": "2026-04-11T23:07:30Z",
+            "description": "Python wrapper and automation tools for SWAT2012 hydrological model"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_storm_2026-04-11_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_storm_2026-04-11_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_storm_2026-04-11_3.jpg"
+    ]
+}

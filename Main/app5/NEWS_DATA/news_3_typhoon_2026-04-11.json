@@ -1,0 +1,29 @@
+{
+    "fetched_at": "2026-04-13T19:46:47.566892",
+    "day_index": 3,
+    "day_date": "2026-04-11",
+    "incident": "typhoon",
+    "total_articles": 2,
+    "articles": [
+        {
+            "headline": "Don\u2019t Forget! 2 NEW Closures Begin in Disney World This Week",
+            "source": "disneyfoodblog.com",
+            "url": "https://www.disneyfoodblog.com/2026/04/11/dont-forget-2-new-closures-begin-in-disney-world-this-week/",
+            "image": "https://www.disneyfoodblog.com/wp-content/uploads/2026/04/wdw-2026-mk-big-thunder-mountain-railroad-testing-reopening-ride-700x525.jpg",
+            "published_at": "2026-04-11T22:00:44Z",
+            "description": "LOTS happened in Disney World this week, but MORE closures are being added to the resort beginning this week."
+        },
+        {
+            "headline": "Maple United keeps Rock League playoff hopes alive with sweep of Shield Curling Club",
+            "source": "CBC News",
+            "url": "https://www.cbc.ca/sports/olympics/winter/curling/rock-league-curling-results-april-11-9.7160570",
+            "image": "https://i.cbc.ca/ais/72393580-4355-4e53-80a4-1ed7201181ca,1775936328590/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C236%2C4032%2C2268%29%3BResize%3D620",
+            "published_at": "2026-04-11T19:39:49Z",
+            "description": "One day after being swept by Brad Jacobs and Shield Curling Club, Maple returned the favour in mixed fours on Saturday at Rock League at Toronto\u2019s Mattamy Athletic Centre."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_typhoon_2026-04-11_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_typhoon_2026-04-11_3.jpg"
+    ]
+}

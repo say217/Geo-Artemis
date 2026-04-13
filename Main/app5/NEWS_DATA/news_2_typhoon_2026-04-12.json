@@ -1,0 +1,37 @@
+{
+    "fetched_at": "2026-04-13T19:46:31.587761",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "typhoon",
+    "total_articles": 3,
+    "articles": [
+        {
+            "headline": "Missile kit lets fighter jets down drones on the cheap",
+            "source": "New Atlas",
+            "url": "https://newatlas.com/military/bae-anti-drone-missile-kit-typhoon-fighter/",
+            "image": "https://assets.newatlas.com/dims4/default/de76298/2147483647/strip/true/crop/1600x840+0+30/resize/1200x630!/quality/85/?url=https%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2F27%2F81%2Fa3d0695349fa9a14bc5b1f1ce5a5%2Ffkskkw.png&na.image_optimisation=0",
+            "published_at": "2026-04-12T19:03:00Z",
+            "description": "Shooting down a drone with a fighter jet is as cost effective as wrapping sandwiches in gold foil, but BAE Systems has cut the price by firing an economy anti-drone Advanced Precision Kill Weapon System (APKWS) missile from a Typhoon Eurofighter.Continue Read\u2026"
+        },
+        {
+            "headline": "Typhoon Curling Club punches ticket to inaugural Rock League championship",
+            "source": "CBC News",
+            "url": "https://www.cbc.ca/sports/olympics/winter/curling/rock-league-playoffs-recap-april12-9.7160967",
+            "image": "https://i.cbc.ca/ais/b44a2026-230a-4316-8929-ac271fd6c6fa,1776013820288/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C104%2C2000%2C1125%29%3BResize%3D620",
+            "published_at": "2026-04-12T17:11:17Z",
+            "description": "One half of the first-ever Rock League final is set. Typhoon Curling Club beat Northern United in a dramatic first semifinal at Toronto\u2019s Mattamy Athletic Centre on Sunday."
+        },
+        {
+            "headline": "China Is Building A Massive 'Floating Island' That Can Study The Deep Sea In Any Weather",
+            "source": "BGR",
+            "url": "https://www.bgr.com/2141124/china-building-massive-floating-island-that-can-study-deep-sea/",
+            "image": "https://www.bgr.com/img/gallery/china-is-building-a-massive-floating-island-that-can-study-the-deep-sea-in-any-weather/l-intro-1775232558.jpg",
+            "published_at": "2026-04-12T11:47:00Z",
+            "description": "It's not uncommon for organizations to have labs set up on large boats, but those boats are limited by weather that typically makes the ocean unsafe."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_typhoon_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_typhoon_2026-04-12_2.jpg"
+    ]
+}

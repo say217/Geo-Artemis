@@ -1,0 +1,54 @@
+{
+    "fetched_at": "2026-04-13T19:46:23.907692",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "landslide",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "Viktor Orb\u00e1n concedes with Hungarian opposition on course for landslide election win",
+            "source": "Freerepublic.com",
+            "url": "https://freerepublic.com/focus/f-news/4374643/posts",
+            "image": null,
+            "published_at": "2026-04-12T19:35:48Z",
+            "description": "Viktor Orb\u00e1n has conceded in a speech to supporters, telling them: \"The result of the election is clear and painful.\""
+        },
+        {
+            "headline": "Hungary election: Early results show Magyar\u2019s Tisza ahead of Orban\u2019s Fidesz",
+            "source": "Al Jazeera English",
+            "url": "https://www.aljazeera.com/news/2026/4/12/hungary-election-early-results-show-magyars-tisza-ahead-of-orbans-fidesz",
+            "image": "https://www.aljazeera.com/wp-content/uploads/2026/04/AFP__20260412__A7JR9KG__v2__HighRes__TopshotHungaryPoliticsVote-1776020898.jpg?resize=1920%2C1440",
+            "published_at": "2026-04-12T19:19:55Z",
+            "description": "Longtime Prime Minister Viktor Orban has conceded defeat in the country\u2019s parliamentary election."
+        },
+        {
+            "headline": "Home Minister directs security agencies to act firmly against drug-related crimes",
+            "source": "Khabarhub.com",
+            "url": "https://english.khabarhub.com/2026/12/543888/",
+            "image": "https://english.khabarhub.com/wp-content/uploads/2026/04/sudan-gurung-2-2.jpg",
+            "published_at": "2026-04-12T13:15:21Z",
+            "description": "KATHMANDU: Home Minister Sudan Gurung has directed security agencies to take strict action to control drug-related and other criminal activities. During a meeting with district security chiefs at the Nepal Police Academy in Bharatpur on Sunday, Gurung instruc\u2026"
+        },
+        {
+            "headline": "The AI revolution threatens office jobs, but revives demand for skilled trades",
+            "source": "Fox News",
+            "url": "https://www.foxnews.com/opinion/ai-revolution-threatens-office-jobs-revives-demand-skilled-trades",
+            "image": "https://static.foxnews.com/foxnews.com/content/uploads/2026/02/artifical-intelligence.jpg",
+            "published_at": "2026-04-12T13:00:00Z",
+            "description": "AI threatens white-collar jobs more than blue-collar trades, highlighting an urgent need to realign education with workforce demands in America."
+        },
+        {
+            "headline": "2027: Interior minister urges support for Tinubu\u2019s re-election",
+            "source": "Vanguard",
+            "url": "https://www.vanguardngr.com/2026/04/2027-interior-minister-urges-support-for-tinubus-re-election/",
+            "image": "https://cdn.vanguardngr.com/wp-content/uploads/2025/03/Tunji-Ojo.webp",
+            "published_at": "2026-04-12T12:30:59Z",
+            "description": "The Minister of Interior, Olubunmi Tunji-Ojo, has urged Nigerians to continue supporting President Bola Tinubu beyond 2027 to ensure policy continuity and sustained development.\nThe post 2027: Interior minister urges support for Tinubu\u2019s re-election appeared \u2026"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_landslide_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_landslide_2026-04-12_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_landslide_2026-04-12_3.jpg"
+    ]
+}
