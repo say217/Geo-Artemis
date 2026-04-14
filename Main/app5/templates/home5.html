@@ -71,10 +71,14 @@ header {
   backdrop-filter: blur(12px);
 }
 
+.header-left {
+  display: flex; align-items: center; gap: 12px;
+}
+
 .logo {
   font-family: var(--font-hud);
   font-size: 11px; font-weight: 700;
-  color: var(--text-primary); letter-spacing: 5px; text-transform: uppercase;
+  color: #ffffff; letter-spacing: 5px; text-transform: uppercase;
   display: flex; align-items: center; gap: 12px; user-select: none;
 }
 
@@ -82,7 +86,8 @@ header {
   display: flex; align-items: center; gap: 5px;
   padding: 3px 8px;
   border: 1px solid rgba(255,68,68,0.4);
-  background: rgba(255,68,68,0.08);
+  background: rgba(255,68,68,0.07);
+  clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
 }
 
 .logo-tri {
@@ -97,30 +102,53 @@ header {
 
 .header-meta {
   display: flex; align-items: center; gap: 6px;
-  font-family: var(--font-mono); font-size: 9px; color: var(--text-muted);
+  font-family: var(--font-mono); font-size: 8px; color: #ffffff; letter-spacing: 3px;
+  text-transform: uppercase; font-weight: 600;
 }
 .header-meta span { color: var(--red-bright); }
 
-.nav-links { display: flex; gap: 1.5rem; align-items: center; }
+.nav-links { display: flex; gap: 1.2rem; align-items: center; }
 .nav-links a {
-  color: var(--text-secondary); text-decoration: none;
-  font-family: var(--font-mono); font-size: 9px;
-  letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s;
+  color: #ffffff; text-decoration: none;
+  font-family: var(--font-mono); font-size: 8px;
+  letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s;
+  position: relative;
+  background: var(--red-bright);
+  border: 1.5px solid var(--red-bright);
+  padding: 5px 10px;
+  clip-path: polygon(3px 0%, 100% 0%, calc(100% - 3px) 100%, 0% 100%);
+  display: inline-flex; align-items: center; gap: 4px;
+  box-shadow: 0 0 8px rgba(255,68,68,0.4), inset -1px -1px 0 rgba(0,0,0,0.3);
 }
-.nav-links a::before { content: '//'; color: var(--text-muted); margin-right: 3px; }
-.nav-links a:hover { color: var(--text-primary); }
+.nav-links a::before { content: '//'; color: #ffffff; margin-right: 0px; opacity: 0.9; }
+.nav-links a:hover {
+  background: #ffffff;
+  color: #000000;
+  border: 1.5px solid #ffffff;
+  box-shadow: 0 0 12px rgba(255,255,255,0.6), inset -1px -1px 0 rgba(0,0,0,0.5);
+  transform: translateY(-1px);
+}
+.nav-links a:active {
+  background: #ffffff;
+  color: #000000;
+  border: 1.5px solid #ffffff;
+  transform: translateY(0);
+}
 
 .fetch-status {
   display: none; align-items: center; gap: 5px;
-  font-family: var(--font-mono); font-size: 8px;
+  font-family: var(--font-mono); font-size: 7px;
   color: var(--green); letter-spacing: 2px; text-transform: uppercase;
+  border: 1px solid rgba(61,186,120,0.2);
+  padding: 3px 8px;
+  clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
 }
 .fetch-status.active { display: flex; }
 .status-dot {
-  width: 5px; height: 5px; border-radius: 50%;
+  width: 4px; height: 4px; border-radius: 50%;
   background: var(--green);
-  box-shadow: 0 0 6px var(--green);
-  animation: pulse 1.5s infinite;
+  box-shadow: 0 0 5px var(--green);
+  animation: pulse 1.5s infinite; display: inline-block;
 }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.15} }
 
@@ -384,13 +412,13 @@ canvas#orbCanvas { display: block; }
 .weather-glyph { font-family: var(--font-mono); font-size: 20px; color: var(--text-secondary); line-height: 1; }
 .weather-condition { font-family: var(--font-mono); font-size: 8px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
 .panel-btn {
-  width: 100%; background: transparent;
-  color: var(--text-muted); border: 1px solid var(--border);
+  width: 100%; background: var(--red-bright);
+  color: #ffffff; border: 1px solid rgba(255,68,68,0.6);
   padding: 4px 8px; font-family: var(--font-mono); font-size: 7px;
   letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
   clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
 }
-.panel-btn:hover { border-color: rgba(255,68,68,0.4); color: var(--red-bright); background: var(--red-dim); }
+.panel-btn:hover { border-color: rgba(255,68,68,0.9); background: #ff2f2f; }
 
 /* ── BAR CHART ── */
 .chart-block { padding: 8px 12px 10px; flex-shrink: 0; }
@@ -520,6 +548,23 @@ canvas#waveCanvas { display: block; width: 100%; }
   padding: 1px 5px;
 }
 
+/* ── HEADER USER ICON ── */
+.header-user-icon {
+  width: 26px; height: 26px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: var(--surface3);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-hud); font-size: 10px; color: var(--text-primary);
+  box-shadow: 0 0 10px rgba(255,68,68,0.15);
+}
+.header-user {
+  display: flex; align-items: center; gap: 8px;
+}
+.header-user .user-info { flex: 1; min-width: 0; }
+.header-user .user-name { font-size: 11px; letter-spacing: 1px; }
+.header-user .user-status { font-size: 6px; letter-spacing: 1px; margin-top: 2px; }
+.header-user .user-clearance { font-size: 6px; padding: 1px 4px; }
+
 /* ── FOOTER ── */
 footer {
   position: fixed; bottom: 0; left: 0; right: 0;
@@ -546,10 +591,20 @@ footer {
 
 <!-- HEADER -->
 <header>
-  <div class="logo">
-    <div class="logo-badge">
-      <div class="logo-tri"></div>
-      HAZARD.NEWS
+  <div class="header-left">
+    <div class="logo">
+      <div class="logo-badge">
+        <div class="logo-tri"></div>
+        HAZARD.NEWS
+      </div>
+    </div>
+    <div class="header-user">
+      <div class="header-user-icon" id="userAvatar">U</div>
+      <div class="user-info">
+    
+        <div class="user-status">Online</div>
+        <div class="user-clearance">LVL-2 ACCESS</div>
+      </div>
     </div>
   </div>
   <div class="header-meta">
@@ -590,6 +645,18 @@ footer {
         <div class="clock-secs" id="clockS">--</div>
       </div>
       <div class="date-display" id="dateDisplay">---</div>
+    </div>
+    <div class="p-divider"></div>
+
+    <!-- LOCATION -->
+    <div class="p-section"><div class="p-section-label"><div class="p-dot"></div>Location</div></div>
+    <div class="location-block">
+      <div class="coord-row">
+        <span class="coord-val" id="coordLat">LAT --</span>
+        <span class="coord-val" id="coordLon">LON --</span>
+      </div>
+      <div class="location-info" id="locationDisplay">awaiting signal</div>
+      <button class="panel-btn" onclick="requestLocationPermission()">⊕ Acquire Lock</button>
     </div>
     <div class="p-divider"></div>
 
@@ -683,31 +750,6 @@ footer {
       <div class="matrix-grid" id="matrixGrid"></div>
     </div>
     <div class="p-divider"></div>
-
-    <!-- LOCATION -->
-    <div class="p-section"><div class="p-section-label"><div class="p-dot"></div>Location</div></div>
-    <div class="location-block">
-      <div class="coord-row">
-        <span class="coord-val" id="coordLat">LAT --</span>
-        <span class="coord-val" id="coordLon">LON --</span>
-      </div>
-      <div class="location-info" id="locationDisplay">awaiting signal</div>
-      <button class="panel-btn" onclick="requestLocationPermission()">⊕ Acquire Lock</button>
-    </div>
-    <div class="p-divider"></div>
-
-    <!-- USER -->
-    <div class="p-section"><div class="p-section-label"><div class="p-dot"></div>Operator</div></div>
-    <div class="user-block">
-      <div class="user-row">
-        <div class="user-avatar" id="userAvatar">?</div>
-        <div class="user-info">
-          <div class="user-name" id="userName">Unknown</div>
-          <div class="user-status">Online</div>
-          <div class="user-clearance">LVL-2 ACCESS</div>
-        </div>
-      </div>
-    </div>
 
   </aside>
 </div>

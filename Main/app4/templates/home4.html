@@ -3,775 +3,1645 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>App 4 - Hazard Regions</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-      crossorigin=""
-    />
+    <title>GEO ARTEMIS — Hazard Cluster Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <style>
-      * {
-        box-sizing: border-box;
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+      :root {
+        --bg: #060608;
+        --surface: #0c0c10;
+        --surface2: #111118;
+        --surface3: #16161e;
+        --border: rgba(255,255,255,0.06);
+        --border-hi: rgba(255,255,255,0.13);
+        --text-primary: #ececec;
+        --text-secondary: #686878;
+        --text-muted: #333340;
+        --red: #e03030;
+        --red-dim: rgba(224,48,48,0.12);
+        --red-bright: #ff4444;
+        --red-glow: rgba(255,68,68,0.25);
+        --green: #3dba78;
+        --green-dim: rgba(61,186,120,0.15);
+        --cyan: #38c8d8;
+        --cyan-dim: rgba(56,200,216,0.1);
+        --amber: #e8a020;
+        --font-mono: 'Share Tech Mono', monospace;
+        --font-ui: 'Rajdhani', sans-serif;
+        --font-hud: 'Orbitron', sans-serif;
+        --panel-w: 260px;
+        --header-h: 50px;
+        --footer-h: 30px;
       }
+
+      html, body { height: 100%; overflow: hidden; }
 
       body {
-        margin: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: #0a0a0a;
-        color: #fff;
+        background: var(--bg);
+        color: var(--text-primary);
+        font-family: var(--font-ui);
+        font-size: 13px;
+        background-image:
+          linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+        background-size: 44px 44px;
       }
 
+      body::after {
+        content: ''; position: fixed; inset: 0;
+        pointer-events: none; z-index: 9998;
+        background: repeating-linear-gradient(
+          0deg, transparent, transparent 3px,
+          rgba(0,0,0,0.015) 3px, rgba(0,0,0,0.015) 4px
+        );
+      }
+
+      /* ── HEADER ── */
       header {
-        padding: 16px 20px;
-        background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-        color: #fff;
-        border-bottom: 2px solid #2563eb;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        position: fixed; top: 0; left: 0; right: 0;
+        height: var(--header-h);
+        background: rgba(6,6,8,0.97);
+        border-bottom: 1px solid var(--border-hi);
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 1.2rem;
+        z-index: 1000;
+        backdrop-filter: blur(12px);
       }
 
-      header h1 {
-        margin: 0 0 8px;
-        font-size: 22px;
-        letter-spacing: 1px;
+      .header-left { display: flex; align-items: center; gap: 14px; }
+
+      .logo {
+        font-family: var(--font-hud);
+        font-size: 10px; font-weight: 700;
+        color: #ffffff; letter-spacing: 5px; text-transform: uppercase;
+        display: flex; align-items: center; gap: 10px; user-select: none;
+      }
+
+      .logo-badge {
+        display: flex; align-items: center; gap: 5px;
+        padding: 3px 8px;
+        border: 1px solid rgba(255,68,68,0.4);
+        background: rgba(255,68,68,0.07);
+        clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+      }
+
+      .logo-tri {
+        width: 6px; height: 6px;
+        background: var(--red-bright);
+        clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+        animation: blink 2s infinite;
+        filter: drop-shadow(0 0 4px var(--red-bright));
+      }
+
+      @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.1} }
+
+      .header-sep {
+        width: 1px; height: 20px;
+        background: var(--border-hi); flex-shrink: 0;
+      }
+
+      .header-sub {
+        font-family: var(--font-mono); font-size: 8px;
+        color: #ffffff; letter-spacing: 3px; text-transform: uppercase;
         font-weight: 600;
-        background: linear-gradient(90deg, #2563eb, #0ea5e9);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
       }
 
-      nav {
-        margin-top: 8px;
+      .nav-links { display: flex; gap: 1.2rem; align-items: center; }
+      .nav-links a {
+        color: #ffffff; text-decoration: none;
+        font-family: var(--font-mono); font-size: 8px;
+        letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s;
+        position: relative;
+        background: var(--red-bright);
+        border: 1.5px solid var(--red-bright);
+        padding: 5px 10px;
+        clip-path: polygon(3px 0%, 100% 0%, calc(100% - 3px) 100%, 0% 100%);
+        display: inline-flex; align-items: center; gap: 4px;
+        box-shadow: 0 0 8px rgba(255,68,68,0.4), inset -1px -1px 0 rgba(0,0,0,0.3);
+      }
+      .nav-links a::before { content: '//'; color: #ffffff; margin-right: 0px; opacity: 0.9; }
+      .nav-links a:hover {
+        background: #ffffff;
+        color: #000000;
+        border: 1.5px solid #ffffff;
+        box-shadow: 0 0 12px rgba(255,255,255,0.6), inset -1px -1px 0 rgba(0,0,0,0.5);
+        transform: translateY(-1px);
+      }
+      .nav-links a:active {
+        background: #ffffff;
+        color: #000000;
+        border: 1.5px solid #ffffff;
+        transform: translateY(0);
+      }
+      .nav-links a.logout {
+        background: rgba(255,68,68,0.8);
+        border-color: rgba(255,68,68,0.9);
+      }
+      .nav-links a.logout:hover {
+        background: var(--red-bright);
+        box-shadow: 0 0 14px rgba(255,68,68,0.8), inset -1px -1px 0 rgba(0,0,0,0.5);
       }
 
-      nav a {
-        color: #94a3b8;
-        text-decoration: none;
-        margin-right: 12px;
-        font-size: 11px;
-        transition: all 0.3s ease;
-      }
+      .header-right { display: flex; align-items: center; gap: 12px; }
 
-      nav a:hover {
-        color: #0ea5e9;
-        text-shadow: 0 0 8px rgba(14, 165, 233, 0.5);
+      .live-pill {
+        display: flex; align-items: center; gap: 5px;
+        font-family: var(--font-mono); font-size: 7px;
+        color: var(--green); letter-spacing: 2px; text-transform: uppercase;
+        border: 1px solid rgba(61,186,120,0.2);
+        padding: 3px 8px;
+        clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
       }
+      .live-dot {
+        width: 4px; height: 4px; border-radius: 50%;
+        background: var(--green); box-shadow: 0 0 5px var(--green);
+        animation: pulse 1.5s infinite;
+      }
+      @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.15} }
 
+      /* ── LAYOUT ── */
       .layout {
-        display: grid;
-        grid-template-columns: 85% 15%;
-        min-height: calc(100vh - 80px);
-        gap: 0;
+        position: fixed;
+        top: var(--header-h); bottom: var(--footer-h);
+        left: 0; right: 0;
+        display: flex;
+        flex-direction: row-reverse;
+      }
+
+      /* ── CONTROL PANEL (LEFT) ── */
+      .ctrl-panel {
+        width: var(--panel-w);
+        background: var(--surface);
+        border-right: 1px solid var(--border-hi);
+        display: flex; flex-direction: column;
+        overflow-y: auto; overflow-x: hidden;
+        flex-shrink: 0;
+      }
+      .ctrl-panel::-webkit-scrollbar { width: 2px; }
+      .ctrl-panel::-webkit-scrollbar-thumb { background: rgba(255,68,68,0.2); }
+
+      .cp-header {
+        padding: 10px 12px 8px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .cp-title {
+        font-family: var(--font-hud); font-size: 7px;
+        letter-spacing: 4px; color: #ffffff; text-transform: uppercase;
+        display: flex; align-items: center; gap: 6px;
+      }
+      .cp-title::before {
+        content: ''; width: 12px; height: 1px;
+        background: var(--red-bright); display: block;
+        box-shadow: 0 0 4px var(--red-bright);
+      }
+
+      /* Btn groups */
+      .btn-group {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--border);
+        display: flex; flex-direction: column; gap: 7px;
+        flex-shrink: 0;
+      }
+      .btn-group-label {
+        font-family: var(--font-mono); font-size: 7px;
+        color: #ffffff; letter-spacing: 2px; text-transform: uppercase;
+        margin-bottom: 3px;
+        font-weight: 600;
+      }
+
+      /* THE BUTTONS */
+      .panel-btn {
+        display: block; width: 100%;
+        background: rgba(255,68,68,0.1);
+        color: #fff;
+        border: 1px solid rgba(255,68,68,0.35);
+        padding: 7px 10px;
+        font-family: var(--font-mono); font-size: 8px;
+        letter-spacing: 2px; text-transform: uppercase;
+        cursor: pointer; transition: all 0.2s;
+        clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+        text-align: left; position: relative; overflow: hidden;
+        font-weight: 600;
+      }
+      .panel-btn::before {
+        content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+        width: 2px; background: var(--red-bright);
+        box-shadow: 0 0 5px var(--red-bright);
+        transform: scaleY(0); transition: transform 0.2s;
+        transform-origin: bottom;
+      }
+      .panel-btn:hover {
+        background: rgba(255,68,68,0.2);
+        border-color: rgba(255,68,68,0.6);
+        color: #fff;
+      }
+      .panel-btn:hover::before { transform: scaleY(1); }
+      .panel-btn span { position: relative; z-index: 1; }
+      .panel-btn .btn-icon { color: var(--red-bright); margin-right: 5px; }
+
+      .panel-btn.alt-green {
+        background: rgba(61,186,120,0.08);
+        border-color: rgba(61,186,120,0.3);
+      }
+      .panel-btn.alt-green::before { background: var(--green); box-shadow: 0 0 5px var(--green); }
+      .panel-btn.alt-green:hover { background: rgba(61,186,120,0.18); border-color: rgba(61,186,120,0.6); }
+      .panel-btn.alt-green .btn-icon { color: var(--green); }
+
+      .panel-btn.alt-amber {
+        background: rgba(232,160,32,0.08);
+        border-color: rgba(232,160,32,0.3);
+      }
+      .panel-btn.alt-amber::before { background: var(--amber); box-shadow: 0 0 5px var(--amber); }
+      .panel-btn.alt-amber:hover { background: rgba(232,160,32,0.18); border-color: rgba(232,160,32,0.6); }
+      .panel-btn.alt-amber .btn-icon { color: var(--amber); }
+
+      /* Side-by-side compact buttons */
+      .btn-pair-group {
+        display: flex; gap: 1px; margin-bottom: 8px; flex-shrink: 0; padding: 0 14px;
+      }
+      .btn-pair-group form { flex: 1; }
+      .btn-pair-compact {
+        padding: 9px 6px;
+        font-size: 7px;
+        border-radius: 0;
+        margin-bottom: 0;
+        letter-spacing: 0.5px;
+        clip-path: none;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+      }
+      .btn-pair-compact .btn-icon { margin-right: 0; font-size: 8px; font-weight: 700; }
+
+      /* Predict form */
+      .predict-group {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .field-label {
+        font-family: var(--font-mono); font-size: 7px;
+        color: #ffffff; letter-spacing: 2px; text-transform: uppercase;
+        display: block; margin-top: 8px; margin-bottom: 4px;
+        font-weight: 600;
+      }
+      .field-input {
+        width: 100%; padding: 7px 10px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        color: var(--text-primary);
+        font-family: var(--font-mono); font-size: 9px;
+        letter-spacing: 1px;
+        transition: all 0.2s;
+        outline: none;
+        clip-path: polygon(3px 0%, 100% 0%, calc(100% - 3px) 100%, 0% 100%);
+      }
+      .field-input:focus {
+        border-color: rgba(255,68,68,0.5);
+        box-shadow: 0 0 8px rgba(255,68,68,0.1);
+        background: var(--surface3);
+      }
+      .field-input::placeholder { color: var(--text-muted); }
+
+      /* Status messages */
+      .status-area {
+        padding: 8px 12px;
+        flex: 1;
+      }
+      .msg-box {
+        padding: 10px 12px;
+        font-family: var(--font-mono); font-size: 8px;
+        line-height: 1.7; letter-spacing: 0.5px;
+        border-left: 3px solid;
+        background: var(--surface2);
+        margin-bottom: 10px;
+        animation: fadeUp 0.3s ease;
+        position: relative;
+        box-shadow: inset -1px -1px 0 rgba(0,0,0,0.5), -2px 2px 4px rgba(0,0,0,0.3);
+        text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+      }
+      @keyframes fadeUp { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+      .msg-box.info { border-color: var(--cyan); color: rgba(56,200,216,0.85); }
+      .msg-box.success { border-color: var(--green); color: rgba(61,186,120,0.85); }
+      .msg-box.error { border-color: var(--red-bright); color: rgba(255,68,68,0.85); }
+
+      .result-box {
+        padding: 12px 14px;
+        font-family: var(--font-mono); font-size: 8px;
+        line-height: 1.9; letter-spacing: 0.5px;
+        border: 1px solid var(--border-hi);
+        border-left: 3px solid var(--cyan);
+        background: var(--surface2);
+        animation: fadeUp 0.3s ease;
+        position: relative;
+        box-shadow: inset -1px -1px 0 rgba(0,0,0,0.5), -2px 2px 4px rgba(0,0,0,0.3);
+        text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+      }
+      .result-box .r-key { color: var(--text-muted); display: inline-block; width: 60px; }
+      .result-box .r-val { color: var(--cyan); }
+      .result-box .r-val.ok { color: var(--green); }
+      .result-box .r-val.warn { color: var(--amber); }
+      .result-box .r-sep {
+        height: 1px; background: var(--border); margin: 5px 0;
+      }
+
+      /* ── SIGNAL METERS (WHITE) ── */
+      .signal-block {
+        padding: 6px 10px 8px;
+        flex-shrink: 0;
+        border-top: 1px solid var(--border);
+        background: rgba(0,0,0,0.2);
+      }
+      .signal-row {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 4px;
+      }
+      .signal-label {
+        font-family: var(--font-mono);
+        font-size: 6px;
+        color: #ffffff;
+        letter-spacing: 1px;
+        width: 20px;
+        flex-shrink: 0;
+        font-weight: 600;
+      }
+      .signal-bars {
+        display: flex;
+        gap: 1px;
+        align-items: flex-end;
+        flex: 1;
+      }
+      .sig-b {
+        flex: 1;
+        border-radius: 0.5px;
+        transition: opacity 0.2s;
+        background: #ffffff;
+      }
+      .sig-b.on { opacity: 0.9; }
+      .sig-b.off { opacity: 0.15; }
+      .sig-b:nth-child(1) { height: 3px; }
+      .sig-b:nth-child(2) { height: 5px; }
+      .sig-b:nth-child(3) { height: 7px; }
+      .sig-b:nth-child(4) { height: 9px; }
+      .sig-b:nth-child(5) { height: 11px; }
+      .signal-pct {
+        font-family: var(--font-mono);
+        font-size: 6px;
+        color: #ffffff;
+        width: 18px;
+        text-align: right;
+        flex-shrink: 0;
+      }
+
+      /* ── MAIN MAP AREA ── */
+      .main-area {
+        flex: 1; position: relative; overflow: hidden;
+        background: linear-gradient(135deg, rgba(6,6,8,0.5) 0%, rgba(12,12,16,0.3) 100%);
+      }
+
+      .main-area::before {
+        content: '\26B2 LIVE HAZARD FEED DISPLAY';
+        position: absolute; top: 0; left: 0; right: 0;
+        height: 24px;
+        background: linear-gradient(90deg, rgba(255,68,68,0.05) 0%, rgba(255,68,68,0.02) 100%);
+        border-bottom: 1px solid rgba(255,68,68,0.3);
+        font-family: var(--font-hud);
+        font-size: 8px; letter-spacing: 3px; color: rgba(255,68,68,0.6); text-transform: uppercase;
+        display: flex; align-items: center; padding: 0 12px;
+        z-index: 100; pointer-events: none;
+        text-shadow: 0 0 10px rgba(255,68,68,0.3);
       }
 
       #map {
-        width: 100%;
-        height: calc(100vh - 80px);
-        background: #050505;
-        position: relative;
+        width: 100%; height: 100%;
+        background: var(--surface);
         display: none;
+        margin-top: 24px;
+      }
+      #map.active { display: block; }
+
+      /* Leaflet overrides for dark theme */
+      .leaflet-container { background: #06060a !important; }
+      .leaflet-popup-content-wrapper {
+        background: rgba(12,12,16,0.97) !important;
+        border: 1px solid var(--border-hi) !important;
+        border-radius: 0 !important;
+        box-shadow: 0 0 20px rgba(0,0,0,0.8) !important;
+        color: var(--text-primary) !important;
+        font-family: var(--font-mono) !important;
+        font-size: 10px !important;
+      }
+      .leaflet-popup-tip { background: rgba(12,12,16,0.97) !important; }
+      .leaflet-popup-close-button { color: var(--text-muted) !important; font-size: 14px !important; }
+      .leaflet-popup-close-button:hover { color: var(--red-bright) !important; }
+      .leaflet-bar a { background: var(--surface) !important; color: var(--text-secondary) !important; border-color: var(--border-hi) !important; }
+      .leaflet-bar a:hover { background: var(--surface2) !important; color: var(--text-primary) !important; }
+
+      /* Pulsing marker animation */
+      @keyframes pulse-marker-glow {
+        0% {
+          filter: drop-shadow(0 0 3px rgba(255,68,68,0.5));
+          opacity: 0.7;
+        }
+        50% {
+          filter: drop-shadow(0 0 12px rgba(255,68,68,1));
+          opacity: 1;
+        }
+        100% {
+          filter: drop-shadow(0 0 3px rgba(255,68,68,0.5));
+          opacity: 0.7;
+        }
+      }
+      
+      .pulse-marker {
+        animation: pulse-marker-glow 1.5s ease-in-out infinite !important;
       }
 
-      #map.active {
-        display: block;
+      /* HUD overlay on map */
+      .map-hud {
+        position: absolute; z-index: 500;
+        pointer-events: none;
+      }
+      .map-hud.top-left { top: 40px; left: 12px; }
+      .map-hud.top-right { top: 40px; right: 12px; }
+      .map-hud.map-selector { top: 40px; right: 130px; }
+      .map-hud.bottom-left { bottom: 20px; left: 12px; }
+      .map-hud.left-center { bottom: 80px; left: 12px; transform: none; }
+
+      .hud-box {
+        background: #000000;
+        border: 1px solid #ffffff;
+        padding: 10px 12px;
+        font-family: var(--font-mono); font-size: 8px;
+        color: #ffffff; letter-spacing: 1px;
+        backdrop-filter: blur(8px);
+        clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+        box-shadow: 0 0 12px rgba(255,255,255,0.15), inset -1px -1px 0 rgba(255,255,255,0.1);
+        position: relative;
+      }
+      .hud-box::before {
+        content: ''; position: absolute; inset: 0;
+        background: repeating-linear-gradient(
+          90deg, transparent, transparent 2px, rgba(255,68,68,0.03) 2px, rgba(255,68,68,0.03) 4px
+        );
+        pointer-events: none;
+        clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+      }
+      .hud-box .hud-title {
+        font-family: var(--font-hud); font-size: 7px;
+        color: #ffffff; letter-spacing: 3px; text-transform: uppercase;
+        margin-bottom: 6px;
+        text-shadow: 0 0 8px rgba(255,255,255,0.3);
+      }
+      .hud-box .hud-val { color: #ffffff; line-height: 1.8; }
+      .hud-box .hud-val b { color: #ffffff; text-shadow: 0 0 6px rgba(255,255,255,0.2); }
+
+      /* System Status HUD (left center) */
+      .hud-box.system-status {
+        min-width: 160px;
+      }
+      .hud-box.system-status .hud-title { margin-bottom: 8px; }
+      .status-bar {
+        display: flex; align-items: center; gap: 6px; margin-bottom: 6px;
+      }
+      .status-bar-label { color: var(--text-muted); font-size: 7px; min-width: 50px; }
+      .status-bar-fill {
+        flex: 1; height: 3px; background: rgba(255,68,68,0.15); border: 0.5px solid rgba(255,68,68,0.3);
+        overflow: hidden;
+      }
+      .status-bar-indicator {
+        height: 100%; background: #ff4444;
+        box-shadow: 0 0 4px #ff4444;
+        animation: slide 2s infinite;
+      }
+      @keyframes slide { 0%{width:40%;} 50%{width:70%;} 100%{width:40%;} }
+      .wave-viz {
+        display: flex; align-items: flex-end; gap: 2px; height: 30px; margin-top: 8px;
+      }
+      .wave-bar {
+        flex: 1; background: #ff4444; opacity: 0.8; border-radius: 1px;
+        box-shadow: 0 0 4px rgba(255,68,68,0.5);
+        animation: waveMove 2s ease-in-out infinite;
+      }
+      .wave-bar:nth-child(1) { animation-delay: 0s; animation: waveMove1 2.2s ease-in-out infinite; }
+      .wave-bar:nth-child(2) { animation-delay: 0.1s; animation: waveMove2 2.5s ease-in-out infinite; }
+      .wave-bar:nth-child(3) { animation-delay: 0.2s; animation: waveMove3 1.8s ease-in-out infinite; }
+      .wave-bar:nth-child(4) { animation-delay: 0.3s; animation: waveMove4 2.3s ease-in-out infinite; }
+      .wave-bar:nth-child(5) { animation-delay: 0.4s; animation: waveMove5 1.9s ease-in-out infinite; }
+      @keyframes waveMove1 { 0%{height:25%;opacity:0.5} 30%{height:65%;opacity:1} 50%{height:40%;opacity:0.8} 80%{height:70%;opacity:1} 100%{height:25%;opacity:0.5} }
+      @keyframes waveMove2 { 0%{height:35%;opacity:0.6} 25%{height:45%;opacity:0.8} 50%{height:75%;opacity:1} 75%{height:30%;opacity:0.7} 100%{height:35%;opacity:0.6} }
+      @keyframes waveMove3 { 0%{height:50%;opacity:0.8} 20%{height:25%;opacity:0.5} 40%{height:60%;opacity:0.9} 60%{height:35%;opacity:0.7} 100%{height:50%;opacity:0.8} }
+      @keyframes waveMove4 { 0%{height:40%;opacity:0.7} 35%{height:70%;opacity:0.95} 50%{height:30%;opacity:0.6} 70%{height:65%;opacity:1} 100%{height:40%;opacity:0.7} }
+      @keyframes waveMove5 { 0%{height:45%;opacity:0.75} 28%{height:55%;opacity:0.85} 50%{height:20%;opacity:0.5} 72%{height:75%;opacity:1} 100%{height:45%;opacity:0.75} }
+
+      /* Map Mode Selector */
+      .hud-box.map-modes {
+        min-width: 110px;
+        padding: 6px 8px;
+      }
+      .hud-box.map-modes .hud-title { margin-bottom: 4px; font-size: 6px; }
+      .mode-buttons {
+        display: flex; gap: 4px; flex-direction: row;
+      }
+      .mode-btn {
+        background: var(--red-bright);
+        color: #ffffff;
+        border: 1px solid var(--red-bright);
+        padding: 3px 6px;
+        font-family: var(--font-mono); font-size: 6px;
+        letter-spacing: 0.5px; text-transform: uppercase;
+        cursor: pointer; transition: all 0.2s;
+        clip-path: polygon(3px 0%, 100% 0%, calc(100% - 3px) 100%, 0% 100%);
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 600;
+        box-shadow: 0 0 6px rgba(255,68,68,0.3);
+        flex: 1; min-width: 45px;
+        pointer-events: auto;
+      }
+      .mode-btn:hover {
+        background: #ffffff;
+        color: #000000;
+        box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        transform: translateY(-1px);
+      }
+      .mode-btn:active {
+        transform: translateY(0);
       }
 
+      .corner-bracket {
+        position: absolute; pointer-events: none; z-index: 499;
+      }
+      .corner-bracket svg { display: block; }
+
+      /* ── ORB GLOBE (Map Section) ── */
+      .orb-globe {
+        position: absolute; bottom: 20px; right: 50px;
+        z-index: 490; pointer-events: none;
+        display: flex; flex-direction: column; align-items: center; gap: 6px;
+      }
+      .orb-wrap {
+        position: relative; width: 140px; height: 140px;
+        background: #000000;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 0 20px rgba(255,68,68,0.3), inset 0 0 15px rgba(0,0,0,0.8);
+      }
+      canvas#orbCanvas { display: block; }
+      .orb-ring-outer {
+        position: absolute; inset: -8px;
+        border: 1.5px solid rgba(255,68,68,0.2);
+        border-radius: 50%;
+        animation: spin-slow 20s linear infinite;
+      }
+      .orb-ring-outer::before {
+        content: ''; position: absolute;
+        width: 5px; height: 5px; border-radius: 50%;
+        background: var(--red-bright); top: 8px; left: 50%; transform: translateX(-50%);
+        box-shadow: 0 0 6px var(--red-bright);
+      }
+      .orb-ring-inner {
+        position: absolute; inset: 3px;
+        border: 1px dashed rgba(255,255,255,0.04);
+        border-radius: 50%;
+        animation: spin-slow 12s linear infinite reverse;
+      }
+      @keyframes spin-slow { to { transform: rotate(360deg); } }
+
+      .orb-clock {
+        font-family: var(--font-hud); font-size: 18px; font-weight: 400;
+        color: var(--red-bright); letter-spacing: 2px; line-height: 1;
+        text-shadow: 0 0 8px rgba(255,68,68,0.5);
+        min-width: 110px; text-align: center;
+      }
+      .orb-clock-label {
+        font-family: var(--font-mono); font-size: 6px;
+        color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px;
+      }
+
+      /* ── CHARTS AREA ── */
       #charts-container {
-        width: 100%;
-        height: calc(100vh - 80px);
-        background: #050505;
+        width: 100%; height: 100%;
+        background: var(--bg);
         overflow-y: auto;
         display: none;
-        padding: 20px;
       }
+      #charts-container.active { display: block; }
+      #charts-container::-webkit-scrollbar { width: 3px; }
+      #charts-container::-webkit-scrollbar-thumb { background: rgba(255,68,68,0.25); }
 
-      #charts-container.active {
-        display: block;
+      /* ── CHARTS LOADER ── */
+      #chartsLoader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(6,6,8,0.98);
+        backdrop-filter: blur(12px);
+        height: 100vh;
+      }
+      #chartsLoader.active {
+        display: flex;
+      }
+      .loader-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+      .loader-title {
+        font-family: var(--font-hud);
+        font-size: 14px;
+        letter-spacing: 3px;
+        color: #ffffff;
+        text-transform: uppercase;
+        text-shadow: 0 0 10px rgba(255,68,68,0.6);
+      }
+      .progress-bar-wrapper {
+        width: 300px;
+        height: 8px;
+        background: rgba(255,68,68,0.1);
+        border: 1px solid rgba(255,68,68,0.3);
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 0 15px rgba(255,68,68,0.2), inset 0 0 8px rgba(255,68,68,0.1);
+      }
+      .progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #ff4444 0%, #ff6666 50%, #ff4444 100%);
+        background-size: 200% 100%;
+        width: 0%;
+        transition: width 0.1s linear;
+        box-shadow: 0 0 8px rgba(255,68,68,0.8), inset 0 0 4px rgba(255,255,255,0.3);
+        animation: pulse-progress 1.5s ease-in-out infinite;
+      }
+      @keyframes pulse-progress {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+      }
+      .progress-text {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: #ffffff;
+        letter-spacing: 2px;
+        text-shadow: 0 0 8px rgba(255,68,68,0.4);
+      }
+      .loader-dots {
+        font-size: 16px;
+        color: #ff4444;
+        letter-spacing: 4px;
+        animation: blink-dots 1s infinite;
+      }
+      @keyframes blink-dots {
+        0%, 20% { opacity: 1; }
+        50% { opacity: 0.3; }
+        100% { opacity: 1; }
       }
 
       .charts-wrapper {
-        max-width: 1200px;
-        margin: 0 auto;
+        max-width: 100%;
+        padding: 14px;
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 14px;
       }
 
       .chart-card {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        border: 1px solid #334155;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-left: 2px solid rgba(255,68,68,0.4);
+        padding: 14px;
+        position: relative;
+        overflow: hidden;
+      }
+      .chart-card::before {
+        content: ''; position: absolute;
+        top: 0; right: 0; width: 10px; height: 10px;
+        border-top: 1px solid var(--red-bright);
+        border-right: 1px solid var(--red-bright);
+      }
+      .chart-card::after {
+        content: ''; position: absolute;
+        bottom: 0; left: 0; width: 10px; height: 10px;
+        border-bottom: 1px solid rgba(255,68,68,0.2);
+        border-left: 1px solid rgba(255,68,68,0.2);
       }
 
       .chart-card h3 {
-        margin: 0 0 20px 0;
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        color: #0ea5e9;
-        font-weight: 700;
+        margin: 0 0 14px 0;
+        font-family: var(--font-hud); font-size: 7px;
+        text-transform: uppercase; letter-spacing: 4px;
+        color: var(--text-muted);
+        display: flex; align-items: center; gap: 8px;
+      }
+      .chart-card h3::before {
+        content: ''; width: 20px; height: 1px;
+        background: var(--red-bright); display: block;
+        box-shadow: 0 0 4px var(--red-bright);
       }
 
-      .chart-container {
-        position: relative;
-        height: 350px;
-        width: 100%;
-      }
-
-      .chart-container canvas {
-        max-height: 100%;
-      }
-
-      .plotly-chart {
-        position: relative;
-        height: 550px;
-        width: 100%;
-        background: #1a1a2e;
-        border-radius: 4px;
-      }
+      .chart-container { position: relative; height: 280px; width: 100%; }
+      .chart-container canvas { max-height: 100%; }
 
       .plotly-iframe {
-        width: 100%;
-        height: 600px;
+        width: 100%; height: 520px;
         border: none;
-        border-radius: 4px;
+        border-top: 1px solid var(--border);
+        margin-top: 6px;
+        background: var(--surface);
+        filter: saturate(0.8) contrast(1.1);
       }
 
-      .panel {
-        padding: 16px;
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        color: #e2e8f0;
-        border-left: 2px solid #2563eb;
-        overflow-y: auto;
+      /* ── FOOTER ── */
+      footer {
+        position: fixed; bottom: 0; left: 0; right: 0;
+        height: var(--footer-h);
+        background: rgba(6,6,8,0.97);
+        border-top: 1px solid var(--border-hi);
+        padding: 0 1.2rem;
+        display: flex; align-items: center; justify-content: space-between;
+        z-index: 1000; backdrop-filter: blur(12px);
+      }
+      .footer-text { font-family: var(--font-mono); font-size: 6px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+      .footer-mid {
+        font-family: var(--font-mono); font-size: 6px; color: var(--text-muted);
+        letter-spacing: 1px; display: flex; gap: 16px;
+      }
+      .footer-mid span { color: var(--border-hi); }
+      .footer-live {
+        display: flex; align-items: center; gap: 5px;
+        font-family: var(--font-mono); font-size: 6px; color: var(--red-bright); letter-spacing: 2px; text-transform: uppercase;
+      }
+      .footer-live::before {
+        content: ''; width: 3px; height: 3px; border-radius: 50%;
+        background: var(--red-bright); box-shadow: 0 0 4px var(--red-bright);
+        animation: pulse 1.5s infinite; display: inline-block;
       }
 
-      .panel h2 {
-        margin: 0 0 12px;
-        font-size: 13px;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        color: #0ea5e9;
-        font-weight: 700;
-      }
-
-      .panel label {
-        display: block;
-        margin-top: 12px;
-        font-size: 11px;
-        color: #cbd5f0;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .panel input {
-        width: 100%;
-        padding: 7px 10px;
-        margin-top: 5px;
-        border: 1px solid #334155;
-        background: #1e293b;
-        color: #e2e8f0;
-        border-radius: 4px;
-        font-size: 11px;
-        transition: all 0.2s ease;
-      }
-
-      .panel input:focus {
-        outline: none;
-        border-color: #0ea5e9;
-        box-shadow: 0 0 8px rgba(14, 165, 233, 0.3);
-      }
-
-      .btn {
-        margin-top: 10px;
-        padding: 8px 10px;
-        width: 100%;
-        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        font-size: 10px;
-        cursor: pointer;
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-      }
-
-      .btn:hover {
-        background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
-      }
-
-      .btn:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
-      }
-
-      .btn.alt {
-        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-        box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2);
-      }
-
-      .btn.alt:hover {
-        background: linear-gradient(135deg, #15803d 0%, #166534 100%);
-        box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4);
-      }
-
-      .panel .result,
-      .panel .message {
-        margin-top: 14px;
-        padding: 10px;
-        border-radius: 4px;
-        font-size: 11px;
-        animation: slideInUp 0.3s ease;
-      }
-
-      .panel .message {
-        background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
-        color: #bfdbfe;
-        border: 1px solid #0ea5e9;
-        border-left: 3px solid #0ea5e9;
-      }
-
-      .panel .result {
-        background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-        color: #d1d5db;
-        border: 1px solid #374151;
-        border-left: 3px solid #0ea5e9;
-      }
-
-      @keyframes slideInUp {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @media (max-width: 900px) {
-        .layout {
-          grid-template-columns: 1fr;
-        }
-        #map {
-          height: 60vh;
-        }
-      }
+      /* Scrollbar global */
+      ::-webkit-scrollbar { width: 3px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: rgba(255,68,68,0.2); border-radius: 2px; }
     </style>
   </head>
   <body>
-    <header>
-      <h1>Hazard Clusters Map</h1>
-      <nav>
-        <a href="/app1/">App 1</a>
-        <a href="/app2/">App 2</a>
-        <a href="/app3/">App 3</a>
-        <a href="/app4/">App 4</a>
-        <a href="/app5/">App 5</a>
-        <a href="/app6/">App 6</a>
-        <a href="/app2/logout">Log out</a>
-      </nav>
-    </header>
-    <div class="layout">
-      <div id="map" class="active"></div>
-      <div id="charts-container">
-        <div class="charts-wrapper" id="charts-wrapper"></div>
-      </div>
-      <aside class="panel">
-        <h2>Control Panel</h2>
-        <form method="post" action="/app4/charts">
-          <button class="btn alt" type="submit">📊 Charts</button>
-        </form>
-        <form method="post" action="/app4/show-clusters">
-          <button class="btn" type="submit">Show Clusters</button>
-        </form>
-        <form method="post" action="/app4/show-regions">
-          <button class="btn alt" type="submit">Show Regions</button>
-        </form>
-        <form method="post" action="/app4/train">
-          <button class="btn alt" type="submit">Train Model</button>
-        </form>
-        <form method="post" action="/app4/predict">
-          <label for="lat">Latitude</label>
-          <input id="lat" name="lat" type="number" step="any" required />
-          <label for="lon">Longitude</label>
-          <input id="lon" name="lon" type="number" step="any" required />
-          <button class="btn" type="submit">Predict</button>
-        </form>
-        {% if message %}
-        <div class="message">{{ message }}</div>
-        {% endif %}
-        {% if prediction %}
-        <div class="result">
-          <strong>Status:</strong> {{ prediction.status }}<br />
-          {% if prediction.status == "Assigned" %}
-          <strong>Region:</strong> {{ prediction.region }}<br />
-          <strong>Event:</strong> {{ prediction.most_common_event }}<br />
-          {% else %}
-          <strong>Closest:</strong> {{ prediction.closest_region }}<br />
-          {% endif %}
-          <strong>Distance:</strong> {{ prediction.distance_km }} km
-        </div>
-        {% endif %}
-      </aside>
-    </div>
 
-    <script
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-      crossorigin=""
-    ></script>
+    <!-- ══ HEADER ══ -->
+    <header>
+      <div class="header-left">
+        <div class="logo">
+          <div class="logo-badge">
+            <div class="logo-tri"></div>
+            <span>GEO ARTEMIS</span>
+          </div>
+        </div>
+        <div class="header-sep"></div>
+        <div class="header-sub">Hazard Cluster Analysis // v4.0</div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="/app1/">app01</a>
+        <a href="/app2/">app02</a>
+        <a href="/app3/">app03</a>
+        <a href="/app4/">app04</a>
+        <a href="/app5/">app05</a>
+        <a href="/app6/">app06</a>
+        <a href="/app2/logout" class="logout">logout</a>
+      </nav>
+
+      <div class="header-right">
+        <div class="live-pill">
+          <div class="live-dot"></div>
+          <span>SYS ONLINE</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ══ LAYOUT ══ -->
+    <div class="layout">
+
+      <!-- ── CONTROL PANEL ── -->
+      <aside class="ctrl-panel">
+        <div class="cp-header">
+          <div class="cp-title">Control Panel</div>
+        </div>
+
+        <!-- Visualize Side-by-side Compact -->
+        <div class="btn-pair-group">
+          <form method="post" action="/app4/show-clusters">
+            <button class="panel-btn btn-pair-compact" type="submit">
+              <span class="btn-icon">▦</span><span>Cluster</span>
+            </button>
+          </form>
+          <form method="post" action="/app4/show-regions">
+            <button class="panel-btn alt-green btn-pair-compact" type="submit" style="border-left: 1px solid rgba(61,186,120,0.3);">
+              <span class="btn-icon">◆</span><span>Region</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Return Map Button -->
+        <div class="btn-group" style="padding: 8px 14px; gap: 0; flex-shrink: 0;">
+          <button id="returnMapBtn" class="panel-btn" style="width: 100%;">
+            <span class="btn-icon">🗺</span><span>Return to Map</span>
+          </button>
+        </div>
+
+        <!-- Remove Clusters Button -->
+        <div class="btn-group" style="padding: 6px 14px; gap: 0; flex-shrink: 0;">
+          <button id="removeClustersBtn" class="panel-btn" style="width: 100%; background: rgba(255,100,100,0.15); border-color: rgba(255,100,100,0.4);">
+            <span class="btn-icon">✕</span><span>Remove Clusters</span>
+          </button>
+        </div>
+
+        <!-- Remove Regions Button -->
+        <div class="btn-group" style="padding: 6px 14px; gap: 0; flex-shrink: 0;">
+          <button id="removeRegionsBtn" class="panel-btn" style="width: 100%; background: rgba(100,200,100,0.15); border-color: rgba(100,200,100,0.4);">
+            <span class="btn-icon">✕</span><span>Remove Regions</span>
+          </button>
+        </div>
+
+        <!-- Charts -->
+        <div class="btn-group">
+          <form method="post" action="/app4/charts">
+            <button class="panel-btn alt-amber" type="submit">
+              <span class="btn-icon">▦</span><span>Charts / EDA</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Model -->
+        <div class="btn-group">
+          <div class="btn-group-label">// Model</div>
+          <form method="post" action="/app4/train">
+            <button class="panel-btn" type="submit">
+              <span class="btn-icon">⬡</span><span>Train Model</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Predict -->
+        <div class="predict-group">
+          <div class="btn-group-label">// Predict Region</div>
+          <form method="post" action="/app4/predict">
+            <label class="field-label" for="lat">▸ Latitude</label>
+            <input class="field-input" id="lat" name="lat" type="number" step="any" required placeholder="e.g. 28.6139" />
+            <label class="field-label" for="lon">▸ Longitude</label>
+            <input class="field-input" id="lon" name="lon" type="number" step="any" required placeholder="e.g. 77.2090" />
+            <br/><br/>
+            <button class="panel-btn" type="submit" style="margin-top:6px;">
+              <span class="btn-icon">➤</span><span>Execute Predict</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Status / Prediction output -->
+        <div class="status-area">
+          {% if message %}
+          <div class="msg-box {% if '✓' in message %}success{% elif '✗' in message %}error{% else %}info{% endif %}">
+            {{ message }}
+          </div>
+          {% endif %}
+
+          {% if prediction %}
+          <div class="result-box">
+            <div class="r-sep"></div>
+            <div>
+              <span class="r-key">STATUS</span>
+              <span class="r-val {% if prediction.status == 'Assigned' %}ok{% else %}warn{% endif %}">{{ prediction.status }}</span>
+            </div>
+            {% if prediction.status == "Assigned" %}
+            <div><span class="r-key">REGION</span><span class="r-val">{{ prediction.region }}</span></div>
+            <div><span class="r-key">EVENT</span><span class="r-val">{{ prediction.most_common_event }}</span></div>
+            {% else %}
+            <div><span class="r-key">CLOSEST</span><span class="r-val warn">{{ prediction.closest_region }}</span></div>
+            {% endif %}
+            <div><span class="r-key">DIST KM</span><span class="r-val">{{ prediction.distance_km }}</span></div>
+            <div class="r-sep"></div>
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- SIGNAL METERS -->
+        <div class="signal-block">
+          <div class="signal-row">
+            <span class="signal-label">SAT</span>
+            <div class="signal-bars">
+              <div class="sig-b on"></div><div class="sig-b on"></div>
+              <div class="sig-b on"></div><div class="sig-b on"></div><div class="sig-b off"></div>
+            </div>
+            <span class="signal-pct">82%</span>
+          </div>
+          <div class="signal-row">
+            <span class="signal-label">NET</span>
+            <div class="signal-bars">
+              <div class="sig-b on"></div><div class="sig-b on"></div>
+              <div class="sig-b on"></div><div class="sig-b off"></div><div class="sig-b off"></div>
+            </div>
+            <span class="signal-pct">61%</span>
+          </div>
+          <div class="signal-row">
+            <span class="signal-label">GEO</span>
+            <div class="signal-bars">
+              <div class="sig-b on"></div><div class="sig-b on"></div>
+              <div class="sig-b on"></div><div class="sig-b on"></div><div class="sig-b on"></div>
+            </div>
+            <span class="signal-pct">100%</span>
+          </div>
+          <div class="signal-row">
+            <span class="signal-label">ENC</span>
+            <div class="signal-bars">
+              <div class="sig-b on"></div><div class="sig-b on"></div>
+              <div class="sig-b on"></div><div class="sig-b on"></div><div class="sig-b off"></div>
+            </div>
+            <span class="signal-pct">76%</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ── MAIN MAP / CHARTS ── -->
+      <div class="main-area">
+
+        <!-- HUD overlays -->
+        <div class="map-hud top-left" id="mapHudTL">
+          <div class="hud-box">
+            <div class="hud-title">◈ Cluster Feed</div>
+            <div class="hud-val" id="hudClusterCount"><b>--</b> regions detected</div>
+            <div class="hud-val" id="hudPointCount"><b>--</b> data points</div>
+          </div>
+        </div>
+
+        <div class="map-hud top-right" id="mapHudTR">
+          <div class="hud-box">
+            <div class="hud-title">◉ Map Mode</div>
+            <div class="hud-val" id="hudMode"><b>IDLE</b></div>
+          </div>
+        </div>
+
+        <div class="map-hud map-selector" id="mapSelector">
+          <div class="hud-box map-modes">
+            <div class="hud-title">🗺 MODE</div>
+            <div class="mode-buttons">
+              <button class="mode-btn" id="topoMapBtn" title="Topographic Map">TOPO</button>
+              <button class="mode-btn" id="worldMapBtn" title="World Map">WORLD</button>
+              <button class="mode-btn" id="satMapBtn" title="Satellite Map">SAT</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-hud bottom-left" id="mapHudBL">
+          <div class="hud-box">
+            <div class="hud-title">⊕ Coordinates</div>
+            <div class="hud-val" id="hudCoords">Hover map to track</div>
+          </div>
+        </div>
+
+        <div class="map-hud left-center" id="mapHudLC">
+          <div class="hud-box system-status">
+            <div class="hud-title">⚡ System Status</div>
+            <div class="status-bar">
+              <div class="status-bar-label">CPU</div>
+              <div class="status-bar-fill">
+                <div class="status-bar-indicator" style="width:65%;"></div>
+              </div>
+              <span style="color:#ff4444; font-size:7px;">65%</span>
+            </div>
+            <div class="status-bar">
+              <div class="status-bar-label">SIGNAL</div>
+              <div class="status-bar-fill">
+                <div class="status-bar-indicator" style="width:88%;"></div>
+              </div>
+              <span style="color:#ff4444; font-size:7px;">88%</span>
+            </div>
+            <div class="wave-viz">
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orb Globe -->
+        <div class="orb-globe">
+          <div class="orb-wrap">
+            <div class="orb-ring-outer"></div>
+            <div class="orb-ring-inner"></div>
+            <canvas id="orbCanvas" width="140" height="140"></canvas>
+          </div>
+          <div class="orb-clock" id="orbTimeDisplay">--:--</div>
+          <div class="orb-clock-label">Local Time</div>
+        </div>
+
+        <!-- Charts Loader -->
+        <div id="chartsLoader">
+          <div class="loader-container">
+            <div class="loader-title">▤ GENERATING CHARTS</div>
+            <div class="progress-bar-wrapper">
+              <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text"><span id="progressPercent">0</span>%</div>
+            <div class="loader-dots">...</div>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div id="map" class="active"></div>
+
+        <!-- Charts container -->
+        <div id="charts-container">
+          <div class="charts-wrapper" id="charts-wrapper"></div>
+        </div>
+      </div>
+
+    </div><!-- end .layout -->
+
+    <!-- ══ FOOTER ══ -->
+    <footer>
+      <div class="footer-text">GEO ARTEMIS // DBSCAN Hazard Engine</div>
+      <div class="footer-mid">
+        <span>PROJ v4.0.1</span>
+        <span>|</span>
+        <span id="footerClock">--:--:--</span>
+        <span>|</span>
+        <span>UTC+0</span>
+      </div>
+      <div class="footer-live">Live Feed</div>
+    </footer>
+
+    <!-- ══ SCRIPTS ══ -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+
     <script>
-      const points = {{ points_json | safe }};
-      const regions = {{ regions_json | safe }};
-      const prediction = {{ prediction | tojson | safe }};
-      const showClusters = {{ show_clusters | tojson | safe }};
+      // ── Inject from Jinja ──
+      const points      = {{ points_json | safe }};
+      const regions     = {{ regions_json | safe }};
+      const prediction  = {{ prediction | tojson | safe }};
+      const showClusters= {{ show_clusters | tojson | safe }};
       const showRegions = {{ show_regions | tojson | safe }};
+      const chartsData  = {{ charts | tojson | safe }};
 
-      const map = L.map("map").setView([20, 0], 2);
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+      // ── Footer clock ──
+      function tickClock() {
+        const now = new Date();
+        document.getElementById('footerClock').textContent =
+          now.toUTCString().slice(17, 25);
+      }
+      tickClock(); setInterval(tickClock, 1000);
+
+      // Return to Map button handler
+      const returnMapBtn = document.getElementById('returnMapBtn');
+      if (returnMapBtn) {
+        returnMapBtn.addEventListener('click', () => {
+          const chartsContainer = document.getElementById('charts-container');
+          const mapContainer = document.getElementById('map');
+          if (chartsContainer && mapContainer) {
+            chartsContainer.style.display = 'none';
+            mapContainer.classList.add('active');
+            // Show all HUD elements and orb
+            document.getElementById('mapHudTL').style.display = 'block';
+            document.getElementById('mapHudTR').style.display = 'block';
+            document.getElementById('mapHudBL').style.display = 'block';
+            document.getElementById('mapHudLC').style.display = 'block';
+            document.getElementById('mapSelector').style.display = 'block';
+            const orbGlobe = document.querySelector('.orb-globe');
+            if (orbGlobe) orbGlobe.style.display = 'flex';
+          }
+        });
+      }
+
+      // Remove Clusters button handler
+      const removeClustersBtn = document.getElementById('removeClustersBtn');
+      if (removeClustersBtn) {
+        removeClustersBtn.addEventListener('click', () => {
+          // Remove all circle markers (clusters and noise points)
+          map.eachLayer(layer => {
+            if (layer instanceof L.CircleMarker && layer !== predictionMarker) {
+              map.removeLayer(layer);
+            }
+          });
+          // Clear HUD info
+          document.getElementById('hudClusterCount').innerHTML = '<b>--</b> regions detected';
+          document.getElementById('hudPointCount').innerHTML = '<b>--</b> data points';
+          document.getElementById('hudMode').innerHTML = '<b style="color:var(--cyan)">IDLE</b>';
+        });
+      }
+
+      // Remove Regions button handler
+      const removeRegionsBtn = document.getElementById('removeRegionsBtn');
+      if (removeRegionsBtn) {
+        removeRegionsBtn.addEventListener('click', () => {
+          // Remove all polygon layers (regions)
+          map.eachLayer(layer => {
+            if (layer instanceof L.Polygon) {
+              map.removeLayer(layer);
+            }
+          });
+          // Clear HUD info
+          document.getElementById('hudMode').innerHTML = '<b style="color:var(--cyan)">IDLE</b>';
+        });
+      }
+
+      let predictionMarker = null; // Store reference to prediction marker
+
+      // ── Orb Globe Animation ──
+      const orbCanvas = document.getElementById('orbCanvas');
+      if (orbCanvas) {
+        const ctx = orbCanvas.getContext('2d');
+        const W = orbCanvas.width, H = orbCanvas.height;
+        const cx = W/2, cy = H/2, R = 65;
+        let t = 0;
+
+        function latLon(lat, lon, rot) {
+          const phi = (90 - lat) * Math.PI / 180;
+          const theta = (lon + rot) * Math.PI / 180;
+          return {
+            x: R * Math.sin(phi) * Math.cos(theta),
+            y: R * Math.cos(phi),
+            z: R * Math.sin(phi) * Math.sin(theta)
+          };
+        }
+
+        const hotspots = [
+          {lat:35,lon:139},{lat:28,lon:77},{lat:-23,lon:-46},
+          {lat:51,lon:0},{lat:40,lon:-74},{lat:-33,lon:151},
+          {lat:19,lon:72},{lat:6,lon:1},{lat:25,lon:55},{lat:-1,lon:37}
+        ];
+
+        function draw(rot) {
+          ctx.clearRect(0,0,W,H);
+
+          // sphere base - solid black gradient
+          const g = ctx.createRadialGradient(cx-14,cy-14,2,cx,cy,R);
+          g.addColorStop(0,'rgba(40,40,50,1)');
+          g.addColorStop(0.6,'rgba(20,20,30,1)');
+          g.addColorStop(1,'rgba(8,8,15,1)');
+          ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
+          ctx.fillStyle = g; ctx.fill();
+
+          // lat lines (red instead of white)
+          for(let lat=-60;lat<=60;lat+=30){
+            ctx.beginPath(); let first=true;
+            for(let lon=-180;lon<=180;lon+=3){
+              const p=latLon(lat,lon,rot);
+              if(p.z<0){first=true;continue;}
+              const sx=cx+p.x,sy=cy-p.y;
+              first?ctx.moveTo(sx,sy):ctx.lineTo(sx,sy); first=false;
+            }
+            ctx.strokeStyle='rgba(255,68,68,0.08)'; ctx.lineWidth=0.5; ctx.stroke();
+          }
+
+          // lon lines (red)
+          for(let lon=0;lon<360;lon+=30){
+            ctx.beginPath(); let first=true;
+            for(let lat=-90;lat<=90;lat+=3){
+              const p=latLon(lat,lon,rot);
+              if(p.z<0){first=true;continue;}
+              const sx=cx+p.x,sy=cy-p.y;
+              first?ctx.moveTo(sx,sy):ctx.lineTo(sx,sy); first=false;
+            }
+            ctx.strokeStyle='rgba(255,68,68,0.06)'; ctx.lineWidth=0.5; ctx.stroke();
+          }
+
+          // hotspots (red pulsing)
+          hotspots.forEach((hs,i)=>{
+            const p=latLon(hs.lat,hs.lon,rot);
+            if(p.z<4) return;
+            const sx=cx+p.x, sy=cy-p.y;
+            const alpha=Math.min(1,p.z/R);
+            const pulse=0.5+0.5*Math.sin(t*2.2+i*0.9);
+
+            ctx.beginPath(); ctx.arc(sx,sy,3+pulse*2.5,0,Math.PI*2);
+            ctx.strokeStyle=`rgba(255,68,68,${alpha*0.5*pulse})`; ctx.lineWidth=0.8; ctx.stroke();
+
+            ctx.beginPath(); ctx.arc(sx,sy,1.5,0,Math.PI*2);
+            ctx.fillStyle=`rgba(255,68,68,${alpha*0.95})`; ctx.fill();
+
+            if(pulse>0.85){
+              ctx.beginPath(); ctx.arc(sx,sy,5+pulse*3,0,Math.PI*2);
+              ctx.strokeStyle=`rgba(255,68,68,${alpha*0.2})`; ctx.lineWidth=0.5; ctx.stroke();
+            }
+          });
+
+          // rim (red)
+          ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
+          ctx.strokeStyle='rgba(255,68,68,0.3)'; ctx.lineWidth=1; ctx.stroke();
+
+          // highlight (red tint instead of white)
+          const hl=ctx.createRadialGradient(cx-20,cy-20,1,cx-20,cy-20,28);
+          hl.addColorStop(0,'rgba(255,68,68,0.06)');
+          hl.addColorStop(1,'rgba(255,68,68,0)');
+          ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
+          ctx.fillStyle=hl; ctx.fill();
+        }
+
+        function animate(){
+          t+=0.012;
+          draw(t*18);
+          requestAnimationFrame(animate);
+        }
+        animate();
+      }
+      
+      // ── Orb Clock ──
+      function updateOrbClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        document.getElementById('orbTimeDisplay').textContent = hours + ':' + minutes;
+      }
+      updateOrbClock();
+      setInterval(updateOrbClock, 1000);
+
+      // ── Map init ──
+      const map = L.map('map', { zoomControl: true }).setView([20, 0], 2);
+      
+      // Tile layers
+      const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         maxZoom: 18,
-        attribution: "&copy; OpenStreetMap &copy; CARTO",
-      }).addTo(map);
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
+      });
+      
+      const topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        maxZoom: 17,
+        attribution: '&copy; OpenTopoMap',
+      });
+      
+      const satLayer = L.tileLayer(
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        {
+          maxZoom: 18,
+          attribution: 'Tiles &copy; Esri',
+        }
+      );
+      
+      let currentLayer = darkLayer;
+      currentLayer.addTo(map);
 
-      // Expanded color palette for many clusters
+      // Map mode button handlers
+      document.getElementById('topoMapBtn').addEventListener('click', function() {
+        if (currentLayer) map.removeLayer(currentLayer);
+        currentLayer = topoLayer;
+        topoLayer.addTo(map);
+        this.style.background = '#ffffff';
+        this.style.color = '#000000';
+        document.getElementById('worldMapBtn').style.background = 'var(--red-bright)';
+        document.getElementById('worldMapBtn').style.color = '#ffffff';
+        document.getElementById('satMapBtn').style.background = 'var(--red-bright)';
+        document.getElementById('satMapBtn').style.color = '#ffffff';
+      });
+
+
+      document.getElementById('worldMapBtn').addEventListener('click', function() {
+        if (currentLayer) map.removeLayer(currentLayer);
+        currentLayer = darkLayer;
+        darkLayer.addTo(map);
+        this.style.background = '#ffffff';
+        this.style.color = '#000000';
+        document.getElementById('topoMapBtn').style.background = 'var(--red-bright)';
+        document.getElementById('topoMapBtn').style.color = '#ffffff';
+        document.getElementById('satMapBtn').style.background = 'var(--red-bright)';
+        document.getElementById('satMapBtn').style.color = '#ffffff';
+      });
+
+      document.getElementById('satMapBtn').addEventListener('click', function() {
+        if (currentLayer) map.removeLayer(currentLayer);
+        currentLayer = satLayer;
+        satLayer.addTo(map);
+        this.style.background = '#ffffff';
+        this.style.color = '#000000';
+        document.getElementById('topoMapBtn').style.background = 'var(--red-bright)';
+        document.getElementById('topoMapBtn').style.color = '#ffffff';
+        document.getElementById('worldMapBtn').style.background = 'var(--red-bright)';
+        document.getElementById('worldMapBtn').style.color = '#ffffff';
+      });
+
+      // Coordinate tracker
+      map.on('mousemove', function(e) {
+        document.getElementById('hudCoords').textContent =
+          e.latlng.lat.toFixed(4) + ',  ' + e.latlng.lng.toFixed(4);
+      });
+
+      // Color palette
       const palette = [
-        "#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A", "#98D8C8",
-        "#F7DC6F", "#BB8FCE", "#85C1E2", "#F8B88B", "#52C4A9",
-        "#6C5CE7", "#A29BFE", "#00B894", "#FF7675", "#74B9FF",
-        "#FDCB6E", "#6C5CE7", "#E17055", "#00CEC9", "#FD79A8",
-        "#FDCB6E", "#A29BFE", "#74B9FF", "#2D3436", "#636E72",
-        "#00D2D3", "#FF9E64", "#7AA2F7", "#9ECE6A", "#BB9AF7"
+        '#ff4444', '#ffffff', '#38c8d8'
       ];
 
-      // Render cluster regions as colored overlays
+      // ── Show Regions ──
       if (showRegions && regions.length > 0) {
         regions.forEach((region, idx) => {
-          const color = palette[region.cluster % palette.length];
-          const polygon = L.polygon(region.bounds, {
-            color: color,
-            fillColor: color,
-            fillOpacity: 0.25,
-            weight: 2,
-            dashArray: "5, 5"
+          const color = palette[idx % palette.length];
+          L.polygon(region.bounds, {
+            color, fillColor: color, fillOpacity: 0.15,
+            weight: 1.5, dashArray: '4 4'
           })
-            .bindPopup(
-              `<div style="font-size:12px; font-family: monospace">` +
-              `<b style="color: ${color}">Region ${region.cluster}</b><br/>` +
-              `Events: ${region.count}<br/>` +
-              `Center: ${region.center[0].toFixed(2)}, ${region.center[1].toFixed(2)}</div>`
-            )
-            .addTo(map);
+          .bindPopup(
+            `<div style="font-size:10px;font-family:'Share Tech Mono',monospace;line-height:1.8">` +
+            `<span style="color:${color};font-size:8px;letter-spacing:2px">REGION ${region.cluster}</span><br/>` +
+            `EVENTS &nbsp;: <b>${region.count}</b><br/>` +
+            `CENTER &nbsp;: ${region.center[0].toFixed(2)}, ${region.center[1].toFixed(2)}</div>`
+          ).addTo(map);
         });
+        document.getElementById('hudMode').innerHTML = '<b style="color:var(--green)">REGIONS</b>';
       }
 
-      // Render clusters with animation
+      // ── Show Clusters ──
       if (showClusters && points.length > 0) {
-        let clusterGroups = {};
-        
-        // Group points by cluster
-        points.forEach((point) => {
-          const cluster = point.cluster;
-          if (!clusterGroups[cluster]) {
-            clusterGroups[cluster] = [];
-          }
-          clusterGroups[cluster].push(point);
+        let clusters = {};
+        points.forEach(p => {
+          clusters[p.cluster] = (clusters[p.cluster] || 0) + 1;
         });
 
-        // Render each cluster with staggered animation
+        document.getElementById('hudClusterCount').innerHTML =
+          '<b>' + Object.keys(clusters).filter(k => k != -1).length + '</b> regions detected';
+        document.getElementById('hudPointCount').innerHTML =
+          '<b>' + points.length + '</b> data points';
+        document.getElementById('hudMode').innerHTML = '<b style="color:var(--cyan)">CLUSTERS</b>';
+
         let delay = 0;
-        Object.keys(clusterGroups).forEach((clusterId) => {
-          clusterGroups[clusterId].forEach((point, idx) => {
+        let clusterGroups = {};
+        points.forEach(p => {
+          if (!clusterGroups[p.cluster]) clusterGroups[p.cluster] = [];
+          clusterGroups[p.cluster].push(p);
+        });
+
+        Object.keys(clusterGroups).forEach(cId => {
+          clusterGroups[cId].forEach((point, pIdx) => {
             setTimeout(() => {
-              let color = "#888";
-              let isNoise = point.cluster === -1;
-              
-              if (!isNoise) {
-                color = palette[Math.abs(point.cluster) % palette.length];
-              }
-              
-              const circleMarker = L.circleMarker([point.lat, point.lon], {
-                radius: isNoise ? 2 : 4.5,
-                color: isNoise ? "#555" : color,
-                fillColor: color,
-                fillOpacity: isNoise ? 0.3 : 0.85,
+              const isNoise = point.cluster === -1;
+              const color = isNoise ? 'rgba(255,255,255,0.2)' : palette[Math.abs(point.cluster) % palette.length];
+              L.circleMarker([point.lat, point.lon], {
+                radius: isNoise ? 2 : 4,
+                color: isNoise ? 'rgba(255,255,255,0.15)' : color,
+                fillColor: color, fillOpacity: isNoise ? 0.15 : 0.85,
                 weight: isNoise ? 0.5 : 1.2,
-                className: "cluster-point"
               })
-                .bindPopup(
-                  `<div style="font-size:12px; font-family: monospace">` +
-                  `<b style="color: ${color}">${point.Event_type || "Unknown"}</b><br/>` +
-                  `Cluster: <b>${isNoise ? "Noise" : point.cluster}</b><br/>` +
-                  `Magnitude: ${(point.magnitude ?? "N/A").toFixed(1)}<br/>` +
-                  `Lat: ${point.lat.toFixed(3)}, Lon: ${point.lon.toFixed(3)}</div>`
-                )
-                .addTo(map);
+              .bindPopup(
+                `<div style="font-size:10px;font-family:'Share Tech Mono',monospace;line-height:1.8">` +
+                `<span style="color:${color};font-size:8px;letter-spacing:2px">${point.Event_type || 'UNKNOWN'}</span><br/>` +
+                `CLUSTER : <b>${isNoise ? 'NOISE' : point.cluster}</b><br/>` +
+                `MAG &nbsp;&nbsp;&nbsp;&nbsp;: ${(point.magnitude ?? 'N/A').toFixed ? (point.magnitude ?? 0).toFixed(1) : 'N/A'}<br/>` +
+                `LAT/LON : ${point.lat.toFixed(3)}, ${point.lon.toFixed(3)}</div>`
+              ).addTo(map);
             }, delay);
-            delay += 5;
+            delay += 4;
           });
         });
       }
 
-      // Render prediction marker with star icon
+      // ── Prediction marker ──
       if (prediction && prediction.lat !== undefined) {
-        const marker = L.marker([prediction.lat, prediction.lon], {
-          title: "Predicted Location"
+        const markerColor = '#ff4444'; // Always red
+        const statusMessage = prediction.status === 'Assigned' ? '✓ ASSIGNED' : '⚠ NEW/NOISE';
+        
+        predictionMarker = L.circleMarker([prediction.lat, prediction.lon], {
+          radius: 8, color: markerColor,
+          fillColor: markerColor, fillOpacity: 0.7, weight: 2,
+          className: 'pulse-marker'
         }).addTo(map);
         
-        const statusColor = prediction.status === "Assigned" ? "#10b981" : "#f59e0b";
-        marker.bindPopup(
-          `<div style="font-size:12px; font-weight: bold; color: ${statusColor}">` +
-          `${prediction.status === "Assigned" ? "✓ Assigned" : "⚠ New/Noise"}<br/>` +
-          `${
-            prediction.status === "Assigned"
-              ? `Region: ${prediction.region}<br/>Event: ${prediction.most_common_event}`
-              : `Closest: ${prediction.closest_region}`
-          }<br/>` +
-          `Distance: ${prediction.distance_km} km</div>`
+        predictionMarker.bindPopup(
+          `<div style="font-size:10px;font-family:'Share Tech Mono',monospace;line-height:1.8">` +
+          `<span style="color:${markerColor};font-size:8px;letter-spacing:2px">` +
+          `${statusMessage}</span><br/>` +
+          (prediction.status === 'Assigned'
+            ? `REGION : <b>${prediction.region}</b><br/>EVENT &nbsp;: ${prediction.most_common_event}<br/>`
+            : `CLOSEST: <b>${prediction.closest_region}</b><br/>`) +
+          `DIST &nbsp;&nbsp;: ${prediction.distance_km} km</div>`
         );
         map.setView([prediction.lat, prediction.lon], 5);
+        document.getElementById('hudMode').innerHTML = '<b style="color:' + markerColor + '">PREDICT</b>';
       }
 
-      // Handle charts display
-      const chartsData = {{ charts | tojson | safe }};
+      // ── Charts ──
       if (chartsData) {
-        const mapEl = document.getElementById("map");
-        const chartsEl = document.getElementById("charts-container");
-        const chartsWrapper = document.getElementById("charts-wrapper");
+        // Show loader
+        const loader = document.getElementById('chartsLoader');
+        const progressFill = document.getElementById('progressFill');
+        const progressPercent = document.getElementById('progressPercent');
         
-        // Swap active classes
-        mapEl.classList.remove("active");
-        chartsEl.classList.add("active");
-        
-        // Clear wrapper
-        chartsWrapper.innerHTML = "";
-        
-        // Color palette for charts
-        const colors = {
-          primary: "#0ea5e9",
-          success: "#10b981",
-          warning: "#f59e0b",
-          danger: "#ef4444",
-          purple: "#a855f7",
-          pink: "#ec4899",
-          cyan: "#06b6d4",
-          emerald: "#10b981"
-        };
-        
-        // Helper function to create chart card
-        function createChartCard(title, canvasId) {
-          const card = document.createElement("div");
-          card.className = "chart-card";
-          card.innerHTML = `
-            <h3>${title}</h3>
-            <div class="chart-container">
-              <canvas id="${canvasId}"></canvas>
-            </div>
-          `;
-          chartsWrapper.appendChild(card);
-          return document.getElementById(canvasId).getContext("2d");
+        if (loader) {
+          loader.classList.add('active');
+          let progress = 0;
+          
+          // Animate progress bar
+          const progressInterval = setInterval(() => {
+            if (progress < 90) {
+              progress += Math.random() * 30;
+              if (progress > 90) progress = 90;
+            }
+            progressFill.style.width = progress + '%';
+            progressPercent.textContent = Math.floor(progress);
+          }, 100);
+          
+          // Store interval ID to clear later
+          window.chartsLoaderInterval = progressInterval;
+          window.chartsLoaderComplete = () => {
+            clearInterval(window.chartsLoaderInterval);
+            progressFill.style.width = '100%';
+            progressPercent.textContent = '100';
+            setTimeout(() => {
+              loader.classList.remove('active');
+            }, 300);
+          };
         }
         
-        // ========== GEO PLOTS FIRST (TOP) ==========
-        
-        // Chart 1: Geo Clusters Map (All events with cluster colors)
+        document.getElementById('map').classList.remove('active');
+        document.getElementById('mapHudTL').style.display = 'none';
+        document.getElementById('mapHudTR').style.display = 'none';
+        document.getElementById('mapHudBL').style.display = 'none';
+        document.getElementById('mapHudLC').style.display = 'none';
+        document.getElementById('mapSelector').style.display = 'none';
+        const orbGlobe = document.querySelector('.orb-globe');
+        if (orbGlobe) orbGlobe.style.display = 'none';
+        document.getElementById('charts-container').classList.add('active');
+
+        const cw = document.getElementById('charts-wrapper');
+        cw.innerHTML = '';
+
+        // Chart.js defaults — sci-fi palette
+        Chart.defaults.color = '#ff4444';
+        Chart.defaults.font.family = "'Share Tech Mono', monospace";
+        Chart.defaults.font.size = 10;
+        Chart.defaults.borderColor = 'rgba(255,68,68,0.15)';
+
+        function mkCard(title, canvasId, height) {
+          const card = document.createElement('div');
+          card.className = 'chart-card';
+          card.innerHTML = `<h3>${title}</h3><div class="chart-container" style="height:${height||280}px"><canvas id="${canvasId}"></canvas></div>`;
+          cw.appendChild(card);
+          return document.getElementById(canvasId).getContext('2d');
+        }
+
+        const gridColor = 'rgba(255,68,68,0.12)';
+        const gridColorDim = 'rgba(255,68,68,0.06)';
+        const tickColor = '#ff4444';
+        const sciFiPalette = ['#ff4444', '#ffffff', '#38c8d8', '#ff6699', '#ff9999', '#ffcccc', '#e84d4d', '#ff5555', '#ff7777', '#ffaaaa'];
+
+        // Geo cluster iframes
         if (chartsData.geo_clusters_url) {
-          const card = document.createElement("div");
-          card.className = "chart-card";
-          card.style.gridColumn = "1 / -1";
-          card.innerHTML = `
-            <h3>Hazard Regions Discovered by DBSCAN (All Events)</h3>
-            <iframe src="${chartsData.geo_clusters_url}" class="plotly-iframe"></iframe>
-          `;
-          chartsWrapper.appendChild(card);
+          const card = document.createElement('div');
+          card.className = 'chart-card';
+          card.innerHTML = `<h3>Hazard Regions — DBSCAN (All Events)</h3><iframe src="${chartsData.geo_clusters_url}" class="plotly-iframe"></iframe>`;
+          cw.appendChild(card);
         }
-        
-        // Chart 2: Geo Clusters Clean Map (Noise removed)
         if (chartsData.geo_clusters_clean_url) {
-          const card = document.createElement("div");
-          card.className = "chart-card";
-          card.style.gridColumn = "1 / -1";
-          card.innerHTML = `
-            <h3>Clustered Hazard Regions (Noise Removed)</h3>
-            <iframe src="${chartsData.geo_clusters_clean_url}" class="plotly-iframe"></iframe>
-          `;
-          chartsWrapper.appendChild(card);
+          const card = document.createElement('div');
+          card.className = 'chart-card';
+          card.innerHTML = `<h3>Clustered Hazard Regions — Noise Removed</h3><iframe src="${chartsData.geo_clusters_clean_url}" class="plotly-iframe"></iframe>`;
+          cw.appendChild(card);
         }
-        
-        // ========== OTHER CHARTS BELOW ==========
-        
-        // Chart 3: Event Distribution (Bar)
+
+        // Event Distribution
         if (chartsData.event_dist) {
-          const ctx = createChartCard("Distribution of Event Types", "chart-event-dist");
+          const ctx = mkCard('Distribution of Event Types', 'c-event-dist');
           new Chart(ctx, {
-            type: "bar",
+            type: 'bar',
             data: {
               labels: chartsData.event_dist.labels,
-              datasets: [{
-                label: "Event Count",
-                data: chartsData.event_dist.data,
-                backgroundColor: [
-                  "#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A", "#98D8C8",
-                  "#F7DC6F", "#BB8FCE", "#85C1E2", "#F8B88B", "#52C4A9"
-                ].slice(0, chartsData.event_dist.labels.length),
-                borderColor: "#334155",
-                borderWidth: 2,
-                borderRadius: 6
-              }]
+              datasets: [{ label: 'Event Count', data: chartsData.event_dist.data,
+                backgroundColor: sciFiPalette.slice(0, chartsData.event_dist.labels.length),
+                borderColor: 'rgba(255,68,68,0.3)', borderWidth: 1, borderRadius: 0,
+                borderSkipped: false }]
             },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: { display: false }
-              },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  grid: { color: "#1e293b" },
-                  ticks: { color: "#94a3b8" }
-                },
-                x: {
-                  grid: { display: false },
-                  ticks: { color: "#94a3b8" }
-                }
-              }
+            options: { responsive:true, maintainAspectRatio:false,
+              plugins:{ legend:{display:false} },
+              scales:{ y:{beginAtZero:true, grid:{color:gridColor, drawBorder:true}, ticks:{color:tickColor, font:{weight:'bold'}}}, x:{grid:{display:false, drawBorder:true}, ticks:{color:tickColor}} }
             }
           });
         }
-        
-        // Chart 2: Wildfire Magnitude (Line)
+
+        // Wildfire
         if (chartsData.wildfire) {
-          const ctx = createChartCard("Average Wildfire Magnitude Over Years", "chart-wildfire");
+          const ctx = mkCard('Avg Wildfire Magnitude Over Years', 'c-wildfire');
           new Chart(ctx, {
-            type: "line",
+            type: 'line',
             data: {
               labels: chartsData.wildfire.labels,
-              datasets: [{
-                label: "Avg Magnitude",
-                data: chartsData.wildfire.data,
-                borderColor: "#FF6B6B",
-                backgroundColor: "rgba(255, 107, 107, 0.1)",
-                fill: true,
-                tension: 0.4,
-                pointRadius: 5,
-                pointBackgroundColor: "#FF6B6B",
-                pointBorderColor: "#fff",
-                pointBorderWidth: 2
-              }]
+              datasets: [{ label: 'Avg Magnitude', data: chartsData.wildfire.data,
+                borderColor: '#ff4444', borderWidth: 2, backgroundColor: 'rgba(255,68,68,0.12)',
+                fill:true, tension:0.5, pointRadius:5, pointBackgroundColor:'#ff4444',
+                pointBorderColor:'#060608', pointBorderWidth:2, pointStyle:'circle' }]
             },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: { display: true, labels: { color: "#94a3b8" } }
-              },
-              scales: {
-                y: {
-                  grid: { color: "#1e293b" },
-                  ticks: { color: "#94a3b8" }
-                },
-                x: {
-                  grid: { display: false },
-                  ticks: { color: "#94a3b8" }
-                }
-              }
+            options: { responsive:true, maintainAspectRatio:false,
+              plugins:{ legend:{display:false} },
+              scales:{ y:{grid:{color:gridColor}, ticks:{color:tickColor, font:{weight:'bold'}}}, x:{grid:{display:false}, ticks:{color:tickColor}} }
             }
           });
         }
-        
-        // Chart 3: Volcano Events (Bar)
+
+        // Volcano
         if (chartsData.volcano) {
-          const ctx = createChartCard("Number of Volcano Events Per Year", "chart-volcano");
+          const ctx = mkCard('Volcano Events Per Year', 'c-volcano');
           new Chart(ctx, {
-            type: "bar",
+            type: 'bar',
             data: {
               labels: chartsData.volcano.labels,
-              datasets: [{
-                label: "Event Count",
-                data: chartsData.volcano.data,
-                backgroundColor: "#E17055",
-                borderColor: "#334155",
-                borderWidth: 2,
-                borderRadius: 6
-              }]
+              datasets: [{ label: 'Event Count', data: chartsData.volcano.data,
+                backgroundColor: '#ffffff', borderColor:'#ff4444', borderWidth:1, borderRadius:0,
+                borderSkipped: false }]
             },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: { display: false }
-              },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  grid: { color: "#1e293b" },
-                  ticks: { color: "#94a3b8" }
-                },
-                x: {
-                  grid: { display: false },
-                  ticks: { color: "#94a3b8" }
-                }
-              }
+            options: { responsive:true, maintainAspectRatio:false,
+              plugins:{ legend:{display:false} },
+              scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{weight:'bold'}}}, x:{grid:{display:false}, ticks:{color:tickColor}} }
             }
           });
         }
-        
-        // Chart 4: Cluster Summary (Horizontal Bar)
+
+        // Cluster summary
         if (chartsData.cluster_summary) {
-          const ctx = createChartCard("Top 15 Events per Region", "chart-cluster-summary");
+          const ctx = mkCard('Top 15 Events per Region', 'c-cluster', 320);
           new Chart(ctx, {
-            type: "bar",
+            type: 'bar',
             data: {
               labels: chartsData.cluster_summary.labels,
-              datasets: [{
-                label: "Event Count",
-                data: chartsData.cluster_summary.data,
-                backgroundColor: "#4ECDC4",
-                borderColor: "#334155",
-                borderWidth: 2,
-                borderRadius: 6
-              }]
+              datasets: [{ label: 'Event Count', data: chartsData.cluster_summary.data,
+                backgroundColor: '#38c8d8', borderColor:'#ff4444', borderWidth:1, borderRadius:0,
+                borderSkipped: false }]
             },
-            options: {
-              indexAxis: "y",
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: { display: false }
-              },
-              scales: {
-                x: {
-                  beginAtZero: true,
-                  grid: { color: "#1e293b" },
-                  ticks: { color: "#94a3b8" }
-                },
-                y: {
-                  grid: { display: false },
-                  ticks: { color: "#94a3b8" }
-                }
-              }
+            options: { indexAxis:'y', responsive:true, maintainAspectRatio:false,
+              plugins:{ legend:{display:false} },
+              scales:{ x:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{weight:'bold'}}}, y:{grid:{display:false}, ticks:{color:tickColor, font:{size:9}}} }
             }
           });
         }
-        
-        // Chart 5: Events by Type (Doughnut)
+
+        // Events by type doughnut
         if (chartsData.events_by_type) {
-          const ctx = createChartCard("Events by Hazard Type", "chart-events-type");
+          const ctx = mkCard('Events by Hazard Type', 'c-bytype');
           new Chart(ctx, {
-            type: "doughnut",
+            type: 'doughnut',
             data: {
               labels: chartsData.events_by_type.labels,
-              datasets: [{
-                data: chartsData.events_by_type.data,
-                backgroundColor: [
-                  "#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A", "#98D8C8",
-                  "#F7DC6F", "#BB8FCE", "#85C1E2", "#F8B88B", "#52C4A9"
-                ].slice(0, chartsData.events_by_type.labels.length),
-                borderColor: "#0f172a",
-                borderWidth: 2
-              }]
+              datasets: [{ data: chartsData.events_by_type.data,
+                backgroundColor: sciFiPalette.slice(0, chartsData.events_by_type.labels.length),
+                borderColor:'#060608', borderWidth:2 }]
             },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  position: "right",
-                  labels: { color: "#94a3b8", padding: 15 }
-                }
-              }
+            options: { responsive:true, maintainAspectRatio:false,
+              plugins:{ legend:{ position:'right', labels:{color:tickColor, padding:14, font:{size:9, weight:'bold'}} } }
             }
           });
         }
-        
-        // Chart 6: Events per Year (Line)
+
+        // Events per year
         if (chartsData.events_per_year) {
-          const ctx = createChartCard("Total Hazard Events per Year", "chart-events-year");
+          const ctx = mkCard('Total Hazard Events Per Year', 'c-epyr');
           new Chart(ctx, {
-            type: "line",
+            type: 'line',
             data: {
               labels: chartsData.events_per_year.labels,
-              datasets: [{
-                label: "Event Count",
-                data: chartsData.events_per_year.data,
-                borderColor: "#00B894",
-                backgroundColor: "rgba(0, 184, 148, 0.1)",
-                fill: true,
-                tension: 0.4,
-                pointRadius: 5,
-                pointBackgroundColor: "#00B894",
-                pointBorderColor: "#fff",
-                pointBorderWidth: 2
-              }]
+              datasets: [{ label: 'Event Count', data: chartsData.events_per_year.data,
+                borderColor: '#38c8d8', borderWidth: 2, backgroundColor: 'rgba(56,200,216,0.12)',
+                fill:true, tension:0.5, pointRadius:5, pointBackgroundColor:'#38c8d8',
+                pointBorderColor:'#060608', pointBorderWidth:2 }]
             },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: { display: true, labels: { color: "#94a3b8" } }
-              },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  grid: { color: "#1e293b" },
-                  ticks: { color: "#94a3b8" }
-                },
-                x: {
-                  grid: { display: false },
-                  ticks: { color: "#94a3b8" }
-                }
-              }
+            options: { responsive:true, maintainAspectRatio:false,
+              plugins:{ legend:{display:false} },
+              scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{weight:'bold'}}}, x:{grid:{display:false}, ticks:{color:tickColor}} }
             }
           });
         }
-        
-        // Chart 7: Magnitude Distribution (Summary)
+
+        // Magnitude by region
         if (chartsData.magnitude_dist && chartsData.magnitude_dist.clusters) {
           const clusters = chartsData.magnitude_dist.clusters;
           const means = clusters.map(c => chartsData.magnitude_dist.data[c].mean);
-          const ctx = createChartCard("Average Magnitude by Region", "chart-magnitude-dist");
+          const ctx = mkCard('Avg Magnitude by Region', 'c-mag');
           new Chart(ctx, {
-            type: "bar",
+            type: 'bar',
             data: {
-              labels: clusters.map(c => `Region ${c}`),
-              datasets: [{
-                label: "Avg Magnitude",
-                data: means,
-                backgroundColor: "#6C5CE7",
-                borderColor: "#334155",
-                borderWidth: 2,
-                borderRadius: 6
-              }]
+              labels: clusters.map(c => `R-${c}`),
+              datasets: [{ label: 'Avg Magnitude', data: means,
+                backgroundColor: '#ff9999', borderColor:'#ff4444', borderWidth:1, borderRadius:0,
+                borderSkipped: false }]
             },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: { display: false }
-              },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  grid: { color: "#1e293b" },
-                  ticks: { color: "#94a3b8" }
-                },
-                x: {
-                  grid: { display: false },
-                  ticks: { color: "#94a3b8" }
-                }
-              }
+            options: { responsive:true, maintainAspectRatio:false,
+              plugins:{ legend:{display:false} },
+              scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{weight:'bold'}}}, x:{grid:{display:false}, ticks:{color:tickColor}} }
             }
           });
+        }
+        
+        // Complete loading animation
+        if (window.chartsLoaderComplete) {
+          setTimeout(window.chartsLoaderComplete, 200);
         }
       }
     </script>
