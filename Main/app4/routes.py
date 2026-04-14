@@ -304,3 +304,23 @@ def get_plot(plot_name: str):
         return {"error": "Plot not found"}
     
     return FileResponse(file_path, media_type="text/html")
+
+
+@router.get("/satellite-data")
+def get_satellite_data():
+    """Serve NASA Event data as JSON."""
+    base_dir = Path(__file__).resolve().parent
+    project_root = base_dir.parents[1]  # Go up: app4 -> Main -> Geo Artemis
+    nasa_data_path = project_root / "Data_Source" / "Nasa_Event_data.csv"
+    
+    if not nasa_data_path.exists():
+        return {"error": "NASA Event data not found", "data": []}
+    
+    try:
+        df = pd.read_csv(nasa_data_path)
+        # Convert to list of dicts and return only first 100 rows
+        data = df.head(100).to_dict(orient="records")
+        columns = df.columns.tolist()
+        return {"columns": columns, "data": data, "total_rows": len(df)}
+    except Exception as e:
+        return {"error": str(e), "data": []}

@@ -113,36 +113,55 @@
       .nav-links a {
         color: #ffffff; text-decoration: none;
         font-family: var(--font-mono); font-size: 8px;
-        letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s;
+        letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease;
         position: relative;
-        background: var(--red-bright);
-        border: 1.5px solid var(--red-bright);
-        padding: 5px 10px;
-        clip-path: polygon(3px 0%, 100% 0%, calc(100% - 3px) 100%, 0% 100%);
-        display: inline-flex; align-items: center; gap: 4px;
-        box-shadow: 0 0 8px rgba(255,68,68,0.4), inset -1px -1px 0 rgba(0,0,0,0.3);
+        background: #000000;
+        border: 2px solid #ff4444;
+        padding: 6px 12px;
+        display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+        box-shadow: 0 0 10px rgba(255,68,68,0.3), inset 0 0 10px rgba(255,68,68,0.05);
+        overflow: hidden;
       }
-      .nav-links a::before { content: '//'; color: #ffffff; margin-right: 0px; opacity: 0.9; }
+      .nav-links a::before { content: '//'; color: #ff4444; margin-right: 2px; opacity: 0.7; transition: all 0.3s ease; }
       .nav-links a:hover {
-        background: #ffffff;
-        color: #000000;
-        border: 1.5px solid #ffffff;
-        box-shadow: 0 0 12px rgba(255,255,255,0.6), inset -1px -1px 0 rgba(0,0,0,0.5);
-        transform: translateY(-1px);
+        background: #000000;
+        color: #ff4444;
+        border: 2px solid #ff4444;
+        box-shadow: 0 0 20px rgba(255,68,68,0.8), inset 0 0 15px rgba(255,68,68,0.2), 0 0 30px rgba(255,68,68,0.5);
+        transform: translateY(-2px);
+        text-shadow: 0 0 10px rgba(255,68,68,0.8);
+      }
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,68,68,0.3), transparent);
+        transition: left 0.5s ease;
+        pointer-events: none;
+      }
+      .nav-links a:hover::after {
+        left: 100%;
       }
       .nav-links a:active {
-        background: #ffffff;
-        color: #000000;
-        border: 1.5px solid #ffffff;
+        background: rgba(255,68,68,0.1);
+        color: #ff4444;
+        border: 2px solid #ff4444;
         transform: translateY(0);
       }
       .nav-links a.logout {
-        background: rgba(255,68,68,0.8);
-        border-color: rgba(255,68,68,0.9);
+        background: #000000;
+        border-color: rgba(255,68,68,0.6);
+        box-shadow: 0 0 8px rgba(255,68,68,0.2);
       }
       .nav-links a.logout:hover {
-        background: var(--red-bright);
-        box-shadow: 0 0 14px rgba(255,68,68,0.8), inset -1px -1px 0 rgba(0,0,0,0.5);
+        background: #000000;
+        border-color: #ff4444;
+        box-shadow: 0 0 20px rgba(255,68,68,0.8), inset 0 0 15px rgba(255,68,68,0.2);
+        text-shadow: 0 0 10px rgba(255,68,68,0.8);
+      }
       }
 
       .header-right { display: flex; align-items: center; gap: 12px; }
@@ -222,7 +241,7 @@
         padding: 7px 10px;
         font-family: var(--font-mono); font-size: 8px;
         letter-spacing: 2px; text-transform: uppercase;
-        cursor: pointer; transition: all 0.2s;
+        cursor: pointer; transition: all 0.15s;
         clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
         text-align: left; position: relative; overflow: hidden;
         font-weight: 600;
@@ -238,6 +257,12 @@
         background: rgba(255,68,68,0.2);
         border-color: rgba(255,68,68,0.6);
         color: #fff;
+        box-shadow: 0 0 12px rgba(255,68,68,0.4);
+      }
+      .panel-btn:active {
+        transform: scale(0.97);
+        box-shadow: 0 0 20px rgba(255,68,68,0.6), inset 0 0 10px rgba(255,68,68,0.3);
+        filter: brightness(1.2);
       }
       .panel-btn:hover::before { transform: scaleY(1); }
       .panel-btn span { position: relative; z-index: 1; }
@@ -258,6 +283,33 @@
       .panel-btn.alt-amber::before { background: var(--amber); box-shadow: 0 0 5px var(--amber); }
       .panel-btn.alt-amber:hover { background: rgba(232,160,32,0.18); border-color: rgba(232,160,32,0.6); }
       .panel-btn.alt-amber .btn-icon { color: var(--amber); }
+
+      /* Return to Map Button */
+      #returnMapBtn:hover {
+        background: #f0f0f0 !important;
+        color: #000000 !important;
+        box-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 20px rgba(255,255,255,0.3) !important;
+      }
+      #returnMapBtn:active {
+        transform: scale(0.96);
+        background: #e0e0e0 !important;
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.2), 0 0 20px rgba(255,255,255,0.5) !important;
+      }
+
+      /* Remove Clusters & Remove Regions Buttons */
+      #removeClustersBtn:hover,
+      #removeRegionsBtn:hover {
+        background: #ff5555 !important;
+        box-shadow: 0 0 20px rgba(255,68,68,0.8), 0 0 30px rgba(255,68,68,0.5) !important;
+        filter: brightness(1.1);
+      }
+      #removeClustersBtn:active,
+      #removeRegionsBtn:active {
+        transform: scale(0.96);
+        background: #dd3333 !important;
+        box-shadow: inset 0 0 15px rgba(0,0,0,0.3), 0 0 25px rgba(255,68,68,0.9) !important;
+        filter: brightness(1.3);
+      }
 
       /* Side-by-side compact buttons */
       .btn-pair-group {
@@ -402,6 +454,56 @@
         flex-shrink: 0;
       }
 
+      /* Signal Animation */
+      .sig-b {
+        animation: signalFlicker 1.5s ease-in-out infinite;
+      }
+      .sig-b.on {
+        box-shadow: 0 0 4px rgba(255,255,255,0.6);
+      }
+      .sig-b.off {
+        animation: signalDim 1.5s ease-in-out infinite;
+      }
+
+      @keyframes signalFlicker {
+        0%, 100% { opacity: 0.9; filter: brightness(1); }
+        50% { opacity: 0.7; filter: brightness(0.9); }
+      }
+
+      @keyframes signalDim {
+        0%, 100% { opacity: 0.15; filter: brightness(0.8); }
+        50% { opacity: 0.1; filter: brightness(0.6); }
+      }
+
+      /* Pulse effect for signal bars */
+      .signal-row:nth-child(1) .sig-b { animation-delay: 0s; }
+      .signal-row:nth-child(1) .sig-b:nth-child(1) { animation-delay: 0.1s; }
+      .signal-row:nth-child(1) .sig-b:nth-child(2) { animation-delay: 0.15s; }
+      .signal-row:nth-child(1) .sig-b:nth-child(3) { animation-delay: 0.2s; }
+      .signal-row:nth-child(1) .sig-b:nth-child(4) { animation-delay: 0.25s; }
+      .signal-row:nth-child(1) .sig-b:nth-child(5) { animation-delay: 0.3s; }
+
+      .signal-row:nth-child(2) .sig-b { animation-delay: 0.2s; }
+      .signal-row:nth-child(2) .sig-b:nth-child(1) { animation-delay: 0.3s; }
+      .signal-row:nth-child(2) .sig-b:nth-child(2) { animation-delay: 0.35s; }
+      .signal-row:nth-child(2) .sig-b:nth-child(3) { animation-delay: 0.4s; }
+      .signal-row:nth-child(2) .sig-b:nth-child(4) { animation-delay: 0.45s; }
+      .signal-row:nth-child(2) .sig-b:nth-child(5) { animation-delay: 0.5s; }
+
+      .signal-row:nth-child(3) .sig-b { animation-delay: 0.1s; }
+      .signal-row:nth-child(3) .sig-b:nth-child(1) { animation-delay: 0.15s; }
+      .signal-row:nth-child(3) .sig-b:nth-child(2) { animation-delay: 0.25s; }
+      .signal-row:nth-child(3) .sig-b:nth-child(3) { animation-delay: 0.35s; }
+      .signal-row:nth-child(3) .sig-b:nth-child(4) { animation-delay: 0.45s; }
+      .signal-row:nth-child(3) .sig-b:nth-child(5) { animation-delay: 0.55s; }
+
+      .signal-row:nth-child(4) .sig-b { animation-delay: 0.3s; }
+      .signal-row:nth-child(4) .sig-b:nth-child(1) { animation-delay: 0.35s; }
+      .signal-row:nth-child(4) .sig-b:nth-child(2) { animation-delay: 0.4s; }
+      .signal-row:nth-child(4) .sig-b:nth-child(3) { animation-delay: 0.45s; }
+      .signal-row:nth-child(4) .sig-b:nth-child(4) { animation-delay: 0.5s; }
+      .signal-row:nth-child(4) .sig-b:nth-child(5) { animation-delay: 0.55s; }
+
       /* ── MAIN MAP AREA ── */
       .main-area {
         flex: 1; position: relative; overflow: hidden;
@@ -471,7 +573,7 @@
         position: absolute; z-index: 500;
         pointer-events: none;
       }
-      .map-hud.top-left { top: 40px; left: 12px; }
+      .map-hud.top-left { top: 40px; left: 80px; }
       .map-hud.top-right { top: 40px; right: 12px; }
       .map-hud.map-selector { top: 40px; right: 130px; }
       .map-hud.bottom-left { bottom: 20px; left: 12px; }
@@ -577,7 +679,33 @@
         transform: translateY(0);
       }
 
-      .corner-bracket {
+      .nasa-data-btn {
+        background: #ffffff;
+        color: #000000;
+        border: 2px solid #ffffff;
+        padding: 4px 8px;
+        font-family: var(--font-mono);
+        font-size: 7px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+        clip-path: polygon(3px 0%, 100% 0%, calc(100% - 3px) 100%, 0% 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: auto;
+        box-shadow: 0 0 8px rgba(255,255,255,0.3);
+      }
+      .nasa-data-btn:hover {
+        background: #f0f0f0;
+        box-shadow: 0 0 12px rgba(255,255,255,0.6);
+        transform: translateY(-1px);
+      }
+      .nasa-data-btn:active {
+        transform: translateY(0);
+      }
         position: absolute; pointer-events: none; z-index: 499;
       }
       .corner-bracket svg { display: block; }
@@ -796,6 +924,118 @@
       ::-webkit-scrollbar { width: 3px; }
       ::-webkit-scrollbar-track { background: transparent; }
       ::-webkit-scrollbar-thumb { background: rgba(255,68,68,0.2); border-radius: 2px; }
+
+      /* ── SATELLITE DATA MODAL ── */
+      #satelliteModal {
+        position: fixed;
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 1000px;
+        height: 70vh;
+        max-height: 600px;
+        background: #000000;
+        border: 2px solid #ff4444;
+        clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+        box-shadow: 0 0 30px rgba(255,68,68,0.4), inset 0 0 20px rgba(255,68,68,0.1);
+        display: none;
+        z-index: 2000;
+        flex-direction: column;
+        user-select: none;
+      }
+      #satelliteModal.active {
+        display: flex;
+      }
+
+      .satellite-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(255,68,68,0.3);
+        background: rgba(255,68,68,0.05);
+        user-select: none;
+        cursor: move;
+      }
+      .satellite-modal-title {
+        font-family: var(--font-hud);
+        font-size: 12px;
+        font-weight: 700;
+        color: #ff4444;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+      .satellite-modal-controls {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .modal-close-btn {
+        background: rgba(255,68,68,0.15);
+        border: 1px solid rgba(255,68,68,0.4);
+        color: #ffffff;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-weight: bold;
+        font-family: var(--font-mono);
+        font-size: 14px;
+        clip-path: polygon(2px 0%, 100% 0%, calc(100% - 2px) 100%, 0% 100%);
+      }
+      .modal-close-btn:hover {
+        background: rgba(255,68,68,0.3);
+        box-shadow: 0 0 8px rgba(255,68,68,0.5);
+      }
+
+      .satellite-modal-content {
+        flex: 1;
+        overflow: auto;
+        padding: 12px;
+      }
+      .satellite-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--font-mono);
+        font-size: 9px;
+      }
+      .satellite-table thead {
+        position: sticky;
+        top: 0;
+        background: #1a1a1a;
+        z-index: 1;
+      }
+      .satellite-table th {
+        border: 1px solid rgba(255,68,68,0.2);
+        padding: 6px 8px;
+        text-align: left;
+        color: #ff4444;
+        font-weight: bold;
+        background: rgba(255,68,68,0.05);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .satellite-table td {
+        border: 1px solid rgba(255,68,68,0.1);
+        padding: 6px 8px;
+        color: #cccccc;
+      }
+      .satellite-table tbody tr:hover {
+        background: rgba(255,68,68,0.05);
+      }
+
+      .satellite-modal-footer {
+        padding: 8px 12px;
+        border-top: 1px solid rgba(255,68,68,0.2);
+        font-family: var(--font-mono);
+        font-size: 8px;
+        color: var(--text-muted);
+        background: rgba(255,68,68,0.02);
+      }
     </style>
   </head>
   <body>
@@ -814,11 +1054,10 @@
       </div>
 
       <nav class="nav-links">
-        <a href="/app1/">app01</a>
-        <a href="/app2/">app02</a>
-        <a href="/app3/">app03</a>
-        <a href="/app4/">app04</a>
-        <a href="/app5/">app05</a>
+        <a href="/app1/">Home</a>
+        <a href="/app3/">EARTH ORB</a>
+        <a href="/app4/"> WORLD VIEW</a>
+        <a href="/app5/">NEWS</a>
         <a href="/app6/">app06</a>
         <a href="/app2/logout" class="logout">logout</a>
       </nav>
@@ -856,21 +1095,21 @@
 
         <!-- Return Map Button -->
         <div class="btn-group" style="padding: 8px 14px; gap: 0; flex-shrink: 0;">
-          <button id="returnMapBtn" class="panel-btn" style="width: 100%;">
+          <button id="returnMapBtn" class="panel-btn" style="width: 100%; background: #ffffff; border-color: #ffffff; color: #000000;">
             <span class="btn-icon">🗺</span><span>Return to Map</span>
           </button>
         </div>
 
         <!-- Remove Clusters Button -->
         <div class="btn-group" style="padding: 6px 14px; gap: 0; flex-shrink: 0;">
-          <button id="removeClustersBtn" class="panel-btn" style="width: 100%; background: rgba(255,100,100,0.15); border-color: rgba(255,100,100,0.4);">
+          <button id="removeClustersBtn" class="panel-btn" style="width: 100%; background: #ff4444; border-color: #ff4444; color: #ffffff;">
             <span class="btn-icon">✕</span><span>Remove Clusters</span>
           </button>
         </div>
 
         <!-- Remove Regions Button -->
         <div class="btn-group" style="padding: 6px 14px; gap: 0; flex-shrink: 0;">
-          <button id="removeRegionsBtn" class="panel-btn" style="width: 100%; background: rgba(100,200,100,0.15); border-color: rgba(100,200,100,0.4);">
+          <button id="removeRegionsBtn" class="panel-btn" style="width: 100%; background: #ff4444; border-color: #ff4444; color: #ffffff;">
             <span class="btn-icon">✕</span><span>Remove Regions</span>
           </button>
         </div>
@@ -982,6 +1221,7 @@
             <div class="hud-title">◈ Cluster Feed</div>
             <div class="hud-val" id="hudClusterCount"><b>--</b> regions detected</div>
             <div class="hud-val" id="hudPointCount"><b>--</b> data points</div>
+            <button class="nasa-data-btn" id="satDataBtn" title="Show NASA Satellite Data" style="margin-top: 8px; width: 100%;">NASA data</button>
           </div>
         </div>
 
@@ -1057,6 +1297,25 @@
             </div>
             <div class="progress-text"><span id="progressPercent">0</span>%</div>
             <div class="loader-dots">...</div>
+          </div>
+        </div>
+
+        <!-- Satellite Data Modal -->
+        <div id="satelliteModal">
+          <div class="satellite-modal-header" id="modalHeader">
+            <div class="satellite-modal-title">◆ NASA Satellite Events</div>
+            <div class="satellite-modal-controls">
+              <button class="modal-close-btn" id="modalCloseBtn" title="Close">✕</button>
+            </div>
+          </div>
+          <div class="satellite-modal-content" id="modalContent">
+            <table class="satellite-table" id="satelliteTable">
+              <thead id="tableHead"></thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+          <div class="satellite-modal-footer" id="modalFooter">
+            Loading satellite data...
           </div>
         </div>
 
@@ -1158,6 +1417,137 @@
           document.getElementById('hudMode').innerHTML = '<b style="color:var(--cyan)">IDLE</b>';
         });
       }
+
+      // ── Satellite Data Modal ──
+      const satDataBtn = document.getElementById('satDataBtn');
+      const satelliteModal = document.getElementById('satelliteModal');
+      const modalCloseBtn = document.getElementById('modalCloseBtn');
+      const modalHeader = document.getElementById('modalHeader');
+
+      if (satDataBtn) {
+        satDataBtn.addEventListener('click', () => {
+          // Load and display satellite data
+          loadSatelliteData();
+          satelliteModal.classList.add('active');
+        });
+      }
+
+      if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', () => {
+          satelliteModal.classList.remove('active');
+        });
+      }
+
+      // Make modal draggable
+      let isDragging = false;
+      let dragX = 0, dragY = 0;
+      let modalX = 0, modalY = 0;
+
+      if (modalHeader) {
+        modalHeader.addEventListener('mousedown', (e) => {
+          isDragging = true;
+          dragX = e.clientX - modalX;
+          dragY = e.clientY - modalY;
+        });
+      }
+
+      document.addEventListener('mousemove', (e) => {
+        if (isDragging && satelliteModal.classList.contains('active')) {
+          modalX = e.clientX - dragX;
+          modalY = e.clientY - dragY;
+          satelliteModal.style.transform = `translate(${modalX}px, ${modalY}px)`;
+          satelliteModal.style.left = 'auto';
+          satelliteModal.style.top = 'auto';
+        }
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
+      // Load satellite data from backend
+      async function loadSatelliteData() {
+        const tableHead = document.getElementById('tableHead');
+        const tableBody = document.getElementById('tableBody');
+        const modalFooter = document.getElementById('modalFooter');
+
+        try {
+          const response = await fetch('/app4/satellite-data');
+          const result = await response.json();
+
+          if (result.error) {
+            modalFooter.textContent = `Error: ${result.error}`;
+            return;
+          }
+
+          const { columns, data } = result;
+
+          // Create table header
+          tableHead.innerHTML = '';
+          const headerRow = document.createElement('tr');
+          columns.forEach(col => {
+            const th = document.createElement('th');
+            th.textContent = col;
+            headerRow.appendChild(th);
+          });
+          tableHead.appendChild(headerRow);
+
+          // Create table body
+          tableBody.innerHTML = '';
+          data.forEach(row => {
+            const tr = document.createElement('tr');
+            columns.forEach(col => {
+              const td = document.createElement('td');
+              const value = row[col];
+              td.textContent = value !== null && value !== undefined ? String(value).substring(0, 100) : '-';
+              tr.appendChild(td);
+            });
+            tableBody.appendChild(tr);
+          });
+
+          modalFooter.textContent = `Showing ${data.length} rows of ${result.total_rows} total events`;
+        } catch (error) {
+          modalFooter.textContent = `Error loading data: ${error.message}`;
+        }
+      }
+
+      // ── Random Signal Animation ──
+      function randomizeSignals() {
+        const signalLabels = ['SAT', 'NET', 'GEO', 'ENC'];
+        const signalRows = document.querySelectorAll('.signal-row');
+
+        signalRows.forEach((row, idx) => {
+          const bars = row.querySelectorAll('.sig-b');
+          const signalBars = Array.from(bars);
+          
+          // Randomly determine how many bars should be "on"
+          const activeCount = Math.floor(Math.random() * 5) + 1; // 1-5 bars active
+          const newPercentage = (activeCount / 5) * 100;
+
+          // Update bars
+          signalBars.forEach((bar, barIdx) => {
+            if (barIdx < activeCount) {
+              bar.classList.add('on');
+              bar.classList.remove('off');
+            } else {
+              bar.classList.remove('on');
+              bar.classList.add('off');
+            }
+          });
+
+          // Update percentage
+          const pctSpan = row.querySelector('.signal-pct');
+          if (pctSpan) {
+            pctSpan.textContent = Math.round(newPercentage) + '%';
+          }
+        });
+      }
+
+      // Randomize signals every 3-5 seconds
+      setInterval(randomizeSignals, 3500 + Math.random() * 1500);
+
+      // Initial randomization
+      randomizeSignals();
 
       let predictionMarker = null; // Store reference to prediction marker
 

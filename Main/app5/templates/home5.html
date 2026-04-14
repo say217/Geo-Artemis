@@ -111,27 +111,42 @@ header {
 .nav-links a {
   color: #ffffff; text-decoration: none;
   font-family: var(--font-mono); font-size: 8px;
-  letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s;
+  letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease;
   position: relative;
-  background: var(--red-bright);
-  border: 1.5px solid var(--red-bright);
-  padding: 5px 10px;
-  clip-path: polygon(3px 0%, 100% 0%, calc(100% - 3px) 100%, 0% 100%);
-  display: inline-flex; align-items: center; gap: 4px;
-  box-shadow: 0 0 8px rgba(255,68,68,0.4), inset -1px -1px 0 rgba(0,0,0,0.3);
+  background: #000000;
+  border: 2px solid #ff4444;
+  padding: 6px 12px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+  box-shadow: 0 0 10px rgba(255,68,68,0.3), inset 0 0 10px rgba(255,68,68,0.05);
+  overflow: hidden;
 }
-.nav-links a::before { content: '//'; color: #ffffff; margin-right: 0px; opacity: 0.9; }
+.nav-links a::before { content: '//'; color: #ff4444; margin-right: 2px; opacity: 0.7; transition: all 0.3s ease; }
 .nav-links a:hover {
-  background: #ffffff;
-  color: #000000;
-  border: 1.5px solid #ffffff;
-  box-shadow: 0 0 12px rgba(255,255,255,0.6), inset -1px -1px 0 rgba(0,0,0,0.5);
-  transform: translateY(-1px);
+  background: #000000;
+  color: #ff4444;
+  border: 2px solid #ff4444;
+  box-shadow: 0 0 20px rgba(255,68,68,0.8), inset 0 0 15px rgba(255,68,68,0.2), 0 0 30px rgba(255,68,68,0.5);
+  transform: translateY(-2px);
+  text-shadow: 0 0 10px rgba(255,68,68,0.8);
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,68,68,0.3), transparent);
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+.nav-links a:hover::after {
+  left: 100%;
 }
 .nav-links a:active {
-  background: #ffffff;
-  color: #000000;
-  border: 1.5px solid #ffffff;
+  background: rgba(255,68,68,0.1);
+  color: #ff4444;
+  border: 2px solid #ff4444;
   transform: translateY(0);
 }
 
@@ -611,11 +626,14 @@ footer {
     SYS<span>ONLINE</span> &nbsp;|&nbsp; FEED<span>ACTIVE</span> &nbsp;|&nbsp; ENC<span>AES-256</span>
   </div>
   <div style="display:flex;align-items:center;gap:1.5rem;">
-    <nav class="nav-links">
-      <a href="/app1/">App 1</a>
-      <a href="/app4/">Dashboard</a>
-      <a href="/app2/logout">Logout</a>
-    </nav>
+  <nav class="nav-links">
+        <a href="/app1/"> Home </a>
+        <a href="/app3/">EARTH ORB</a>
+        <a href="/app4/"> WORLD VIEW</a>
+        <a href="/app5/"> NEWS </a>
+        <a href="/app6/">app06</a>
+        <a href="/app2/logout" class="logout">logout</a>
+      </nav>
     <span id="fetchStatus" class="fetch-status">
       <span class="status-dot"></span>Fetching
     </span>
