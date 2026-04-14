@@ -12,6 +12,14 @@ def load_prepare_data(source_path: Path, output_path: Path) -> pd.DataFrame:
 	df["lon"] = pd.to_numeric(df["lon"], errors="coerce")
 	df = df.dropna(subset=["lat", "lon"]).copy()
 
+	# Count events by type
+	event_counts = df["Event_type"].value_counts().reset_index()
+	event_counts.columns = ["Event_type", "Count"]
+	
+	# Save event counts to CSV
+	event_counts_path = output_path.parent / "event_counts.csv"
+	event_counts.to_csv(event_counts_path, index=False)
+
 	output_path.parent.mkdir(parents=True, exist_ok=True)
 	df.to_csv(output_path, index=False)
 	return df
@@ -24,3 +32,9 @@ if __name__ == "__main__":
 
 	prepared = load_prepare_data(source, target)
 	print(f"Prepared rows: {len(prepared)}")
+	
+	# Display event counts
+	event_counts = prepared["Event_type"].value_counts()
+	print("\nEvent Type Distribution:")
+	print(event_counts)
+	print(f"\nEvent counts saved to: {target.parent / 'event_counts.csv'}")

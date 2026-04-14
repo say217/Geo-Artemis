@@ -324,3 +324,44 @@ def get_satellite_data():
         return {"columns": columns, "data": data, "total_rows": len(df)}
     except Exception as e:
         return {"error": str(e), "data": []}
+
+
+@router.get("/event-types")
+def get_event_types():
+    """Serve event count data from event_counts.csv as JSON."""
+    base_dir = Path(__file__).resolve().parent
+    event_counts_path = base_dir / "Data" / "event_counts.csv"
+    
+    if not event_counts_path.exists():
+        return {"error": "Event counts file not found", "data": []}
+    
+    try:
+        df = pd.read_csv(event_counts_path)
+        # Remove any unnamed columns
+        df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+        data = df.to_dict(orient="records")
+        columns = df.columns.tolist()
+        return {"columns": columns, "data": data}
+    except Exception as e:
+        return {"error": str(e), "data": []}
+
+
+@router.get("/clustered-data-head")
+def get_clustered_data_head():
+    """Serve first rows of clustered data as JSON."""
+    base_dir = Path(__file__).resolve().parent
+    clustered_data_path = base_dir / "Data" / "final_hazard_dataset_with_clusters.csv"
+    
+    if not clustered_data_path.exists():
+        return {"error": "Clustered data file not found", "data": []}
+    
+    try:
+        df = pd.read_csv(clustered_data_path)
+        # Remove any unnamed columns
+        df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+        # Return first 10 rows
+        data = df.head(10).to_dict(orient="records")
+        columns = df.columns.tolist()
+        return {"columns": columns, "data": data}
+    except Exception as e:
+        return {"error": str(e), "data": []}

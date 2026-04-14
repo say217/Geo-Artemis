@@ -8,6 +8,9 @@ from sklearn.cluster import DBSCAN
 
 def train_and_save_model(data_path: Path, model_path: Path, clustered_path: Path) -> None:
 	df = pd.read_csv(data_path)
+	
+	# Remove any unnamed index columns that may exist
+	df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
 
 	coords = np.radians(df[["lat", "lon"]].values)
 	kms_per_radian = 6371.0088
