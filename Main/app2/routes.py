@@ -106,14 +106,126 @@ def send_verification_email(recipient_email: str, code: str) -> str | None:
         return "SMTP credentials are missing. Set SMTP_USER and SMTP_PASSWORD."
 
     message = EmailMessage()
-    message["Subject"] = "Verify your account"
+    message["Subject"] = "Geo Artemis - Verify Your Account"
     message["From"] = SMTP_SENDER or SMTP_USER
     message["To"] = recipient_email
     message.set_content(
-        "Use the verification code below to verify your account:\n\n"
-        f"{code}\n\n"
-        "If you did not sign up, you can ignore this email."
+        f"Welcome to Geo Artemis.\n\n"
+        f"To verify your account, use the code: {code}\n\n"
+        f"This code expires in 24 hours.\n\n"
+        f"If you did not create this account, please ignore this email.\n\n"
+        f"— Geo Artemis Security Team"
     )
+
+    html = f"""
+    <html><body style="margin:0;padding:0;background:#0a0a0e;">
+      <div style="background:#0a0a0e;padding:28px 12px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;color:#e5e5e5;">
+        <div style="max-width:540px;margin:0 auto;border:1px solid #ff4444;border-radius:2px;background:#0f0f14;box-shadow:0 0 24px rgba(255,68,68,0.2);overflow:hidden;">
+          <!-- Header -->
+          <div style="padding:18px 24px;border-bottom:1px solid rgba(255,68,68,0.3);background:linear-gradient(135deg,#0a0a0e 0%,#0f0f14 100%);">
+            <div style="color:#ff4444;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin:0;">SECURITY VERIFICATION</div>
+            <div style="font-size:18px;color:#ffffff;font-weight:300;margin:6px 0 0 0;letter-spacing:1px;">Account Verification Required</div>
+          </div>
+          <!-- Content -->
+          <div style="padding:24px;">
+            <p style="margin:0 0 14px 0;color:#d0d0d8;font-size:14px;line-height:1.6;">Welcome to Geo Artemis. To complete your account setup and access our hazard intelligence network, please verify your email address using the code below.</p>
+            <div style="margin:20px 0;padding:1px;background:linear-gradient(90deg,#ff4444 0%,rgba(255,68,68,0.4) 100%);border-radius:1px;">
+              <div style="padding:16px;background:#0f0f14;text-align:center;">
+                <div style="font-size:11px;color:#9a9a9e;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px 0;">Your Verification Code</div>
+                <div style="font-size:28px;color:#ffffff;letter-spacing:8px;font-weight:bold;font-family:'Courier New',monospace;margin:0;">{code}</div>
+              </div>
+            </div>
+            <p style="margin:14px 0 0 0;color:#9a9a9e;font-size:12px;line-height:1.5;"><strong>Note:</strong> This code expires in 24 hours. If you did not request this verification, please disregard this message or contact our support team.</p>
+          </div>
+          <!-- Footer -->
+          <div style="padding:12px 24px;border-top:1px solid rgba(255,68,68,0.2);background:#0a0a0e;color:#7a7a82;font-size:10px;line-height:1.5;">
+            <div style="margin:0;">Geo Artemis Security Layer | Protected Network</div>
+            <div style="margin:4px 0 0 0;">Questions? Visit our support portal or reply to this email.</div>
+          </div>
+        </div>
+      </div>
+    </body></html>
+    """
+    message.add_alternative(html, subtype="html")
+
+    if SMTP_USE_SSL:
+        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT) as server:
+            server.login(SMTP_USER, SMTP_PASSWORD)
+            server.send_message(message)
+    else:
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+            if SMTP_USE_TLS:
+                server.starttls()
+            server.login(SMTP_USER, SMTP_PASSWORD)
+            server.send_message(message)
+
+    return None
+
+
+def send_welcome_email(recipient_email: str) -> str | None:
+    if not SMTP_USER or not SMTP_PASSWORD:
+        return "SMTP credentials are missing. Set SMTP_USER and SMTP_PASSWORD."
+
+    message = EmailMessage()
+    message["Subject"] = "Geo Artemis - Welcome to the Network"
+    message["From"] = SMTP_SENDER or SMTP_USER
+    message["To"] = recipient_email
+    message.set_content(
+        "Welcome to Geo Artemis.\n\n"
+        "Your account has been verified and is now active.\n\n"
+        "You can now access the live hazard intelligence dashboard to:\n"
+        "• Monitor global disaster events in real-time\n"
+        "• View hazard clustering and hotspot analysis\n"
+        "• Access advanced predictive analytics\n"
+        "• Set up custom alerts and notifications\n\n"
+        "Log in now: https://artemis.example.com/app1/\n\n"
+        "Thank you for joining Geo Artemis.\n"
+        "— The Geo Artemis Team"
+    )
+
+    html = """
+    <html><body style="margin:0;padding:0;background:#0a0a0e;">
+      <div style="background:#0a0a0e;padding:28px 12px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;color:#e5e5e5;">
+        <div style="max-width:540px;margin:0 auto;border:1px solid #ff4444;border-radius:2px;background:#0f0f14;box-shadow:0 0 24px rgba(255,68,68,0.2);overflow:hidden;">
+          <!-- Header -->
+          <div style="padding:18px 24px;border-bottom:1px solid rgba(255,68,68,0.3);background:linear-gradient(135deg,#0a0a0e 0%,#0f0f14 100%);">
+            <div style="color:#ff4444;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin:0;">✓ ACCESS CONFIRMED</div>
+            <div style="font-size:18px;color:#ffffff;font-weight:300;margin:6px 0 0 0;letter-spacing:1px;">Welcome to Geo Artemis</div>
+          </div>
+          <!-- Content -->
+          <div style="padding:24px;">
+            <p style="margin:0 0 16px 0;color:#d0d0d8;font-size:14px;line-height:1.6;">Your account is now verified and active. Welcome to the Geo Artemis hazard intelligence network. You now have full access to real-time global disaster monitoring, predictive analytics, and advanced event intelligence.</p>
+            
+            <div style="margin:18px 0;padding:12px 16px;border-left:3px solid #ff4444;background:rgba(255,68,68,0.08);">
+              <div style="color:#ff4444;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin:0 0 8px 0;">What You Can Do Now</div>
+              <ul style="margin:0;padding:0 0 0 18px;color:#c0c0c8;font-size:13px;line-height:1.7;">
+                <li>Monitor live global hazard events 24/7</li>
+                <li>Access historical data and event clustering analysis</li>
+                <li>View AI-powered predictive maps and models</li>
+                <li>Download reports and visualizations</li>
+                <li>Configure custom alerts for regions of interest</li>
+              </ul>
+            </div>
+            
+            <div style="margin:18px 0;padding:0;">
+              <p style="margin:0 0 10px 0;color:#d0d0d8;font-size:14px;line-height:1.6;">Get started now by logging into the dashboard:</p>
+              <div style="padding:12px 16px;background:linear-gradient(135deg,#ff4444 0%,rgba(255,68,68,0.7) 100%);border-radius:1px;text-align:center;">
+                <a href="https://artemis.example.com/app1/" style="color:#ffffff;text-decoration:none;font-weight:600;font-size:14px;letter-spacing:1px;text-transform:uppercase;">Open Dashboard &#x2192;</a>
+              </div>
+            </div>
+            
+            <p style="margin:16px 0 0 0;color:#9a9a9e;font-size:12px;line-height:1.5;">If you have any questions or need assistance, our support team is available 24/7.</p>
+          </div>
+          <!-- Footer -->
+          <div style="padding:12px 24px;border-top:1px solid rgba(255,68,68,0.2);background:#0a0a0e;color:#7a7a82;font-size:10px;line-height:1.5;">
+            <div style="margin:0;">Geo Artemis Network | Global Hazard Intelligence</div>
+            <div style="margin:4px 0 0 0;">Secure. Real-time. Predictive. | Your trusted source for disaster awareness.</div>
+          </div>
+        </div>
+      </div>
+    </body></html>
+    """
+    message.add_alternative(html, subtype="html")
 
     if SMTP_USE_SSL:
         with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT) as server:
@@ -288,6 +400,7 @@ def login(request: Request, email: str = Form(...), password: str = Form(...)):
 
     request.session["user_id"] = user["id"]
     request.session["is_verified"] = True
+    send_welcome_email(email)
     response = RedirectResponse(url="/app1/", status_code=status.HTTP_303_SEE_OTHER)
     return response
 

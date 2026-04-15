@@ -1,0 +1,22 @@
+{
+    "fetched_at": "2026-04-15T08:23:16.290595",
+    "day_index": 3,
+    "day_date": "2026-04-13",
+    "incident": "cyclone",
+    "total_articles": 1,
+    "articles": [
+        {
+            "headline": "PM Christopher Luxon to speak as Cyclone Vaianu clean-up continues",
+            "source": "New Zealand Herald",
+            "url": "https://www.nzherald.co.nz/nz/politics/pm-christopher-luxon-to-speak-as-cyclone-vaianu-clean-up-continues/JNHHQCFWSJCRNK65DET36SCCSI/",
+            "image": "https://www.nzherald.co.nz/resizer/v2/HTHEAZ2X5ZAULJP3VDQMVJV74E.jpg?auth=9e9731f745b9eb2e28856e37e6319261808306fbee609f800bd376f93a0f9739&width=1200&height=675&quality=70&smart=true",
+            "published_at": "2026-04-13T02:45:00Z",
+            "description": "Local states of emergency are being revoked while some highways remain blocked."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_cyclone_2026-04-13_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_cyclone_2026-04-13_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_cyclone_2026-04-13_3.jpg"
+    ]
+}

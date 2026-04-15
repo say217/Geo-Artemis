@@ -1,0 +1,22 @@
+{
+    "fetched_at": "2026-04-15T08:22:56.535311",
+    "day_index": 2,
+    "day_date": "2026-04-14",
+    "incident": "wildfire",
+    "total_articles": 1,
+    "articles": [
+        {
+            "headline": "'Difficult trade-offs' needed during renewable transition, minister says",
+            "source": "ABC News (AU)",
+            "url": "https://www.abc.net.au/news/2026-04-14/nsw-energy-minister-tours-properties-of-fed-up-landowners/106549998",
+            "image": "https://live-production.wcms.abc-cdn.net.au/b6a0817afeb6bd5427411df274c6a133?impolicy=wcms_watermark_news&cropH=711&cropW=1264&xPos=0&yPos=118&width=862&height=485&imformat=generic",
+            "published_at": "2026-04-14T04:56:31Z",
+            "description": "The New South Wales energy minister has met with disgruntled landowners affected by the New England Renewable Energy Zone."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_wildfire_2026-04-14_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_wildfire_2026-04-14_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_wildfire_2026-04-14_3.jpg"
+    ]
+}

@@ -32,15 +32,28 @@ class NewsBackgroundFetcher:
         # Enhanced keywords with better queries for real hazards
         self.keywords = {
             "earthquake": '(earthquake OR seismic OR tremor OR epicenter) AND (disaster OR damage OR injured OR evacuation) -astrology -horoscope',
-            "wildfire": '(wildfire OR bushfire OR forest_fire) AND (acres OR hectares OR evacuated OR destroyed) -video_game -minecraft',
-            "flood": '(flood OR flooding OR inundation) AND (climate OR weather OR disaster OR emergency) -fiction -fantasy',
+            "wildfire": '(wildfire OR bushfire OR forest_fire OR uncontrolled_fire) AND (acres OR hectares OR evacuated OR destroyed OR spreading) -video_game -minecraft',
+            "flood": '(flood OR flooding OR inundation OR flash_flood) AND (climate OR weather OR disaster OR emergency OR monsoon) -fiction -fantasy',
             "cyclone": '(cyclone OR tropical_storm) AND (path OR warning OR landfall OR mph OR kph)',
             "typhoon": '(typhoon OR tropical_storm) AND (Philippines OR Asia OR Pacific OR warning)',
             "storm": '(severe_storm OR thunderstorm OR hailstorm) AND (warning OR damage OR emergency)',
             "hurricane": '(hurricane OR tropical_cyclone) AND (Atlantic OR Caribbean OR landfall OR mph)',
             "volcano": '(volcano OR volcanic OR eruption) AND (lava OR ash OR evacuation OR alert) -mythology',
             "landslide": '(landslide OR mudslide OR debris_flow) AND (killed OR injured OR disaster OR emergency)',
-            "tsunami": '(tsunami OR tidal_wave) AND (earthquake OR warning OR evacuation OR coastal)'
+            "tsunami": '(tsunami OR tidal_wave) AND (earthquake OR warning OR evacuation OR coastal)',
+            "climate_crisis": '(climate_change OR global_warming OR climate_crisis) AND (extreme_weather OR impact OR threat OR policy) -opinion',
+            "extreme_weather": '(extreme_weather OR weather_crisis) AND (unprecedented OR record OR temperature OR precipitation)',
+            "drought": '(drought OR water_scarcity OR dry_conditions) AND (affected OR crisis OR shortage OR agricultural)',
+            "pollution": '(air_pollution OR environmental_pollution OR toxic) AND (health OR hazard OR alert OR crisis)',
+            "environmental_disaster": '(environmental_disaster OR ecological_crisis OR environmental_emergency) AND (damage OR endangered OR affected)',
+            "india_crisis": '(India OR Indian) AND (earthquake OR flood OR wildfire OR landslide OR storm OR crisis OR disaster OR climate)',
+            "global_war": '(war OR armed_conflict OR military_action OR battlefield) AND (casualties OR humanitarian OR emergency OR crisis) -game -movie',
+            "protest": '(protest OR demonstration OR strike OR civil_unrest) AND (crisis OR emergency OR affected OR humanitarian OR violence)',
+            "renewable_energy": '(renewable_energy OR climate_solution OR net_zero) AND (weather OR disaster OR climate_resilience)',
+            "monsoon": '(monsoon OR monsoon_season) AND (flooding OR landslide OR India OR Southeast_Asia OR rainfall OR impact)',
+            "heatwave": '(heatwave OR heat_wave OR excessive_heat) AND (record OR temperature OR deaths OR emergency OR climate)',
+            "ocean_crisis": '(ocean_crisis OR sea_level_rise OR coastal_flooding OR marine_disaster) AND (climate OR threat OR impact)',
+            "biodiversity": '(biodiversity OR species_extinction OR ecosystem_collapse) AND (endangered OR extinction OR climate OR habitat)',
         }
         
         self.base_url = "https://newsapi.org/v2/everything"

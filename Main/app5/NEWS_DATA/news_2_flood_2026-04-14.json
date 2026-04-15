@@ -1,0 +1,38 @@
+{
+    "fetched_at": "2026-04-15T08:23:02.396804",
+    "day_index": 2,
+    "day_date": "2026-04-14",
+    "incident": "flood",
+    "total_articles": 3,
+    "articles": [
+        {
+            "headline": "Afghanistan's capital is in the grip of a water crisis",
+            "source": "Abcnews.com",
+            "url": "https://abcnews.com/International/wireStory/afghanistans-capital-grip-water-crisis-132018477",
+            "image": "https://i.abcnewsfe.com/a/f65a5d5f-8fbc-4196-afcd-2782fb2eca42/wirestory_98a52f7afe770c37e2030bc7a884f5d3_16x9.jpg?w=1600",
+            "published_at": "2026-04-14T07:34:12Z",
+            "description": "Nestled in a high-altitude valley in Afghanistan's Hindu Kush mountain range, Kabul is rapidly running out of water"
+        },
+        {
+            "headline": "Federal Aid Available for Washington Residents Impacted by Floods",
+            "source": "Insurance Journal",
+            "url": "https://www.insurancejournal.com/news/west/2026/04/14/865732.htm",
+            "image": "https://www.insurancejournal.com/app/uploads/2026/04/Washington-floods-2025_WA-OIC.jpg",
+            "published_at": "2026-04-14T05:00:51Z",
+            "description": "Federal disaster assistance has been made available for Washington residents impacted by the December 2025 floods. The Federal Emergency Management Agency made aid is available to people in the counties of Chelan, Grays Harbor, King, Lewis, Pacific, Pierce, S\u2026"
+        },
+        {
+            "headline": "Intense storms leave significant damage in multiple Kansas counties",
+            "source": "WDAF FOX4 Kansas City",
+            "url": "https://fox4kc.com/news/kansas-news/intense-storms-leave-significant-damage-in-multiple-kansas-counties/",
+            "image": "https://s.yimg.com/os/en/wdaf_articles_412/55ab7de25a75ec13e7a645f5372791d9",
+            "published_at": "2026-04-14T03:03:38Z",
+            "description": "Multiple homes are without power and significantly damaged after multiple rounds of intense storms swept through southern Kansas counties."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_flood_2026-04-14_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_flood_2026-04-14_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_flood_2026-04-14_3.jpg"
+    ]
+}

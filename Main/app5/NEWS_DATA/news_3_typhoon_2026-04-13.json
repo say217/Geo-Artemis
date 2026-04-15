@@ -1,0 +1,38 @@
+{
+    "fetched_at": "2026-04-15T08:23:12.256656",
+    "day_index": 3,
+    "day_date": "2026-04-13",
+    "incident": "typhoon",
+    "total_articles": 3,
+    "articles": [
+        {
+            "headline": "Super Typhoon Sinlaku could bring significant impacts to US islands in Pacific Ocean",
+            "source": "Abcnews.com",
+            "url": "https://abcnews.com/International/super-typhoon-sinlaku-bring-significant-impacts-us-islands/story?id=132006324",
+            "image": "https://i.abcnewsfe.com/a/45ab881c-1ece-4420-86e1-cdf2717cc29c/typhoon-sinlaku-1-rt-gmh-260413_1776109852082_hpMain_16x9.jpg?w=1600",
+            "published_at": "2026-04-13T21:21:33Z",
+            "description": "Super Typhoon Sinlaku is forecast to track close to Guam and potentially bring significant impacts to the Northern Mariana Islands over the coming days."
+        },
+        {
+            "headline": "I\u2019m More Than a Bit Worried About the Typhoon That\u2019s About to Hit a Group of U.S. Islands",
+            "source": "esquire.com",
+            "url": "https://www.esquire.com/news-politics/politics/a71006201/typhoon-us-islands-northern-mariana-islands/",
+            "image": "https://hips.hearstapps.com/hmg-prod/images/40f34ebe-706b-4aff-b70b-1090e6c292bb.jpeg?crop=1xw:0.75xh;0xw,0.175xh&resize=1200:*",
+            "published_at": "2026-04-13T19:34:49Z",
+            "description": "Though the islands have scandal-ridden pasts, climate change doesn\u2019t distinguish between exploited workers and crooked government officials."
+        },
+        {
+            "headline": "Strongest storm on planet bearing down on U.S. islands in Western Pacific - San Francisco Chronicle",
+            "source": "Slashdot.org",
+            "url": "https://slashdot.org/firehose.pl?op=view&amp;id=181659686",
+            "image": null,
+            "published_at": "2026-04-13T01:52:54Z",
+            "description": "Strongest storm on planet bearing down on U.S. islands in Western PacificSan Francisco Chronicle Violent tropical system raises risk of rare direct impact on Guam as Western Pacific storm season ramps upFOX Weather Governor: Let\u2019s prayMarianas Variety Super T\u2026"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_typhoon_2026-04-13_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_typhoon_2026-04-13_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_typhoon_2026-04-13_3.jpg"
+    ]
+}

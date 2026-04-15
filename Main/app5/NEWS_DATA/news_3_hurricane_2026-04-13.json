@@ -1,0 +1,38 @@
+{
+    "fetched_at": "2026-04-15T08:23:14.125385",
+    "day_index": 3,
+    "day_date": "2026-04-13",
+    "incident": "hurricane",
+    "total_articles": 3,
+    "articles": [
+        {
+            "headline": "Meteorologists Forecast Potential Super El Ni\u00c3\u00b1o Event for 2026",
+            "source": "Naturalnews.com",
+            "url": "https://www.naturalnews.com/2026-04-13-meteorologists-forecast-potential-super-el-nino-event-2026.html",
+            "image": "https://www.naturalnews.com/wp-content/uploads/sites/91/2026/04/super-el-nio-ecmwf-forecast-sea-surface-temperatures-883-original.jpg",
+            "published_at": "2026-04-13T06:00:00Z",
+            "description": "Introduction New forecast data from a leading European weather center indicates a high probability of a historically strong El Ni\u00f1o climate pattern developing in the Pacific Ocean by late 2026. Meteorologists are monitoring rapid oceanic warming that could le\u2026"
+        },
+        {
+            "headline": "Trump Approves Disaster Requests for at Least 7 States; Others Wait",
+            "source": "Insurance Journal",
+            "url": "https://www.insurancejournal.com/news/national/2026/04/13/865435.htm",
+            "image": "https://www.insurancejournal.com/app/uploads/2026/04/Homeland-Security-Secretary-Markwayne-Mullin-AP-scaled.jpg",
+            "published_at": "2026-04-13T05:11:40Z",
+            "description": "The Trump administration approved major disaster declaration requests for at least seven states this week, according to information released Saturday by the Federal Emergency Management Agency, allowing affected communities to access federal support. About 15\u2026"
+        },
+        {
+            "headline": "Worsening Ocean Heat Waves Are \u2018Supercharging\u2019 Hurricane Damage, Study Finds",
+            "source": "Insurance Journal",
+            "url": "https://www.insurancejournal.com/news/national/2026/04/13/865440.htm",
+            "image": "https://www.insurancejournal.com/app/uploads/2025/04/hurricane-milton-damages-houses-in-bradenton-beach-florida-AP-scaled.jpg",
+            "published_at": "2026-04-13T05:02:56Z",
+            "description": "Marine heat waves are supercharging damage caused by hurricanes and tropical cyclones across the globe, a new study found. Researchers looked at 1,600 tropical cyclones \u2014 the broader category of storms that includes hurricanes \u2014 that made landfall since 1981 \u2026"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_hurricane_2026-04-13_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_hurricane_2026-04-13_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_hurricane_2026-04-13_3.jpg"
+    ]
+}

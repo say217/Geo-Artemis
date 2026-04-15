@@ -1,0 +1,46 @@
+{
+    "fetched_at": "2026-04-15T08:23:03.904696",
+    "day_index": 3,
+    "day_date": "2026-04-13",
+    "incident": "flood",
+    "total_articles": 4,
+    "articles": [
+        {
+            "headline": "When climate change hits close to home",
+            "source": "Yale.edu",
+            "url": "https://environment.yale.edu/news/article/frontline-communities-climate-change-hits-home-extreme-heat-and-power-outages",
+            "image": "https://environment.yale.edu/sites/default/files/styles/metatag_1200x630/public/2026-04/Windmills-and-oilwell-is92278243.jpg?h=1290464a&itok=o1fHeNNF",
+            "published_at": "2026-04-13T22:55:01Z",
+            "description": "New research shows frontline communities and the general public share similar levels of concern about global warming but diverge sharply when it comes to its most immediate consequences: extreme heat, power outages, and other day-to-day harms."
+        },
+        {
+            "headline": "Super Typhoon Sinlaku could bring significant impacts to US islands in Pacific Ocean",
+            "source": "Abcnews.com",
+            "url": "https://abcnews.com/International/super-typhoon-sinlaku-bring-significant-impacts-us-islands/story?id=132006324",
+            "image": "https://i.abcnewsfe.com/a/45ab881c-1ece-4420-86e1-cdf2717cc29c/typhoon-sinlaku-1-rt-gmh-260413_1776109852082_hpMain_16x9.jpg?w=1600",
+            "published_at": "2026-04-13T21:21:33Z",
+            "description": "Super Typhoon Sinlaku is forecast to track close to Guam and potentially bring significant impacts to the Northern Mariana Islands over the coming days."
+        },
+        {
+            "headline": "Camp Mystic official says he didn't see flood warnings issued the day before storm hit",
+            "source": "Abcnews.com",
+            "url": "https://abcnews.com/US/wireStory/camp-mystic-official-flood-warnings-issued-day-storm-132006895",
+            "image": "https://i.abcnewsfe.com/a/fad849c8-470a-4794-aa76-689fa67111c3/wirestory_2ebd07c031c5cc7d5c4ac0439840ae95_16x9.jpg?w=1600",
+            "published_at": "2026-04-13T20:29:55Z",
+            "description": "The director of the Texas summer camp where 27 campers and counselors were killed by a devastating flood in 2025 said he did not see early federal and state warnings sent the day before the storm hit and that staff had no meetings about the pending danger"
+        },
+        {
+            "headline": "Cheboygan Dam teeters near spillover as tensions escalate Up North",
+            "source": "Detroit Free Press",
+            "url": "https://www.freep.com/story/news/local/michigan/2026/04/13/cheboygan-dam-michigan-update/89593452007/",
+            "image": "https://s.yimg.com/os/en/detroit_free_press_natl_articles_245/77cf2f811e4784d118387f72866aac84",
+            "published_at": "2026-04-13T20:27:07Z",
+            "description": "Water levels were just over a foot from the top of the Cheboygan Dam on Monday afternoon and rising, with no weather relief ahead."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_flood_2026-04-13_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_flood_2026-04-13_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_flood_2026-04-13_3.jpg"
+    ]
+}

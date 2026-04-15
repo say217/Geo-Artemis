@@ -1,0 +1,38 @@
+{
+    "fetched_at": "2026-04-15T08:23:12.675770",
+    "day_index": 3,
+    "day_date": "2026-04-13",
+    "incident": "landslide",
+    "total_articles": 3,
+    "articles": [
+        {
+            "headline": "Pope Shuts Down Trump Tantrum as President Calls Him \u201cWeak on Crime\u201d",
+            "source": "The New Republic",
+            "url": "https://newrepublic.com/post/208980/pope-donald-trump-weak-crime",
+            "image": "https://images.newrepublic.com/a338673b15f6fc6fe8898978946df842448d709e.jpeg?w=1200&h=630&crop=faces&fit=crop&fm=jpg",
+            "published_at": "2026-04-13T13:31:11Z",
+            "description": "The Holy See will continue to speak out against war, despite challenges from Donald Trump.Pope Leo XIV brushed off the U.S. president\u2019s verbal attacks Monday, telling journalists aboard a papal flight to Algiers that he\u2019s not afraid of the Trump administratio\u2026"
+        },
+        {
+            "headline": "Pope Leo says he doesn\u2019t want to get into debate with Trump after president\u2019s Iran war swipe",
+            "source": "New York Post",
+            "url": "https://nypost.com/2026/04/13/us-news/pope-leo-says-he-doesnt-want-to-get-into-debate-with-trump-after-presidents-iran-war-swipe/",
+            "image": "https://nypost.com/wp-content/uploads/sites/2/2026/04/125558067.jpg?quality=75&strip=all&w=1200",
+            "published_at": "2026-04-13T09:36:16Z",
+            "description": "Pope Leo said Monday he doesn\u2019t want to get into a debate with President Trump after the commander-in-chief blasted the pontiff for his rebukes of the Iran war. The pontiff, 70, said he would continue to speak out against conflict, promoting peace instead. \u201cI\u2026"
+        },
+        {
+            "headline": "Orbanomics failure costs Hungary\u2019s strongman his grip on power",
+            "source": "The Irish Times",
+            "url": "https://www.irishtimes.com/world/europe/2026/04/13/orbanomics-failure-costs-hungarys-strongman-his-grip-on-power/",
+            "image": "https://www.irishtimes.com/resizer/v2/LBZANOPFPPYFGEII4XOWWNJOKY.jpg?smart=true&auth=038912463d0df28fc01efbd8ade5fff0c65d1634b33a0613a4cf8f0465e077d7&width=1200&height=630",
+            "published_at": "2026-04-13T05:00:01Z",
+            "description": "Viktor Orban\u2019s economic model has been a disaster, making Hungary far poorer than it would be otherwise"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_landslide_2026-04-13_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_landslide_2026-04-13_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_landslide_2026-04-13_3.jpg"
+    ]
+}

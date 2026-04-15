@@ -124,13 +124,14 @@
       }
       .nav-links a::before { content: '//'; color: #ff4444; margin-right: 2px; opacity: 0.7; transition: all 0.3s ease; }
       .nav-links a:hover {
-        background: #000000;
-        color: #ff4444;
-        border: 2px solid #ff4444;
-        box-shadow: 0 0 20px rgba(255,68,68,0.8), inset 0 0 15px rgba(255,68,68,0.2), 0 0 30px rgba(255,68,68,0.5);
-        transform: translateY(-2px);
-        text-shadow: 0 0 10px rgba(255,68,68,0.8);
+        background: #ffffff;
+        color: #000000;
+        border: 2px solid #ffffff;
+        box-shadow: none;
+        transform: none;
+        text-shadow: none;
       }
+      .nav-links a:hover::before { color: #000000; opacity: 1; }
       .nav-links a::after {
         content: '';
         position: absolute;
@@ -144,23 +145,28 @@
       }
       .nav-links a:hover::after {
         left: 100%;
+        opacity: 0;
       }
       .nav-links a:active {
-        background: rgba(255,68,68,0.1);
-        color: #ff4444;
-        border: 2px solid #ff4444;
-        transform: translateY(0);
+        background: #ffffff;
+        color: #000000;
+        border: 2px solid #ffffff;
+        box-shadow: none;
+        text-shadow: none;
+        transform: none;
       }
+      .nav-links a:active::before { color: #000000; opacity: 1; }
       .nav-links a.logout {
         background: #000000;
         border-color: rgba(255,68,68,0.6);
         box-shadow: 0 0 8px rgba(255,68,68,0.2);
       }
       .nav-links a.logout:hover {
-        background: #000000;
-        border-color: #ff4444;
-        box-shadow: 0 0 20px rgba(255,68,68,0.8), inset 0 0 15px rgba(255,68,68,0.2);
-        text-shadow: 0 0 10px rgba(255,68,68,0.8);
+        background: #ffffff;
+        color: #000000;
+        border-color: #ffffff;
+        box-shadow: none;
+        text-shadow: none;
       }
       }
 
@@ -860,7 +866,7 @@
       canvas#orbCanvas { display: block; }
       .orb-ring-outer {
         position: absolute; inset: -8px;
-        border: 1.5px solid rgba(255,68,68,0.2);
+        border: 1.5px solid rgb(255, 68, 68);
         border-radius: 50%;
         animation: spin-slow 20s linear infinite;
       }
@@ -872,7 +878,7 @@
       }
       .orb-ring-inner {
         position: absolute; inset: 3px;
-        border: 1px dashed rgba(255,255,255,0.04);
+        border: 1px dashed rgba(255, 255, 255, 0.94);
         border-radius: 50%;
         animation: spin-slow 12s linear infinite reverse;
       }
@@ -1969,7 +1975,7 @@
               const sx=cx+p.x,sy=cy-p.y;
               first?ctx.moveTo(sx,sy):ctx.lineTo(sx,sy); first=false;
             }
-            ctx.strokeStyle='rgba(255,68,68,0.08)'; ctx.lineWidth=0.5; ctx.stroke();
+            ctx.strokeStyle='rgba(255,68,68,0.22)'; ctx.lineWidth=0.5; ctx.stroke();
           }
 
           // lon lines (red)
@@ -1981,7 +1987,7 @@
               const sx=cx+p.x,sy=cy-p.y;
               first?ctx.moveTo(sx,sy):ctx.lineTo(sx,sy); first=false;
             }
-            ctx.strokeStyle='rgba(255,68,68,0.06)'; ctx.lineWidth=0.5; ctx.stroke();
+            ctx.strokeStyle='rgba(255,68,68,0.18)'; ctx.lineWidth=0.5; ctx.stroke();
           }
 
           // hotspots (red pulsing)

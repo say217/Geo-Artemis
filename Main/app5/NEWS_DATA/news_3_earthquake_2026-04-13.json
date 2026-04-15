@@ -1,0 +1,38 @@
+{
+    "fetched_at": "2026-04-15T08:23:14.216890",
+    "day_index": 3,
+    "day_date": "2026-04-13",
+    "incident": "earthquake",
+    "total_articles": 3,
+    "articles": [
+        {
+            "headline": "Nigerian Air Force \u2018Misfires\u2019 on Crowded Market, Over 100 Killed",
+            "source": "Breitbart News",
+            "url": "https://www.breitbart.com/national-security/2026/04/13/nigerian-air-force-misfires-on-crowded-market-over-100-killed/",
+            "image": "https://media.breitbart.com/media/2026/04/AP26102671897959-640x335.png",
+            "published_at": "2026-04-13T14:36:33Z",
+            "description": "The Nigerian Air Force on Sunday blamed a \u201cmisfire\u201d for an airstrike that struck a market in northeastern Nigeria. Local media and human rights groups said over 100 civilians were killed in the attack, including women and children.\nThe post Nigerian Air Force\u2026"
+        },
+        {
+            "headline": "Nepal Quake Terror On Everest 2015 1080p WEB H264-CBFM",
+            "source": "Rlsbb.to",
+            "url": "https://post.rlsbb.to/nepal-quake-terror-on-everest-2015-1080p-web-h264-cbfm/",
+            "image": null,
+            "published_at": "2026-04-13T09:09:22Z",
+            "description": "Plot: A massive earthquake rocks Nepal on April 25, 2015. In Kathmandu, centuries of culture are destroyed. In Langtang, an entire village is wiped out of existence. On Mount Everest, base camps and climbers are buried in a tsunami of ice. Thousands are dead,\u2026"
+        },
+        {
+            "headline": "The Death of an AI Whistleblower",
+            "source": "Thenation.com",
+            "url": "https://www.thenation.com/article/society/open-ai-suchir-balaji-whistleblowers/",
+            "image": "https://www.thenation.com/wp-content/uploads/2026/04/Silverman-Balajai-ftr.jpg",
+            "published_at": "2026-04-13T09:00:02Z",
+            "description": "Jacob Silverman\n\n\n\nSuchir Balaji sought to expose OpenAI\u2019s data abuses. Did it come at the expense of his own life?\r\n\n\r\n\n\nThe post The Death of an AI Whistleblower appeared first on The Nation."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_earthquake_2026-04-13_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_earthquake_2026-04-13_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_3_images_earthquake_2026-04-13_3.jpg"
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "fetched_at": "2026-04-15T08:23:01.162797",
+    "day_index": 2,
+    "day_date": "2026-04-14",
+    "incident": "earthquake",
+    "total_articles": 2,
+    "articles": [
+        {
+            "headline": "A 5.7 earthquake jolts rural Nevada near Carson City, causing some damage",
+            "source": "Abcnews.com",
+            "url": "https://abcnews.com/US/wireStory/57-earthquake-jolts-rural-nevada-carson-city-causing-132015977",
+            "image": "https://i.abcnewsfe.com/a/6c1df55d-9260-4fd3-a768-6ceb9392b8b2/wirestory_035409b72a5fd0c696150d08444c044e_16x9.jpg?w=1600",
+            "published_at": "2026-04-14T07:34:26Z",
+            "description": "A magnitude 5.7 earthquake has struck a rural part of Nevada east of the state\u2019s capital of Carson City"
+        },
+        {
+            "headline": "Strong Earthquake Jolts Rural Nevada Near Carson City",
+            "source": "HuffPost",
+            "url": "https://www.huffpost.com/entry/nevada-earthquake_n_69ddbb07e4b00247ba9d7832",
+            "image": "https://img.huffingtonpost.com/asset/69ddbbd2180000b6fea15e56.jpeg?cache=p27aBTtqso&ops=1200_630",
+            "published_at": "2026-04-14T04:02:32Z",
+            "description": "The magnitude 5.7 temblor caused light to moderate damage east of the state's capital."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_earthquake_2026-04-14_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_earthquake_2026-04-14_2.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\Main\\app5\\NEWS_DATA\\news_2_images_earthquake_2026-04-14_3.jpg"
+    ]
+}
