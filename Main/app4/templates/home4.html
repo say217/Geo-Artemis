@@ -40,7 +40,7 @@
       html, body { height: 100%; overflow: hidden; }
 
       body {
-        background: var(--bg);
+        background: #010103;
         color: var(--text-primary);
         font-family: var(--font-ui);
         font-size: 13px;
@@ -53,10 +53,18 @@
       body::after {
         content: ''; position: fixed; inset: 0;
         pointer-events: none; z-index: 9998;
-        background: repeating-linear-gradient(
-          0deg, transparent, transparent 3px,
-          rgba(0,0,0,0.015) 3px, rgba(0,0,0,0.015) 4px
+        background: linear-gradient(
+          to bottom,
+          transparent 50%,
+          rgba(255, 255, 255, 0.016) 50%
         );
+        background-size: 100% 4px;
+        animation: scan 4s linear infinite;
+        opacity: 0.55;
+      }
+      @keyframes scan {
+        0% { background-position: 0 0; }
+        100% { background-position: 0 100%; }
       }
 
       /* ── HEADER ── */
@@ -777,26 +785,77 @@
 
       #map {
         width: 100%; height: 100%;
-        background: var(--surface);
+        background: #010103;
         display: none;
         margin-top: 24px;
+        position: relative;
+        filter: brightness(1.15);
       }
       #map.active { display: block; }
 
+      /* Map Grid Overlay */
+      #map::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.085) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.085) 1px, transparent 1px);
+        background-size: 38px 38px;
+        z-index: 400;
+        animation: gridShift 45s linear infinite;
+        opacity: 0.82;
+      }
+
+      /* Map Texture Overlay 1 */
+      #map::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 401;
+        background:
+          radial-gradient(circle at 1px 1px, rgba(255,255,255,0.045) 1px, transparent 0);
+        background-size: 6px 6px;
+        animation: grain 2.0s steps(12) infinite;
+        opacity: 0.68;
+        mix-blend-mode: screen;
+        pointer-events: none;
+      }
+
+      @keyframes gridShift {
+        0% { background-position: 0 0; }
+        100% { background-position: 38px 38px; }
+      }
+      @keyframes grain {
+        0% { background-position: 0 0; }
+        100% { background-position: 6px 6px; }
+      }
+
       /* Leaflet overrides for dark theme */
-      .leaflet-container { background: #06060a !important; }
+      .leaflet-container { background: #010103 !important; }
       .leaflet-popup-content-wrapper {
-        background: rgba(12,12,16,0.97) !important;
-        border: 1px solid var(--border-hi) !important;
-        border-radius: 0 !important;
-        box-shadow: 0 0 20px rgba(0,0,0,0.8) !important;
+        background: #010103 !important;
+        border: 2px solid #ff2a6d !important;
+        border-radius: 4px !important;
+        box-shadow: 
+          0 0 14px #ff2a6d,
+          0 0 28px rgba(255, 42, 109, 0.6) !important;
         color: var(--text-primary) !important;
         font-family: var(--font-mono) !important;
         font-size: 10px !important;
+        text-shadow: 0 0 8px #ff2a6d;
       }
-      .leaflet-popup-tip { background: rgba(12,12,16,0.97) !important; }
+      .leaflet-popup-tip { 
+        background: #010103 !important; 
+        border-top: 2px solid #ff2a6d !important;
+        box-shadow: 0 0 8px #ff2a6d !important;
+      }
       .leaflet-popup-close-button { color: var(--text-muted) !important; font-size: 14px !important; }
-      .leaflet-popup-close-button:hover { color: var(--red-bright) !important; }
+      .leaflet-popup-close-button:hover { color: #ff2a6d !important; }
+      .leaflet-pane.leaflet-overlay-pane {
+        filter: drop-shadow(0 0 8px rgba(255, 42, 109, 0.65));
+      }
       /* Hide default Leaflet zoom controls */
       .leaflet-bar { display: none !important; }
       
@@ -832,33 +891,70 @@
       .zoom-btn:hover {
         background: #f0f0f0;
         color: #000000;
-        box-shadow: 0 0 10px rgba(255,255,255,0.6);
+        box-shadow: 0 0 10px rgba(255,255,255,0.6), 0 0 15px rgba(255, 42, 109, 0.3);
         transform: translateY(-2px);
       }
       .zoom-btn:active {
         background: #e0e0e0;
         transform: scale(0.95);
-        box-shadow: inset 0 0 8px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.4);
+        box-shadow: inset 0 0 8px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.4), 0 0 12px rgba(255, 42, 109, 0.2);
       }
 
-      /* Pulsing marker animation */
-      @keyframes pulse-marker-glow {
+      /* Stable prediction marker - Cyan glow only, no movement */
+      @keyframes predict-glow {
         0% {
-          filter: drop-shadow(0 0 3px rgba(255,68,68,0.5));
-          opacity: 0.7;
+          filter: drop-shadow(0 0 4px #38c8d8) drop-shadow(0 0 8px #38c8d8);
+          opacity: 0.8;
         }
         50% {
-          filter: drop-shadow(0 0 12px rgba(255,68,68,1));
+          filter: drop-shadow(0 0 8px #38c8d8) drop-shadow(0 0 14px rgba(56, 200, 216, 0.7));
           opacity: 1;
         }
         100% {
-          filter: drop-shadow(0 0 3px rgba(255,68,68,0.5));
-          opacity: 0.7;
+          filter: drop-shadow(0 0 4px #38c8d8) drop-shadow(0 0 8px #38c8d8);
+          opacity: 0.8;
         }
       }
       
       .pulse-marker {
-        animation: pulse-marker-glow 1.5s ease-in-out infinite !important;
+        animation: predict-glow 2s ease-in-out infinite !important;
+      }
+
+      /* Neon marker styling - Default locations red */
+      .neon-marker {
+        width: 6px;
+        height: 6px;
+        background: #ff4444;
+        border: 1px solid #ffffff;
+        border-radius: 50%;
+        box-shadow:
+          0 0 6px #ff4444,
+          0 0 12px #ff4444,
+          0 0 18px rgba(255, 68, 68, 0.8),
+          0 0 4px #ffffff,
+          inset 0 0 4px #fff;
+        animation: pulse-default-glow 1.5s infinite ease-in-out;
+      }
+
+      @keyframes pulse-default-glow {
+        0% {
+          opacity: 0.7;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.7;
+        }
+      }
+
+      /* Enhanced Leaflet circle marker glow */
+      .leaflet-pane.leaflet-marker-pane svg {
+        filter: drop-shadow(0 0 3px rgba(255, 42, 109, 0.5));
+      }
+
+      .leaflet-pane.leaflet-marker-pane svg circle {
+        filter: drop-shadow(0 0 4px rgba(255, 42, 109, 0.3));
       }
 
       /* HUD overlay on map */
@@ -880,7 +976,7 @@
         color: #ffffff; letter-spacing: 1px;
         backdrop-filter: blur(8px);
         clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
-        box-shadow: 0 0 12px rgba(255,255,255,0.15), inset -1px -1px 0 rgba(255,255,255,0.1);
+        box-shadow: 0 0 12px rgba(255,255,255,0.15), inset -1px -1px 0 rgba(255,255,255,0.1), 0 0 8px rgba(255, 42, 109, 0.1);
         position: relative;
       }
       .hud-box::before {
@@ -895,7 +991,7 @@
         font-family: var(--font-hud); font-size: 7px;
         color: #ffffff; letter-spacing: 3px; text-transform: uppercase;
         margin-bottom: 6px;
-        text-shadow: 0 0 8px rgba(255,255,255,0.3);
+        text-shadow: 0 0 8px rgba(255, 42, 109, 0.5), 0 0 12px rgba(255,255,255,0.2);
       }
       .hud-box .hud-val { color: #ffffff; line-height: 1.8; }
       .hud-box .hud-val b { color: #ffffff; text-shadow: 0 0 6px rgba(255,255,255,0.2); }
@@ -910,12 +1006,12 @@
       }
       .status-bar-label { color: var(--text-muted); font-size: 7px; min-width: 50px; }
       .status-bar-fill {
-        flex: 1; height: 3px; background: rgba(255,68,68,0.15); border: 0.5px solid rgba(255,68,68,0.3);
+        flex: 1; height: 3px; background: rgba(255, 42, 109, 0.15); border: 0.5px solid rgba(255, 42, 109, 0.3);
         overflow: hidden;
       }
       .status-bar-indicator {
-        height: 100%; background: #ff4444;
-        box-shadow: 0 0 4px #ff4444;
+        height: 100%; background: #ff2a6d;
+        box-shadow: 0 0 6px #ff2a6d, 0 0 12px rgba(255, 42, 109, 0.5);
         animation: slide 2s infinite;
       }
       @keyframes slide { 0%{width:40%;} 50%{width:70%;} 100%{width:40%;} }
@@ -923,8 +1019,8 @@
         display: flex; align-items: flex-end; gap: 2px; height: 30px; margin-top: 8px;
       }
       .wave-bar {
-        flex: 1; background: #ff4444; opacity: 0.8; border-radius: 1px;
-        box-shadow: 0 0 4px rgba(255,68,68,0.5);
+        flex: 1; background: #ff2a6d; opacity: 0.8; border-radius: 1px;
+        box-shadow: 0 0 6px rgba(255, 42, 109, 0.7), 0 0 12px rgba(255, 42, 109, 0.4);
         animation: waveMove 2s ease-in-out infinite;
       }
       .wave-bar:nth-child(1) { animation-delay: 0s; animation: waveMove1 2.2s ease-in-out infinite; }
@@ -2307,6 +2403,45 @@
       let currentLayer = darkLayer;
       currentLayer.addTo(map);
 
+      // ── Default Location Markers ──
+      const tinyGlowIcon = L.divIcon({
+        className: '',
+        html: '<div class="neon-marker"></div>',
+        iconSize: [6, 6],
+        iconAnchor: [3, 3]
+      });
+
+      const defaultLocations = [
+        { name: "India", lat: 28.6139, lng: 77.2090 },
+        { name: "China", lat: 39.9042, lng: 116.4074 },
+        { name: "Russia", lat: 55.7558, lng: 37.6173 },
+        { name: "America", lat: 40.7128, lng: -74.0060 },
+        { name: "Brazil", lat: -15.7801, lng: -47.9292 },
+        { name: "Dubai", lat: 25.2048, lng: 55.2708 }
+      ];
+
+      // Add default location markers with pulsating glow
+      defaultLocations.forEach(loc => {
+        const marker = L.marker([loc.lat, loc.lng], { icon: tinyGlowIcon }).addTo(map);
+        
+        // Bind popup with location name
+        marker.bindPopup(`<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#ffffff;letter-spacing:1px;">${loc.name}</div>`, {
+          closeButton: false,
+          offset: [0, -10],
+          className: 'cyber-popup'
+        });
+
+        // Show popup on hover
+        marker.on('mouseover', function () {
+          this.openPopup();
+        });
+
+        // Hide popup when mouse leaves
+        marker.on('mouseout', function () {
+          this.closePopup();
+        });
+      });
+
       // Map mode button handlers
       document.getElementById('topoMapBtn').addEventListener('click', function() {
         if (currentLayer) map.removeLayer(currentLayer);
@@ -2440,12 +2575,12 @@
 
       // ── Prediction marker ──
       if (prediction && prediction.lat !== undefined) {
-        const markerColor = '#ff4444'; // Always red
+        const markerColor = '#38c8d8'; // Cyan blue - stable
         const statusMessage = prediction.status === 'Assigned' ? '✓ ASSIGNED' : '⚠ NEW/NOISE';
         
         predictionMarker = L.circleMarker([prediction.lat, prediction.lon], {
           radius: 8, color: markerColor,
-          fillColor: markerColor, fillOpacity: 0.7, weight: 2,
+          fillColor: markerColor, fillOpacity: 0.9, weight: 2,
           className: 'pulse-marker'
         }).addTo(map);
         

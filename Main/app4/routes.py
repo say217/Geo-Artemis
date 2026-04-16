@@ -202,7 +202,7 @@ async def predict(request: Request):
         prediction["lat"] = lat
         prediction["lon"] = lon
 
-    return _render_page(request, prediction=prediction, show_clusters=len(points) > 0)
+    return _render_page(request, prediction=prediction, show_clusters=False)
 
 
 @router.post("/train")
@@ -281,7 +281,7 @@ def charts(request: Request):
         chart_data["geo_clusters_clean_url"] = "/app4/plot/geo_clusters_clean" if geo_clusters_clean_path else None
         
         message = "✓ Exploratory Data Analysis - All Charts"
-        return _render_page(request, message=message, charts=chart_data)
+        return _render_page(request, message=message, charts=chart_data, show_clusters=False)
     except Exception as exc:
         print(f"[CHARTS ERROR] {exc}")
         message = f"✗ Charts failed: {exc}"
