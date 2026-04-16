@@ -144,10 +144,40 @@
       width: 280px; height: 280px;
       margin: 1.2rem 0 0.8rem;
       flex-shrink: 0;
+      background: #0a0a0a;
+      border-radius: 50%;
+      overflow: hidden;
     }
+
+    /* Starfield background for globe */
+    .globe-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 8% 15%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 65%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 47% 8%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 68% 45%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 83% 28%, rgba(255,255,255,0.45) 0%, transparent 100%),
+        radial-gradient(1px 1px at 18% 82%, rgba(255,255,255,0.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 58% 88%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 91% 72%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 38% 38%, rgba(255,255,255,0.55) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 73% 12%, rgba(255,255,255,0.45) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 55%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 3% 50%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 96% 40%, rgba(255,255,255,0.35) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+      border-radius: 50%;
+    }
+
     #globe {
       width: 100%; height: 100%;
       display: block; cursor: grab; border-radius: 50%;
+      position: relative;
+      z-index: 2;
     }
     #globe:active { cursor: grabbing; }
 

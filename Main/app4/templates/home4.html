@@ -1578,7 +1578,7 @@
         <!-- Charts -->
         <div class="btn-group">
           <form method="post" action="/app4/charts">
-            <button class="panel-btn alt-amber" type="submit">
+            <button class="panel-btn alt-amber" type="submit" data-click-sound>
               <span class="btn-icon"></span><span>Charts / EDA</span>
               <span class="btn-loader"></span>
             </button>
@@ -1589,7 +1589,7 @@
         <div class="btn-group">
           <div class="btn-group-label">// Model</div>
           <form method="post" action="/app4/train">
-            <button class="panel-btn" type="submit">
+            <button class="panel-btn" type="submit" data-click-sound>
               <span class="btn-icon">⬡</span><span>Train Model</span>
             </button>
           </form>
@@ -1604,7 +1604,7 @@
             <label class="field-label" for="lon">▸ Longitude</label>
             <input class="field-input" id="lon" name="lon" type="number" step="any" required placeholder="e.g. 77.2090" />
             <br/><br/>
-            <button class="panel-btn" type="submit" style="margin-top:6px;">
+            <button class="panel-btn" type="submit" style="margin-top:6px;" data-click-sound>
               <span class="btn-icon">➤</span><span>Execute Predict</span>
             </button>
           </form>
@@ -1863,6 +1863,18 @@
     <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
 
     <script>
+      const clickSound = new Audio('/app4/componets/emilianodleon-button-ui-sound-effect-395762.mp3');
+      clickSound.volume = 0.5;
+
+      document.querySelectorAll('[data-click-sound]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          try {
+            clickSound.currentTime = 0;
+            clickSound.play();
+          } catch (e) {}
+        });
+      });
+
       // ── Inject from Jinja ──
       const points      = {{ points_json | safe }};
       const regions     = {{ regions_json | safe }};

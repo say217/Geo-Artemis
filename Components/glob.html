@@ -1,189 +1,492 @@
+
+Copy
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌍 Black & White Rotating Earth Globe</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background: #000;
-            font-family: Arial, sans-serif;
-        }
-        #info {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #ffffff;
-            font-size: 18px;
-            text-shadow: 0 0 12px rgba(255,255,255,0.6);
-            pointer-events: none;
-            z-index: 100;
-            text-align: center;
-        }
-        canvas {
-            display: block;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Globe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    body {
+      background: #080810;
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+ 
+    /* Starfield */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 8% 15%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 65%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 47% 8%,  rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 68% 45%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 83% 28%, rgba(255,255,255,0.45) 0%, transparent 100%),
+        radial-gradient(1px 1px at 18% 82%, rgba(255,255,255,0.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 58% 88%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 91% 72%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 38% 38%, rgba(255,255,255,0.55) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 73% 12%, rgba(255,255,255,0.45) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 55%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 3% 50%,  rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 96% 40%, rgba(255,255,255,0.35) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+ 
+    .scene {
+      position: relative;
+      z-index: 1;
+      width: min(560px, 92vw);
+      height: min(560px, 92vw);
+    }
+ 
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: grab;
+      border-radius: 50%;
+    }
+    canvas:active { cursor: grabbing; }
+ 
+    /* Continent floating widget */
+    .continent-tag {
+      position: absolute;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.4s ease, transform 0.1s linear;
+      z-index: 10;
+    }
+ 
+    .continent-tag .bubble {
+      background: rgba(63, 46, 13, 0.75);
+      border: 0.5px solid rgba(192, 132, 252, 0.3);
+      border-radius: 8px;
+      padding: 5px 10px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+      backdrop-filter: blur(4px);
+      white-space: nowrap;
+      position: relative;
+    }
+ 
+    .continent-tag .bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 5px;
+      background: rgba(247, 160, 19, 0.5);
+    }
+ 
+    .continent-tag .dot {
+      position: absolute;
+      bottom: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #d4842e;
+    }
+ 
+    .continent-tag .name {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f89f22;
+    }
+ 
+    .continent-tag .sub {
+      font-size: 8px;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.35);
+    }
+ 
+    .continent-tag.hidden {
+      opacity: 0;
+    }
+
+    .place-tag {
+      position: absolute;
+      pointer-events: none;
+      transform: translate(-50%, -60%);
+      transition: opacity 0.4s ease, transform 0.1s linear;
+      z-index: 9;
+    }
+
+    .place-tag .label {
+      font-size: 7px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 999px;
+      padding: 2px 6px 1px;
+      white-space: nowrap;
+      backdrop-filter: blur(4px);
+    }
+
+    .place-tag.hidden {
+      opacity: 0;
+    }
+  </style>
 </head>
 <body>
-    <div id="info">
-        <strong>FUCK ARNAB</strong><br>
-        <small>Auto-rotating • Drag mouse to orbit • Scroll to zoom</small>
-    </div>
+ 
+<div class="scene" id="scene">
+  <canvas id="globe"></canvas>
+</div>
+ 
+<script>(() => {
+  // node_modules/phenomenon/dist/phenomenon.mjs
+  var t = ["x", "y", "z"];
+  var e = function(t2) {
+    Object.assign(this, { uniforms: {}, geometry: { vertices: [{ x: 0, y: 0, z: 0 }] }, mode: 0, modifiers: {}, attributes: [], multiplier: 1, buffers: [] }), Object.assign(this, t2), this.prepareProgram(), this.prepareUniforms(), this.prepareAttributes();
+  };
+  e.prototype.compileShader = function(t2, e2) {
+    var i3 = this.gl.createShader(t2);
+    return this.gl.shaderSource(i3, e2), this.gl.compileShader(i3), i3;
+  }, e.prototype.prepareProgram = function() {
+    var t2 = this.gl, e2 = this.vertex, i3 = this.fragment, r = t2.createProgram();
+    t2.attachShader(r, this.compileShader(35633, e2)), t2.attachShader(r, this.compileShader(35632, i3)), t2.linkProgram(r), t2.useProgram(r), this.program = r;
+  }, e.prototype.prepareUniforms = function() {
+    for (var t2 = Object.keys(this.uniforms), e2 = 0; e2 < t2.length; e2 += 1) {
+      var i3 = this.gl.getUniformLocation(this.program, t2[e2]);
+      this.uniforms[t2[e2]].location = i3;
+    }
+  }, e.prototype.prepareAttributes = function() {
+    void 0 !== this.geometry.vertices && this.attributes.push({ name: "aPosition", size: 3 }), void 0 !== this.geometry.normal && this.attributes.push({ name: "aNormal", size: 3 }), this.attributeKeys = [];
+    for (var t2 = 0; t2 < this.attributes.length; t2 += 1) this.attributeKeys.push(this.attributes[t2].name), this.prepareAttribute(this.attributes[t2]);
+  }, e.prototype.prepareAttribute = function(e2) {
+    for (var i3 = this.geometry, r = this.multiplier, s2 = i3.vertices, n = i3.normal, a = new Float32Array(r * s2.length * e2.size), o = 0; o < r; o += 1) for (var h = e2.data && e2.data(o, r), u2 = o * s2.length * e2.size, f2 = 0; f2 < s2.length; f2 += 1) for (var c2 = 0; c2 < e2.size; c2 += 1) {
+      var l2 = this.modifiers[e2.name];
+      a[u2] = void 0 !== l2 ? l2(h, f2, c2, this) : "aPosition" === e2.name ? s2[f2][t[c2]] : "aNormal" === e2.name ? n[f2][t[c2]] : h[c2], u2 += 1;
+    }
+    this.attributes[this.attributeKeys.indexOf(e2.name)].data = a, this.prepareBuffer(this.attributes[this.attributeKeys.indexOf(e2.name)]);
+  }, e.prototype.prepareBuffer = function(t2) {
+    var e2 = t2.data, i3 = t2.name, r = t2.size, s2 = this.gl.createBuffer();
+    this.gl.bindBuffer(34962, s2), this.gl.bufferData(34962, e2, 35044);
+    var n = this.gl.getAttribLocation(this.program, i3);
+    this.gl.enableVertexAttribArray(n), this.gl.vertexAttribPointer(n, r, 5126, false, 0, 0), this.buffers[this.attributeKeys.indexOf(t2.name)] = { buffer: s2, location: n, size: r };
+  }, e.prototype.render = function(t2) {
+    var e2 = this, i3 = this.uniforms, r = this.multiplier, s2 = this.gl;
+    s2.useProgram(this.program);
+    for (var n = 0; n < this.buffers.length; n += 1) {
+      var a = this.buffers[n], o = a.location, h = a.buffer, u2 = a.size;
+      s2.enableVertexAttribArray(o), s2.bindBuffer(34962, h), s2.vertexAttribPointer(o, u2, 5126, false, 0, 0);
+    }
+    Object.keys(t2).forEach(function(e3) {
+      i3[e3].value = t2[e3].value;
+    }), Object.keys(i3).forEach(function(t3) {
+      var r2 = i3[t3];
+      e2.uniformMap[r2.type](r2.location, r2.value);
+    }), s2.drawArrays(this.mode, 0, r * this.geometry.vertices.length), this.onRender && this.onRender(this);
+  }, e.prototype.destroy = function() {
+    for (var t2 = 0; t2 < this.buffers.length; t2 += 1) this.gl.deleteBuffer(this.buffers[t2].buffer);
+    this.gl.deleteProgram(this.program), this.gl = null;
+  };
+  var i = function(t2) {
+    var e2 = this, i3 = t2 || {}, r = i3.canvas;
+    void 0 === r && (r = document.querySelector("canvas"));
+    var s2 = i3.context;
+    void 0 === s2 && (s2 = {});
+    var n = i3.contextType;
+    void 0 === n && (n = "experimental-webgl");
+    var a = i3.settings;
+    void 0 === a && (a = {});
+    var o = r.getContext(n, Object.assign({ alpha: false, antialias: false }, s2));
+    Object.assign(this, { gl: o, canvas: r, uniforms: {}, instances: /* @__PURE__ */ new Map(), shouldRender: true }), Object.assign(this, { devicePixelRatio: 1, clearColor: [1, 1, 1, 1], position: { x: 0, y: 0, z: 2 }, clip: [1e-3, 100] }), Object.assign(this, a), this.uniformMap = { float: function(t3, e3) {
+      return o.uniform1f(t3, e3);
+    }, vec2: function(t3, e3) {
+      return o.uniform2fv(t3, e3);
+    }, vec3: function(t3, e3) {
+      return o.uniform3fv(t3, e3);
+    }, vec4: function(t3, e3) {
+      return o.uniform4fv(t3, e3);
+    }, mat2: function(t3, e3) {
+      return o.uniformMatrix2fv(t3, false, e3);
+    }, mat3: function(t3, e3) {
+      return o.uniformMatrix3fv(t3, false, e3);
+    }, mat4: function(t3, e3) {
+      return o.uniformMatrix4fv(t3, false, e3);
+    } }, o.enable(o.DEPTH_TEST), o.depthFunc(o.LEQUAL), false === o.getContextAttributes().alpha && (o.clearColor.apply(o, this.clearColor), o.clearDepth(1)), this.onSetup && this.onSetup(o), window.addEventListener("resize", function() {
+      return e2.resize();
+    }), this.resize(), this.render();
+  };
+  i.prototype.resize = function() {
+    var t2 = this.gl, e2 = this.canvas, i3 = this.devicePixelRatio, r = this.position;
+    e2.width = e2.clientWidth * i3, e2.height = e2.clientHeight * i3;
+    var s2 = t2.drawingBufferWidth, n = t2.drawingBufferHeight, a = s2 / n;
+    t2.viewport(0, 0, s2, n);
+    var o = Math.tan(Math.PI / 180 * 22.5), h = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, r.x, r.y, (a < 1 ? 1 : a) * -r.z, 1];
+    this.uniforms.uProjectionMatrix = { type: "mat4", value: [0.5 / o, 0, 0, 0, 0, a / o * 0.5, 0, 0, 0, 0, -(this.clip[1] + this.clip[0]) / (this.clip[1] - this.clip[0]), -1, 0, 0, -2 * this.clip[1] * (this.clip[0] / (this.clip[1] - this.clip[0])), 0] }, this.uniforms.uViewMatrix = { type: "mat4", value: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1] }, this.uniforms.uModelMatrix = { type: "mat4", value: h };
+  }, i.prototype.toggle = function(t2) {
+    t2 !== this.shouldRender && (this.shouldRender = void 0 !== t2 ? t2 : !this.shouldRender, this.shouldRender && this.render());
+  }, i.prototype.render = function() {
+    var t2 = this;
+    this.gl.clear(16640), this.instances.forEach(function(e2) {
+      e2.render(t2.uniforms);
+    }), this.onRender && this.onRender(this), this.shouldRender && requestAnimationFrame(function() {
+      return t2.render();
+    });
+  }, i.prototype.add = function(t2, i3) {
+    void 0 === i3 && (i3 = { uniforms: {} }), void 0 === i3.uniforms && (i3.uniforms = {}), Object.assign(i3.uniforms, JSON.parse(JSON.stringify(this.uniforms))), Object.assign(i3, { gl: this.gl, uniformMap: this.uniformMap });
+    var r = new e(i3);
+    return this.instances.set(t2, r), r;
+  }, i.prototype.remove = function(t2) {
+    var e2 = this.instances.get(t2);
+    void 0 !== e2 && (e2.destroy(), this.instances.delete(t2));
+  }, i.prototype.destroy = function() {
+    var t2 = this;
+    this.instances.forEach(function(e2, i3) {
+      e2.destroy(), t2.instances.delete(i3);
+    }), this.toggle(false);
+  };
+  var phenomenon_default = i;
+ 
+  // node_modules/cobe/dist/index.esm.js
+  var M = "phi";
+  var R = "theta";
+  var c = "mapSamples";
+  var O = "mapBrightness";
+  var N = "baseColor";
+  var G = "markerColor";
+  var s = "glowColor";
+  var S = "markers";
+  var P = "diffuse";
+  var X = "devicePixelRatio";
+  var f = "dark";
+  var u = "offset";
+  var m = "scale";
+  var x = "opacity";
+  var l = "mapBaseBrightness";
+  var I = { [M]: "A", [R]: "B", [c]: "l", [O]: "E", [N]: "R", [G]: "S", [s]: "y", [P]: "F", [f]: "G", [u]: "x", [m]: "C", [x]: "H", [l]: "I" };
+  var { PI: i2, sin: d, cos: U } = Math;
+  var C = (r) => [].concat(...r.map((E) => {
+    let [_, o] = E.location;
+    _ = _ * i2 / 180, o = o * i2 / 180 - i2;
+    let a = U(_);
+    return [-a * U(o), d(_), a * d(o), E.size];
+  }), [0, 0, 0, 0]);
+  var p = (r, E) => {
+    let _ = (e2, t2, L) => ({ type: e2, value: typeof E[t2] == "undefined" ? L : E[t2] }), o = r.getContext("webgl") ? "webgl" : "experimental-webgl", a = new phenomenon_default({ canvas: r, contextType: o, context: { alpha: true, stencil: false, antialias: true, depth: false, preserveDrawingBuffer: false, ...E.context }, settings: { [X]: E[X] || 1, onSetup: (e2) => {
+      let t2 = e2.RGB, L = e2.UNSIGNED_BYTE, n = e2.TEXTURE_2D, T = e2.createTexture();
+      e2.bindTexture(n, T), e2.texImage2D(n, 0, t2, 1, 1, 0, t2, L, new Uint8Array([0, 0, 0, 0]));
+      let A = new Image();
+      A.onload = () => {
+        e2.bindTexture(n, T), e2.texImage2D(n, 0, t2, t2, L, A), e2.generateMipmap(n);
+        let h = e2.getParameter(e2.CURRENT_PROGRAM), v = e2.getUniformLocation(h, "J");
+        e2.texParameteri(n, e2.TEXTURE_MIN_FILTER, e2.NEAREST), e2.texParameteri(n, e2.TEXTURE_MAG_FILTER, e2.NEAREST), e2.uniform1i(v, 0);
+      }, A.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAACAAQAAAADMzoqnAAAAAXNSR0IArs4c6QAABA5JREFUeNrV179uHEUAx/Hf3JpbF+E2VASBsmVKTBcpKJs3SMEDcDwBiVJAAewYEBUivIHT0uUBIt0YCovKD0CRjUC4QfHYh8hYXu+P25vZ2Zm9c66gMd/GJ/tz82d3bk8GN4SrByYF2366FNTACIAkivVAAazQdnf3MvAlbNUQfOPAdQDvSAimMWhwy4I2g4SU+Kp04ISLpPBAKLxPyic3O/CCi+Y7rUJbiodcpDOFY7CgxCEXmdYD2EYK2s5lApOx5pEDDYCUwM1XdJUwBV11QQMg59kePSCaPAASQMEL2hwo6TJFgxpg+TgC2ymXPbuvc40awr3D1QCFfbH9kcoqAOkZozpQo0aqAGQRKCog/+tjkgbNFEtg2FffBvBGlSxHoAaAa1u6X4PBAwDiR8FFsrQgeUhfJTSALaB9jy5NCybJPn1SVFiWk7ywN+KzhH1aKAuydhGkbEF4lWohLXDXavlyFgHY7LBnLRdlAP6BS5Cc8RfVDXbkwN/oIvmY+6obbNeBP0JwTuMGu9gTzy1Q4RS/cWpfzszeYwd+CAFrtBW/Hur0gLbJGlD+/OjVwe/drfBxkbbg63dndEDfiEBlAd7ac0BPe1D6Jd8dfbLH+RI0OzseFB5s01/M+gMdAeluLOCAuaUA9Lezo/vSgXoCX9rtEiXnp7Q1W/CNyWcd8DXoS6jH/YZ5vAJEWY2dXFQe2TUgaFaNejCzJ98g6HnlVrsE58sDcYqg+9XY75fPqdoh/kRQWiXKg8MWlJQxUFMPjqnyujhFBE7UxIMjyszk0QwQlFsezImsyvUYYYVED2pk6m0Tg8T04Fwjk2kdAwSACqlM6gRRt3vQYAFGX0Ah7Ebx1H+MDRI5ui0QldH4j7FGcm90XdxD2Jg1AOEAVAKhEFXSn4cKUELurIAKwJ3MArypPscQaLhJFICJ0ohjDySAdH8AhDtCiTuMycH8CXzhH9jUACAO5uMhoAwA5i+T6WAKmmAqnLy80wxHqIPFYpqCwxGaYLt4Dyievg5kEoVEUAhs6pqKgFtDQYOuaXypaWKQfIuwwoGSZgfLsu/XAtI8cGN+h7Cc1A5oLOMhwlIPXuhu48AIvsSBkvtV9wsJRKCyYLfq5lTrQMFd1a262oqBck9K1V0YjQg0iEYYgpS1A9GlXQV5cykwm4A7BzVsxQqo7E+zCegO7Ma7yKgsuOcfKbMBwLC8wvVNYDsANYalEpOAa6zpWjTeMKGwEwC1CiQewJc5EKfgy7GmRAZA4vUVGwE2dPM/g0xuAInE/yG5aZ8ISxWGfYigUVbdyBElTHh2uCwGdfCkOLGgQVBh3Ewp+/QK4CDlR5Ws/Zf7yhCf8pH7vinWAvoVCQ6zz0NX5V/6GkAVV+2/5qsJ/gU8bsxpM8IeAQAAAABJRU5ErkJggg==";
+    } } });
+    return a.add("", { vertex: "attribute vec3 aPosition;uniform mat4 uProjectionMatrix;uniform mat4 uModelMatrix;uniform mat4 uViewMatrix;void main(){gl_Position=uProjectionMatrix*uModelMatrix*uViewMatrix*vec4(aPosition,1.);}", fragment: "precision highp float;uniform vec2 t,x;uniform vec3 R,S,y;uniform vec4 z[64];uniform float A,B,l,C,D,E,F,G,H,I;uniform sampler2D J;float K=1./l;mat3 L(float a,float b){float c=cos(a),d=cos(b),e=sin(a),f=sin(b);return mat3(d,f*e,-f*c,0.,c,e,f,d*-e,d*c);}vec3 w(vec3 c,out float v){c=c.xzy;float p=max(2.,floor(log2(2.236068*l*3.141593*(1.-c.z*c.z))*.72021));vec2 g=floor(pow(1.618034,p)/2.236068*vec2(1.,1.618034)+.5),d=fract((g+1.)*.618034)*6.283185-3.883222,e=-2.*g,f=vec2(atan(c.y,c.x),c.z-1.),q=floor(vec2(e.y*f.x-d.y*(f.y*l+1.),-e.x*f.x+d.x*(f.y*l+1.))/(d.x*e.y-e.x*d.y));float n=3.141593;vec3 r;for(float h=0.;h<4.;h+=1.){vec2 s=vec2(mod(h,2.),floor(h*.5));float j=dot(g,q+s);if(j>l)continue;float a=j,b=0.;if(a>=524288.)a-=524288.,b+=.803894;if(a>=262144.)a-=262144.,b+=.901947;if(a>=131072.)a-=131072.,b+=.950973;if(a>=65536.)a-=65536.,b+=.475487;if(a>=32768.)a-=32768.,b+=.737743;if(a>=16384.)a-=16384.,b+=.868872;if(a>=8192.)a-=8192.,b+=.934436;if(a>=4096.)a-=4096.,b+=.467218;if(a>=2048.)a-=2048.,b+=.733609;if(a>=1024.)a-=1024.,b+=.866804;if(a>=512.)a-=512.,b+=.433402;if(a>=256.)a-=256.,b+=.216701;if(a>=128.)a-=128.,b+=.108351;if(a>=64.)a-=64.,b+=.554175;if(a>=32.)a-=32.,b+=.777088;if(a>=16.)a-=16.,b+=.888544;if(a>=8.)a-=8.,b+=.944272;if(a>=4.)a-=4.,b+=.472136;if(a>=2.)a-=2.,b+=.236068;if(a>=1.)a-=1.,b+=.618034;float k=fract(b)*6.283185,i=1.-2.*j*K,m=sqrt(1.-i*i);vec3 o=vec3(cos(k)*m,sin(k)*m,i);float u=length(c-o);if(u<n)n=u,r=o;}v=n;return r.xzy;}void main(){vec2 b=(gl_FragCoord.xy/t*2.-1.)/C-x*vec2(1.,-1.)/t;b.x*=t.x/t.y;float c=dot(b,b);vec4 M=vec4(0.);float m=0.;if(c<=.64){for(int d=0;d<2;d++){vec4 e=vec4(0.);float a;vec3 u=vec3(0.,0.,1.),f=normalize(vec3(b,sqrt(.64-c)));f.z*=d>0?-1.:1.,u.z*=d>0?-1.:1.;vec3 g=f*L(B,A),h=w(g,a);float n=asin(h.y),i=acos(-h.x/cos(n));i=h.z<0.?-i:i;float N=max(texture2D(J,vec2(i*.5/3.141593,-(n/3.141593+.5))).x,I),O=smoothstep(8e-3,0.,a),j=dot(f,u),v=pow(j,F)*E,o=N*O*v,T=mix((1.-o)*pow(j,.4),o,G)+.1;e+=vec4(R*T,1.);int U=int(D);float p=0.;for(int k=0;k<64;k++){if(k>=U)break;vec4 q=z[k];vec3 r=q.xyz,P=r-g;float s=q.w;if(dot(P,P)>s*s*4.)continue;vec3 V=w(r,a);a=length(V-g),a<s?p+=smoothstep(s*.5,0.,a):0.;}p=min(1.,p*v),e.xyz=mix(e.xyz,S,p),e.xyz+=pow(1.-j,4.)*y,M+=e*(1.+(d>0?-H:H))/2.;}m=pow(dot(normalize(vec3(-b,sqrt(1.-c))),vec3(0.,0.,1.)),4.)*smoothstep(0.,1.,.2/(c-.64));}else{float Q=sqrt(.2/(c-.64));m=smoothstep(.5,1.,Q/(Q+1.));}gl_FragColor=M+vec4(m*y,m);}", uniforms: { t: { type: "vec2", value: [E.width, E.height] }, A: _("float", M), B: _("float", R), l: _("float", c), E: _("float", O), I: _("float", l), R: _("vec3", N), S: _("vec3", G), F: _("float", P), y: _("vec3", s), G: _("float", f), z: { type: "vec4", value: C(E[S]) }, D: { type: "float", value: E[S].length }, x: _("vec2", u, [0, 0]), C: _("float", m, 1), H: _("float", x, 1) }, mode: 4, geometry: { vertices: [{ x: -100, y: 100, z: 0 }, { x: -100, y: -100, z: 0 }, { x: 100, y: 100, z: 0 }, { x: 100, y: -100, z: 0 }, { x: -100, y: -100, z: 0 }, { x: 100, y: 100, z: 0 }] }, onRender: ({ uniforms: e2 }) => {
+      let t2 = {};
+      if (E.onRender) {
+        t2 = E.onRender(t2) || t2;
+        for (let L in I) t2[L] !== void 0 && (e2[I[L]].value = t2[L]);
+        t2[S] !== void 0 && (e2["z"].value = C(t2[S]), e2["D"].value = t2[S].length), t2.width && t2.height && (e2["t"].value = [t2.width, t2.height]);
+      }
+    } }), a;
+  };
+ 
+  // bundle_entry.js
+  window.createGlobe = p;
+})();
+</script>
+ 
+<script>
+(function () {
+  const canvas = document.getElementById('globe');
+  const scene  = document.getElementById('scene');
+ 
+  // Continent anchor points (lat, lon) — rough center of each landmass
+  const continents = [
+    { name: 'North America', sub: 'Americas',      location: [45.0,  -100.0] },
+    { name: 'South America', sub: 'Americas',      location: [-15.0,  -55.0] },
+    { name: 'Europe',        sub: 'Eurasia',        location: [54.0,    15.0] },
+    { name: 'Africa',        sub: '54 countries',   location: [2.0,    22.0]  },
+    { name: 'Asia',          sub: 'Eurasia',        location: [45.0,    90.0] },
+    { name: 'Oceania',       sub: 'Pacific',        location: [-25.0,  135.0] },
+    { name: 'Antarctica',    sub: 'South Pole',     location: [-80.0,    0.0] },
+  ];
+ 
+  const markers = [
+    { location: [37.7595, -122.4367], size: 0.04 },
+    { location: [40.7128, -74.006],   size: 0.05 },
+    { location: [35.6762, 139.6503],  size: 0.04 },
+    { location: [51.5074, -0.1278],   size: 0.04 },
+    { location: [-33.8688, 151.2093], size: 0.04 },
+    { location: [-33.9249, 18.4241],  size: 0.04 },
+    { location: [25.2048, 55.2708],   size: 0.04 },
+    { location: [48.8566, 2.3522],    size: 0.04 },
+    { location: [-23.5505, -46.6333], size: 0.04 },
+    { location: [19.0760, 72.8777],   size: 0.04 },
+  ];
 
-    <!-- Three.js from CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  const places = [
+    { name: 'San Francisco', location: [37.7595, -122.4367] },
+    { name: 'New York',      location: [40.7128, -74.006] },
+    { name: 'Tokyo',         location: [35.6762, 139.6503] },
+    { name: 'London',        location: [51.5074, -0.1278] },
+    { name: 'Sydney',        location: [-33.8688, 151.2093] },
+    { name: 'Cape Town',     location: [-33.9249, 18.4241] },
+    { name: 'Dubai',         location: [25.2048, 55.2708] },
+    { name: 'Paris',         location: [48.8566, 2.3522] },
+    { name: 'Sao Paulo',     location: [-23.5505, -46.6333] },
+    { name: 'Mumbai',        location: [19.0760, 72.8777] },
+  ];
+ 
+  const arcPairs = [[0,2],[1,3],[3,6],[6,9],[2,4],[8,1],[5,7],[7,0]];
+  const arcs = arcPairs.map(([a,b]) => ({ from: markers[a].location, to: markers[b].location }));
+ 
+  // Build DOM tags for each continent
+  const tags = continents.map((c, i) => {
+    const el = document.createElement('div');
+    el.className = 'continent-tag hidden';
+    el.id = 'ct-' + i;
+    el.innerHTML = `
+      <div class="bubble">
+        <span class="name">${c.name}</span>
+        <span class="sub">${c.sub}</span>
+        <div class="dot"></div>
+      </div>`;
+    scene.appendChild(el);
+    return el;
+  });
 
-    <script>
-        let scene, camera, renderer;
-        let earth;
-        let isDragging = false;
-        let previousMouseX = 0;
-        let previousMouseY = 0;
+  const placeTags = places.map((p, i) => {
+    const el = document.createElement('div');
+    el.className = 'place-tag hidden';
+    el.id = 'pt-' + i;
+    el.innerHTML = `<span class="label">${p.name}</span>`;
+    scene.appendChild(el);
+    return el;
+  });
+ 
+  let phi = 0, userPhi = 0, isDragging = false, lastX = 0;
+  let globe;
+ 
+  function toRad(d) { return d * Math.PI / 180; }
+ 
+  function project(lat, lon) {
+    const THETA = 0.3;
+    const latR = toRad(lat), lonR = toRad(lon);
+    let x = Math.cos(latR) * Math.cos(lonR);
+    let y = Math.sin(latR);
+    let z = Math.cos(latR) * Math.sin(lonR);
+ 
+    const totalPhi = phi + userPhi;
+    const cp = Math.cos(totalPhi), sp = Math.sin(totalPhi);
+    const rx = cp * x - sp * z;
+    const rz = sp * x + cp * z;
+    x = rx; z = rz;
+ 
+    const ct = Math.cos(THETA), st = Math.sin(THETA);
+    const ry = ct * y - st * z;
+    const rz2 = st * y + ct * z;
+    y = ry; z = rz2;
+ 
+    const rect = canvas.getBoundingClientRect();
+    const cx = rect.width / 2, cy = rect.height / 2;
+    const r = Math.min(cx, cy) * 0.9;
+    return {
+      sx: cx + x * r,
+      sy: cy - y * r,
+      visible: z > 0.1,
+    };
+  }
+ 
+  function updateTags() {
+    continents.forEach((c, i) => {
+      const p = project(c.location[0], c.location[1]);
+      const el = tags[i];
+      el.style.left = p.sx + 'px';
+      el.style.top  = p.sy + 'px';
+      el.classList.toggle('hidden', !p.visible);
+    });
 
-        function init() {
-            scene = new THREE.Scene();
-
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.z = 12;
-
-            renderer = new THREE.WebGLRenderer({ antialias: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
-            document.body.appendChild(renderer.domElement);
-
-            // === BLACK & WHITE EARTH ===
-            const geometry = new THREE.SphereGeometry(6.5, 128, 128);
-
-            const textureLoader = new THREE.TextureLoader();
-
-            const earthTexture = textureLoader.load(
-                'https://unpkg.com/three-globe@2.31.0/example/img/earth-blue-marble.jpg'
-            );
-            const bumpTexture = textureLoader.load(
-                'https://unpkg.com/three-globe@2.31.0/example/img/earth-topology.png'
-            );
-
-            const material = new THREE.MeshPhongMaterial({
-                map: earthTexture,
-                bumpMap: bumpTexture,
-                bumpScale: 0.06,
-                color: new THREE.Color(0xffffff),      // pure white
-                emissive: new THREE.Color(0x000000),   // no glow
-                shininess: 12,
-                specular: new THREE.Color(0x111111)    // deep black specular
-            });
-
-            earth = new THREE.Mesh(geometry, material);
-            scene.add(earth);
-
-            // === PURE BLACK & WHITE LIGHTS ===
-            const ambientLight = new THREE.AmbientLight(0x222222, 0.85);
-            scene.add(ambientLight);
-
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
-            directionalLight.position.set(12, 6, 10);
-            scene.add(directionalLight);
-
-            const backLight = new THREE.DirectionalLight(0x555555, 0.35);
-            backLight.position.set(-10, -5, -10);
-            scene.add(backLight);
-
-            // === STARS (pure white) ===
-            const starsGeometry = new THREE.BufferGeometry();
-            const starsCount = 15000;
-            const positions = new Float32Array(starsCount * 3);
-            const colors = new Float32Array(starsCount * 3);
-
-            for (let i = 0; i < starsCount * 3; i += 3) {
-                const radius = 300;
-                const theta = Math.random() * Math.PI * 2;
-                const phi = Math.acos(2 * Math.random() - 1);
-
-                positions[i]     = radius * Math.sin(phi) * Math.cos(theta);
-                positions[i + 1] = radius * Math.sin(phi) * Math.sin(theta);
-                positions[i + 2] = radius * Math.cos(phi);
-
-                const brightness = 0.85 + Math.random() * 0.15;
-                colors[i]     = brightness;
-                colors[i + 1] = brightness;
-                colors[i + 2] = brightness;
-            }
-
-            starsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            starsGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-            const starsMaterial = new THREE.PointsMaterial({
-                size: 0.7,
-                vertexColors: true,
-                transparent: true,
-                opacity: 0.95
-            });
-
-            const starField = new THREE.Points(starsGeometry, starsMaterial);
-            scene.add(starField);
-
-            // === CONTROLS ===
-            window.addEventListener('resize', onWindowResize);
-            renderer.domElement.addEventListener('mousedown', onMouseDown);
-            renderer.domElement.addEventListener('mousemove', onMouseMove);
-            renderer.domElement.addEventListener('mouseup', onMouseUp);
-            renderer.domElement.addEventListener('mouseleave', onMouseUp);
-            renderer.domElement.addEventListener('wheel', onWheel);
-
-            animate();
-        }
-
-        function onMouseDown(e) {
-            if (e.button === 0) {
-                isDragging = true;
-                previousMouseX = e.clientX;
-                previousMouseY = e.clientY;
-            }
-        }
-
-        function onMouseUp() {
-            isDragging = false;
-        }
-
-        function onMouseMove(e) {
-            if (!isDragging) return;
-            const deltaX = e.clientX - previousMouseX;
-            const deltaY = e.clientY - previousMouseY;
-
-            earth.rotation.y += deltaX * 0.005;
-            earth.rotation.x += deltaY * 0.005;
-            earth.rotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, earth.rotation.x));
-
-            previousMouseX = e.clientX;
-            previousMouseY = e.clientY;
-        }
-
-        function onWheel(e) {
-            camera.position.z += e.deltaY * 0.02;
-            camera.position.z = Math.max(8, Math.min(30, camera.position.z));
-        }
-
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-
-            if (!isDragging) {
-                earth.rotation.y += 0.0014;
-            }
-
-            renderer.render(scene, camera);
-        }
-
-        window.onload = init;
-    </script>
+    places.forEach((p, i) => {
+      const pos = project(p.location[0], p.location[1]);
+      const el = placeTags[i];
+      el.style.left = pos.sx + 'px';
+      el.style.top  = (pos.sy - 10) + 'px';
+      el.classList.toggle('hidden', !pos.visible);
+    });
+  }
+ 
+  function buildConfig() {
+    const size = Math.min(scene.offsetWidth, scene.offsetHeight);
+    const dpr  = Math.min(window.devicePixelRatio || 1, 2);
+    return {
+      devicePixelRatio: dpr,
+      width: size * dpr, height: size * dpr,
+      phi: 0, theta: 0.3,
+      dark: 1, diffuse: 1.2, scale: 1,
+      mapSamples: 16000, mapBrightness: 6, mapBaseBrightness: 0,
+      baseColor:   [0.1, 0.08, 0.15],
+      markerColor: [0.75, 0.3, 1.0],
+      glowColor:   [0.35, 0.15, 0.6],
+      arcColor:    [1, 0.45, 0.75],
+      markers, arcs,
+      onRender(state) {
+        if (!isDragging) phi += 0.003;
+        state.phi = phi + userPhi;
+        updateTags();
+      },
+    };
+  }
+ 
+  function init() {
+    if (globe) globe.destroy();
+    const size = Math.min(scene.offsetWidth, scene.offsetHeight);
+    const dpr  = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width  = size * dpr;
+    canvas.height = size * dpr;
+    canvas.style.width  = size + 'px';
+    canvas.style.height = size + 'px';
+    globe = createGlobe(canvas, buildConfig());
+  }
+ 
+  init();
+ 
+  canvas.addEventListener('mousedown', e => { isDragging = true; lastX = e.clientX; });
+  window.addEventListener('mouseup',   () => { isDragging = false; });
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    userPhi += (e.clientX - lastX) * 0.005;
+    lastX = e.clientX;
+  });
+  canvas.addEventListener('touchstart', e => { isDragging = true; lastX = e.touches[0].clientX; }, { passive: true });
+  window.addEventListener('touchend',   () => { isDragging = false; });
+  window.addEventListener('touchmove',  e => {
+    if (!isDragging) return;
+    userPhi += (e.touches[0].clientX - lastX) * 0.005;
+    lastX = e.touches[0].clientX;
+  }, { passive: true });
+ 
+  window.addEventListener('resize', init);
+})();
+</script>
 </body>
 </html>

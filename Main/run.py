@@ -61,6 +61,12 @@ app.mount(
     name="static",
 )
 
+app.mount(
+    "/app4/componets",
+    StaticFiles(directory=str(Path(__file__).resolve().parent / "app4" / "componets")),
+    name="app4_componets",
+)
+
 # Include routers
 app.include_router(app1_router, prefix="/app1")
 app.include_router(app2_router, prefix="/app2")
