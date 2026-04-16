@@ -1,32 +1,607 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>App2 - Sign Up</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEO ARTEM — Sign Up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #e02020;
+      --red-bright: #ff3333;
+      --red-glow: rgba(255,51,51,0.35);
+      --red-dim: rgba(224,32,32,0.10);
+      --white: #f0f0f0;
+      --white-dim: rgba(240,240,240,0.07);
+      --black: #060608;
+      --surface: rgba(10,10,14,0.85);
+      --border: rgba(240,240,240,0.08);
+      --border-red: rgba(255,51,51,0.3);
+      --mono: 'Share Tech Mono', monospace;
+      --hud: 'Orbitron', sans-serif;
+      --display: 'Bebas Neue', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      min-height: 100vh;
+      background: var(--black);
+      font-family: var(--mono);
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    /* Scanlines */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 9999;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 3px,
+        rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 4px
+      );
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── LEFT PANEL (Globe + branding) ── */
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      border-right: 1px solid var(--border-red);
+      overflow: hidden;
+    }
+
+    /* Red corner accents */
+    .left-panel::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 60px; height: 60px;
+      border-top: 2px solid var(--red-bright);
+      border-left: 2px solid var(--red-bright);
+      filter: drop-shadow(0 0 8px var(--red-bright));
+    }
+    .left-panel::after {
+      content: '';
+      position: absolute; bottom: 0; right: 0;
+      width: 60px; height: 60px;
+      border-bottom: 2px solid var(--red-bright);
+      border-right: 2px solid var(--red-bright);
+      filter: drop-shadow(0 0 8px var(--red-bright));
+    }
+
+    /* Logo image placeholder */
+    .logo-img {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      border: 2px solid var(--red-bright);
+      background: var(--red-dim);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      margin-bottom: 0.8rem;
+      box-shadow: 0 0 18px var(--red-glow), inset 0 0 10px rgba(255,51,51,0.1);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .logo-img img {
+      width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+    }
+    .logo-img-fallback {
+      font-family: var(--hud); font-size: 18px; font-weight: 900;
+      color: var(--red-bright); letter-spacing: 1px;
+    }
+
+    .brand-title {
+      font-family: var(--display);
+      font-size: 3.8rem;
+      letter-spacing: 6px;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(255,255,255,0.2);
+      line-height: 1;
+      text-align: center;
+    }
+    .brand-title span { color: var(--red-bright); text-shadow: 0 0 20px var(--red-glow); }
+
+    .brand-sub {
+      font-family: var(--hud);
+      font-size: 0.55rem;
+      letter-spacing: 5px;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+      text-align: center;
+    }
+
+    /* Globe container */
+    .globe-wrap {
+      position: relative;
+      width: 280px; height: 280px;
+      margin: 1.2rem 0 0.8rem;
+      flex-shrink: 0;
+    }
+    #globe {
+      width: 100%; height: 100%;
+      display: block; cursor: grab; border-radius: 50%;
+    }
+    #globe:active { cursor: grabbing; }
+
+    /* ASCII art */
+    .ascii-art {
+      font-family: var(--mono);
+      font-size: 0.45rem;
+      line-height: 1.35;
+      color: rgba(255,51,51,0.45);
+      letter-spacing: 1px;
+      text-align: center;
+      user-select: none;
+      white-space: pre;
+    }
+
+    .status-bar {
+      display: flex; gap: 1.2rem; align-items: center;
+      margin-top: 0.8rem;
+    }
+    .status-item {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 0.6rem; letter-spacing: 2px;
+      color: rgba(255,255,255,0.3); text-transform: uppercase;
+    }
+    .status-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--red-bright);
+      box-shadow: 0 0 6px var(--red-bright);
+      animation: pulse 2s infinite;
+    }
+    .status-dot.ok { background: #3dba78; box-shadow: 0 0 6px #3dba78; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    /* ── RIGHT PANEL (Form) ── */
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 2.5rem;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    /* Corner accents */
+    .right-panel::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 50px; height: 50px;
+      border-top: 1px solid var(--border-red);
+      border-right: 1px solid var(--border-red);
+    }
+    .right-panel::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 50px; height: 50px;
+      border-bottom: 1px solid var(--border-red);
+      border-left: 1px solid var(--border-red);
+    }
+
+    .form-card {
+      width: 100%; max-width: 380px;
+    }
+
+    .form-header {
+      margin-bottom: 1.8rem;
+    }
+
+    .form-eyebrow {
+      font-size: 0.6rem; letter-spacing: 4px;
+      color: var(--red-bright);
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 0.5rem;
+    }
+    .form-eyebrow::after {
+      content: '';
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--red-bright), transparent);
+    }
+
+    .form-title {
+      font-family: var(--display);
+      font-size: 2.6rem;
+      letter-spacing: 4px;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .form-desc {
+      margin-top: 0.4rem;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 1px;
+      line-height: 1.6;
+    }
+
+    /* Error */
+    .error-box {
+      background: rgba(224,32,32,0.12);
+      border: 1px solid rgba(255,51,51,0.35);
+      border-left: 3px solid var(--red-bright);
+      padding: 0.6rem 0.8rem;
+      font-size: 0.7rem;
+      color: #ff8080;
+      letter-spacing: 1px;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Fields */
+    .field-group {
+      display: flex; flex-direction: column; gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .field {
+      position: relative;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.58rem;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .field input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding: 0.7rem 0.9rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+
+    .field input::placeholder { color: rgba(255,255,255,0.18); }
+
+    .field input:focus {
+      border-color: var(--red-bright);
+      background: rgba(255,51,51,0.06);
+      box-shadow: 0 0 12px rgba(255,51,51,0.15), inset 0 0 6px rgba(255,51,51,0.05);
+    }
+
+    /* Prefix icon */
+    .field .prefix {
+      position: absolute; bottom: 0.72rem; right: 0.8rem;
+      font-size: 0.6rem; color: rgba(255,255,255,0.2);
+      pointer-events: none; letter-spacing: 1px;
+    }
+
+    /* Submit button */
+    .btn-submit {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--red-bright);
+      border: none;
+      color: #ffffff;
+      font-family: var(--hud);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 20px var(--red-glow);
+    }
+    .btn-submit::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%);
+      transform: translateX(-100%);
+      transition: transform 0.5s;
+    }
+    .btn-submit:hover::before { transform: translateX(100%); }
+    .btn-submit:hover {
+      background: #ff0000;
+      box-shadow: 0 0 30px var(--red-glow), 0 0 60px rgba(255,0,0,0.2);
+    }
+    .btn-submit:active { transform: scale(0.99); }
+
+    .form-footer {
+      margin-top: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.65rem; color: rgba(255,255,255,0.25);
+      letter-spacing: 1px;
+    }
+    .form-footer a {
+      color: var(--red-bright);
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-size: 0.65rem;
+      transition: text-shadow 0.2s;
+    }
+    .form-footer a:hover { text-shadow: 0 0 8px var(--red-bright); }
+
+    .divider {
+      display: flex; align-items: center; gap: 0.8rem;
+      margin: 1.2rem 0;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border);
+    }
+    .divider span {
+      font-size: 0.55rem; letter-spacing: 2px;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* HUD corners on card */
+    .hud-corner {
+      position: absolute;
+      width: 12px; height: 12px;
+    }
+    .hud-corner.tl { top: -1px; left: -1px; border-top: 1px solid var(--red-bright); border-left: 1px solid var(--red-bright); }
+    .hud-corner.tr { top: -1px; right: -1px; border-top: 1px solid var(--red-bright); border-right: 1px solid var(--red-bright); }
+    .hud-corner.bl { bottom: -1px; left: -1px; border-bottom: 1px solid var(--red-bright); border-left: 1px solid var(--red-bright); }
+    .hud-corner.br { bottom: -1px; right: -1px; border-bottom: 1px solid var(--red-bright); border-right: 1px solid var(--red-bright); }
+
+    /* Ticker at bottom */
+    .ticker {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: 24px;
+      background: rgba(6,6,8,0.97);
+      border-top: 1px solid var(--border-red);
+      display: flex; align-items: center;
+      overflow: hidden; z-index: 100;
+    }
+    .ticker-label {
+      background: var(--red-bright);
+      padding: 0 10px;
+      font-family: var(--hud);
+      font-size: 0.5rem;
+      letter-spacing: 3px;
+      color: #fff;
+      height: 100%;
+      display: flex; align-items: center;
+      flex-shrink: 0;
+      clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    }
+    .ticker-track {
+      flex: 1; overflow: hidden;
+      padding-left: 10px;
+    }
+    .ticker-inner {
+      display: inline-block;
+      white-space: nowrap;
+      animation: ticker 30s linear infinite;
+      font-size: 0.58rem; color: rgba(255,255,255,0.3); letter-spacing: 2px;
+    }
+    @keyframes ticker {
+      from { transform: translateX(100vw); }
+      to   { transform: translateX(-100%); }
+    }
+
+    /* Globe phenomenon lib */
+    canvas { display: block; }
+  </style>
 </head>
 <body>
-    <h1>Sign Up</h1>
-    <nav></nav>
 
-    {% if error %}
-    <p style="color: red;">{{ error }}</p>
-    {% endif %}
+<div class="page">
 
-    <form method="post" action="/app2/signup">
-        <div>
-            <label>Email</label><br />
-            <input type="email" name="email" required />
-        </div>
-        <div>
-            <label>Username</label><br />
-            <input type="text" name="username" required />
-        </div>
-        <div>
-            <label>Password</label><br />
-            <input type="password" name="password" required />
-        </div>
-        <button type="submit">Create account</button>
-    </form>
+  <!-- ── LEFT PANEL ── -->
+  <div class="left-panel">
 
-    <p>Already have an account? <a href="/app2/login">Log in</a>.</p>
+    <!-- Logo image placeholder (round) -->
+    <div class="logo-img">
+      <!-- Replace src with your logo URL -->
+      <img src="https://placehold.co/64x64/0a0a0e/ff3333?text=GA" alt="GEO ARTEM logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <span class="logo-img-fallback" style="display:none">GA</span>
+    </div>
+
+    <div class="brand-title">GEO <span>ARTEM</span></div>
+    <div class="brand-sub">Geospatial Intelligence Platform</div>
+
+    <!-- Globe -->
+    <div class="globe-wrap" id="scene">
+      <canvas id="globe"></canvas>
+    </div>
+
+    <!-- ASCII Art -->
+    <pre class="ascii-art">
+ ██████╗ ███████╗ ██████╗
+██╔════╝ ██╔════╝██╔═══██╗
+██║  ███╗█████╗  ██║   ██║
+██║   ██║██╔══╝  ██║   ██║
+╚██████╔╝███████╗╚██████╔╝
+ ╚═════╝ ╚══════╝ ╚═════╝ 
+    [  ARTEM NETWORK v2.4  ]
+    </pre>
+
+    <div class="status-bar">
+      <div class="status-item"><span class="status-dot"></span>LIVE</div>
+      <div class="status-item"><span class="status-dot ok"></span>SECURE</div>
+      <div class="status-item"><span class="status-dot ok"></span>ONLINE</div>
+    </div>
+  </div>
+
+  <!-- ── RIGHT PANEL ── -->
+  <div class="right-panel">
+    <div class="form-card">
+      <div style="position:relative;">
+        <div class="hud-corner tl"></div>
+        <div class="hud-corner tr"></div>
+        <div class="hud-corner bl"></div>
+        <div class="hud-corner br"></div>
+
+        <div class="form-header">
+          <div class="form-eyebrow">/// ACCESS PORTAL</div>
+          <div class="form-title">CREATE ACCOUNT</div>
+          <div class="form-desc">Register to access GEO ARTEM intelligence systems.</div>
+        </div>
+
+        <!-- Django error block equivalent -->
+        <div class="error-box" id="error-box" style="display:none">
+          ⚠ {{ error }}
+        </div>
+
+        <form method="post" action="/app2/signup" autocomplete="off">
+          <div class="field-group">
+
+            <div class="field">
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="user@domain.net" required />
+              <span class="prefix">✉</span>
+            </div>
+
+            <div class="field">
+              <label>Username</label>
+              <input type="text" name="username" placeholder="agent_handle" required autocomplete="off" />
+              <span class="prefix">@</span>
+            </div>
+
+            <div class="field">
+              <label>Password</label>
+              <input type="password" name="password" placeholder="••••••••••••" required autocomplete="new-password" />
+              <span class="prefix">🔒</span>
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn-submit">INITIALIZE ACCOUNT</button>
+        </form>
+
+        <div class="divider"><span>ALREADY REGISTERED?</span></div>
+
+        <div class="form-footer">
+          <span>Have access credentials?</span>
+          <a href="/app2/login">LOG IN →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Ticker -->
+<div class="ticker">
+  <div class="ticker-label">SYS FEED</div>
+  <div class="ticker-track">
+    <div class="ticker-inner">
+      GEO ARTEM v2.4 — SYSTEM OPERATIONAL &nbsp;///&nbsp;
+      GEOSPATIAL INTELLIGENCE ACTIVE &nbsp;///&nbsp;
+      NODE NETWORK: 2,847 ONLINE &nbsp;///&nbsp;
+      DATA STREAM ENCRYPTED &nbsp;///&nbsp;
+      COORDINATES LOCKED &nbsp;///&nbsp;
+      ALL SECTORS NOMINAL &nbsp;///&nbsp;
+      WELCOME TO GEO ARTEM — REGISTER NOW &nbsp;///&nbsp;
+      SECURE CHANNEL ESTABLISHED &nbsp;///&nbsp;
+    </div>
+  </div>
+</div>
+
+<!-- Phenomenon / COBE globe libs -->
+<script>(() => {
+  var t=["x","y","z"];var e=function(t2){Object.assign(this,{uniforms:{},geometry:{vertices:[{x:0,y:0,z:0}]},mode:0,modifiers:{},attributes:[],multiplier:1,buffers:[]}),Object.assign(this,t2),this.prepareProgram(),this.prepareUniforms(),this.prepareAttributes()};e.prototype.compileShader=function(t2,e2){var i3=this.gl.createShader(t2);return this.gl.shaderSource(i3,e2),this.gl.compileShader(i3),i3},e.prototype.prepareProgram=function(){var t2=this.gl,e2=this.vertex,i3=this.fragment,r=t2.createProgram();t2.attachShader(r,this.compileShader(35633,e2)),t2.attachShader(r,this.compileShader(35632,i3)),t2.linkProgram(r),t2.useProgram(r),this.program=r},e.prototype.prepareUniforms=function(){for(var t2=Object.keys(this.uniforms),e2=0;e2<t2.length;e2+=1){var i3=this.gl.getUniformLocation(this.program,t2[e2]);this.uniforms[t2[e2]].location=i3}},e.prototype.prepareAttributes=function(){void 0!==this.geometry.vertices&&this.attributes.push({name:"aPosition",size:3}),void 0!==this.geometry.normal&&this.attributes.push({name:"aNormal",size:3}),this.attributeKeys=[];for(var t2=0;t2<this.attributes.length;t2+=1)this.attributeKeys.push(this.attributes[t2].name),this.prepareAttribute(this.attributes[t2])},e.prototype.prepareAttribute=function(e2){for(var i3=this.geometry,r=this.multiplier,s2=i3.vertices,n=i3.normal,a=new Float32Array(r*s2.length*e2.size),o=0;o<r;o+=1)for(var h=e2.data&&e2.data(o,r),u2=o*s2.length*e2.size,f2=0;f2<s2.length;f2+=1)for(var c2=0;c2<e2.size;c2+=1){var l2=this.modifiers[e2.name];a[u2]=void 0!==l2?l2(h,f2,c2,this):"aPosition"===e2.name?s2[f2][t[c2]]:"aNormal"===e2.name?n[f2][t[c2]]:h[c2],u2+=1}this.attributes[this.attributeKeys.indexOf(e2.name)].data=a,this.prepareBuffer(this.attributes[this.attributeKeys.indexOf(e2.name)])},e.prototype.prepareBuffer=function(t2){var e2=t2.data,i3=t2.name,r=t2.size,s2=this.gl.createBuffer();this.gl.bindBuffer(34962,s2),this.gl.bufferData(34962,e2,35044);var n=this.gl.getAttribLocation(this.program,i3);this.gl.enableVertexAttribArray(n),this.gl.vertexAttribPointer(n,r,5126,false,0,0),this.buffers[this.attributeKeys.indexOf(t2.name)]={buffer:s2,location:n,size:r}},e.prototype.render=function(t2){var e2=this,i3=this.uniforms,r=this.multiplier,s2=this.gl;s2.useProgram(this.program);for(var n=0;n<this.buffers.length;n+=1){var a=this.buffers[n],o=a.location,h=a.buffer,u2=a.size;s2.enableVertexAttribArray(o),s2.bindBuffer(34962,h),s2.vertexAttribPointer(o,u2,5126,false,0,0)}Object.keys(t2).forEach(function(e3){i3[e3].value=t2[e3].value}),Object.keys(i3).forEach(function(t3){var r2=i3[t3];e2.uniformMap[r2.type](r2.location,r2.value)}),s2.drawArrays(this.mode,0,r*this.geometry.vertices.length),this.onRender&&this.onRender(this)},e.prototype.destroy=function(){for(var t2=0;t2<this.buffers.length;t2+=1)this.gl.deleteBuffer(this.buffers[t2].buffer);this.gl.deleteProgram(this.program),this.gl=null};var i=function(t2){var e2=this,i3=t2||{},r=i3.canvas;void 0===r&&(r=document.querySelector("canvas"));var s2=i3.context;void 0===s2&&(s2={});var n=i3.contextType;void 0===n&&(n="experimental-webgl");var a=i3.settings;void 0===a&&(a={});var o=r.getContext(n,Object.assign({alpha:false,antialias:false},s2));Object.assign(this,{gl:o,canvas:r,uniforms:{},instances:new Map(),shouldRender:true}),Object.assign(this,{devicePixelRatio:1,clearColor:[1,1,1,1],position:{x:0,y:0,z:2},clip:[1e-3,100]}),Object.assign(this,a),this.uniformMap={float:function(t3,e3){return o.uniform1f(t3,e3)},vec2:function(t3,e3){return o.uniform2fv(t3,e3)},vec3:function(t3,e3){return o.uniform3fv(t3,e3)},vec4:function(t3,e3){return o.uniform4fv(t3,e3)},mat2:function(t3,e3){return o.uniformMatrix2fv(t3,false,e3)},mat3:function(t3,e3){return o.uniformMatrix3fv(t3,false,e3)},mat4:function(t3,e3){return o.uniformMatrix4fv(t3,false,e3)}},o.enable(o.DEPTH_TEST),o.depthFunc(o.LEQUAL),false===o.getContextAttributes().alpha&&(o.clearColor.apply(o,this.clearColor),o.clearDepth(1)),this.onSetup&&this.onSetup(o),window.addEventListener("resize",function(){return e2.resize()}),this.resize(),this.render()};i.prototype.resize=function(){var t2=this.gl,e2=this.canvas,i3=this.devicePixelRatio,r=this.position;e2.width=e2.clientWidth*i3,e2.height=e2.clientHeight*i3;var s2=t2.drawingBufferWidth,n=t2.drawingBufferHeight,a=s2/n;t2.viewport(0,0,s2,n);var o=Math.tan(Math.PI/180*22.5),h=[1,0,0,0,0,1,0,0,0,0,1,0,r.x,r.y,(a<1?1:a)*-r.z,1];this.uniforms.uProjectionMatrix={type:"mat4",value:[0.5/o,0,0,0,0,a/o*0.5,0,0,0,0,-(this.clip[1]+this.clip[0])/(this.clip[1]-this.clip[0]),-1,0,0,-2*this.clip[1]*(this.clip[0]/(this.clip[1]-this.clip[0])),0]},this.uniforms.uViewMatrix={type:"mat4",value:[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]},this.uniforms.uModelMatrix={type:"mat4",value:h}},i.prototype.toggle=function(t2){t2!==this.shouldRender&&(this.shouldRender=void 0!==t2?t2:!this.shouldRender,this.shouldRender&&this.render())},i.prototype.render=function(){var t2=this;this.gl.clear(16640),this.instances.forEach(function(e2){e2.render(t2.uniforms)}),this.onRender&&this.onRender(this),this.shouldRender&&requestAnimationFrame(function(){return t2.render()})},i.prototype.add=function(t2,i3){void 0===i3&&(i3={uniforms:{}}),void 0===i3.uniforms&&(i3.uniforms={}),Object.assign(i3.uniforms,JSON.parse(JSON.stringify(this.uniforms))),Object.assign(i3,{gl:this.gl,uniformMap:this.uniformMap});var r=new e(i3);return this.instances.set(t2,r),r},i.prototype.remove=function(t2){var e2=this.instances.get(t2);void 0!==e2&&(e2.destroy(),this.instances.delete(t2))},i.prototype.destroy=function(){var t2=this;this.instances.forEach(function(e2,i3){e2.destroy(),t2.instances.delete(i3)}),this.toggle(false)};var phenomenon_default=i;
+  var M="phi",R="theta",c="mapSamples",O="mapBrightness",N="baseColor",G="markerColor",s="glowColor",S="markers",P="diffuse",X="devicePixelRatio",f="dark",u="offset",m="scale",x="opacity",l="mapBaseBrightness",I={[M]:"A",[R]:"B",[c]:"l",[O]:"E",[N]:"R",[G]:"S",[s]:"y",[P]:"F",[f]:"G",[u]:"x",[m]:"C",[x]:"H",[l]:"I"};var{PI:i2,sin:d,cos:U}=Math;var C=(r)=>[].concat(...r.map((E)=>{let[_,o]=E.location;_=_*i2/180,o=o*i2/180-i2;let a=U(_);return[-a*U(o),d(_),a*d(o),E.size]}),[0,0,0,0]);var p=(r,E)=>{let _=(e2,t2,L)=>({type:e2,value:typeof E[t2]=="undefined"?L:E[t2]}),o=r.getContext("webgl")?"webgl":"experimental-webgl",a=new phenomenon_default({canvas:r,contextType:o,context:{alpha:true,stencil:false,antialias:true,depth:false,preserveDrawingBuffer:false,...E.context},settings:{[X]:E[X]||1,onSetup:(e2)=>{let t2=e2.RGB,L=e2.UNSIGNED_BYTE,n=e2.TEXTURE_2D,T=e2.createTexture();e2.bindTexture(n,T),e2.texImage2D(n,0,t2,1,1,0,t2,L,new Uint8Array([0,0,0,0]));let A=new Image();A.onload=()=>{e2.bindTexture(n,T),e2.texImage2D(n,0,t2,t2,L,A),e2.generateMipmap(n);let h=e2.getParameter(e2.CURRENT_PROGRAM),v=e2.getUniformLocation(h,"J");e2.texParameteri(n,e2.TEXTURE_MIN_FILTER,e2.NEAREST),e2.texParameteri(n,e2.TEXTURE_MAG_FILTER,e2.NEAREST),e2.uniform1i(v,0)},A.src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAACAAQAAAADMzoqnAAAAAXNSR0IArs4c6QAABA5JREFUeNrV179uHEUAx/Hf3JpbF+E2VASBsmVKTBcpKJs3SMEDcDwBiVJAAewYEBUivIHT0uUBIt0YCovKD0CRjUC4QfHYh8hYXu+P25vZ2Zm9c66gMd/GJ/tz82d3bk8GN4SrByYF2366FNTACIAkivVAAazQdnf3MvAlbNUQfOPAdQDvSAimMWhwy4I2g4SU+Kp04ISLpPBAKLxPyic3O/CCi+Y7rUJbiodcpDOFY7CgxCEXmdYD2EYK2s5lApOx5pEDDYCUwM1XdJUwBV11QQMg59kePSCaPAASQMEL2hwo6TJFgxpg+TgC2ymXPbuvc40awr3D1QCFfbH9kcoqAOkZozpQo0aqAGQRKCog/+tjkgbNFEtg2FffBvBGlSxHoAaAa1u6X4PBAwDiR8FFsrQgeUhfJTSALaB9jy5NCybJPn1SVFiWk7ywN+KzhH1aKAuydhGkbEF4lWohLXDXavlyFgHY7LBnLRdlAP6BS5Cc8RfVDXbkwN/oIvmY+6obbNeBP0JwTuMGu9gTzy1Q4RS/cWpfzszeYwd+CAFrtBW/Hur0gLbJGlD+/OjVwe/drfBxkbbg63dndEDfiEBlAd7ac0BPe1D6Jd8dfbLH+RI0OzseFB5s01/M+gMdAeluLOCAuaUA9Lezo/vSgXoCX9rtEiXnp7Q1W/CNyWcd8DXoS6jH/YZ5vAJEWY2dXFQe2TUgaFaNejCzJ98g6HnlVrsE58sDcYqg+9XY75fPqdoh/kRQWiXKg8MWlJQxUFMPjqnyujhFBE7UxIMjyszk0QwQlFsezImsyvUYYYVED2pk6m0Tg8T04Fwjk2kdAwSACqlM6gRRt3vQYAFGX0Ah7Ebx1H+MDRI5ui0QldH4j7FGcm90XdxD2Jg1AOEAVAKhEFXSn4cKUELurIAKwJ3MArypPscQaLhJFICJ0ohjDySAdH8AhDtCiTuMycH8CXzhH9jUACAO5uMhoAwA5i+T6WAKmmAqnLy80wxHqIPFYpqCwxGaYLt4Dyievg5kEoVEUAhs6pqKgFtDQYOuaXypaWKQfIuwwoGSZgfLsu/XAtI8cGN+h7Cc1A5oLOMhwlIPXuhu48AIvsSBkvtV9wsJRKCyYLfq5lTrQMFd1a262oqBck9K1V0YjQg0iEYYgpS1A9GlXQV5cykwm4A7BzVsxQqo7E+zCegO7Ma7yKgsuOcfKbMBwLC8wvVNYDsANYalEpOAa6zpWjTeMKGwEwC1CiQewJc5EKfgy7GmRAZA4vUVGwE2dPM/g0xuAInE/yG5aZ8ISxWGfYigUVbdyBElTHh2uCwGdfCkOLGgQVBh3Ewp+/QK4CDlR5Ws/Zf7yhCf8pH7vinWAvoVCQ6zz0NX5V/6GkAVV+2/5qsJ/gU8bsxpM8IeAQAAAABJRU5ErkJggg=="}}}});return a.add("",{vertex:"attribute vec3 aPosition;uniform mat4 uProjectionMatrix;uniform mat4 uModelMatrix;uniform mat4 uViewMatrix;void main(){gl_Position=uProjectionMatrix*uModelMatrix*uViewMatrix*vec4(aPosition,1.);}",fragment:"precision highp float;uniform vec2 t,x;uniform vec3 R,S,y;uniform vec4 z[64];uniform float A,B,l,C,D,E,F,G,H,I;uniform sampler2D J;float K=1./l;mat3 L(float a,float b){float c=cos(a),d=cos(b),e=sin(a),f=sin(b);return mat3(d,f*e,-f*c,0.,c,e,f,d*-e,d*c);}vec3 w(vec3 c,out float v){c=c.xzy;float p=max(2.,floor(log2(2.236068*l*3.141593*(1.-c.z*c.z))*.72021));vec2 g=floor(pow(1.618034,p)/2.236068*vec2(1.,1.618034)+.5),d=fract((g+1.)*.618034)*6.283185-3.883222,e=-2.*g,f=vec2(atan(c.y,c.x),c.z-1.),q=floor(vec2(e.y*f.x-d.y*(f.y*l+1.),-e.x*f.x+d.x*(f.y*l+1.))/(d.x*e.y-e.x*d.y));float n=3.141593;vec3 r;for(float h=0.;h<4.;h+=1.){vec2 s=vec2(mod(h,2.),floor(h*.5));float j=dot(g,q+s);if(j>l)continue;float a=j,b=0.;if(a>=524288.)a-=524288.,b+=.803894;if(a>=262144.)a-=262144.,b+=.901947;if(a>=131072.)a-=131072.,b+=.950973;if(a>=65536.)a-=65536.,b+=.475487;if(a>=32768.)a-=32768.,b+=.737743;if(a>=16384.)a-=16384.,b+=.868872;if(a>=8192.)a-=8192.,b+=.934436;if(a>=4096.)a-=4096.,b+=.467218;if(a>=2048.)a-=2048.,b+=.733609;if(a>=1024.)a-=1024.,b+=.866804;if(a>=512.)a-=512.,b+=.433402;if(a>=256.)a-=256.,b+=.216701;if(a>=128.)a-=128.,b+=.108351;if(a>=64.)a-=64.,b+=.554175;if(a>=32.)a-=32.,b+=.777088;if(a>=16.)a-=16.,b+=.888544;if(a>=8.)a-=8.,b+=.944272;if(a>=4.)a-=4.,b+=.472136;if(a>=2.)a-=2.,b+=.236068;if(a>=1.)a-=1.,b+=.618034;float k=fract(b)*6.283185,i=1.-2.*j*K,m=sqrt(1.-i*i);vec3 o=vec3(cos(k)*m,sin(k)*m,i);float u=length(c-o);if(u<n)n=u,r=o;}v=n;return r.xzy;}void main(){vec2 b=(gl_FragCoord.xy/t*2.-1.)/C-x*vec2(1.,-1.)/t;b.x*=t.x/t.y;float c=dot(b,b);vec4 M=vec4(0.);float m=0.;if(c<=.64){for(int d=0;d<2;d++){vec4 e=vec4(0.);float a;vec3 u=vec3(0.,0.,1.),f=normalize(vec3(b,sqrt(.64-c)));f.z*=d>0?-1.:1.,u.z*=d>0?-1.:1.;vec3 g=f*L(B,A),h=w(g,a);float n=asin(h.y),i=acos(-h.x/cos(n));i=h.z<0.?-i:i;float N=max(texture2D(J,vec2(i*.5/3.141593,-(n/3.141593+.5))).x,I),O=smoothstep(8e-3,0.,a),j=dot(f,u),v=pow(j,F)*E,o=N*O*v,T=mix((1.-o)*pow(j,.4),o,G)+.1;e+=vec4(R*T,1.);int U=int(D);float p=0.;for(int k=0;k<64;k++){if(k>=U)break;vec4 q=z[k];vec3 r=q.xyz,P=r-g;float s=q.w;if(dot(P,P)>s*s*4.)continue;vec3 V=w(r,a);a=length(V-g),a<s?p+=smoothstep(s*.5,0.,a):0.;}p=min(1.,p*v),e.xyz=mix(e.xyz,S,p),e.xyz+=pow(1.-j,4.)*y,M+=e*(1.+(d>0?-H:H))/2.;}m=pow(dot(normalize(vec3(-b,sqrt(1.-c))),vec3(0.,0.,1.)),4.)*smoothstep(0.,1.,.2/(c-.64));}else{float Q=sqrt(.2/(c-.64));m=smoothstep(.5,1.,Q/(Q+1.));}gl_FragColor=M+vec4(m*y,m);}",uniforms:{t:{type:"vec2",value:[E.width,E.height]},A:_("float",M),B:_("float",R),l:_("float",c),E:_("float",O),I:_("float",l),R:_("vec3",N),S:_("vec3",G),F:_("float",P),y:_("vec3",s),G:_("float",f),z:{type:"vec4",value:C(E[S])},D:{type:"float",value:E[S].length},x:_("vec2",u,[0,0]),C:_("float",m,1),H:_("float",x,1)},mode:4,geometry:{vertices:[{x:-100,y:100,z:0},{x:-100,y:-100,z:0},{x:100,y:100,z:0},{x:100,y:-100,z:0},{x:-100,y:-100,z:0},{x:100,y:100,z:0}]},onRender:({uniforms:e2})=>{let t2={};if(E.onRender){t2=E.onRender(t2)||t2;for(let L in I)t2[L]!==void 0&&(e2[I[L]].value=t2[L]);t2[S]!==void 0&&(e2["z"].value=C(t2[S]),e2["D"].value=t2[S].length),t2.width&&t2.height&&(e2["t"].value=[t2.width,t2.height])}}});return a};
+  window.createGlobe = p;
+})();
+</script>
+
+<script>
+(function() {
+  const canvas = document.getElementById('globe');
+  const scene  = document.getElementById('scene');
+
+  const markers = [
+    { location: [37.7595, -122.4367], size: 0.03 },
+    { location: [40.7128, -74.006],   size: 0.04 },
+    { location: [35.6762, 139.6503],  size: 0.03 },
+    { location: [51.5074, -0.1278],   size: 0.03 },
+    { location: [-33.8688, 151.2093], size: 0.03 },
+    { location: [48.8566, 2.3522],    size: 0.03 },
+    { location: [19.0760, 72.8777],   size: 0.03 },
+  ];
+
+  let phi = 0, userPhi = 0, isDragging = false, lastX = 0;
+  let globe;
+
+  function init() {
+    if (globe) globe.destroy();
+    const size = Math.min(scene.offsetWidth, scene.offsetHeight);
+    const dpr  = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width  = size * dpr;
+    canvas.height = size * dpr;
+    canvas.style.width  = size + 'px';
+    canvas.style.height = size + 'px';
+    globe = createGlobe(canvas, {
+      devicePixelRatio: dpr,
+      width: size * dpr, height: size * dpr,
+      phi: 0, theta: 0.3,
+      dark: 1, diffuse: 1.1, scale: 1,
+      mapSamples: 14000, mapBrightness: 5, mapBaseBrightness: 0,
+      baseColor:   [0.06, 0.04, 0.06],
+      markerColor: [1.0, 0.18, 0.18],
+      glowColor:   [0.5, 0.1, 0.1],
+      markers,
+      onRender(state) {
+        if (!isDragging) phi += 0.003;
+        state.phi = phi + userPhi;
+      },
+    });
+  }
+
+  init();
+
+  canvas.addEventListener('mousedown', e => { isDragging = true; lastX = e.clientX; });
+  window.addEventListener('mouseup',   () => { isDragging = false; });
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    userPhi += (e.clientX - lastX) * 0.005;
+    lastX = e.clientX;
+  });
+  canvas.addEventListener('touchstart', e => { isDragging = true; lastX = e.touches[0].clientX; }, { passive: true });
+  window.addEventListener('touchend',   () => { isDragging = false; });
+  window.addEventListener('touchmove',  e => {
+    if (!isDragging) return;
+    userPhi += (e.touches[0].clientX - lastX) * 0.005;
+    lastX = e.touches[0].clientX;
+  }, { passive: true });
+
+  window.addEventListener('resize', init);
+})();
+</script>
+
 </body>
 </html>

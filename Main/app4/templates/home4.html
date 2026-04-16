@@ -344,6 +344,164 @@
       }
       .panel-btn.alt-amber .btn-icon { color: var(--amber); }
 
+      /* ── PREDICT BUTTON (Execute Predict) ── */
+      .predict-group button[type="submit"] {
+        background: rgba(255,68,68,0.1);
+        border-color: rgba(255,68,68,0.35);
+      }
+      .predict-group button[type="submit"]:hover {
+        background: #e03030 !important;
+        border-color: #e03030 !important;
+        color: #ffffff !important;
+        transform: translateY(-3px) translateZ(0) !important;
+        box-shadow: 
+          0 6px 12px rgba(0,0,0,0.4),
+          0 8px 16px rgba(224,48,48,0.4),
+          0 0 25px rgba(224,48,48,0.6),
+          inset 0 1px 0 rgba(255,255,255,0.15) !important;
+        filter: brightness(1.1);
+      }
+      .predict-group button[type="submit"]:active {
+        background: #c02020 !important;
+        border-color: #c02020 !important;
+        color: #ffffff !important;
+        transform: translateY(-1px) scale(0.98) translateZ(0) !important;
+        box-shadow: 
+          0 2px 4px rgba(0,0,0,0.5),
+          inset 0 3px 8px rgba(224,48,48,0.4),
+          0 0 20px rgba(224,48,48,0.8) !important;
+        filter: brightness(1.2);
+      }
+
+      /* ── CHARTS / EDA BUTTON ── */
+      .btn-group form:has(button.alt-amber) {
+        width: 100%;
+      }
+      .btn-group button.alt-amber {
+        background: #003d7a !important;
+        border-color: #003d7a !important;
+        color: #ffffff !important;
+        position: relative;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      /* Tiny white loader spinner */
+      .btn-loader {
+        width: 10px;
+        height: 10px;
+        border: 2px solid rgba(255,255,255,0.3);
+        border-top-color: #ffffff;
+        border-radius: 50%;
+        animation: spin-loader 0.8s linear infinite;
+        display: none;
+      }
+      .btn-loader.active {
+        display: block;
+      }
+      @keyframes spin-loader {
+        to { transform: rotate(360deg); }
+      }
+      .btn-group button.alt-amber::before {
+        background: none !important;
+        box-shadow: none !important;
+        background-image: 
+          radial-gradient(circle, transparent 2px, #000000 2px) !important;
+        background-size: 6px 6px !important;
+        border-radius: 0 !important;
+        pointer-events: none !important;
+        opacity: 0.5 !important;
+      }
+      .btn-group button.alt-amber .btn-icon {
+        color: #ffffff !important;
+      }
+      .btn-group button.alt-amber:hover {
+        background: #004a99 !important;
+        border-color: #0055bb !important;
+        color: #ffffff !important;
+        transform: translateY(-3px) translateZ(0) !important;
+        box-shadow: 
+          0 6px 12px rgba(0,0,0,0.4),
+          0 8px 16px rgba(0,93,187,0.4),
+          0 0 25px rgba(0,93,187,0.4),
+          inset 0 1px 0 rgba(255,255,255,0.15) !important;
+      }
+      .btn-group button.alt-amber:active {
+        background: #002d5f !important;
+        border-color: #001a3d !important;
+        transform: translateY(-1px) scale(0.98) translateZ(0) !important;
+        box-shadow: 
+          0 2px 4px rgba(0,0,0,0.5),
+          inset 0 3px 8px rgba(0,93,187,0.4),
+          0 0 15px rgba(0,93,187,0.6) !important;
+      }
+
+      /* ── CLUSTER & REGION BUTTONS (Parallelogram) ── */
+      .btn-pair-group .panel-btn.btn-pair-compact {
+        background: #ffffff !important;
+        border-color: #ffffff !important;
+        color: #000000 !important;
+        clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+        font-weight: 600;
+      }
+      .btn-pair-group .panel-btn.btn-pair-compact::before {
+        display: none;
+      }
+      .btn-pair-group .panel-btn.btn-pair-compact .btn-icon {
+        color: #000000 !important;
+      }
+      /* Override green styling for Region button */
+      .btn-pair-group .panel-btn.alt-green.btn-pair-compact {
+        background: #ffffff !important;
+        border-color: #ffffff !important;
+        color: #000000 !important;
+      }
+      .btn-pair-group .panel-btn.alt-green.btn-pair-compact:hover {
+        background: #ffffff !important;
+        border-color: #ffffff !important;
+        color: #000000 !important;
+        transform: translateY(-2px) translateZ(0) !important;
+        box-shadow: 
+          0 6px 12px rgba(0,0,0,0.4),
+          0 8px 16px rgba(255,255,255,0.4),
+          0 0 20px rgba(255,255,255,0.3),
+          inset 0 1px 0 rgba(255,255,255,0.3) !important;
+      }
+      .btn-pair-group .panel-btn.alt-green.btn-pair-compact:active {
+        background: #f0f0f0 !important;
+        border-color: #f0f0f0 !important;
+        color: #000000 !important;
+        transform: translateY(-1px) scale(0.98) translateZ(0) !important;
+        box-shadow: 
+          0 2px 4px rgba(0,0,0,0.5),
+          inset 0 3px 8px rgba(0,0,0,0.1),
+          0 0 10px rgba(255,255,255,0.4) !important;
+        filter: brightness(0.95);
+      }
+      .btn-pair-group .panel-btn.btn-pair-compact:hover {
+        background: #ffffff !important;
+        border-color: #ffffff !important;
+        color: #000000 !important;
+        transform: translateY(-2px) translateZ(0) !important;
+        box-shadow: 
+          0 6px 12px rgba(0,0,0,0.4),
+          0 8px 16px rgba(255,255,255,0.4),
+          0 0 20px rgba(255,255,255,0.3),
+          inset 0 1px 0 rgba(255,255,255,0.3) !important;
+      }
+      .btn-pair-group .panel-btn.btn-pair-compact:active {
+        background: #f0f0f0 !important;
+        border-color: #f0f0f0 !important;
+        color: #000000 !important;
+        transform: translateY(-1px) scale(0.98) translateZ(0) !important;
+        box-shadow: 
+          0 2px 4px rgba(0,0,0,0.5),
+          inset 0 3px 8px rgba(0,0,0,0.1),
+          0 0 10px rgba(255,255,255,0.4) !important;
+        filter: brightness(0.95);
+      }
+
       /* Return to Map Button */
       #returnMapBtn:hover {
         background: #f0f0f0 !important;
@@ -390,7 +548,24 @@
 
       /* Side-by-side compact buttons */
       .btn-pair-group {
-        display: flex; gap: 1px; margin-bottom: 8px; flex-shrink: 0; padding: 0 14px;
+        display: flex; gap: 0; margin-bottom: 8px; flex-shrink: 0; padding: 0 14px;
+      }
+      /* Active state for Cluster/Region buttons */
+      .btn-pair-group .panel-btn.btn-pair-compact.active {
+        background: #e03030 !important;
+        border-color: #e03030 !important;
+        color: #ffffff !important;
+      }
+      .btn-pair-group .panel-btn.btn-pair-compact.active .btn-icon {
+        color: #ffffff !important;
+      }
+      .btn-pair-group .panel-btn.btn-pair-compact.active:hover {
+        background: #ff4444 !important;
+        border-color: #ff4444 !important;
+      }
+      .btn-pair-group .panel-btn.btn-pair-compact.active:active {
+        background: #cc2020 !important;
+        border-color: #cc2020 !important;
       }
       .btn-pair-group form { flex: 1; }
       .btn-pair-compact {
@@ -583,7 +758,7 @@
 
       /* ── MAIN MAP AREA ── */
       .main-area {
-        flex: 1; position: relative; overflow: hidden;
+        flex: 1; position: relative; overflow: visible;
         background: linear-gradient(135deg, rgba(6,6,8,0.5) 0%, rgba(12,12,16,0.3) 100%);
       }
 
@@ -691,7 +866,7 @@
         position: absolute; z-index: 500;
         pointer-events: none;
       }
-      .map-hud.top-left { top: 40px; left: 12px; width: 280px; }
+      .map-hud.top-left { top: 40px; left: 12px; width: 252px; }
       .map-hud.top-right { top: 40px; right: 12px; }
       .map-hud.map-selector { top: 40px; right: 130px; }
       .map-hud.bottom-left { bottom: 20px; left: 12px; }
@@ -983,9 +1158,12 @@
       .charts-wrapper {
         max-width: 100%;
         padding: 14px;
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 14px;
+      }
+      .charts-wrapper .map-full-width {
+        grid-column: 1 / -1;
       }
 
       .chart-card {
@@ -1011,10 +1189,11 @@
 
       .chart-card h3 {
         margin: 0 0 14px 0;
-        font-family: var(--font-hud); font-size: 7px;
+        font-family: var(--font-hud); font-size: 16px;
         text-transform: uppercase; letter-spacing: 4px;
-        color: var(--text-muted);
+        color: #ffffff;
         display: flex; align-items: center; gap: 8px;
+        font-weight: 600;
       }
       .chart-card h3::before {
         content: ''; width: 20px; height: 1px;
@@ -1268,12 +1447,12 @@
         <!-- Visualize Side-by-side Compact -->
         <div class="btn-pair-group">
           <form method="post" action="/app4/show-clusters">
-            <button class="panel-btn btn-pair-compact" type="submit">
+            <button class="panel-btn btn-pair-compact" type="submit" id="clusterToggleBtn">
               <span class="btn-icon">▦</span><span>Cluster</span>
             </button>
           </form>
           <form method="post" action="/app4/show-regions">
-            <button class="panel-btn alt-green btn-pair-compact" type="submit" style="border-left: 1px solid rgba(61,186,120,0.3);">
+            <button class="panel-btn alt-green btn-pair-compact" type="submit" id="regionToggleBtn" style="border-left: none;">
               <span class="btn-icon">◆</span><span>Region</span>
             </button>
           </form>
@@ -1304,7 +1483,8 @@
         <div class="btn-group">
           <form method="post" action="/app4/charts">
             <button class="panel-btn alt-amber" type="submit">
-              <span class="btn-icon">▦</span><span>Charts / EDA</span>
+              <span class="btn-icon"></span><span>Charts / EDA</span>
+              <span class="btn-loader"></span>
             </button>
           </form>
         </div>
@@ -1491,7 +1671,7 @@
         <!-- Charts Loader -->
         <div id="chartsLoader">
           <div class="loader-container">
-            <div class="loader-title">▤ GENERATING CHARTS</div>
+            <div class="loader-title">GENERATING CHARTS</div>
             <div class="progress-bar-wrapper">
               <div class="progress-bar-fill" id="progressFill"></div>
             </div>
@@ -1639,6 +1819,25 @@
           document.getElementById('hudClusterCount').innerHTML = '<b>--</b> regions detected';
           document.getElementById('hudPointCount').innerHTML = '<b>--</b> data points';
           document.getElementById('hudMode').innerHTML = '<b style="color:var(--cyan)">IDLE</b>';
+          // Reset Cluster button to default state
+          const clusterBtn = document.getElementById('clusterToggleBtn');
+          if (clusterBtn) {
+            clusterBtn.classList.remove('active');
+          }
+        });
+      }
+
+      // Cluster button toggle handler
+      const clusterToggleBtn = document.getElementById('clusterToggleBtn');
+      if (clusterToggleBtn) {
+        clusterToggleBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          clusterToggleBtn.classList.add('active');
+          // Remove active state from region button
+          const regionBtn = document.getElementById('regionToggleBtn');
+          if (regionBtn) regionBtn.classList.remove('active');
+          // Submit the form
+          clusterToggleBtn.closest('form').submit();
         });
       }
 
@@ -1654,7 +1853,50 @@
           });
           // Clear HUD info
           document.getElementById('hudMode').innerHTML = '<b style="color:var(--cyan)">IDLE</b>';
+          // Reset Region button to default state
+          const regionBtn = document.getElementById('regionToggleBtn');
+          if (regionBtn) {
+            regionBtn.classList.remove('active');
+          }
         });
+      }
+
+      // Region button toggle handler
+      const regionToggleBtn = document.getElementById('regionToggleBtn');
+      if (regionToggleBtn) {
+        regionToggleBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          regionToggleBtn.classList.add('active');
+          // Remove active state from cluster button
+          const clusterBtn = document.getElementById('clusterToggleBtn');
+          if (clusterBtn) clusterBtn.classList.remove('active');
+          // Submit the form
+          regionToggleBtn.closest('form').submit();
+        });
+      }
+
+      // Reset button states when page loads
+      window.addEventListener('load', () => {
+        const clusterBtn = document.getElementById('clusterToggleBtn');
+        const regionBtn = document.getElementById('regionToggleBtn');
+        if (clusterBtn && !showClusters) clusterBtn.classList.remove('active');
+        if (regionBtn && !showRegions) regionBtn.classList.remove('active');
+        if (clusterBtn && showClusters) clusterBtn.classList.add('active');
+        if (regionBtn && showRegions) regionBtn.classList.add('active');
+      });
+
+      // Charts/EDA button loader handler
+      const chartsForm = document.querySelector('form[action="/app4/charts"]');
+      if (chartsForm) {
+        const chartsBtn = chartsForm.querySelector('button.alt-amber');
+        if (chartsBtn) {
+          chartsBtn.addEventListener('click', () => {
+            const loader = chartsBtn.querySelector('.btn-loader');
+            if (loader) {
+              loader.classList.add('active');
+            }
+          });
+        }
       }
 
       // ── Satellite Data Modal ──
@@ -2127,7 +2369,11 @@
 
       // Color palette
       const palette = [
-        '#ff4444', '#ffffff', '#38c8d8'
+        'rgba(255, 255, 255, 0.73)',  // Transparent White
+        '#ff4444',                 // Red
+        '#0080ff',                 // Electric Blue
+        '#ffaa00',                 // Electric Orange
+        '#ff0080'                  // Hot Pink
       ];
 
       // ── Show Regions ──
@@ -2135,7 +2381,7 @@
         regions.forEach((region, idx) => {
           const color = palette[idx % palette.length];
           L.polygon(region.bounds, {
-            color, fillColor: color, fillOpacity: 0.15,
+            color, fillColor: color, fillOpacity: 0.08,
             weight: 1.5, dashArray: '4 4'
           })
           .bindPopup(
@@ -2172,12 +2418,12 @@
           clusterGroups[cId].forEach((point, pIdx) => {
             setTimeout(() => {
               const isNoise = point.cluster === -1;
-              const color = isNoise ? 'rgba(255,255,255,0.2)' : palette[Math.abs(point.cluster) % palette.length];
+              const color = isNoise ? 'rgba(200,200,200,0.3)' : palette[Math.abs(point.cluster) % palette.length];
               L.circleMarker([point.lat, point.lon], {
-                radius: isNoise ? 2 : 4,
-                color: isNoise ? 'rgba(255,255,255,0.15)' : color,
-                fillColor: color, fillOpacity: isNoise ? 0.15 : 0.85,
-                weight: isNoise ? 0.5 : 1.2,
+                radius: isNoise ? 1.5 : 2.5,
+                color: isNoise ? 'rgba(200,200,200,0.2)' : color,
+                fillColor: color, fillOpacity: isNoise ? 0.2 : 0.4,
+                weight: 0.5,
               })
               .bindPopup(
                 `<div style="font-size:10px;font-family:'Share Tech Mono',monospace;line-height:1.8">` +
@@ -2263,11 +2509,12 @@
         const cw = document.getElementById('charts-wrapper');
         cw.innerHTML = '';
 
-        // Chart.js defaults — sci-fi palette
-        Chart.defaults.color = '#ff4444';
-        Chart.defaults.font.family = "'Share Tech Mono', monospace";
-        Chart.defaults.font.size = 10;
-        Chart.defaults.borderColor = 'rgba(255,68,68,0.15)';
+        // Chart.js defaults — white text & red accents
+        Chart.defaults.color = '#ffffff';
+        Chart.defaults.font.family = "'Segoe UI', Arial, sans-serif";
+        Chart.defaults.font.size = 12;
+        Chart.defaults.font.weight = 'normal';
+        Chart.defaults.borderColor = 'rgba(255,255,255,0.15)';
 
         function mkCard(title, canvasId, height) {
           const card = document.createElement('div');
@@ -2277,24 +2524,10 @@
           return document.getElementById(canvasId).getContext('2d');
         }
 
-        const gridColor = 'rgba(255,68,68,0.12)';
-        const gridColorDim = 'rgba(255,68,68,0.06)';
-        const tickColor = '#ff4444';
-        const sciFiPalette = ['#ff4444', '#ffffff', '#38c8d8', '#ff6699', '#ff9999', '#ffcccc', '#e84d4d', '#ff5555', '#ff7777', '#ffaaaa'];
-
-        // Geo cluster iframes
-        if (chartsData.geo_clusters_url) {
-          const card = document.createElement('div');
-          card.className = 'chart-card';
-          card.innerHTML = `<h3>Hazard Regions — DBSCAN (All Events)</h3><iframe src="${chartsData.geo_clusters_url}" class="plotly-iframe"></iframe>`;
-          cw.appendChild(card);
-        }
-        if (chartsData.geo_clusters_clean_url) {
-          const card = document.createElement('div');
-          card.className = 'chart-card';
-          card.innerHTML = `<h3>Clustered Hazard Regions — Noise Removed</h3><iframe src="${chartsData.geo_clusters_clean_url}" class="plotly-iframe"></iframe>`;
-          cw.appendChild(card);
-        }
+        const gridColor = 'rgba(255,255,255,0.08)';
+        const gridColorDim = 'rgba(255,255,255,0.04)';
+        const tickColor = '#ffffff';
+        const sciFiPalette = ['#ffffff', '#ff4444', '#ffffff', '#ff4444', '#ffffff', '#ff4444', '#ffffff', '#ff4444', '#ffffff', '#ff4444'];
 
         // Event Distribution
         if (chartsData.event_dist) {
@@ -2304,13 +2537,12 @@
             data: {
               labels: chartsData.event_dist.labels,
               datasets: [{ label: 'Event Count', data: chartsData.event_dist.data,
-                backgroundColor: sciFiPalette.slice(0, chartsData.event_dist.labels.length),
-                borderColor: 'rgba(255,68,68,0.3)', borderWidth: 1, borderRadius: 0,
+                backgroundColor: 'rgba(255,255,255,0.5)', borderColor: 'rgba(255,255,255,0.8)', borderWidth: 2, borderRadius: 0,
                 borderSkipped: false }]
             },
             options: { responsive:true, maintainAspectRatio:false,
               plugins:{ legend:{display:false} },
-              scales:{ y:{beginAtZero:true, grid:{color:gridColor, drawBorder:true}, ticks:{color:tickColor, font:{weight:'bold'}}}, x:{grid:{display:false, drawBorder:true}, ticks:{color:tickColor}} }
+              scales:{ y:{beginAtZero:true, grid:{color:gridColor, drawBorder:true}, ticks:{color:tickColor, font:{size:12}}}, x:{grid:{display:false, drawBorder:true}, ticks:{color:tickColor, font:{size:12}}} }
             }
           });
         }
@@ -2323,13 +2555,13 @@
             data: {
               labels: chartsData.wildfire.labels,
               datasets: [{ label: 'Avg Magnitude', data: chartsData.wildfire.data,
-                borderColor: '#ff4444', borderWidth: 2, backgroundColor: 'rgba(255,68,68,0.12)',
-                fill:true, tension:0.5, pointRadius:5, pointBackgroundColor:'#ff4444',
-                pointBorderColor:'#060608', pointBorderWidth:2, pointStyle:'circle' }]
+                borderColor: 'rgba(255,68,68,0.7)', borderWidth: 2, backgroundColor: 'rgba(255,68,68,0.15)',
+                fill:true, tension:0.5, pointRadius:5, pointBackgroundColor:'rgba(255,68,68,0.7)',
+                pointBorderColor:'rgba(255,68,68,0.9)', pointBorderWidth:2, pointStyle:'circle' }]
             },
             options: { responsive:true, maintainAspectRatio:false,
               plugins:{ legend:{display:false} },
-              scales:{ y:{grid:{color:gridColor}, ticks:{color:tickColor, font:{weight:'bold'}}}, x:{grid:{display:false}, ticks:{color:tickColor}} }
+              scales:{ y:{grid:{color:gridColor}, ticks:{color:tickColor, font:{size:12}}}, x:{grid:{display:false}, ticks:{color:tickColor, font:{size:12}}} }
             }
           });
         }
@@ -2342,12 +2574,12 @@
             data: {
               labels: chartsData.volcano.labels,
               datasets: [{ label: 'Event Count', data: chartsData.volcano.data,
-                backgroundColor: '#ffffff', borderColor:'#ff4444', borderWidth:1, borderRadius:0,
+                backgroundColor: 'rgba(255,68,68,0.5)', borderColor:'rgba(255,68,68,0.8)', borderWidth:2, borderRadius:0,
                 borderSkipped: false }]
             },
             options: { responsive:true, maintainAspectRatio:false,
               plugins:{ legend:{display:false} },
-              scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{weight:'bold'}}}, x:{grid:{display:false}, ticks:{color:tickColor}} }
+              scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{size:12}}}, x:{grid:{display:false}, ticks:{color:tickColor, font:{size:12}}} }
             }
           });
         }
@@ -2360,12 +2592,12 @@
             data: {
               labels: chartsData.cluster_summary.labels,
               datasets: [{ label: 'Event Count', data: chartsData.cluster_summary.data,
-                backgroundColor: '#38c8d8', borderColor:'#ff4444', borderWidth:1, borderRadius:0,
+                backgroundColor: 'rgba(0,255,255,0.5)', borderColor:'rgba(0,255,255,0.8)', borderWidth:2, borderRadius:0,
                 borderSkipped: false }]
             },
             options: { indexAxis:'y', responsive:true, maintainAspectRatio:false,
               plugins:{ legend:{display:false} },
-              scales:{ x:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{weight:'bold'}}}, y:{grid:{display:false}, ticks:{color:tickColor, font:{size:9}}} }
+              scales:{ x:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{size:12}}}, y:{grid:{display:false}, ticks:{color:tickColor, font:{size:11}}} }
             }
           });
         }
@@ -2378,11 +2610,11 @@
             data: {
               labels: chartsData.events_by_type.labels,
               datasets: [{ data: chartsData.events_by_type.data,
-                backgroundColor: sciFiPalette.slice(0, chartsData.events_by_type.labels.length),
-                borderColor:'#060608', borderWidth:2 }]
+                backgroundColor: ['#ff4444', '#ffffff', '#0080ff', '#00ffff', '#ff4444', '#ffffff', '#0080ff', '#00ffff'],
+                borderColor:'#1a1a1a', borderWidth:2 }]
             },
             options: { responsive:true, maintainAspectRatio:false,
-              plugins:{ legend:{ position:'right', labels:{color:tickColor, padding:14, font:{size:9, weight:'bold'}} } }
+              plugins:{ legend:{ position:'right', labels:{color:tickColor, padding:14, font:{size:11}} } }
             }
           });
         }
@@ -2395,13 +2627,13 @@
             data: {
               labels: chartsData.events_per_year.labels,
               datasets: [{ label: 'Event Count', data: chartsData.events_per_year.data,
-                borderColor: '#38c8d8', borderWidth: 2, backgroundColor: 'rgba(56,200,216,0.12)',
-                fill:true, tension:0.5, pointRadius:5, pointBackgroundColor:'#38c8d8',
-                pointBorderColor:'#060608', pointBorderWidth:2 }]
+                borderColor: '#ffffff', borderWidth: 3, backgroundColor: 'rgba(255,255,255,0.04)',
+                fill:true, tension:0.5, pointRadius:6, pointBackgroundColor:'#ffffff',
+                pointBorderColor:'#ffffff', pointBorderWidth:2 }]
             },
             options: { responsive:true, maintainAspectRatio:false,
               plugins:{ legend:{display:false} },
-              scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{weight:'bold'}}}, x:{grid:{display:false}, ticks:{color:tickColor}} }
+              scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{size:12}}}, x:{grid:{display:false}, ticks:{color:tickColor, font:{size:12}}} }
             }
           });
         }
@@ -2416,14 +2648,28 @@
             data: {
               labels: clusters.map(c => `R-${c}`),
               datasets: [{ label: 'Avg Magnitude', data: means,
-                backgroundColor: '#ff9999', borderColor:'#ff4444', borderWidth:1, borderRadius:0,
+                backgroundColor: 'rgba(255,255,255,0.6)', borderColor:'rgba(255,255,255,0.9)', borderWidth:2, borderRadius:0,
                 borderSkipped: false }]
             },
             options: { responsive:true, maintainAspectRatio:false,
               plugins:{ legend:{display:false} },
-              scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{weight:'bold'}}}, x:{grid:{display:false}, ticks:{color:tickColor}} }
+              scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{size:12}}}, x:{grid:{display:false}, ticks:{color:tickColor, font:{size:12}}} }
             }
           });
+        }
+
+        // Geo cluster iframes at bottom
+        if (chartsData.geo_clusters_url) {
+          const card = document.createElement('div');
+          card.className = 'chart-card map-full-width';
+          card.innerHTML = `<h3>Hazard Regions — DBSCAN (All Events)</h3><iframe src="${chartsData.geo_clusters_url}" class="plotly-iframe"></iframe>`;
+          cw.appendChild(card);
+        }
+        if (chartsData.geo_clusters_clean_url) {
+          const card = document.createElement('div');
+          card.className = 'chart-card map-full-width';
+          card.innerHTML = `<h3>Clustered Hazard Regions — Noise Removed</h3><iframe src="${chartsData.geo_clusters_clean_url}" class="plotly-iframe"></iframe>`;
+          cw.appendChild(card);
         }
         
         // Complete loading animation
