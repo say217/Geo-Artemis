@@ -34,3 +34,9 @@ Thumbs.db
 *.log
 test/
 Clustering_Events/
+
+# Large data files (exceed GitHub limits)
+USGS_DATA/
+USGS_DATA/earthquakes_5_years.json
+Data_Source/*.csv
+Data_Source/*.json
