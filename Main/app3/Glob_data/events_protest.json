@@ -1,0 +1,58 @@
+{
+  "saved_at": "2026-04-20T21:37:51.567352Z",
+  "data": {
+    "type": "protest",
+    "events": [
+      {
+        "id": "pro-paris",
+        "type": "protest",
+        "lat": 48.85,
+        "lng": 2.35,
+        "title": "Civil Unrest: Paris",
+        "date": "2026-04-20T21:37:42.000210Z"
+      },
+      {
+        "id": "pro-delhi",
+        "type": "protest",
+        "lat": 28.61,
+        "lng": 77.2,
+        "title": "Farmers Protest: New Delhi",
+        "date": "2026-04-20T21:37:42.000210Z"
+      },
+      {
+        "id": "pro-london",
+        "type": "protest",
+        "lat": 51.5,
+        "lng": -0.12,
+        "title": "Climate March: London",
+        "date": "2026-04-20T21:37:42.000210Z"
+      },
+      {
+        "id": "pro-dhaka",
+        "type": "protest",
+        "lat": 23.81,
+        "lng": 90.41,
+        "title": "Student Protests: Dhaka",
+        "date": "2026-04-20T21:37:42.000210Z"
+      },
+      {
+        "id": "pro-tbilisi",
+        "type": "protest",
+        "lat": 41.69,
+        "lng": 44.83,
+        "title": "Pro-EU March: Tbilisi",
+        "date": "2026-04-20T21:37:42.000210Z"
+      },
+      {
+        "id": "pro-belgrade",
+        "type": "protest",
+        "lat": 44.8,
+        "lng": 20.47,
+        "title": "Anti-Govt Protests: Belgrade",
+        "date": "2026-04-20T21:37:42.000210Z"
+      }
+    ],
+    "count": 6,
+    "fetched_at": "2026-04-20T21:37:51.567352Z"
+  }
+}

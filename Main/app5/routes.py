@@ -9,25 +9,43 @@ from fastapi.responses import RedirectResponse, JSONResponse
 import requests
 from fastapi.templating import Jinja2Templates
 
-from ..background_tasks import get_fetcher
 
 router = APIRouter()
 
-templates = Jinja2Templates(directory=str(Path(__file__).resolve().parent / "templates"))
-NEWS_DATA_DIR = Path(__file__).resolve().parent / "NEWS_DATA"
+templates = Jinja2Templates(
+    directory=str(Path(__file__).resolve().parent / "templates")
+)
+
+# ── News cache: read from app3's Glob_data folder (already fetched & saved) ──
+# app3 saves: all.json, wildfire.json, earthquake.json, war.json,
+#             protest.json, pollution.json
+# Each file structure: { "saved_at": "...", "data": { "news": [...], "filter": "..." } }
+GLOB_DATA_DIR = Path(__file__).resolve().parent.parent / "app3" / "Glob_data"
+
+# Category → filename mapping (mirrors app3/routes.py NEWS_FILES)
+NEWS_CACHE_FILES = {
+    "all":        GLOB_DATA_DIR / "all.json",
+    "wildfire":   GLOB_DATA_DIR / "wildfire.json",
+    "earthquake": GLOB_DATA_DIR / "earthquake.json",
+    "war":        GLOB_DATA_DIR / "war.json",
+    "protest":    GLOB_DATA_DIR / "protest.json",
+    "pollution":  GLOB_DATA_DIR / "pollution.json",
+}
+
+# ── YouTube video cache (unchanged) ──────────────────────────────────────────
 VIDEO_DATA_DIR = Path(__file__).resolve().parent / "vedio"
 VIDEO_DATA_DIR.mkdir(exist_ok=True)
 VIDEO_FILE_PATH = VIDEO_DATA_DIR / "videos.json"
 
 YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
-VIDEO_REFRESH_INTERVAL = 6 * 60 * 60
+VIDEO_REFRESH_INTERVAL = 6 * 60 * 60   # 6 hours
 MAX_VIDEOS = 8
+
 NEWS_CHANNEL_IDS = [
     "UCupvZG-5ko_eiXAupbDfxWw",  # CNN
     "UCBx6eQ1x7ly_d8_4DtrS5DA",  # NDTV
     "UC16niRr50-MSBwiO3YDb3RA",  # BBC News
     "UCNye-wNBqNL5ZzHSJj3l8Bg",  # Al Jazeera English
-    "UCN2Zl6Z9r0cXlC8_t8z0xvA",  # DW News
     "UCkQO3QsgTpNTsOw6ujimT5Q",  # Reuters
     "UC52X5wxOL_s5yw0dQk7NtgA",  # Associated Press
     "UCsytnH6PDjPz0pgfzbqpeDw",  # Sky News
@@ -35,14 +53,26 @@ NEWS_CHANNEL_IDS = [
     "UCIRYBXDze5krPDzAEOxFGVA",  # WION
 ]
 
+VIDEO_SEARCH_QUERY = (
+    "climate change OR natural disaster OR flood OR earthquake OR wildfire "
+    "OR cyclone OR heatwave OR tsunami OR war OR conflict OR pollution "
+    "OR environmental hazard OR international summit"
+)
 
-def _fetch_video_items(query: str, channel_id: Optional[str] = None, region_code: Optional[str] = None):
+
+# ── YouTube helpers (unchanged) ───────────────────────────────────────────────
+
+def _fetch_video_items(
+    query: str,
+    channel_id: Optional[str] = None,
+    region_code: Optional[str] = None,
+) -> list:
     params = [
         "part=snippet",
-        f"q={query}",
+        f"q={requests.utils.quote(query)}",
         "type=video",
-        "videoDuration=long",
-        "maxResults=6",
+        "videoDuration=medium",
+        "maxResults=5",
         "order=date",
         "relevanceLanguage=en",
         f"key={YOUTUBE_API_KEY}",
@@ -53,95 +83,207 @@ def _fetch_video_items(query: str, channel_id: Optional[str] = None, region_code
         params.append(f"regionCode={region_code}")
 
     url = "https://www.googleapis.com/youtube/v3/search?" + "&".join(params)
-    return requests.get(url, timeout=15).json().get("items", [])
+    try:
+        resp = requests.get(url, timeout=15)
+        resp.raise_for_status()
+        return resp.json().get("items", [])
+    except Exception:
+        return []
 
 
-def fetch_videos():
-    """Fetch English news videos about climate/environment hazards (India + world)."""
+def fetch_videos() -> dict:
+    """Fetch recent English news videos about hazards / world events."""
     if not YOUTUBE_API_KEY:
         return {
             "last_updated": time.time(),
             "videos": [
-                {"title": "Climate change news update", "thumbnail": "https://via.placeholder.com/320x180?text=Climate+News", "videoId": "dQw4w9WgXcQ", "channel": "Sample"},
-                {"title": "Floods and storms worldwide", "thumbnail": "https://via.placeholder.com/320x180?text=Storm+News", "videoId": "dQw4w9WgXcQ", "channel": "Sample"},
-                {"title": "Wildfire and heatwave alerts", "thumbnail": "https://via.placeholder.com/320x180?text=Wildfire+News", "videoId": "dQw4w9WgXcQ", "channel": "Sample"},
-                {"title": "Weather warnings and storm updates", "thumbnail": "https://via.placeholder.com/320x180?text=Weather+News", "videoId": "dQw4w9WgXcQ", "channel": "Sample"},
-                {"title": "Tsunami and coastal hazards", "thumbnail": "https://via.placeholder.com/320x180?text=Tsunami+News", "videoId": "dQw4w9WgXcQ", "channel": "Sample"},
-                {"title": "India climate and disaster news", "thumbnail": "https://via.placeholder.com/320x180?text=India+Climate", "videoId": "dQw4w9WgXcQ", "channel": "Sample"},
-            ]
+                {
+                    "title": "Climate change & extreme weather news",
+                    "thumbnail": "https://via.placeholder.com/320x180?text=Climate+News",
+                    "videoId": "dQw4w9WgXcQ",
+                    "channel": "Sample",
+                },
+                {
+                    "title": "Global conflicts & humanitarian updates",
+                    "thumbnail": "https://via.placeholder.com/320x180?text=World+News",
+                    "videoId": "dQw4w9WgXcQ",
+                    "channel": "Sample",
+                },
+                {
+                    "title": "Natural disaster response & relief",
+                    "thumbnail": "https://via.placeholder.com/320x180?text=Disaster+News",
+                    "videoId": "dQw4w9WgXcQ",
+                    "channel": "Sample",
+                },
+            ],
         }
 
-    query = (
-        "climate change OR environment OR disaster OR hazards OR tsunami OR storm "
-        "OR wildfire OR floods OR cyclone OR heatwave OR earthquake OR weather"
-    )
-
     try:
-        items = []
-        if NEWS_CHANNEL_IDS:
-            for channel_id in NEWS_CHANNEL_IDS:
-                items.extend(_fetch_video_items(query, channel_id=channel_id))
-        else:
-            items.extend(_fetch_video_items(query, region_code="IN"))
-            items.extend(_fetch_video_items(query, region_code="US"))
+        raw_items: list = []
+        for channel_id in NEWS_CHANNEL_IDS:
+            raw_items.extend(
+                _fetch_video_items(VIDEO_SEARCH_QUERY, channel_id=channel_id)
+            )
 
-        videos_by_id = {}
-        for item in items:
+        videos_by_id: dict = {}
+        for item in raw_items:
             video_id = item.get("id", {}).get("videoId")
-            snippet = item.get("snippet", {})
+            snippet  = item.get("snippet", {})
             if not video_id or not snippet:
                 continue
+            if video_id in videos_by_id:
+                continue
             videos_by_id[video_id] = {
-                "title": snippet.get("title", ""),
-                "thumbnail": snippet.get("thumbnails", {}).get("high", {}).get("url", ""),
+                "title":     snippet.get("title", ""),
+                "thumbnail": (
+                    snippet.get("thumbnails", {})
+                           .get("high", {})
+                           .get("url", "")
+                ),
                 "videoId": video_id,
-                "channel": snippet.get("channelTitle", "")
+                "channel": snippet.get("channelTitle", ""),
             }
 
         videos = list(videos_by_id.values())[:MAX_VIDEOS]
         return {"last_updated": time.time(), "videos": videos}
+
     except Exception:
         return {
             "last_updated": time.time(),
             "videos": [
-                {"title": "Climate change news update", "thumbnail": "https://via.placeholder.com/320x180?text=Climate+News", "videoId": "dQw4w9WgXcQ", "channel": "Sample"},
-                {"title": "Weather warnings and storm updates", "thumbnail": "https://via.placeholder.com/320x180?text=Weather+News", "videoId": "dQw4w9WgXcQ", "channel": "Sample"},
-            ]
+                {
+                    "title": "Climate & environment news",
+                    "thumbnail": "https://via.placeholder.com/320x180?text=Climate+News",
+                    "videoId": "dQw4w9WgXcQ",
+                    "channel": "Sample",
+                },
+            ],
         }
 
 
-def save_video_data(data):
-    with open(VIDEO_FILE_PATH, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2)
+def _save_video_data(data: dict):
+    with open(VIDEO_FILE_PATH, "w", encoding="utf-8") as fh:
+        json.dump(data, fh, indent=2, ensure_ascii=False)
 
 
-def load_video_data():
+def _load_video_data() -> Optional[dict]:
     if not VIDEO_FILE_PATH.exists():
         return None
     try:
-        with open(VIDEO_FILE_PATH, "r", encoding="utf-8") as f:
-            return json.load(f)
+        with open(VIDEO_FILE_PATH, "r", encoding="utf-8") as fh:
+            return json.load(fh)
     except Exception:
         return None
 
 
-def get_or_refresh_videos():
-    data = load_video_data()
+def get_or_refresh_videos() -> dict:
+    """Return cached video data, refreshing when the cache is stale."""
+    data = _load_video_data()
     if not data:
         data = fetch_videos()
-        save_video_data(data)
+        _save_video_data(data)
         return data
-
-    last_updated = data.get("last_updated", 0)
-    if time.time() - last_updated > VIDEO_REFRESH_INTERVAL:
+    if time.time() - data.get("last_updated", 0) > VIDEO_REFRESH_INTERVAL:
         data = fetch_videos()
-        save_video_data(data)
+        _save_video_data(data)
     return data
 
 
+# ── News cache helpers ────────────────────────────────────────────────────────
+
+def _read_news_cache(category: str) -> list[dict]:
+    """
+    Read articles for one category from app3's Glob_data cache file.
+    Returns a flat list of article dicts, or [] if the file is missing/empty.
+
+    app3 file structure:
+        {
+          "saved_at": "2026-...",
+          "data": {
+            "news": [ { "type", "title", "description", "source",
+                        "url", "image", "date" }, ... ],
+            "filter": "wildfire",
+            "fetched_at": "2026-..."
+          }
+        }
+    """
+    file_path = NEWS_CACHE_FILES.get(category)
+    if file_path is None or not file_path.exists():
+        return []
+    try:
+        with open(file_path, "r", encoding="utf-8") as fh:
+            wrapped = json.load(fh)
+        return wrapped.get("data", {}).get("news", [])
+    except (OSError, json.JSONDecodeError):
+        return []
+
+
+def _build_news_payload() -> dict:
+    """
+    Read all 6 category cache files and merge into the payload structure
+    expected by the frontend's loadNewsData() function.
+
+    Frontend expects:
+        {
+          "status": "success",
+          "total_files": N,
+          "data": {
+            "news_<category>": {
+              "incident": "<Category>",
+              "articles": [
+                {
+                  "headline": "...",
+                  "description": "...",
+                  "source": "...",
+                  "url": "...",
+                  "image": "...",
+                  "published_at": "..."
+                }, ...
+              ]
+            },
+            ...
+          }
+        }
+    """
+    data: dict = {}
+    total_articles = 0
+
+    for category, file_path in NEWS_CACHE_FILES.items():
+        articles_raw = _read_news_cache(category)
+        if not articles_raw:
+            continue   # skip empty / missing cache files silently
+
+        # Normalise each article to the shape the frontend expects
+        normalised = []
+        for art in articles_raw:
+            normalised.append({
+                "headline":     art.get("title", ""),
+                "description":  art.get("description", ""),
+                "source":       art.get("source", ""),
+                "url":          art.get("url", ""),
+                "image":        art.get("image", ""),
+                "published_at": art.get("date", ""),
+            })
+
+        data[f"news_{category}"] = {
+            "incident": category.capitalize(),
+            "articles": normalised,
+        }
+        total_articles += len(normalised)
+
+    return {
+        "status":      "success",
+        "total_files": len(data),
+        "total_articles": total_articles,
+        "data":        data,
+    }
+
+
+# ── Routes ────────────────────────────────────────────────────────────────────
+
 @router.get("/")
 def home(request: Request):
-    """Render the news dashboard"""
+    """Render the news dashboard."""
     if not request.session.get("is_verified"):
         return RedirectResponse(url="/app2/login", status_code=status.HTTP_303_SEE_OTHER)
     return templates.TemplateResponse("home5.html", {"request": request})
@@ -149,49 +291,51 @@ def home(request: Request):
 
 @router.get("/get-news-data")
 async def get_news_data(request: Request):
-    """Retrieve all fetched news data from JSON files"""
+    """
+    Return all saved news data as a single payload for the frontend.
+    Reads directly from app3's Glob_data cache files — no live fetching.
+    """
     if not request.session.get("is_verified"):
         return JSONResponse({"error": "Unauthorized"}, status_code=401)
-    
-    all_news = {}
-    
-    if NEWS_DATA_DIR.exists():
-        for json_file in sorted(NEWS_DATA_DIR.glob("news_*.json")):
-            try:
-                with open(json_file, "r", encoding="utf-8") as f:
-                    data = json.load(f)
-                    key = json_file.stem
-                    all_news[key] = data
-            except Exception as e:
-                pass
-    
-    return JSONResponse({
-        "status": "success",
-        "total_files": len(all_news),
-        "data": all_news
-    })
+
+    payload = _build_news_payload()
+    return JSONResponse(payload)
 
 
 @router.get("/fetch-status")
 async def fetch_status(request: Request):
-    """Get the current status of background news fetching"""
+    """
+    Return a simple status object.
+    Background fetcher has been removed — news is served from app3 cache.
+    """
     if not request.session.get("is_verified"):
         return JSONResponse({"error": "Unauthorized"}, status_code=401)
-    
-    fetcher = get_fetcher()
-    if not fetcher:
-        return JSONResponse({"status": "Not initialized"}, status_code=500)
-    
-    status_info = fetcher.get_status()
+
+    # Check how many cache files exist and are non-empty
+    cached_categories = []
+    for category, file_path in NEWS_CACHE_FILES.items():
+        if file_path.exists():
+            try:
+                with open(file_path, "r", encoding="utf-8") as fh:
+                    d = json.load(fh)
+                count = len(d.get("data", {}).get("news", []))
+                if count:
+                    cached_categories.append({"category": category, "articles": count})
+            except Exception:
+                pass
+
     return JSONResponse({
-        "status": "success",
-        **status_info
+        "status":            "success",
+        "is_running":        False,          # no background fetcher
+        "source":            "app3_cache",   # reading from Glob_data
+        "cached_categories": cached_categories,
+        "cache_dir":         str(GLOB_DATA_DIR),
     })
 
 
 @router.get("/video/videos.json")
 async def get_video_feed(request: Request):
-    """Serve cached YouTube video data for the news dashboard"""
+    """Serve cached YouTube video data to the news dashboard."""
     if not request.session.get("is_verified"):
         return JSONResponse({"error": "Unauthorized"}, status_code=401)
 

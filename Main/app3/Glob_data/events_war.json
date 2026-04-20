@@ -1,0 +1,70 @@
+{
+  "saved_at": "2026-04-20T21:37:51.566354Z",
+  "data": {
+    "type": "war",
+    "events": [
+      {
+        "id": "war-ukraine",
+        "type": "war",
+        "startLat": 48.3,
+        "startLng": 34.6,
+        "endLat": 55.7,
+        "endLng": 37.6,
+        "title": "Ukraine–Russia Front",
+        "date": "2022-02-24"
+      },
+      {
+        "id": "war-middle-east",
+        "type": "war",
+        "startLat": 31.5,
+        "startLng": 34.4,
+        "endLat": 30.0,
+        "endLng": 31.2,
+        "title": "Gaza Crisis Zone",
+        "date": "2023-10-07"
+      },
+      {
+        "id": "war-sudan",
+        "type": "war",
+        "startLat": 12.8,
+        "startLng": 30.1,
+        "endLat": 15.5,
+        "endLng": 32.5,
+        "title": "Sudan Conflict",
+        "date": "2023-04-15"
+      },
+      {
+        "id": "war-myanmar",
+        "type": "war",
+        "startLat": 16.8,
+        "startLng": 96.1,
+        "endLat": 21.9,
+        "endLng": 96.1,
+        "title": "Myanmar Civil War",
+        "date": "2021-02-01"
+      },
+      {
+        "id": "war-haiti",
+        "type": "war",
+        "startLat": 18.97,
+        "startLng": -72.29,
+        "endLat": 19.1,
+        "endLng": -72.1,
+        "title": "Haiti Gang Conflict",
+        "date": "2023-03-01"
+      },
+      {
+        "id": "war-sahel",
+        "type": "war",
+        "startLat": 12.36,
+        "startLng": -1.53,
+        "endLat": 15.45,
+        "endLng": 2.11,
+        "title": "Sahel Insurgency",
+        "date": "2020-01-01"
+      }
+    ],
+    "count": 6,
+    "fetched_at": "2026-04-20T21:37:51.566354Z"
+  }
+}

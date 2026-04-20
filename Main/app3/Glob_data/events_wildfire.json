@@ -1,0 +1,1610 @@
+{
+  "saved_at": "2026-04-20T21:37:51.542077Z",
+  "data": {
+    "type": "wildfire",
+    "events": [
+      {
+        "id": "EONET_19792",
+        "type": "wildfire",
+        "lat": 29.8861111,
+        "lng": -81.6333333,
+        "title": "Crews Rd (10) Wildfire, Clay, Florida",
+        "date": "2026-04-20T10:45:00Z"
+      },
+      {
+        "id": "EONET_19797",
+        "type": "wildfire",
+        "lat": 29.7855556,
+        "lng": -81.6330556,
+        "title": "RAILROAD COMPLEX Wildfire, Putnam, Florida",
+        "date": "2026-04-19T21:13:00Z"
+      },
+      {
+        "id": "EONET_19799",
+        "type": "wildfire",
+        "lat": 29.7855556,
+        "lng": -81.6327778,
+        "title": "RAILROAD COMPLEX Wildfire, Putnam, Florida",
+        "date": "2026-04-19T19:36:00Z"
+      },
+      {
+        "id": "EONET_19793",
+        "type": "wildfire",
+        "lat": 30.7563889,
+        "lng": -82.7680556,
+        "title": "Pineland Rd Wildfire, Clinch, Georgia",
+        "date": "2026-04-19T10:47:00Z"
+      },
+      {
+        "id": "EONET_19801",
+        "type": "wildfire",
+        "lat": 45.8375735,
+        "lng": -92.6494912,
+        "title": "rx-45_041526 Prescribed Fire, Burnett, Wisconsin",
+        "date": "2026-04-19T09:53:00Z"
+      },
+      {
+        "id": "EONET_19796",
+        "type": "wildfire",
+        "lat": 30.6886111,
+        "lng": -81.9855556,
+        "title": "Conner-Nelson Rd (45) Wildfire, Nassau, Florida",
+        "date": "2026-04-18T14:41:00Z"
+      },
+      {
+        "id": "EONET_19795",
+        "type": "wildfire",
+        "lat": 48.81675,
+        "lng": -109.41723,
+        "title": "Holm RX Prescribed Fire, Blaine, Montana",
+        "date": "2026-04-17T12:12:00Z"
+      },
+      {
+        "id": "EONET_19805",
+        "type": "wildfire",
+        "lat": 31.56589,
+        "lng": -95.10404,
+        "title": "Rx Cherokee 3533 Prescribed Fire, Cherokee, Texas",
+        "date": "2026-04-17T10:51:00Z"
+      },
+      {
+        "id": "EONET_19806",
+        "type": "wildfire",
+        "lat": 31.0137,
+        "lng": -95.2677,
+        "title": "RX Trinity 3522 Prescribed Fire, Trinity, Texas",
+        "date": "2026-04-17T10:46:00Z"
+      },
+      {
+        "id": "EONET_19802",
+        "type": "wildfire",
+        "lat": 35.5865604,
+        "lng": -92.62707719,
+        "title": "LO GAP Wildfire, Van Buren, Arkansas",
+        "date": "2026-04-17T10:41:00Z"
+      },
+      {
+        "id": "EONET_19800",
+        "type": "wildfire",
+        "lat": 32.7258333,
+        "lng": -81.2741667,
+        "title": "Old Orangeburg Wildfire, Hampton, South Carolina",
+        "date": "2026-04-17T09:27:00Z"
+      },
+      {
+        "id": "EONET_19807",
+        "type": "wildfire",
+        "lat": 31.062467,
+        "lng": -93.157417,
+        "title": "RX CALV BU 255-257 Prescribed Fire, Vernon, Louisiana",
+        "date": "2026-04-16T16:49:00Z"
+      },
+      {
+        "id": "EONET_19804",
+        "type": "wildfire",
+        "lat": 45.503583,
+        "lng": -93.708514,
+        "title": "Burn Unit 20 RX Prescribed Fire, Sherburne, Minnesota",
+        "date": "2026-04-16T09:50:00Z"
+      },
+      {
+        "id": "EONET_19714",
+        "type": "wildfire",
+        "lat": 45.46325,
+        "lng": -96.271767,
+        "title": "Dismal Swamp RX Prescribed Fire, Big Stone, Minnesota",
+        "date": "2026-04-15T09:41:00Z"
+      },
+      {
+        "id": "EONET_19717",
+        "type": "wildfire",
+        "lat": 31.419,
+        "lng": -91.013,
+        "title": "Homochitto BB 49 East RX Prescribed Fire, Franklin, Mississippi",
+        "date": "2026-04-15T09:14:00Z"
+      },
+      {
+        "id": "EONET_19715",
+        "type": "wildfire",
+        "lat": 34.643232,
+        "lng": -105.416063,
+        "title": "ENCINO 2 Wildfire, Torrance, New Mexico",
+        "date": "2026-04-14T16:34:00Z"
+      },
+      {
+        "id": "EONET_19713",
+        "type": "wildfire",
+        "lat": 35.1675,
+        "lng": -84.3755,
+        "title": "Appalachia Wildfire, Polk, Tennessee",
+        "date": "2026-04-14T15:41:00Z"
+      },
+      {
+        "id": "EONET_19718",
+        "type": "wildfire",
+        "lat": 33.7498333,
+        "lng": -79.2833333,
+        "title": "Woodbury Wildfire, Marion, South Carolina",
+        "date": "2026-04-14T15:23:00Z"
+      },
+      {
+        "id": "EONET_19725",
+        "type": "wildfire",
+        "lat": 31.419,
+        "lng": -91.013,
+        "title": "Homochitto BB 49 West RX Prescribed Fire, Franklin, Mississippi",
+        "date": "2026-04-14T09:48:00Z"
+      },
+      {
+        "id": "EONET_19724",
+        "type": "wildfire",
+        "lat": 31.042883,
+        "lng": -94.2842,
+        "title": "ANF Boykin Springs C-88/89 RX Prescribed Fire, Jasper, Texas",
+        "date": "2026-04-14T09:42:00Z"
+      },
+      {
+        "id": "EONET_19726",
+        "type": "wildfire",
+        "lat": 31.5603,
+        "lng": -88.9888,
+        "title": "Chickasawhay CPT 354 RX Prescribed Fire, Jones, Mississippi",
+        "date": "2026-04-14T09:24:00Z"
+      },
+      {
+        "id": "EONET_19558",
+        "type": "wildfire",
+        "lat": 26.1502778,
+        "lng": -81.6330556,
+        "title": "NEWMAN DR Wildfire, Collier, Florida",
+        "date": "2026-04-13T20:18:00Z"
+      },
+      {
+        "id": "EONET_19721",
+        "type": "wildfire",
+        "lat": 46.012,
+        "lng": -95.8944,
+        "title": "PDT South-FFR RX Prescribed Fire, Grant, Minnesota",
+        "date": "2026-04-13T16:52:00Z"
+      },
+      {
+        "id": "EONET_19719",
+        "type": "wildfire",
+        "lat": 31.2669444,
+        "lng": -88.0188889,
+        "title": "Ciba Road Wildfire, Washington, Alabama",
+        "date": "2026-04-13T13:31:00Z"
+      },
+      {
+        "id": "EONET_19560",
+        "type": "wildfire",
+        "lat": 27.630425,
+        "lng": -81.158752,
+        "title": "APQ CPT 10 Rx 0413 Prescribed Fire, Highlands, Florida",
+        "date": "2026-04-13T09:16:00Z"
+      },
+      {
+        "id": "EONET_19563",
+        "type": "wildfire",
+        "lat": 42.8455985,
+        "lng": -88.630401,
+        "title": "rx-Young 1 Prescribed Fire, Jefferson, Wisconsin",
+        "date": "2026-04-13T08:42:00Z"
+      },
+      {
+        "id": "EONET_19720",
+        "type": "wildfire",
+        "lat": 31.0927778,
+        "lng": -88.2997222,
+        "title": "RAFEY Wildfire, Mobile, Alabama",
+        "date": "2026-04-12T23:30:00Z"
+      },
+      {
+        "id": "EONET_19555",
+        "type": "wildfire",
+        "lat": 37.011,
+        "lng": -104.3737,
+        "title": "Schwachheim Wildfire, Las Animas, Colorado",
+        "date": "2026-04-12T21:48:00Z"
+      },
+      {
+        "id": "EONET_19565",
+        "type": "wildfire",
+        "lat": 31.092419,
+        "lng": -89.117047,
+        "title": "Smoke Show Wildfire, Perry, Mississippi",
+        "date": "2026-04-12T21:12:00Z"
+      },
+      {
+        "id": "EONET_19566",
+        "type": "wildfire",
+        "lat": 37.704877,
+        "lng": -82.163933,
+        "title": "Slate Branch Wildfire, Mingo, West Virginia",
+        "date": "2026-04-12T15:59:00Z"
+      },
+      {
+        "id": "EONET_19557",
+        "type": "wildfire",
+        "lat": 36.75897,
+        "lng": -84.53148,
+        "title": "STE - Alum Wildfire, McCreary, Kentucky",
+        "date": "2026-04-12T09:02:00Z"
+      },
+      {
+        "id": "EONET_19571",
+        "type": "wildfire",
+        "lat": 29.5366667,
+        "lng": -83.2108333,
+        "title": "HWY 351- DIXIE Wildfire, Dixie, Florida",
+        "date": "2026-04-11T22:45:00Z"
+      },
+      {
+        "id": "EONET_19561",
+        "type": "wildfire",
+        "lat": 43.687519,
+        "lng": -103.249124,
+        "title": "79 Wildfire, Custer, South Dakota",
+        "date": "2026-04-11T14:40:00Z"
+      },
+      {
+        "id": "EONET_19564",
+        "type": "wildfire",
+        "lat": 31.276467,
+        "lng": -94.302133,
+        "title": "ANF Bullet Creek C-27 RX Prescribed Fire, San Augustine, Texas",
+        "date": "2026-04-11T08:58:00Z"
+      },
+      {
+        "id": "EONET_19573",
+        "type": "wildfire",
+        "lat": 27.572409,
+        "lng": -81.259689,
+        "title": "APQ CPT 11 Rx 0411 Prescribed Fire, Highlands, Florida",
+        "date": "2026-04-11T08:08:00Z"
+      },
+      {
+        "id": "EONET_19569",
+        "type": "wildfire",
+        "lat": 36.2416667,
+        "lng": -101.5497222,
+        "title": "Smooth Eddy Wildfire, Hansford, Texas",
+        "date": "2026-04-10T22:49:00Z"
+      },
+      {
+        "id": "EONET_19570",
+        "type": "wildfire",
+        "lat": 36.8186111,
+        "lng": -101.7577778,
+        "title": "Mary 15 Wildfire, Texas, Oklahoma",
+        "date": "2026-04-10T22:47:00Z"
+      },
+      {
+        "id": "EONET_19568",
+        "type": "wildfire",
+        "lat": 36.7338889,
+        "lng": -100.7680556,
+        "title": "Lightning Roll Wildfire, Beaver, Oklahoma",
+        "date": "2026-04-10T22:46:00Z"
+      },
+      {
+        "id": "EONET_19583",
+        "type": "wildfire",
+        "lat": 31.5038,
+        "lng": -88.6813,
+        "title": "Chickasawhay CPT 438 441 RX Prescribed Fire, Wayne, Mississippi",
+        "date": "2026-04-10T09:29:00Z"
+      },
+      {
+        "id": "EONET_19577",
+        "type": "wildfire",
+        "lat": 45.525781,
+        "lng": -93.706253,
+        "title": "Burn Unit 16 RX Prescribed Fire, Sherburne, Minnesota",
+        "date": "2026-04-10T08:52:00Z"
+      },
+      {
+        "id": "EONET_19581",
+        "type": "wildfire",
+        "lat": 32.3809,
+        "lng": -89.5273,
+        "title": "Bienville CPT 43 44 RX Prescribed Fire, Scott, Mississippi",
+        "date": "2026-04-10T08:52:00Z"
+      },
+      {
+        "id": "EONET_19584",
+        "type": "wildfire",
+        "lat": 34.716667,
+        "lng": -93.266667,
+        "title": "RX Middle Northfork 4/7 Prescribed Fire, Garland, Arkansas",
+        "date": "2026-04-10T08:20:00Z"
+      },
+      {
+        "id": "EONET_19405",
+        "type": "wildfire",
+        "lat": 42.9227232,
+        "lng": -88.483243,
+        "title": "rx-Northern Scupp EWO Prescribed Fire, Waukesha, Wisconsin",
+        "date": "2026-04-09T15:09:00Z"
+      },
+      {
+        "id": "EONET_19412",
+        "type": "wildfire",
+        "lat": 36.568752,
+        "lng": -96.849207,
+        "title": "HARRISON Wildfire, Osage, Oklahoma",
+        "date": "2026-04-09T13:08:00Z"
+      },
+      {
+        "id": "EONET_19414",
+        "type": "wildfire",
+        "lat": 36.471122,
+        "lng": -96.232358,
+        "title": "JOY Wildfire, Osage, Oklahoma",
+        "date": "2026-04-09T11:29:00Z"
+      },
+      {
+        "id": "EONET_19585",
+        "type": "wildfire",
+        "lat": 30.974167,
+        "lng": -88.866111,
+        "title": "DeSoto BB 8301 C-214 RX Prescribed Fire, Perry, Mississippi",
+        "date": "2026-04-09T10:53:00Z"
+      },
+      {
+        "id": "EONET_19579",
+        "type": "wildfire",
+        "lat": 32.3711,
+        "lng": -89.5408,
+        "title": "Bienville CPT 44 45 RX Prescribed Fire, Scott, Mississippi",
+        "date": "2026-04-09T10:34:00Z"
+      },
+      {
+        "id": "EONET_19415",
+        "type": "wildfire",
+        "lat": 31.56518,
+        "lng": -95.13378,
+        "title": "Rx Cherokee 3464 Prescribed Fire, Cherokee, Texas",
+        "date": "2026-04-09T10:30:00Z"
+      },
+      {
+        "id": "EONET_19416",
+        "type": "wildfire",
+        "lat": 34.435,
+        "lng": -78.5313889,
+        "title": "Rosindale Road Wildfire, Bladen, North Carolina",
+        "date": "2026-04-09T10:20:00Z"
+      },
+      {
+        "id": "EONET_19586",
+        "type": "wildfire",
+        "lat": 35.243252,
+        "lng": -93.666974,
+        "title": "RX BO/MAG Flat Top 1 Prescribed Fire, Logan, Arkansas",
+        "date": "2026-04-09T09:52:00Z"
+      },
+      {
+        "id": "EONET_19406",
+        "type": "wildfire",
+        "lat": 35.95415,
+        "lng": -92.167783,
+        "title": "RX Blanchard 2 Prescribed Fire, Stone, Arkansas",
+        "date": "2026-04-09T09:22:00Z"
+      },
+      {
+        "id": "EONET_19418",
+        "type": "wildfire",
+        "lat": 36.695248,
+        "lng": -96.059996,
+        "title": "HUGHEY Wildfire, Osage, Oklahoma",
+        "date": "2026-04-09T09:15:00Z"
+      },
+      {
+        "id": "EONET_19403",
+        "type": "wildfire",
+        "lat": 31.5102,
+        "lng": -88.8983,
+        "title": "Chickasawhay CPT 378 RX Prescribed Fire, Wayne, Mississippi",
+        "date": "2026-04-09T09:07:00Z"
+      },
+      {
+        "id": "EONET_19588",
+        "type": "wildfire",
+        "lat": 34.664083,
+        "lng": -93.187444,
+        "title": "RX PHILLIPS ORCHARD Prescribed Fire, Garland, Arkansas",
+        "date": "2026-04-09T09:04:00Z"
+      },
+      {
+        "id": "EONET_19590",
+        "type": "wildfire",
+        "lat": 34.869867,
+        "lng": -93.970228,
+        "title": "RX PCS South Waldron Ridge 1&amp;2 Prescribed Fire, Scott, Arkansas",
+        "date": "2026-04-09T09:04:00Z"
+      },
+      {
+        "id": "EONET_19580",
+        "type": "wildfire",
+        "lat": 31.401,
+        "lng": -90.966,
+        "title": "Homochitto BB 59 RX Prescribed Fire, Franklin, Mississippi",
+        "date": "2026-04-09T08:56:00Z"
+      },
+      {
+        "id": "EONET_19404",
+        "type": "wildfire",
+        "lat": 31.142233,
+        "lng": -92.634817,
+        "title": "RX CALE BU 363 Prescribed Fire, Rapides, Louisiana",
+        "date": "2026-04-09T08:53:00Z"
+      },
+      {
+        "id": "EONET_19410",
+        "type": "wildfire",
+        "lat": 33.655288,
+        "lng": -83.27194,
+        "title": "Compartment 180 RX Prescribed Fire, Greene, Georgia",
+        "date": "2026-04-09T08:04:00Z"
+      },
+      {
+        "id": "EONET_19419",
+        "type": "wildfire",
+        "lat": 35.68405,
+        "lng": -104.67037,
+        "title": "HC 1 Wildfire, San Miguel, New Mexico",
+        "date": "2026-04-08T19:31:00Z"
+      },
+      {
+        "id": "EONET_19424",
+        "type": "wildfire",
+        "lat": 30.492511,
+        "lng": -94.638858,
+        "title": "MA Mainline Non-Statistical/Other, Polk, Texas",
+        "date": "2026-04-08T19:13:00Z"
+      },
+      {
+        "id": "EONET_19420",
+        "type": "wildfire",
+        "lat": 36.779277,
+        "lng": -96.225036,
+        "title": "SUNNY Wildfire, Osage, Oklahoma",
+        "date": "2026-04-08T18:11:00Z"
+      },
+      {
+        "id": "EONET_19438",
+        "type": "wildfire",
+        "lat": 38.2051,
+        "lng": -86.6266,
+        "title": "Tige - West Celina RX Prescribed Fire, Perry, Indiana",
+        "date": "2026-04-08T11:56:00Z"
+      },
+      {
+        "id": "EONET_19426",
+        "type": "wildfire",
+        "lat": 35.1749,
+        "lng": -93.426325,
+        "title": "RX BO/MAG Chickalah Mtn Prescribed Fire, Yell, Arkansas",
+        "date": "2026-04-08T10:52:00Z"
+      },
+      {
+        "id": "EONET_19427",
+        "type": "wildfire",
+        "lat": 31.05635,
+        "lng": -88.859583,
+        "title": "DeSoto BB 7310 C-7 RX Prescribed Fire, Perry, Mississippi",
+        "date": "2026-04-08T10:49:00Z"
+      },
+      {
+        "id": "EONET_19429",
+        "type": "wildfire",
+        "lat": 32.5163,
+        "lng": -89.6524,
+        "title": "Bienville CPT 5 7 RX Prescribed Fire, Scott, Mississippi",
+        "date": "2026-04-08T10:25:00Z"
+      },
+      {
+        "id": "EONET_19434",
+        "type": "wildfire",
+        "lat": 34.8459,
+        "lng": -89.0287,
+        "title": "Holly Springs IU 14-1 RX Prescribed Fire, Tippah, Mississippi",
+        "date": "2026-04-08T10:08:00Z"
+      },
+      {
+        "id": "EONET_19437",
+        "type": "wildfire",
+        "lat": 31.402,
+        "lng": -90.984,
+        "title": "Homochitto BB51 Sub2 RX Prescribed Fire, Franklin, Mississippi",
+        "date": "2026-04-08T09:42:00Z"
+      },
+      {
+        "id": "EONET_19421",
+        "type": "wildfire",
+        "lat": 31.174617,
+        "lng": -93.626833,
+        "title": "SNF Stark Tract RX Prescribed Fire, Newton, Texas",
+        "date": "2026-04-08T09:40:00Z"
+      },
+      {
+        "id": "EONET_19436",
+        "type": "wildfire",
+        "lat": 30.529633,
+        "lng": -95.652333,
+        "title": "SHNF C-26/C-27/C-28 RX Prescribed Fire, Montgomery, Texas",
+        "date": "2026-04-08T09:13:00Z"
+      },
+      {
+        "id": "EONET_19435",
+        "type": "wildfire",
+        "lat": 30.536367,
+        "lng": -95.569167,
+        "title": "SHNF C-51 RX Prescribed Fire, Walker, Texas",
+        "date": "2026-04-08T08:44:00Z"
+      },
+      {
+        "id": "EONET_19430",
+        "type": "wildfire",
+        "lat": 34.761897,
+        "lng": -94.096898,
+        "title": "RX Key Mountain East Prescribed Fire, Scott, Arkansas",
+        "date": "2026-04-08T08:24:00Z"
+      },
+      {
+        "id": "EONET_19433",
+        "type": "wildfire",
+        "lat": 35.734,
+        "lng": -93.9,
+        "title": "RX Spud Rock Prescribed Fire, Franklin, Arkansas",
+        "date": "2026-04-08T08:24:00Z"
+      },
+      {
+        "id": "EONET_19423",
+        "type": "wildfire",
+        "lat": 34.933333,
+        "lng": -93.666667,
+        "title": "RX Fourche Valley Unit 1 and 2 Prescribed Fire, Yell, Arkansas",
+        "date": "2026-04-08T08:09:00Z"
+      },
+      {
+        "id": "EONET_19431",
+        "type": "wildfire",
+        "lat": 35.845119,
+        "lng": -93.523297,
+        "title": "RX County Liine Prescribed Fire, Newton, Arkansas",
+        "date": "2026-04-08T08:08:00Z"
+      },
+      {
+        "id": "EONET_19428",
+        "type": "wildfire",
+        "lat": 33.155833,
+        "lng": -86.091944,
+        "title": "School House B RX Prescribed Fire, Clay, Alabama",
+        "date": "2026-04-07T20:00:00Z"
+      },
+      {
+        "id": "EONET_19409",
+        "type": "wildfire",
+        "lat": 33.407033,
+        "lng": -83.376383,
+        "title": "Compartment 156 RX Prescribed Fire, Putnam, Georgia",
+        "date": "2026-04-07T17:48:00Z"
+      },
+      {
+        "id": "EONET_19422",
+        "type": "wildfire",
+        "lat": 46.164317,
+        "lng": -113.877617,
+        "title": "RX D2 Hog Sapphire Prescribed Fire, Ravalli, Montana",
+        "date": "2026-04-07T13:34:00Z"
+      },
+      {
+        "id": "EONET_19448",
+        "type": "wildfire",
+        "lat": 31.635,
+        "lng": -90.73,
+        "title": "Homochitto BB 6 South RX Prescribed Fire, Lincoln, Mississippi",
+        "date": "2026-04-07T10:38:00Z"
+      },
+      {
+        "id": "EONET_19449",
+        "type": "wildfire",
+        "lat": 32.4037,
+        "lng": -89.5682,
+        "title": "Bienville CPT 41 RX Prescribed Fire, Scott, Mississippi",
+        "date": "2026-04-07T10:38:00Z"
+      },
+      {
+        "id": "EONET_19450",
+        "type": "wildfire",
+        "lat": 32.4098,
+        "lng": -89.6599,
+        "title": "Bienville CPT 31 32 cont  RX Prescribed Fire, Scott, Mississippi",
+        "date": "2026-04-07T10:38:00Z"
+      },
+      {
+        "id": "EONET_19444",
+        "type": "wildfire",
+        "lat": 34.7893,
+        "lng": -89.2329,
+        "title": "Holly Springs IU 26-2 RX Prescribed Fire, Benton, Mississippi",
+        "date": "2026-04-07T10:11:00Z"
+      },
+      {
+        "id": "EONET_19446",
+        "type": "wildfire",
+        "lat": 35.6695,
+        "lng": -94.3093,
+        "title": "RX Bald Knob Prescribed Fire, Crawford, Arkansas",
+        "date": "2026-04-07T09:46:00Z"
+      },
+      {
+        "id": "EONET_19447",
+        "type": "wildfire",
+        "lat": 35.218256,
+        "lng": -93.395096,
+        "title": "RX BO/MAG Carter Mtn Prescribed Fire, Logan, Arkansas",
+        "date": "2026-04-07T09:39:00Z"
+      },
+      {
+        "id": "EONET_19458",
+        "type": "wildfire",
+        "lat": 36.539489,
+        "lng": -96.362972,
+        "title": "MULL Wildfire, Osage, Oklahoma",
+        "date": "2026-04-07T09:30:00Z"
+      },
+      {
+        "id": "EONET_19443",
+        "type": "wildfire",
+        "lat": 34.783517,
+        "lng": -94.254627,
+        "title": "RX PCS East Horseshoe 2 Prescribed Fire, Scott, Arkansas",
+        "date": "2026-04-07T09:29:00Z"
+      },
+      {
+        "id": "EONET_19452",
+        "type": "wildfire",
+        "lat": 30.52045,
+        "lng": -95.728667,
+        "title": "SHNF C-14/C-15 RX Prescribed Fire, Montgomery, Texas",
+        "date": "2026-04-07T09:18:00Z"
+      },
+      {
+        "id": "EONET_19445",
+        "type": "wildfire",
+        "lat": 34.525556,
+        "lng": -93.738056,
+        "title": "RX FORKS 5 Prescribed Fire, Montgomery, Arkansas",
+        "date": "2026-04-07T09:13:00Z"
+      },
+      {
+        "id": "EONET_19455",
+        "type": "wildfire",
+        "lat": 30.524133,
+        "lng": -95.57925,
+        "title": "SHNF C-43N RX Prescribed Fire, Walker, Texas",
+        "date": "2026-04-07T09:08:00Z"
+      },
+      {
+        "id": "EONET_19454",
+        "type": "wildfire",
+        "lat": 35.808903,
+        "lng": -93.464358,
+        "title": "RX Reeve&#039;s Fork Prescribed Fire, Newton, Arkansas",
+        "date": "2026-04-07T09:07:00Z"
+      },
+      {
+        "id": "EONET_19459",
+        "type": "wildfire",
+        "lat": 36.463582,
+        "lng": -96.616347,
+        "title": "SUNNY SLOPES Wildfire, Osage, Oklahoma",
+        "date": "2026-04-07T09:07:00Z"
+      },
+      {
+        "id": "EONET_19456",
+        "type": "wildfire",
+        "lat": 31.197633,
+        "lng": -92.562217,
+        "title": "RX CALE BU 30-33 Prescribed Fire, Rapides, Louisiana",
+        "date": "2026-04-07T09:02:00Z"
+      },
+      {
+        "id": "EONET_19451",
+        "type": "wildfire",
+        "lat": 34.671333,
+        "lng": -93.484417,
+        "title": "RX VANDERSLICE UNIT 8 Prescribed Fire, Montgomery, Arkansas",
+        "date": "2026-04-07T08:21:00Z"
+      },
+      {
+        "id": "EONET_19413",
+        "type": "wildfire",
+        "lat": 35.468784,
+        "lng": -101.832244,
+        "title": "Meadow View Wildfire, Potter, Texas",
+        "date": "2026-04-06T20:45:00Z"
+      },
+      {
+        "id": "EONET_19460",
+        "type": "wildfire",
+        "lat": 43.0403647,
+        "lng": -88.3992015,
+        "title": "rx-Lapham Good Oak 2026 Prescribed Fire, Waukesha, Wisconsin",
+        "date": "2026-04-06T20:11:00Z"
+      },
+      {
+        "id": "EONET_19572",
+        "type": "wildfire",
+        "lat": 37.951306,
+        "lng": -79.821194,
+        "title": "Big Wilson RX Prescribed Fire, Bath, Virginia",
+        "date": "2026-04-06T18:32:00Z"
+      },
+      {
+        "id": "EONET_19589",
+        "type": "wildfire",
+        "lat": 36.7655,
+        "lng": -81.191833,
+        "title": "Comers Rock RX Prescribed Fire, Wythe, Virginia",
+        "date": "2026-04-06T18:24:00Z"
+      },
+      {
+        "id": "EONET_19453",
+        "type": "wildfire",
+        "lat": 36.969,
+        "lng": -84.229,
+        "title": "LON - Auger Springs RX Prescribed Fire, Laurel, Kentucky",
+        "date": "2026-04-06T17:23:00Z"
+      },
+      {
+        "id": "EONET_19408",
+        "type": "wildfire",
+        "lat": 33.36415,
+        "lng": -83.464333,
+        "title": "Compartment 163/164 RX Prescribed Fire, Putnam, Georgia",
+        "date": "2026-04-06T11:43:00Z"
+      },
+      {
+        "id": "EONET_19407",
+        "type": "wildfire",
+        "lat": 33.198667,
+        "lng": -83.505083,
+        "title": "Compartment 135 RX Prescribed Fire, Putnam, Georgia",
+        "date": "2026-04-06T11:18:00Z"
+      },
+      {
+        "id": "EONET_19462",
+        "type": "wildfire",
+        "lat": 34.766957,
+        "lng": -94.260589,
+        "title": "RX East Horseshoe Prescribed Fire, Scott, Arkansas",
+        "date": "2026-04-06T10:52:00Z"
+      },
+      {
+        "id": "EONET_19461",
+        "type": "wildfire",
+        "lat": 34.524444,
+        "lng": -93.649722,
+        "title": "RX MOUNT IDA 23 24 Prescribed Fire, Montgomery, Arkansas",
+        "date": "2026-04-06T09:19:00Z"
+      },
+      {
+        "id": "EONET_19349",
+        "type": "wildfire",
+        "lat": 34.49759,
+        "lng": -89.382263,
+        "title": "Holly Springs IU 81-1 83-1 RX Prescribed Fire, Lafayette, Mississippi",
+        "date": "2026-04-06T09:15:00Z"
+      },
+      {
+        "id": "EONET_19351",
+        "type": "wildfire",
+        "lat": 26.4713889,
+        "lng": -81.0269444,
+        "title": "EASTER PASTURE Wildfire, Hendry, Florida",
+        "date": "2026-04-05T22:32:00Z"
+      },
+      {
+        "id": "EONET_19425",
+        "type": "wildfire",
+        "lat": 32.76539,
+        "lng": -87.04236,
+        "title": "Williams Creek Wildfire, Perry, Alabama",
+        "date": "2026-04-04T23:23:00Z"
+      },
+      {
+        "id": "EONET_19587",
+        "type": "wildfire",
+        "lat": 39.718807,
+        "lng": -123.20401,
+        "title": "COVELO SOUTH VMP RX Prescribed Fire, Mendocino, California",
+        "date": "2026-04-04T16:08:00Z"
+      },
+      {
+        "id": "EONET_19356",
+        "type": "wildfire",
+        "lat": 27.607297,
+        "lng": -81.172485,
+        "title": "APQ Area 10 &amp; 10B Rx 0403 Prescribed Fire, Highlands, Florida",
+        "date": "2026-04-03T19:45:00Z"
+      },
+      {
+        "id": "EONET_19350",
+        "type": "wildfire",
+        "lat": 26.228889,
+        "lng": -81.279167,
+        "title": "Hilux Wildfire, Collier, Florida",
+        "date": "2026-04-03T15:54:00Z"
+      },
+      {
+        "id": "EONET_19355",
+        "type": "wildfire",
+        "lat": 33.891678,
+        "lng": -117.078415,
+        "title": "SPRINGS Wildfire, Riverside, California",
+        "date": "2026-04-03T14:19:00Z"
+      },
+      {
+        "id": "EONET_19357",
+        "type": "wildfire",
+        "lat": 42.8455985,
+        "lng": -88.630401,
+        "title": "rx-Young 1 Prescribed Fire, Jefferson, Wisconsin",
+        "date": "2026-04-03T13:28:00Z"
+      },
+      {
+        "id": "EONET_19352",
+        "type": "wildfire",
+        "lat": 27.652481,
+        "lng": -81.350623,
+        "title": "Sargent Wildfire, Polk, Florida",
+        "date": "2026-04-02T17:18:00Z"
+      },
+      {
+        "id": "EONET_19203",
+        "type": "wildfire",
+        "lat": 45.7153853,
+        "lng": -92.6888328,
+        "title": "rx-12_ 13_ 14 Prescribed Fire, Burnett, Wisconsin",
+        "date": "2026-04-02T11:26:00Z"
+      },
+      {
+        "id": "EONET_19204",
+        "type": "wildfire",
+        "lat": 31.407942,
+        "lng": -95.537898,
+        "title": "Rx Houston 3041 Prescribed Fire, Houston, Texas",
+        "date": "2026-04-02T10:05:00Z"
+      },
+      {
+        "id": "EONET_19208",
+        "type": "wildfire",
+        "lat": 34.800258,
+        "lng": -94.327475,
+        "title": "RX PCS Beauchamp North Prescribed Fire, Scott, Arkansas",
+        "date": "2026-04-01T09:11:00Z"
+      },
+      {
+        "id": "EONET_19229",
+        "type": "wildfire",
+        "lat": 38.396085,
+        "lng": -75.97625,
+        "title": "Julie Pond Wildfire, Dorchester, Maryland",
+        "date": "2026-03-31T13:22:00Z"
+      },
+      {
+        "id": "EONET_19232",
+        "type": "wildfire",
+        "lat": 32.667308,
+        "lng": -94.104296,
+        "title": "Caddo Lake C-6 RX Prescribed Fire, Harrison, Texas",
+        "date": "2026-03-31T10:13:00Z"
+      },
+      {
+        "id": "EONET_19224",
+        "type": "wildfire",
+        "lat": 34.421667,
+        "lng": -81.528333,
+        "title": "C-148 BLK 9 10 &amp; 11 EN RX Prescribed Fire, Newberry, South Carolina",
+        "date": "2026-03-31T07:55:00Z"
+      },
+      {
+        "id": "EONET_19225",
+        "type": "wildfire",
+        "lat": 35.0475,
+        "lng": -95.3977778,
+        "title": "Middle Toe Wildfire, Pittsburg, Oklahoma",
+        "date": "2026-03-30T19:32:00Z"
+      },
+      {
+        "id": "EONET_19194",
+        "type": "wildfire",
+        "lat": 33.4077778,
+        "lng": -86.5408333,
+        "title": "Hall Thompson Lane Wildfire, Shelby, Alabama",
+        "date": "2026-03-30T15:26:00Z"
+      },
+      {
+        "id": "EONET_19803",
+        "type": "wildfire",
+        "lat": 41.91305,
+        "lng": -78.916783,
+        "title": "Tracy Ridge Rx Prescribed Fire, Warren, Pennsylvania",
+        "date": "2026-03-30T13:43:00Z"
+      },
+      {
+        "id": "EONET_19239",
+        "type": "wildfire",
+        "lat": 32.2358333,
+        "lng": -87.915,
+        "title": "Sweetwater Wildfire, Marengo, Alabama",
+        "date": "2026-03-30T12:41:00Z"
+      },
+      {
+        "id": "EONET_19237",
+        "type": "wildfire",
+        "lat": 34.805454,
+        "lng": -94.248164,
+        "title": "RX PCS Henry Mountain Prescribed Fire, Scott, Arkansas",
+        "date": "2026-03-30T11:43:00Z"
+      },
+      {
+        "id": "EONET_19233",
+        "type": "wildfire",
+        "lat": 31.347207,
+        "lng": -95.258555,
+        "title": "DCNF C37 RX Prescribed Fire, Houston, Texas",
+        "date": "2026-03-30T10:17:00Z"
+      },
+      {
+        "id": "EONET_19234",
+        "type": "wildfire",
+        "lat": 34.564167,
+        "lng": -93.801389,
+        "title": "RX Forks 14 Prescribed Fire, Montgomery, Arkansas",
+        "date": "2026-03-30T09:54:00Z"
+      },
+      {
+        "id": "EONET_19238",
+        "type": "wildfire",
+        "lat": 31.5429,
+        "lng": -88.8988,
+        "title": "Chickasawhay CPT 373 RX Prescribed Fire, Wayne, Mississippi",
+        "date": "2026-03-30T09:28:00Z"
+      },
+      {
+        "id": "EONET_19212",
+        "type": "wildfire",
+        "lat": 33.1173,
+        "lng": -83.6958,
+        "title": "14B/14C RX Prescribed Fire, Jones, Georgia",
+        "date": "2026-03-30T09:16:00Z"
+      },
+      {
+        "id": "EONET_19236",
+        "type": "wildfire",
+        "lat": 31.413583,
+        "lng": -94.193667,
+        "title": "ANF Turkey Creek C-7 RX Prescribed Fire, San Augustine, Texas",
+        "date": "2026-03-30T09:11:00Z"
+      },
+      {
+        "id": "EONET_19205",
+        "type": "wildfire",
+        "lat": 31.4411111,
+        "lng": -82.5197222,
+        "title": "Lamar Bennett Trail Wildfire, Ware, Georgia",
+        "date": "2026-03-29T21:00:00Z"
+      },
+      {
+        "id": "EONET_19207",
+        "type": "wildfire",
+        "lat": 36.31295,
+        "lng": -81.1739,
+        "title": "Cane Creek Wildfire, Wilkes, North Carolina",
+        "date": "2026-03-29T18:16:00Z"
+      },
+      {
+        "id": "EONET_19439",
+        "type": "wildfire",
+        "lat": 39.474996,
+        "lng": -82.146232,
+        "title": "Long Ridge Rx Unit 37 38 46 49 Prescribed Fire, Athens, Ohio",
+        "date": "2026-03-29T17:39:00Z"
+      },
+      {
+        "id": "EONET_19235",
+        "type": "wildfire",
+        "lat": 39.449275,
+        "lng": -82.124323,
+        "title": "Long Ridge Rx Unit 41 &amp; 47 Prescribed Fire, Athens, Ohio",
+        "date": "2026-03-29T17:01:00Z"
+      },
+      {
+        "id": "EONET_19245",
+        "type": "wildfire",
+        "lat": 38.3132,
+        "lng": -86.6787,
+        "title": "Birdseye RX Prescribed Fire, Crawford, Indiana",
+        "date": "2026-03-29T15:40:00Z"
+      },
+      {
+        "id": "EONET_19213",
+        "type": "wildfire",
+        "lat": 33.376697,
+        "lng": -83.41644,
+        "title": "Compartment 154 RX Prescribed Fire, Putnam, Georgia",
+        "date": "2026-03-29T14:35:00Z"
+      },
+      {
+        "id": "EONET_19241",
+        "type": "wildfire",
+        "lat": 40.496668,
+        "lng": -99.615742,
+        "title": "Johnson Hills Wildfire, Phelps, Nebraska",
+        "date": "2026-03-29T11:43:00Z"
+      },
+      {
+        "id": "EONET_19247",
+        "type": "wildfire",
+        "lat": 44.2254153,
+        "lng": -90.2632005,
+        "title": "rx-Refuge Pool South Prescribed Fire, Juneau, Wisconsin",
+        "date": "2026-03-29T09:15:00Z"
+      },
+      {
+        "id": "EONET_19246",
+        "type": "wildfire",
+        "lat": 36.800278,
+        "lng": -92.754167,
+        "title": "McClurg RX Prescribed Fire, Ozark, Missouri",
+        "date": "2026-03-29T08:13:00Z"
+      },
+      {
+        "id": "EONET_19242",
+        "type": "wildfire",
+        "lat": 36.5468,
+        "lng": -96.077,
+        "title": "BOMAN Wildfire, Osage, Oklahoma",
+        "date": "2026-03-28T18:18:00Z"
+      },
+      {
+        "id": "EONET_19249",
+        "type": "wildfire",
+        "lat": 36.820957,
+        "lng": -96.45943,
+        "title": "BISON LOOP Wildfire, Osage, Oklahoma",
+        "date": "2026-03-28T17:14:00Z"
+      },
+      {
+        "id": "EONET_19243",
+        "type": "wildfire",
+        "lat": 45.526033,
+        "lng": -113.921867,
+        "title": "Sheep Creek RX Prescribed Fire, Lemhi, Idaho",
+        "date": "2026-03-27T18:19:00Z"
+      },
+      {
+        "id": "EONET_19226",
+        "type": "wildfire",
+        "lat": 35.146209,
+        "lng": -103.285447,
+        "title": "Old 66 Wildfire, Quay, New Mexico",
+        "date": "2026-03-27T15:32:00Z"
+      },
+      {
+        "id": "EONET_19252",
+        "type": "wildfire",
+        "lat": 33.374444,
+        "lng": -89.955556,
+        "title": "Carroll Co State Assist Wildfire, Carroll, Mississippi",
+        "date": "2026-03-27T15:29:00Z"
+      },
+      {
+        "id": "EONET_18975",
+        "type": "wildfire",
+        "lat": 30.3957,
+        "lng": -94.34081,
+        "title": "Rx Hardin 2806 Prescribed Fire, Hardin, Texas",
+        "date": "2026-03-27T12:21:00Z"
+      },
+      {
+        "id": "EONET_19240",
+        "type": "wildfire",
+        "lat": 48.589957,
+        "lng": -118.249869,
+        "title": "3R RX - COYOTE Prescribed Fire, Ferry, Washington",
+        "date": "2026-03-27T11:06:00Z"
+      },
+      {
+        "id": "EONET_18971",
+        "type": "wildfire",
+        "lat": 33.3744444,
+        "lng": -89.9555556,
+        "title": "Carroll - CR 145 Wildfire, Carroll, Mississippi",
+        "date": "2026-03-27T10:02:00Z"
+      },
+      {
+        "id": "EONET_18979",
+        "type": "wildfire",
+        "lat": 38.20875,
+        "lng": -98.47647,
+        "title": "Salt Wildfire, Stafford, Kansas",
+        "date": "2026-03-27T09:18:00Z"
+      },
+      {
+        "id": "EONET_18984",
+        "type": "wildfire",
+        "lat": 35.0533333,
+        "lng": -95.3672222,
+        "title": "Big Toe Wildfire, Pittsburg, Oklahoma",
+        "date": "2026-03-27T03:53:00Z"
+      },
+      {
+        "id": "EONET_19250",
+        "type": "wildfire",
+        "lat": 36.9369444,
+        "lng": -95.0955556,
+        "title": "Shady Grove Wildfire, Craig, Oklahoma",
+        "date": "2026-03-26T20:42:00Z"
+      },
+      {
+        "id": "EONET_19716",
+        "type": "wildfire",
+        "lat": 34.664046,
+        "lng": -111.117611,
+        "title": "BRUI Dogie RX Prescribed Fire, Coconino, Arizona",
+        "date": "2026-03-26T19:07:00Z"
+      },
+      {
+        "id": "EONET_18982",
+        "type": "wildfire",
+        "lat": 36.4778,
+        "lng": -96.6398,
+        "title": "BOX Wildfire, Osage, Oklahoma",
+        "date": "2026-03-26T18:00:00Z"
+      },
+      {
+        "id": "EONET_18989",
+        "type": "wildfire",
+        "lat": 36.005,
+        "lng": -98.3569444,
+        "title": "Cedar Canyon Wildfire, Blaine, Oklahoma",
+        "date": "2026-03-26T16:33:00Z"
+      },
+      {
+        "id": "EONET_18973",
+        "type": "wildfire",
+        "lat": 47.885474,
+        "lng": -95.257567,
+        "title": "RL 005 CB Wildfire, Clearwater, Minnesota",
+        "date": "2026-03-26T10:39:00Z"
+      },
+      {
+        "id": "EONET_18995",
+        "type": "wildfire",
+        "lat": 31.736,
+        "lng": -90.734,
+        "title": "Homochitto BB 2 RX Prescribed Fire, Copiah, Mississippi",
+        "date": "2026-03-26T09:29:00Z"
+      },
+      {
+        "id": "EONET_18987",
+        "type": "wildfire",
+        "lat": 42.001111,
+        "lng": -101.760772,
+        "title": "Minor Wildfire, Grant, Nebraska",
+        "date": "2026-03-26T09:27:00Z"
+      },
+      {
+        "id": "EONET_18988",
+        "type": "wildfire",
+        "lat": 42.021944,
+        "lng": -101.927778,
+        "title": "Ashby Wildfire, Grant, Nebraska",
+        "date": "2026-03-26T09:26:00Z"
+      },
+      {
+        "id": "EONET_18994",
+        "type": "wildfire",
+        "lat": 32.036667,
+        "lng": -92.825556,
+        "title": "RX WINN BU 37 Prescribed Fire, Winn, Louisiana",
+        "date": "2026-03-26T09:17:00Z"
+      },
+      {
+        "id": "EONET_19248",
+        "type": "wildfire",
+        "lat": 31.103717,
+        "lng": -94.35225,
+        "title": "ANF Upland Island N 68/69/70 RX Prescribed Fire, Angelina, Texas",
+        "date": "2026-03-26T09:04:00Z"
+      },
+      {
+        "id": "EONET_18993",
+        "type": "wildfire",
+        "lat": 31.135,
+        "lng": -92.646933,
+        "title": "RX CALE BU 41 Prescribed Fire, Rapides, Louisiana",
+        "date": "2026-03-26T08:49:00Z"
+      },
+      {
+        "id": "EONET_19195",
+        "type": "wildfire",
+        "lat": 34.588056,
+        "lng": -81.635,
+        "title": "C-38B_41 EN RX Prescribed Fire, Union, South Carolina",
+        "date": "2026-03-26T07:32:00Z"
+      },
+      {
+        "id": "EONET_18986",
+        "type": "wildfire",
+        "lat": 34.7991667,
+        "lng": -95.5319444,
+        "title": "Zipperer Wildfire, Pittsburg, Oklahoma",
+        "date": "2026-03-26T04:06:00Z"
+      },
+      {
+        "id": "EONET_18992",
+        "type": "wildfire",
+        "lat": 37.846389,
+        "lng": -104.638056,
+        "title": "Turkey Wildfire, Huerfano, Colorado",
+        "date": "2026-03-25T20:36:00Z"
+      },
+      {
+        "id": "EONET_18990",
+        "type": "wildfire",
+        "lat": 31.131093,
+        "lng": -95.158513,
+        "title": "Warthog Wildfire, Trinity, Texas",
+        "date": "2026-03-25T18:53:00Z"
+      },
+      {
+        "id": "EONET_19214",
+        "type": "wildfire",
+        "lat": 33.240418,
+        "lng": -83.476397,
+        "title": "Compartment 144 RX Prescribed Fire, Putnam, Georgia",
+        "date": "2026-03-25T18:37:00Z"
+      },
+      {
+        "id": "EONET_19006",
+        "type": "wildfire",
+        "lat": 31.83,
+        "lng": -86.9869444,
+        "title": "College Drive Wildfire, Monroe, Alabama",
+        "date": "2026-03-25T13:07:00Z"
+      },
+      {
+        "id": "EONET_19005",
+        "type": "wildfire",
+        "lat": 34.365,
+        "lng": -87.2674,
+        "title": "Warren RX Prescribed Fire, Lawrence, Alabama",
+        "date": "2026-03-25T11:15:00Z"
+      },
+      {
+        "id": "EONET_18996",
+        "type": "wildfire",
+        "lat": 31.189088,
+        "lng": -94.886818,
+        "title": "DCNF C-119-121 RX Prescribed Fire, Trinity, Texas",
+        "date": "2026-03-25T10:28:00Z"
+      },
+      {
+        "id": "EONET_18998",
+        "type": "wildfire",
+        "lat": 40.400583,
+        "lng": -89.8787,
+        "title": "IDNR- Sand Ridge State Forest RX Prescribed Fire, Mason, Illinois",
+        "date": "2026-03-25T09:53:00Z"
+      },
+      {
+        "id": "EONET_19003",
+        "type": "wildfire",
+        "lat": 34.818241,
+        "lng": -94.318322,
+        "title": "RX PCS Andy Knight South Prescribed Fire, Scott, Arkansas",
+        "date": "2026-03-25T09:34:00Z"
+      },
+      {
+        "id": "EONET_18999",
+        "type": "wildfire",
+        "lat": 34.425278,
+        "lng": -93.545833,
+        "title": "RX Sharp Top 1 Prescribed Fire, Montgomery, Arkansas",
+        "date": "2026-03-25T08:45:00Z"
+      },
+      {
+        "id": "EONET_19002",
+        "type": "wildfire",
+        "lat": 34.669806,
+        "lng": -93.46725,
+        "title": "RX Vanderslice Unit 7/8 Prescribed Fire, Montgomery, Arkansas",
+        "date": "2026-03-25T08:07:00Z"
+      },
+      {
+        "id": "EONET_19244",
+        "type": "wildfire",
+        "lat": 37.878829,
+        "lng": -83.68166,
+        "title": "CMB - Powder Mill RX Prescribed Fire, Menifee, Kentucky",
+        "date": "2026-03-25T06:44:00Z"
+      },
+      {
+        "id": "EONET_19576",
+        "type": "wildfire",
+        "lat": 37.067529,
+        "lng": -83.52107,
+        "title": "RED - Hurricane Branch RX Prescribed Fire, Leslie, Kentucky",
+        "date": "2026-03-25T06:17:00Z"
+      },
+      {
+        "id": "EONET_18991",
+        "type": "wildfire",
+        "lat": 29.0691667,
+        "lng": -82.5494444,
+        "title": "FENCO FARMS (38) Wildfire, Levy, Florida",
+        "date": "2026-03-24T19:48:00Z"
+      },
+      {
+        "id": "EONET_19007",
+        "type": "wildfire",
+        "lat": 33.117915,
+        "lng": -83.494928,
+        "title": "Compartment 128 RX Prescribed Fire, Jones, Georgia",
+        "date": "2026-03-24T18:31:00Z"
+      },
+      {
+        "id": "EONET_19227",
+        "type": "wildfire",
+        "lat": 34.130612,
+        "lng": -109.79702,
+        "title": "D7 Brushy MTN North RX Prescribed Fire, Apache, Arizona",
+        "date": "2026-03-24T18:28:00Z"
+      },
+      {
+        "id": "EONET_19582",
+        "type": "wildfire",
+        "lat": 36.802463,
+        "lng": -96.267969,
+        "title": "WARE Wildfire, Osage, Oklahoma",
+        "date": "2026-03-24T16:32:00Z"
+      },
+      {
+        "id": "EONET_19457",
+        "type": "wildfire",
+        "lat": 47.625617,
+        "lng": -108.900717,
+        "title": "Two Calf Unit A RX Prescribed Fire, Fergus, Montana",
+        "date": "2026-03-24T16:23:00Z"
+      },
+      {
+        "id": "EONET_19441",
+        "type": "wildfire",
+        "lat": 38.718611,
+        "lng": -82.506944,
+        "title": "Sunny Oaks Rx Unit 4 Prescribed Fire, Lawrence, Ohio",
+        "date": "2026-03-24T15:58:00Z"
+      },
+      {
+        "id": "EONET_19008",
+        "type": "wildfire",
+        "lat": 36.1373333,
+        "lng": -95.1038333,
+        "title": "Iron Post Wildfire, Cherokee, Oklahoma",
+        "date": "2026-03-24T15:45:00Z"
+      },
+      {
+        "id": "EONET_19012",
+        "type": "wildfire",
+        "lat": 36.627446,
+        "lng": -96.125892,
+        "title": "PENNEL CREEK Wildfire, Osage, Oklahoma",
+        "date": "2026-03-24T14:26:00Z"
+      },
+      {
+        "id": "EONET_18985",
+        "type": "wildfire",
+        "lat": 35.71033333,
+        "lng": -101.4915333,
+        "title": "Hutchinson Wildfire, Hutchinson, Texas",
+        "date": "2026-03-24T13:54:00Z"
+      },
+      {
+        "id": "EONET_19014",
+        "type": "wildfire",
+        "lat": 36.4916,
+        "lng": -96.15697,
+        "title": "ADAMS FAMILY Wildfire, Osage, Oklahoma",
+        "date": "2026-03-24T13:39:00Z"
+      },
+      {
+        "id": "EONET_18981",
+        "type": "wildfire",
+        "lat": 34.822777,
+        "lng": -94.194099,
+        "title": "RX PCS Ross Creek Prescribed Fire, Scott, Arkansas",
+        "date": "2026-03-24T10:27:00Z"
+      },
+      {
+        "id": "EONET_19011",
+        "type": "wildfire",
+        "lat": 35.7401,
+        "lng": -94.3509,
+        "title": "RX Whiskey Springs 3 Prescribed Fire, Crawford, Arkansas",
+        "date": "2026-03-24T09:55:00Z"
+      },
+      {
+        "id": "EONET_19010",
+        "type": "wildfire",
+        "lat": 34.584167,
+        "lng": -93.668056,
+        "title": "RX Mount Ida 7 Prescribed Fire, Montgomery, Arkansas",
+        "date": "2026-03-24T09:22:00Z"
+      },
+      {
+        "id": "EONET_19013",
+        "type": "wildfire",
+        "lat": 34.6885,
+        "lng": -95.6025,
+        "title": "RX SOUTH LONE PINE Prescribed Fire, Pittsburg, Oklahoma",
+        "date": "2026-03-24T08:14:00Z"
+      },
+      {
+        "id": "EONET_19004",
+        "type": "wildfire",
+        "lat": 37.598086,
+        "lng": -80.063054,
+        "title": "Bald Mountain RX Prescribed Fire, Craig, Virginia",
+        "date": "2026-03-24T07:47:00Z"
+      },
+      {
+        "id": "EONET_19215",
+        "type": "wildfire",
+        "lat": 33.169817,
+        "lng": -83.674067,
+        "title": "Compartment 119_120 RX Prescribed Fire, Jasper, Georgia",
+        "date": "2026-03-24T07:24:00Z"
+      },
+      {
+        "id": "EONET_18750",
+        "type": "wildfire",
+        "lat": 35.0336111,
+        "lng": -95.2988889,
+        "title": "90 Degrees Wildfire, Latimer, Oklahoma",
+        "date": "2026-03-24T02:44:00Z"
+      },
+      {
+        "id": "EONET_18972",
+        "type": "wildfire",
+        "lat": 35.6228333,
+        "lng": -94.7365,
+        "title": "Old Kentucky Wildfire, Sequoyah, Oklahoma",
+        "date": "2026-03-23T20:23:00Z"
+      },
+      {
+        "id": "EONET_18758",
+        "type": "wildfire",
+        "lat": 36.1103333,
+        "lng": -94.7343333,
+        "title": "Luna Branch Wildfire, Adair, Oklahoma",
+        "date": "2026-03-23T19:31:00Z"
+      },
+      {
+        "id": "EONET_18768",
+        "type": "wildfire",
+        "lat": 35.5188889,
+        "lng": -96.4380556,
+        "title": "Oxbow Wildfire, Okfuskee, Oklahoma",
+        "date": "2026-03-23T17:32:00Z"
+      },
+      {
+        "id": "EONET_18772",
+        "type": "wildfire",
+        "lat": 34.2797222,
+        "lng": -85.4469444,
+        "title": "Polk Treat Mountain Wildfire, Floyd, Georgia",
+        "date": "2026-03-23T17:17:00Z"
+      },
+      {
+        "id": "EONET_19440",
+        "type": "wildfire",
+        "lat": 37.977383,
+        "lng": -80.131283,
+        "title": "One Mile Rx Prescribed Fire, Greenbrier, West Virginia",
+        "date": "2026-03-23T16:58:00Z"
+      },
+      {
+        "id": "EONET_19723",
+        "type": "wildfire",
+        "lat": 38.15295,
+        "lng": -79.945217,
+        "title": "Lock Ridge Rx Prescribed Fire, Pocahontas, West Virginia",
+        "date": "2026-03-23T16:56:00Z"
+      },
+      {
+        "id": "EONET_19009",
+        "type": "wildfire",
+        "lat": 37.024717,
+        "lng": -91.245283,
+        "title": "Big Hollow RX Prescribed Fire, Shannon, Missouri",
+        "date": "2026-03-23T16:22:00Z"
+      },
+      {
+        "id": "EONET_18780",
+        "type": "wildfire",
+        "lat": 35.207222,
+        "lng": -95.987222,
+        "title": "MIDDLE CREEK Wildfire, Hughes, Oklahoma",
+        "date": "2026-03-23T14:21:00Z"
+      },
+      {
+        "id": "EONET_18781",
+        "type": "wildfire",
+        "lat": 35.203333,
+        "lng": -95.803611,
+        "title": "SALTSMAN Wildfire, McIntosh, Oklahoma",
+        "date": "2026-03-23T14:05:00Z"
+      },
+      {
+        "id": "EONET_18763",
+        "type": "wildfire",
+        "lat": 32.3396,
+        "lng": -89.3958,
+        "title": "Bienville CPT 65 66 RX Prescribed Fire, Scott, Mississippi",
+        "date": "2026-03-23T10:37:00Z"
+      },
+      {
+        "id": "EONET_18786",
+        "type": "wildfire",
+        "lat": 35.6081667,
+        "lng": -94.7688333,
+        "title": "Barbed Wire Wildfire, Sequoyah, Oklahoma",
+        "date": "2026-03-23T10:31:00Z"
+      },
+      {
+        "id": "EONET_18760",
+        "type": "wildfire",
+        "lat": 30.671033,
+        "lng": -89.0925,
+        "title": "DeSoto BB 0250 C-597 RX Prescribed Fire, Harrison, Mississippi",
+        "date": "2026-03-23T10:25:00Z"
+      },
+      {
+        "id": "EONET_18767",
+        "type": "wildfire",
+        "lat": 37.99645,
+        "lng": -90.96295,
+        "title": "Indian Creek RX Prescribed Fire, Washington, Missouri",
+        "date": "2026-03-23T10:16:00Z"
+      }
+    ],
+    "count": 200,
+    "fetched_at": "2026-04-20T21:37:51.542077Z"
+  }
+}

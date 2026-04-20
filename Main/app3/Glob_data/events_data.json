@@ -1,0 +1,591 @@
+{
+  "saved_at": "2026-04-20T21:37:51.574473Z",
+  "data": {
+    "events": [
+      {
+        "id": "EONET_19792",
+        "type": "wildfire",
+        "lat": 29.8861111,
+        "lng": -81.6333333,
+        "title": "Crews Rd (10) Wildfire, Clay, Florida",
+        "date": "2026-04-20T10:45:00Z"
+      },
+      {
+        "id": "EONET_19797",
+        "type": "wildfire",
+        "lat": 29.7855556,
+        "lng": -81.6330556,
+        "title": "RAILROAD COMPLEX Wildfire, Putnam, Florida",
+        "date": "2026-04-19T21:13:00Z"
+      },
+      {
+        "id": "EONET_19799",
+        "type": "wildfire",
+        "lat": 29.7855556,
+        "lng": -81.6327778,
+        "title": "RAILROAD COMPLEX Wildfire, Putnam, Florida",
+        "date": "2026-04-19T19:36:00Z"
+      },
+      {
+        "id": "EONET_19793",
+        "type": "wildfire",
+        "lat": 30.7563889,
+        "lng": -82.7680556,
+        "title": "Pineland Rd Wildfire, Clinch, Georgia",
+        "date": "2026-04-19T10:47:00Z"
+      },
+      {
+        "id": "EONET_19801",
+        "type": "wildfire",
+        "lat": 45.8375735,
+        "lng": -92.6494912,
+        "title": "rx-45_041526 Prescribed Fire, Burnett, Wisconsin",
+        "date": "2026-04-19T09:53:00Z"
+      },
+      {
+        "id": "EONET_19796",
+        "type": "wildfire",
+        "lat": 30.6886111,
+        "lng": -81.9855556,
+        "title": "Conner-Nelson Rd (45) Wildfire, Nassau, Florida",
+        "date": "2026-04-18T14:41:00Z"
+      },
+      {
+        "id": "EONET_19795",
+        "type": "wildfire",
+        "lat": 48.81675,
+        "lng": -109.41723,
+        "title": "Holm RX Prescribed Fire, Blaine, Montana",
+        "date": "2026-04-17T12:12:00Z"
+      },
+      {
+        "id": "EONET_19805",
+        "type": "wildfire",
+        "lat": 31.56589,
+        "lng": -95.10404,
+        "title": "Rx Cherokee 3533 Prescribed Fire, Cherokee, Texas",
+        "date": "2026-04-17T10:51:00Z"
+      },
+      {
+        "id": "EONET_19806",
+        "type": "wildfire",
+        "lat": 31.0137,
+        "lng": -95.2677,
+        "title": "RX Trinity 3522 Prescribed Fire, Trinity, Texas",
+        "date": "2026-04-17T10:46:00Z"
+      },
+      {
+        "id": "EONET_19802",
+        "type": "wildfire",
+        "lat": 35.5865604,
+        "lng": -92.62707719,
+        "title": "LO GAP Wildfire, Van Buren, Arkansas",
+        "date": "2026-04-17T10:41:00Z"
+      },
+      {
+        "id": "EONET_19800",
+        "type": "wildfire",
+        "lat": 32.7258333,
+        "lng": -81.2741667,
+        "title": "Old Orangeburg Wildfire, Hampton, South Carolina",
+        "date": "2026-04-17T09:27:00Z"
+      },
+      {
+        "id": "EONET_19807",
+        "type": "wildfire",
+        "lat": 31.062467,
+        "lng": -93.157417,
+        "title": "RX CALV BU 255-257 Prescribed Fire, Vernon, Louisiana",
+        "date": "2026-04-16T16:49:00Z"
+      },
+      {
+        "id": "EONET_19804",
+        "type": "wildfire",
+        "lat": 45.503583,
+        "lng": -93.708514,
+        "title": "Burn Unit 20 RX Prescribed Fire, Sherburne, Minnesota",
+        "date": "2026-04-16T09:50:00Z"
+      },
+      {
+        "id": "EONET_19714",
+        "type": "wildfire",
+        "lat": 45.46325,
+        "lng": -96.271767,
+        "title": "Dismal Swamp RX Prescribed Fire, Big Stone, Minnesota",
+        "date": "2026-04-15T09:41:00Z"
+      },
+      {
+        "id": "EONET_19717",
+        "type": "wildfire",
+        "lat": 31.419,
+        "lng": -91.013,
+        "title": "Homochitto BB 49 East RX Prescribed Fire, Franklin, Mississippi",
+        "date": "2026-04-15T09:14:00Z"
+      },
+      {
+        "id": "EONET_19715",
+        "type": "wildfire",
+        "lat": 34.643232,
+        "lng": -105.416063,
+        "title": "ENCINO 2 Wildfire, Torrance, New Mexico",
+        "date": "2026-04-14T16:34:00Z"
+      },
+      {
+        "id": "EONET_19713",
+        "type": "wildfire",
+        "lat": 35.1675,
+        "lng": -84.3755,
+        "title": "Appalachia Wildfire, Polk, Tennessee",
+        "date": "2026-04-14T15:41:00Z"
+      },
+      {
+        "id": "EONET_19718",
+        "type": "wildfire",
+        "lat": 33.7498333,
+        "lng": -79.2833333,
+        "title": "Woodbury Wildfire, Marion, South Carolina",
+        "date": "2026-04-14T15:23:00Z"
+      },
+      {
+        "id": "EONET_19725",
+        "type": "wildfire",
+        "lat": 31.419,
+        "lng": -91.013,
+        "title": "Homochitto BB 49 West RX Prescribed Fire, Franklin, Mississippi",
+        "date": "2026-04-14T09:48:00Z"
+      },
+      {
+        "id": "EONET_19724",
+        "type": "wildfire",
+        "lat": 31.042883,
+        "lng": -94.2842,
+        "title": "ANF Boykin Springs C-88/89 RX Prescribed Fire, Jasper, Texas",
+        "date": "2026-04-14T09:42:00Z"
+      },
+      {
+        "id": "EONET_19726",
+        "type": "wildfire",
+        "lat": 31.5603,
+        "lng": -88.9888,
+        "title": "Chickasawhay CPT 354 RX Prescribed Fire, Jones, Mississippi",
+        "date": "2026-04-14T09:24:00Z"
+      },
+      {
+        "id": "EONET_19558",
+        "type": "wildfire",
+        "lat": 26.1502778,
+        "lng": -81.6330556,
+        "title": "NEWMAN DR Wildfire, Collier, Florida",
+        "date": "2026-04-13T20:18:00Z"
+      },
+      {
+        "id": "EONET_19721",
+        "type": "wildfire",
+        "lat": 46.012,
+        "lng": -95.8944,
+        "title": "PDT South-FFR RX Prescribed Fire, Grant, Minnesota",
+        "date": "2026-04-13T16:52:00Z"
+      },
+      {
+        "id": "EONET_19719",
+        "type": "wildfire",
+        "lat": 31.2669444,
+        "lng": -88.0188889,
+        "title": "Ciba Road Wildfire, Washington, Alabama",
+        "date": "2026-04-13T13:31:00Z"
+      },
+      {
+        "id": "EONET_19560",
+        "type": "wildfire",
+        "lat": 27.630425,
+        "lng": -81.158752,
+        "title": "APQ CPT 10 Rx 0413 Prescribed Fire, Highlands, Florida",
+        "date": "2026-04-13T09:16:00Z"
+      },
+      {
+        "id": "us7000s789",
+        "type": "earthquake",
+        "lat": -18.597,
+        "lng": -175.3917,
+        "mag": 7.5,
+        "title": "M 7.5 - 148 km W of Neiafu, Tonga",
+        "date": "2026-03-24T04:37:51.514000+00:00"
+      },
+      {
+        "id": "us6000slss",
+        "type": "earthquake",
+        "lat": 1.1171,
+        "lng": 126.2965,
+        "mag": 7.4,
+        "title": "M 7.4 - 126 km WNW of Ternate, Indonesia",
+        "date": "2026-04-01T22:48:13.172000+00:00"
+      },
+      {
+        "id": "us7000s8q0",
+        "type": "earthquake",
+        "lat": -15.3139,
+        "lng": 167.5616,
+        "mag": 7.3,
+        "title": "M 7.3 - 48 km ENE of Luganville, Vanuatu",
+        "date": "2026-03-30T08:44:13.823000+00:00"
+      },
+      {
+        "id": "us6000si5l",
+        "type": "earthquake",
+        "lat": 23.8601,
+        "lng": -45.7987,
+        "mag": 6.6,
+        "title": "M 6.6 - northern Mid-Atlantic Ridge",
+        "date": "2026-03-21T12:16:46.629000+00:00"
+      },
+      {
+        "id": "us7000s7u4",
+        "type": "earthquake",
+        "lat": 39.4377,
+        "lng": 143.3826,
+        "mag": 6.5,
+        "title": "M 6.5 - 123 km E of Yamada, Japan",
+        "date": "2026-03-26T14:18:51.927000+00:00"
+      },
+      {
+        "id": "us6000sii1",
+        "type": "earthquake",
+        "lat": -15.3376,
+        "lng": -172.652,
+        "mag": 6.3,
+        "title": "M 6.3 - 140 km ENE of Hihifo, Tonga",
+        "date": "2026-03-22T15:30:36.570000+00:00"
+      },
+      {
+        "id": "us6000sidb",
+        "type": "earthquake",
+        "lat": -15.1922,
+        "lng": -172.96,
+        "mag": 6.2,
+        "title": "M 6.2 - 123 km NE of Hihifo, Tonga",
+        "date": "2026-03-22T06:15:36.306000+00:00"
+      },
+      {
+        "id": "us6000sii0",
+        "type": "earthquake",
+        "lat": -15.2769,
+        "lng": -172.5558,
+        "mag": 6.2,
+        "title": "M 6.2 - 152 km ENE of Hihifo, Tonga",
+        "date": "2026-03-22T15:27:55.074000+00:00"
+      },
+      {
+        "id": "us6000slwy",
+        "type": "earthquake",
+        "lat": 1.2031,
+        "lng": 126.474,
+        "mag": 6.2,
+        "title": "M 6.2 - 111 km WNW of Ternate, Indonesia",
+        "date": "2026-04-02T03:23:53.642000+00:00"
+      },
+      {
+        "id": "us6000sred",
+        "type": "earthquake",
+        "lat": -15.1256,
+        "lng": -173.6164,
+        "mag": 6.1,
+        "title": "M 6.1 - 93 km NNE of Hihifo, Tonga",
+        "date": "2026-04-19T17:34:47.472000+00:00"
+      },
+      {
+        "id": "us7000s9cg",
+        "type": "earthquake",
+        "lat": -7.0198,
+        "lng": -76.1931,
+        "mag": 6,
+        "title": "M 6.0 - 18 km SE of Picota, Peru",
+        "date": "2026-04-01T11:20:27.357000+00:00"
+      },
+      {
+        "id": "us6000smj4",
+        "type": "earthquake",
+        "lat": 4.8733,
+        "lng": 126.1392,
+        "mag": 6,
+        "title": "M 6.0 - 95 km SE of Sarangani, Philippines",
+        "date": "2026-04-04T10:34:28.266000+00:00"
+      },
+      {
+        "id": "us6000sqjb",
+        "type": "earthquake",
+        "lat": -32.2098,
+        "lng": -178.0541,
+        "mag": 6,
+        "title": "M 6.0 - south of the Kermadec Islands",
+        "date": "2026-04-16T13:30:01.088000+00:00"
+      },
+      {
+        "id": "us6000siln",
+        "type": "earthquake",
+        "lat": -15.6311,
+        "lng": -172.8184,
+        "mag": 5.9,
+        "title": "M 5.9 - 110 km ENE of Hihifo, Tonga",
+        "date": "2026-03-22T22:26:14.332000+00:00"
+      },
+      {
+        "id": "us6000sm1v",
+        "type": "earthquake",
+        "lat": 1.2401,
+        "lng": 126.3004,
+        "mag": 5.9,
+        "title": "M 5.9 - 130 km WNW of Ternate, Indonesia",
+        "date": "2026-04-02T14:13:49.201000+00:00"
+      },
+      {
+        "id": "us6000sn11",
+        "type": "earthquake",
+        "lat": -54.994,
+        "lng": -129.111,
+        "mag": 5.9,
+        "title": "M 5.9 - Pacific-Antarctic Ridge",
+        "date": "2026-04-06T11:18:37.401000+00:00"
+      },
+      {
+        "id": "us6000sr3l",
+        "type": "earthquake",
+        "lat": -32.0876,
+        "lng": -178.0627,
+        "mag": 5.9,
+        "title": "M 5.9 - south of the Kermadec Islands",
+        "date": "2026-04-18T10:47:54.936000+00:00"
+      },
+      {
+        "id": "us6000sr4k",
+        "type": "earthquake",
+        "lat": -10.6594,
+        "lng": 161.575,
+        "mag": 5.8,
+        "title": "M 5.8 - 44 km WSW of Kirakira, Solomon Islands",
+        "date": "2026-04-18T15:03:00.197000+00:00"
+      },
+      {
+        "id": "us7000s8ec",
+        "type": "earthquake",
+        "lat": -7.5517,
+        "lng": 127.7983,
+        "mag": 5.8,
+        "title": "M 5.8 - 138 km NE of Lospalos, Timor Leste",
+        "date": "2026-03-28T18:38:29.292000+00:00"
+      },
+      {
+        "id": "us6000sm21",
+        "type": "earthquake",
+        "lat": 1.2035,
+        "lng": 126.3735,
+        "mag": 5.8,
+        "title": "M 5.8 - 121 km WNW of Ternate, Indonesia",
+        "date": "2026-04-02T14:34:59.320000+00:00"
+      },
+      {
+        "id": "us6000smda",
+        "type": "earthquake",
+        "lat": 36.5479,
+        "lng": 70.852,
+        "mag": 5.8,
+        "title": "M 5.8 - 35 km S of Jurm, Afghanistan",
+        "date": "2026-04-03T16:12:58.037000+00:00"
+      },
+      {
+        "id": "us6000si17",
+        "type": "earthquake",
+        "lat": -16.011,
+        "lng": 166.9002,
+        "mag": 5.7,
+        "title": "M 5.7 - 53 km W of Norsup, Vanuatu",
+        "date": "2026-03-21T03:20:58.592000+00:00"
+      },
+      {
+        "id": "us6000sic3",
+        "type": "earthquake",
+        "lat": -8.9092,
+        "lng": -108.3968,
+        "mag": 5.7,
+        "title": "M 5.7 - central East Pacific Rise",
+        "date": "2026-03-22T03:03:45.129000+00:00"
+      },
+      {
+        "id": "us6000sisb",
+        "type": "earthquake",
+        "lat": -15.5458,
+        "lng": -172.8966,
+        "mag": 5.7,
+        "title": "M 5.7 - 106 km ENE of Hihifo, Tonga",
+        "date": "2026-03-23T06:02:46.592000+00:00"
+      },
+      {
+        "id": "us7000s7z5",
+        "type": "earthquake",
+        "lat": -3.1237,
+        "lng": 139.3955,
+        "mag": 5.7,
+        "title": "M 5.7 - 149 km WSW of Abepura, Indonesia",
+        "date": "2026-03-26T22:51:01.209000+00:00"
+      },
+      {
+        "id": "pol-beijing",
+        "type": "pollution",
+        "lat": 39.9,
+        "lng": 116.4,
+        "aqi": 172,
+        "pm25": 95.45,
+        "title": "AQI 172 — Beijing",
+        "date": "2026-04-20T21:37:46.785369Z"
+      },
+      {
+        "id": "pol-seoul",
+        "type": "pollution",
+        "lat": 37.57,
+        "lng": 126.98,
+        "aqi": 157,
+        "pm25": 67.63,
+        "title": "AQI 157 — Seoul",
+        "date": "2026-04-20T21:37:49.647276Z"
+      },
+      {
+        "id": "pol-chengdu",
+        "type": "pollution",
+        "lat": 30.66,
+        "lng": 104.07,
+        "aqi": 135,
+        "pm25": 49.21,
+        "title": "AQI 135 — Chengdu",
+        "date": "2026-04-20T21:37:51.124263Z"
+      },
+      {
+        "id": "pol-riyadh",
+        "type": "pollution",
+        "lat": 24.69,
+        "lng": 46.72,
+        "aqi": 112,
+        "pm25": 40.05,
+        "title": "AQI 112 — Riyadh",
+        "date": "2026-04-20T21:37:51.540929Z"
+      },
+      {
+        "id": "pol-lahore",
+        "type": "pollution",
+        "lat": 31.5,
+        "lng": 74.3,
+        "aqi": 103,
+        "pm25": 36.5,
+        "title": "AQI 103 — Lahore",
+        "date": "2026-04-20T21:37:47.089814Z"
+      },
+      {
+        "id": "war-ukraine",
+        "type": "war",
+        "startLat": 48.3,
+        "startLng": 34.6,
+        "endLat": 55.7,
+        "endLng": 37.6,
+        "title": "Ukraine–Russia Front",
+        "date": "2022-02-24"
+      },
+      {
+        "id": "war-middle-east",
+        "type": "war",
+        "startLat": 31.5,
+        "startLng": 34.4,
+        "endLat": 30.0,
+        "endLng": 31.2,
+        "title": "Gaza Crisis Zone",
+        "date": "2023-10-07"
+      },
+      {
+        "id": "war-sudan",
+        "type": "war",
+        "startLat": 12.8,
+        "startLng": 30.1,
+        "endLat": 15.5,
+        "endLng": 32.5,
+        "title": "Sudan Conflict",
+        "date": "2023-04-15"
+      },
+      {
+        "id": "war-myanmar",
+        "type": "war",
+        "startLat": 16.8,
+        "startLng": 96.1,
+        "endLat": 21.9,
+        "endLng": 96.1,
+        "title": "Myanmar Civil War",
+        "date": "2021-02-01"
+      },
+      {
+        "id": "war-haiti",
+        "type": "war",
+        "startLat": 18.97,
+        "startLng": -72.29,
+        "endLat": 19.1,
+        "endLng": -72.1,
+        "title": "Haiti Gang Conflict",
+        "date": "2023-03-01"
+      },
+      {
+        "id": "war-sahel",
+        "type": "war",
+        "startLat": 12.36,
+        "startLng": -1.53,
+        "endLat": 15.45,
+        "endLng": 2.11,
+        "title": "Sahel Insurgency",
+        "date": "2020-01-01"
+      },
+      {
+        "id": "pro-paris",
+        "type": "protest",
+        "lat": 48.85,
+        "lng": 2.35,
+        "title": "Civil Unrest: Paris",
+        "date": "2026-04-20T21:37:42.000210Z"
+      },
+      {
+        "id": "pro-delhi",
+        "type": "protest",
+        "lat": 28.61,
+        "lng": 77.2,
+        "title": "Farmers Protest: New Delhi",
+        "date": "2026-04-20T21:37:42.000210Z"
+      },
+      {
+        "id": "pro-london",
+        "type": "protest",
+        "lat": 51.5,
+        "lng": -0.12,
+        "title": "Climate March: London",
+        "date": "2026-04-20T21:37:42.000210Z"
+      },
+      {
+        "id": "pro-dhaka",
+        "type": "protest",
+        "lat": 23.81,
+        "lng": 90.41,
+        "title": "Student Protests: Dhaka",
+        "date": "2026-04-20T21:37:42.000210Z"
+      },
+      {
+        "id": "pro-tbilisi",
+        "type": "protest",
+        "lat": 41.69,
+        "lng": 44.83,
+        "title": "Pro-EU March: Tbilisi",
+        "date": "2026-04-20T21:37:42.000210Z"
+      },
+      {
+        "id": "pro-belgrade",
+        "type": "protest",
+        "lat": 44.8,
+        "lng": 20.47,
+        "title": "Anti-Govt Protests: Belgrade",
+        "date": "2026-04-20T21:37:42.000210Z"
+      }
+    ],
+    "fetched_at": "2026-04-20T21:37:51.574473Z"
+  }
+}

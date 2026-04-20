@@ -176,7 +176,6 @@
         box-shadow: none;
         text-shadow: none;
       }
-      }
 
       .header-right { display: flex; align-items: center; gap: 12px; }
 
@@ -352,6 +351,39 @@
       }
       .panel-btn.alt-amber .btn-icon { color: var(--amber); }
 
+      /* ── NEON PINK BUTTON (All Events) ── */
+      .panel-btn.alt-pink {
+        background: rgba(255, 20, 147, 0.08) !important;
+        border-color: rgba(255, 20, 147, 0.35) !important;
+        color: #ff2a6d !important;
+        position: relative;
+      }
+      .panel-btn.alt-pink::before { 
+        background: #ff2a6d !important; 
+        box-shadow: 0 0 6px #ff2a6d !important; 
+      }
+      .panel-btn.alt-pink:hover { 
+        background: rgba(255, 20, 147, 0.18) !important; 
+        border-color: rgba(255, 20, 147, 0.65) !important; 
+        color: #ff2a6d !important;
+        transform: translateY(-3px) translateZ(0) !important;
+        box-shadow: 
+          0 6px 12px rgba(0,0,0,0.4),
+          0 8px 16px rgba(255, 20, 147, 0.35),
+          0 0 20px rgba(255, 20, 147, 0.25),
+          inset 0 1px 0 rgba(255,255,255,0.15) !important;
+        filter: brightness(1.15);
+      }
+      .panel-btn.alt-pink:active {
+        transform: translateY(-1px) scale(0.98) translateZ(0) !important;
+        box-shadow: 
+          0 2px 4px rgba(0,0,0,0.5),
+          inset 0 3px 8px rgba(255, 20, 147, 0.4),
+          0 0 18px rgba(255, 20, 147, 0.6) !important;
+        filter: brightness(1.25);
+      }
+      .panel-btn.alt-pink .btn-icon { color: #ff2a6d !important; }
+
       /* ── PREDICT BUTTON (Execute Predict) ── */
       .predict-group button[type="submit"] {
         background: rgba(255,68,68,0.1);
@@ -459,7 +491,6 @@
       .btn-pair-group .panel-btn.btn-pair-compact .btn-icon {
         color: #000000 !important;
       }
-      /* Override green styling for Region button */
       .btn-pair-group .panel-btn.alt-green.btn-pair-compact {
         background: #ffffff !important;
         border-color: #ffffff !important;
@@ -714,7 +745,6 @@
         flex-shrink: 0;
       }
 
-      /* Signal Animation */
       .sig-b {
         animation: signalFlicker 1.5s ease-in-out infinite;
       }
@@ -735,7 +765,6 @@
         50% { opacity: 0.1; filter: brightness(0.6); }
       }
 
-      /* Pulse effect for signal bars */
       .signal-row:nth-child(1) .sig-b { animation-delay: 0s; }
       .signal-row:nth-child(1) .sig-b:nth-child(1) { animation-delay: 0.1s; }
       .signal-row:nth-child(1) .sig-b:nth-child(2) { animation-delay: 0.15s; }
@@ -766,7 +795,9 @@
 
       /* ── MAIN MAP AREA ── */
       .main-area {
-        flex: 1; position: relative; overflow: visible;
+        flex: 1;
+        position: relative;
+        overflow: hidden;
         background: linear-gradient(135deg, rgba(6,6,8,0.5) 0%, rgba(12,12,16,0.3) 100%);
       }
 
@@ -783,15 +814,16 @@
         text-shadow: 0 0 10px rgba(255,68,68,0.3);
       }
 
+      /* ── FIX: Map container — always fills the main area, visibility controlled by JS ── */
       #map {
-        width: 100%; height: 100%;
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        width: 100%;
+        height: 100%;
         background: #010103;
-        display: none;
-        margin-top: 24px;
-        position: relative;
-        filter: brightness(1.15);
+        z-index: 100;
+        /* NOTE: display is controlled entirely by JS — no CSS display:none here */
       }
-      #map.active { display: block; }
 
       /* Map Grid Overlay */
       #map::before {
@@ -808,7 +840,7 @@
         opacity: 0.82;
       }
 
-      /* Map Texture Overlay 1 */
+      /* Map Texture Overlay */
       #map::after {
         content: '';
         position: absolute;
@@ -853,10 +885,55 @@
       }
       .leaflet-popup-close-button { color: var(--text-muted) !important; font-size: 14px !important; }
       .leaflet-popup-close-button:hover { color: #ff2a6d !important; }
+      
+      .event-popup-2026.leaflet-popup-content-wrapper {
+        background: rgba(0, 1, 3, 0.95) !important;
+        border: 2px solid #ff2a6d !important;
+        border-radius: 6px !important;
+        box-shadow: 
+          0 0 20px #ff2a6d,
+          0 0 40px rgba(255, 42, 109, 0.8),
+          inset 0 0 10px rgba(255, 42, 109, 0.2) !important;
+        backdrop-filter: blur(4px);
+        padding: 8px 10px !important;
+      }
+      
+      .event-popup-2026 .leaflet-popup-tip { 
+        background: rgba(0, 1, 3, 0.95) !important;
+        border-top: 2px solid #ff2a6d !important;
+        box-shadow: 0 0 12px #ff2a6d !important;
+      }
+      
+      .earthquake-popup.leaflet-popup-content-wrapper {
+        background: rgba(0, 1, 3, 0.95) !important;
+        border: 2px solid #c4a575 !important;
+        border-radius: 4px !important;
+        box-shadow: 
+          0 0 15px #8b5a2b,
+          0 0 30px rgba(139, 90, 43, 0.7),
+          inset 0 0 8px rgba(196, 165, 117, 0.15) !important;
+        backdrop-filter: blur(4px);
+        padding: 6px 8px !important;
+      }
+      
+      .earthquake-popup .leaflet-popup-tip { 
+        background: rgba(0, 1, 3, 0.95) !important;
+        border-top: 2px solid #c4a575 !important;
+        box-shadow: 0 0 10px #8b5a2b !important;
+      }
+      
+      .earthquake-marker {
+        filter: drop-shadow(0 0 2px #8b5a2b) drop-shadow(0 0 1px #c4a575);
+      }
+      
       .leaflet-pane.leaflet-overlay-pane {
         filter: drop-shadow(0 0 8px rgba(255, 42, 109, 0.65));
       }
-      /* Hide default Leaflet zoom controls */
+      
+      .event-marker-2026 {
+        filter: drop-shadow(0 0 3px currentColor);
+      }
+      
       .leaflet-bar { display: none !important; }
       
       /* Custom Zoom Controls HUD */
@@ -900,7 +977,6 @@
         box-shadow: inset 0 0 8px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.4), 0 0 12px rgba(255, 42, 109, 0.2);
       }
 
-      /* Stable prediction marker - Cyan glow only, no movement */
       @keyframes predict-glow {
         0% {
           filter: drop-shadow(0 0 4px #38c8d8) drop-shadow(0 0 8px #38c8d8);
@@ -920,7 +996,6 @@
         animation: predict-glow 2s ease-in-out infinite !important;
       }
 
-      /* Neon marker styling - Default locations red */
       .neon-marker {
         width: 6px;
         height: 6px;
@@ -937,18 +1012,11 @@
       }
 
       @keyframes pulse-default-glow {
-        0% {
-          opacity: 0.7;
-        }
-        50% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 0.7;
-        }
+        0% { opacity: 0.7; }
+        50% { opacity: 1; }
+        100% { opacity: 0.7; }
       }
 
-      /* Enhanced Leaflet circle marker glow */
       .leaflet-pane.leaflet-marker-pane svg {
         filter: drop-shadow(0 0 3px rgba(255, 42, 109, 0.5));
       }
@@ -966,6 +1034,7 @@
       .map-hud.top-right { top: 40px; right: 12px; }
       .map-hud.map-selector { top: 40px; right: 130px; }
       .map-hud.bottom-left { bottom: 20px; left: 12px; }
+      .map-hud.bottom-right { bottom: 20px; right: 12px; }
       .map-hud.left-center { bottom: 80px; left: 12px; transform: none; }
 
       .hud-box {
@@ -996,7 +1065,6 @@
       .hud-box .hud-val { color: #ffffff; line-height: 1.8; }
       .hud-box .hud-val b { color: #ffffff; text-shadow: 0 0 6px rgba(255,255,255,0.2); }
 
-      /* System Status HUD (left center) */
       .hud-box.system-status {
         min-width: 160px;
       }
@@ -1023,18 +1091,17 @@
         box-shadow: 0 0 6px rgba(255, 42, 109, 0.7), 0 0 12px rgba(255, 42, 109, 0.4);
         animation: waveMove 2s ease-in-out infinite;
       }
-      .wave-bar:nth-child(1) { animation-delay: 0s; animation: waveMove1 2.2s ease-in-out infinite; }
-      .wave-bar:nth-child(2) { animation-delay: 0.1s; animation: waveMove2 2.5s ease-in-out infinite; }
-      .wave-bar:nth-child(3) { animation-delay: 0.2s; animation: waveMove3 1.8s ease-in-out infinite; }
-      .wave-bar:nth-child(4) { animation-delay: 0.3s; animation: waveMove4 2.3s ease-in-out infinite; }
-      .wave-bar:nth-child(5) { animation-delay: 0.4s; animation: waveMove5 1.9s ease-in-out infinite; }
+      .wave-bar:nth-child(1) { animation: waveMove1 2.2s ease-in-out infinite; }
+      .wave-bar:nth-child(2) { animation: waveMove2 2.5s ease-in-out infinite; }
+      .wave-bar:nth-child(3) { animation: waveMove3 1.8s ease-in-out infinite; }
+      .wave-bar:nth-child(4) { animation: waveMove4 2.3s ease-in-out infinite; }
+      .wave-bar:nth-child(5) { animation: waveMove5 1.9s ease-in-out infinite; }
       @keyframes waveMove1 { 0%{height:25%;opacity:0.5} 30%{height:65%;opacity:1} 50%{height:40%;opacity:0.8} 80%{height:70%;opacity:1} 100%{height:25%;opacity:0.5} }
       @keyframes waveMove2 { 0%{height:35%;opacity:0.6} 25%{height:45%;opacity:0.8} 50%{height:75%;opacity:1} 75%{height:30%;opacity:0.7} 100%{height:35%;opacity:0.6} }
       @keyframes waveMove3 { 0%{height:50%;opacity:0.8} 20%{height:25%;opacity:0.5} 40%{height:60%;opacity:0.9} 60%{height:35%;opacity:0.7} 100%{height:50%;opacity:0.8} }
       @keyframes waveMove4 { 0%{height:40%;opacity:0.7} 35%{height:70%;opacity:0.95} 50%{height:30%;opacity:0.6} 70%{height:65%;opacity:1} 100%{height:40%;opacity:0.7} }
       @keyframes waveMove5 { 0%{height:45%;opacity:0.75} 28%{height:55%;opacity:0.85} 50%{height:20%;opacity:0.5} 72%{height:75%;opacity:1} 100%{height:45%;opacity:0.75} }
 
-      /* Map Mode Selector */
       .hud-box.map-modes {
         min-width: 110px;
         padding: 6px 8px;
@@ -1064,9 +1131,7 @@
         box-shadow: 0 0 10px rgba(255,255,255,0.5);
         transform: translateY(-1px);
       }
-      .mode-btn:active {
-        transform: translateY(0);
-      }
+      .mode-btn:active { transform: translateY(0); }
 
       .nasa-data-btn {
         background: #ffffff;
@@ -1092,11 +1157,8 @@
         box-shadow: 0 0 12px rgba(255,255,255,0.6);
         transform: translateY(-1px);
       }
-      .nasa-data-btn:active {
-        transform: translateY(0);
-      }
+      .nasa-data-btn:active { transform: translateY(0); }
 
-      /* Cluster Feed Buttons */
       .cluster-feed-btn {
         flex: 1;
         font-size: 7px;
@@ -1117,11 +1179,8 @@
         transform: scale(0.96);
         box-shadow: inset 0 0 12px rgba(255,255,255,0.3), 0 0 8px rgba(255,255,255,0.5) !important;
       }
-        position: absolute; pointer-events: none; z-index: 499;
-      }
-      .corner-bracket svg { display: block; }
 
-      /* ── ORB GLOBE (Map Section) ── */
+      /* ── ORB GLOBE ── */
       .orb-globe {
         position: absolute; bottom: 20px; right: 50px;
         z-index: 490; pointer-events: none;
@@ -1167,22 +1226,25 @@
       }
 
       /* ── CHARTS AREA ── */
+      /* FIX: charts container fills the same space as the map */
       #charts-container {
-        width: 100%; height: 100%;
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        width: 100%;
+        height: 100%;
         background: var(--bg);
         overflow-y: auto;
-        display: none;
+        overflow-x: hidden;
+        z-index: 101;
+        display: none; /* JS controls this */
       }
-      #charts-container.active { display: block; }
       #charts-container::-webkit-scrollbar { width: 3px; }
       #charts-container::-webkit-scrollbar-thumb { background: rgba(255,68,68,0.25); }
 
       /* ── CHARTS LOADER ── */
       #chartsLoader {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        top: 0; left: 0; right: 0; bottom: 0;
         z-index: 9999;
         display: none;
         flex-direction: column;
@@ -1190,7 +1252,6 @@
         justify-content: center;
         background: rgba(6,6,8,0.98);
         backdrop-filter: blur(12px);
-        height: 100vh;
       }
       #chartsLoader.active {
         display: flex;
@@ -1335,7 +1396,6 @@
         animation: pulse 1.5s infinite; display: inline-block;
       }
 
-      /* Scrollbar global */
       ::-webkit-scrollbar { width: 3px; }
       ::-webkit-scrollbar-track { background: transparent; }
       ::-webkit-scrollbar-thumb { background: rgba(255,68,68,0.2); border-radius: 2px; }
@@ -1452,7 +1512,6 @@
         background: rgba(255,68,68,0.02);
       }
 
-      /* Event Types Modal */
       #eventTypesModal {
         position: fixed;
         top: 100px;
@@ -1471,11 +1530,8 @@
         flex-direction: column;
         user-select: none;
       }
-      #eventTypesModal.active {
-        display: flex;
-      }
+      #eventTypesModal.active { display: flex; }
 
-      /* Clustered Data Modal */
       #clusteredDataModal {
         position: fixed;
         top: 100px;
@@ -1494,9 +1550,7 @@
         flex-direction: column;
         user-select: none;
       }
-      #clusteredDataModal.active {
-        display: flex;
-      }
+      #clusteredDataModal.active { display: flex; }
     </style>
   </head>
   <body>
@@ -1540,7 +1594,6 @@
           <div class="cp-title">Control Panel</div>
         </div>
 
-        <!-- Visualize Side-by-side Compact -->
         <div class="btn-pair-group">
           <form method="post" action="/app4/show-clusters">
             <button class="panel-btn btn-pair-compact" type="submit" id="clusterToggleBtn">
@@ -1554,28 +1607,31 @@
           </form>
         </div>
 
-        <!-- Return Map Button -->
         <div class="btn-group" style="padding: 8px 14px; gap: 0; flex-shrink: 0;">
           <button id="returnMapBtn" class="panel-btn" style="width: 100%; background: #ffffff; border-color: #ffffff; color: #000000;">
             <span class="btn-icon">🗺</span><span>Return to Map</span>
           </button>
         </div>
 
-        <!-- Remove Clusters Button -->
         <div class="btn-group" style="padding: 6px 14px; gap: 0; flex-shrink: 0;">
           <button id="removeClustersBtn" class="panel-btn" style="width: 100%; background: #ff4444; border-color: #ff4444; color: #ffffff;">
             <span class="btn-icon">✕</span><span>Remove Clusters</span>
           </button>
         </div>
 
-        <!-- Remove Regions Button -->
         <div class="btn-group" style="padding: 6px 14px; gap: 0; flex-shrink: 0;">
           <button id="removeRegionsBtn" class="panel-btn" style="width: 100%; background: #ff4444; border-color: #ff4444; color: #ffffff;">
             <span class="btn-icon">✕</span><span>Remove Regions</span>
           </button>
         </div>
 
-        <!-- Charts -->
+        <div class="btn-group" style="padding: 4px 14px; gap: 0; flex-shrink: 0;">
+          <button id="allEventsBtn" class="panel-btn alt-pink" style="width: 100%; background: rgba(255, 20, 147, 0.12); border-color: rgba(255, 20, 147, 0.4); color: #ff2a6d; font-size: 7px; padding: 5px 8px;" data-click-sound>
+            <span class="btn-icon">◆</span><span>All Events</span>
+            <span class="btn-loader" style="margin-left: 4px;"></span>
+          </button>
+        </div>
+
         <div class="btn-group">
           <form method="post" action="/app4/charts">
             <button class="panel-btn alt-amber" type="submit" data-click-sound>
@@ -1585,7 +1641,6 @@
           </form>
         </div>
 
-        <!-- Model -->
         <div class="btn-group">
           <div class="btn-group-label">// Model</div>
           <form method="post" action="/app4/train">
@@ -1595,7 +1650,6 @@
           </form>
         </div>
 
-        <!-- Predict -->
         <div class="predict-group">
           <div class="btn-group-label">// Predict Region</div>
           <form method="post" action="/app4/predict">
@@ -1610,7 +1664,6 @@
           </form>
         </div>
 
-        <!-- Status / Prediction output -->
         <div class="status-area">
           {% if message %}
           <div class="msg-box {% if '✓' in message %}success{% elif '✗' in message %}error{% else %}info{% endif %}">
@@ -1637,7 +1690,6 @@
           {% endif %}
         </div>
 
-        <!-- SIGNAL METERS -->
         <div class="signal-block">
           <div class="signal-row">
             <span class="signal-label">SAT</span>
@@ -1674,7 +1726,7 @@
         </div>
       </aside>
 
-      <!-- ── MAIN MAP / CHARTS ── -->
+      <!-- ── MAIN AREA ── -->
       <div class="main-area">
 
         <!-- HUD overlays -->
@@ -1726,6 +1778,17 @@
           </div>
         </div>
 
+        <div class="map-hud bottom-right" id="mapHudEQ">
+          <div class="hud-box">
+            <div class="hud-title" style="color: #ffaa00;">🌍 Earth Quake Points</div>
+            <div style="display: flex; gap: 6px; margin-top: 8px;">
+              <button class="nasa-data-btn earthquake-btn" id="showEarthquakesBtn" style="background: rgba(255, 170, 0, 0.25); border-color: rgba(255, 170, 0, 0.6); color: #ffaa00; font-size: 7px; padding: 4px 6px;" title="Show Earthquakes">▲ SHOW</button>
+              <button class="nasa-data-btn earthquake-btn" id="hideEarthquakesBtn" style="background: rgba(139, 90, 43, 0.25); border-color: rgba(139, 90, 43, 0.6); color: #c4a575; font-size: 7px; padding: 4px 6px;" title="Hide Earthquakes">▼ UNDO</button>
+            </div>
+            <div class="hud-val" id="eqStatus" style="font-size: 8px; margin-top: 6px; color: #aaa;">Ready</div>
+          </div>
+        </div>
+
         <div class="map-hud left-center" id="mapHudLC">
           <div class="hud-box system-status">
             <div class="hud-title">⚡ System Status</div>
@@ -1764,7 +1827,7 @@
           <div class="orb-clock-label">Local Time</div>
         </div>
 
-        <!-- Charts Loader -->
+        <!-- Charts Loader — fixed overlay -->
         <div id="chartsLoader">
           <div class="loader-container">
             <div class="loader-title">GENERATING CHARTS</div>
@@ -1790,9 +1853,7 @@
               <tbody id="tableBody"></tbody>
             </table>
           </div>
-          <div class="satellite-modal-footer" id="modalFooter">
-            Loading satellite data...
-          </div>
+          <div class="satellite-modal-footer" id="modalFooter">Loading satellite data...</div>
         </div>
 
         <!-- Event Types Modal -->
@@ -1809,9 +1870,7 @@
               <tbody id="eventTypesTableBody"></tbody>
             </table>
           </div>
-          <div class="satellite-modal-footer" id="eventTypesModalFooter">
-            Loading event types...
-          </div>
+          <div class="satellite-modal-footer" id="eventTypesModalFooter">Loading event types...</div>
         </div>
 
         <!-- Clustered Data Modal -->
@@ -1828,20 +1887,16 @@
               <tbody id="clusteredDataTableBody"></tbody>
             </table>
           </div>
-          <div class="satellite-modal-footer" id="clusteredDataModalFooter">
-            Loading clustered data...
-          </div>
+          <div class="satellite-modal-footer" id="clusteredDataModalFooter">Loading clustered data...</div>
         </div>
 
-        <!-- Map -->
-        <div id="map" class="active"></div>
-
-        <!-- Charts container -->
+        <!-- ══ MAP & CHARTS — both absolutely positioned, JS toggles display ══ -->
+        <div id="map"></div>
         <div id="charts-container">
           <div class="charts-wrapper" id="charts-wrapper"></div>
         </div>
-      </div>
 
+      </div>
     </div><!-- end .layout -->
 
     <!-- ══ FOOTER ══ -->
@@ -1863,19 +1918,16 @@
     <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
 
     <script>
+      // ── Click sound ──
       const clickSound = new Audio('/app4/componets/emilianodleon-button-ui-sound-effect-395762.mp3');
       clickSound.volume = 0.5;
-
       document.querySelectorAll('[data-click-sound]').forEach((btn) => {
         btn.addEventListener('click', () => {
-          try {
-            clickSound.currentTime = 0;
-            clickSound.play();
-          } catch (e) {}
+          try { clickSound.currentTime = 0; clickSound.play(); } catch (e) {}
         });
       });
 
-      // ── Inject from Jinja ──
+      // ── Jinja data injection ──
       const points      = {{ points_json | safe }};
       const regions     = {{ regions_json | safe }};
       const prediction  = {{ prediction | tojson | safe }};
@@ -1886,782 +1938,666 @@
       // ── Footer clock ──
       function tickClock() {
         const now = new Date();
-        document.getElementById('footerClock').textContent =
-          now.toUTCString().slice(17, 25);
+        document.getElementById('footerClock').textContent = now.toUTCString().slice(17, 25);
       }
       tickClock(); setInterval(tickClock, 1000);
 
-      // Return to Map button handler
-      const returnMapBtn = document.getElementById('returnMapBtn');
-      if (returnMapBtn) {
-        returnMapBtn.addEventListener('click', () => {
-          const chartsContainer = document.getElementById('charts-container');
-          const mapContainer = document.getElementById('map');
-          if (chartsContainer && mapContainer) {
-            chartsContainer.style.display = 'none';
-            mapContainer.classList.add('active');
-            // Show all HUD elements and orb
-            document.getElementById('mapHudTL').style.display = 'block';
-            document.getElementById('mapHudTR').style.display = 'block';
-            document.getElementById('mapHudBL').style.display = 'block';
-            document.getElementById('mapHudLC').style.display = 'block';
-            document.getElementById('mapSelector').style.display = 'block';
-            document.getElementById('zoomControls').style.display = 'block';
-            const orbGlobe = document.querySelector('.orb-globe');
-            if (orbGlobe) orbGlobe.style.display = 'flex';
-          }
+      // ═══════════════════════════════════════
+      // UI SWITCH HELPERS — single source of truth
+      // ═══════════════════════════════════════
+      const HUD_IDS = ['mapHudTL','mapHudTR','mapHudBL','mapHudLC','mapHudEQ','mapSelector','zoomControls'];
+
+      function showMapUI() {
+        document.getElementById('charts-container').style.display = 'none';
+        document.getElementById('map').style.display = 'block';
+        HUD_IDS.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = 'block';
         });
+        const orb = document.querySelector('.orb-globe');
+        if (orb) orb.style.display = 'flex';
+        // Leaflet needs a size refresh after being hidden
+        setTimeout(() => { if (window.map) window.map.invalidateSize(); }, 150);
       }
 
-      // Remove Clusters button handler
+      function showChartsDashboard() {
+        document.getElementById('map').style.display = 'none';
+        document.getElementById('charts-container').style.display = 'block';
+        HUD_IDS.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = 'none';
+        });
+        const orb = document.querySelector('.orb-globe');
+        if (orb) orb.style.display = 'none';
+      }
+
+      // ── Show charts loader ──
+      function showChartsLoader() {
+        const loader = document.getElementById('chartsLoader');
+        const progressFill = document.getElementById('progressFill');
+        const progressPercent = document.getElementById('progressPercent');
+        if (!loader) return;
+        loader.classList.add('active');
+        let progress = 0;
+        const interval = setInterval(() => {
+          if (progress < 90) {
+            progress += Math.random() * 15;
+            if (progress > 90) progress = 90;
+            progressFill.style.width = progress + '%';
+            progressPercent.textContent = Math.floor(progress);
+          }
+        }, 120);
+        window._chartsLoaderInterval = interval;
+      }
+
+      function hideChartsLoader() {
+        const loader = document.getElementById('chartsLoader');
+        const progressFill = document.getElementById('progressFill');
+        const progressPercent = document.getElementById('progressPercent');
+        if (window._chartsLoaderInterval) clearInterval(window._chartsLoaderInterval);
+        if (progressFill) { progressFill.style.width = '100%'; }
+        if (progressPercent) progressPercent.textContent = '100';
+        setTimeout(() => { if (loader) loader.classList.remove('active'); }, 300);
+      }
+
+      // ── Return to Map ──
+      const returnMapBtn = document.getElementById('returnMapBtn');
+      if (returnMapBtn) {
+        returnMapBtn.addEventListener('click', () => { showMapUI(); });
+      }
+
+      // ── Remove Clusters ──
       const removeClustersBtn = document.getElementById('removeClustersBtn');
       if (removeClustersBtn) {
         removeClustersBtn.addEventListener('click', () => {
-          // Remove all circle markers (clusters and noise points)
-          map.eachLayer(layer => {
-            if (layer instanceof L.CircleMarker && layer !== predictionMarker) {
-              map.removeLayer(layer);
-            }
-          });
-          // Clear HUD info
+          if (window.map) {
+            window.map.eachLayer(layer => {
+              if (layer instanceof L.CircleMarker && layer !== window.predictionMarker) {
+                window.map.removeLayer(layer);
+              }
+            });
+          }
           document.getElementById('hudClusterCount').innerHTML = '<b>--</b> regions detected';
           document.getElementById('hudPointCount').innerHTML = '<b>--</b> data points';
-          document.getElementById('hudMode').innerHTML = '<b style="color:var(--cyan)">IDLE</b>';
-          // Reset Cluster button to default state
+          document.getElementById('hudMode').innerHTML = '<b>IDLE</b>';
           const clusterBtn = document.getElementById('clusterToggleBtn');
-          if (clusterBtn) {
-            clusterBtn.classList.remove('active');
-          }
+          if (clusterBtn) clusterBtn.classList.remove('active');
         });
       }
 
-      // Cluster button toggle handler
+      // ── Cluster button toggle ──
       const clusterToggleBtn = document.getElementById('clusterToggleBtn');
       if (clusterToggleBtn) {
         clusterToggleBtn.addEventListener('click', (e) => {
           e.preventDefault();
           clusterToggleBtn.classList.add('active');
-          // Remove active state from region button
           const regionBtn = document.getElementById('regionToggleBtn');
           if (regionBtn) regionBtn.classList.remove('active');
-          // Submit the form
           clusterToggleBtn.closest('form').submit();
         });
       }
 
-      // Remove Regions button handler
+      // ── Remove Regions ──
       const removeRegionsBtn = document.getElementById('removeRegionsBtn');
       if (removeRegionsBtn) {
         removeRegionsBtn.addEventListener('click', () => {
-          // Remove all polygon layers (regions)
-          map.eachLayer(layer => {
-            if (layer instanceof L.Polygon) {
-              map.removeLayer(layer);
-            }
-          });
-          // Clear HUD info
-          document.getElementById('hudMode').innerHTML = '<b style="color:var(--cyan)">IDLE</b>';
-          // Reset Region button to default state
-          const regionBtn = document.getElementById('regionToggleBtn');
-          if (regionBtn) {
-            regionBtn.classList.remove('active');
+          if (window.map) {
+            window.map.eachLayer(layer => {
+              if (layer instanceof L.Polygon) window.map.removeLayer(layer);
+            });
           }
+          document.getElementById('hudMode').innerHTML = '<b>IDLE</b>';
+          const regionBtn = document.getElementById('regionToggleBtn');
+          if (regionBtn) regionBtn.classList.remove('active');
         });
       }
 
-      // Region button toggle handler
+      // ── Region button toggle ──
       const regionToggleBtn = document.getElementById('regionToggleBtn');
       if (regionToggleBtn) {
         regionToggleBtn.addEventListener('click', (e) => {
           e.preventDefault();
           regionToggleBtn.classList.add('active');
-          // Remove active state from cluster button
           const clusterBtn = document.getElementById('clusterToggleBtn');
           if (clusterBtn) clusterBtn.classList.remove('active');
-          // Submit the form
           regionToggleBtn.closest('form').submit();
         });
       }
 
-      // Reset button states when page loads
-      window.addEventListener('load', () => {
-        const clusterBtn = document.getElementById('clusterToggleBtn');
-        const regionBtn = document.getElementById('regionToggleBtn');
-        if (clusterBtn && !showClusters) clusterBtn.classList.remove('active');
-        if (regionBtn && !showRegions) regionBtn.classList.remove('active');
-        if (clusterBtn && showClusters) clusterBtn.classList.add('active');
-        if (regionBtn && showRegions) regionBtn.classList.add('active');
-      });
+      // ── All Events 2026 ──
+      const allEventsBtn = document.getElementById('allEventsBtn');
+      if (allEventsBtn) {
+        allEventsBtn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const loader = allEventsBtn.querySelector('.btn-loader');
+          try {
+            if (loader) loader.classList.add('active');
+            if (window.map) {
+              window.map.eachLayer(layer => {
+                if ((layer instanceof L.CircleMarker && !layer.options.className?.includes('neon-marker')) || 
+                    (layer instanceof L.Polygon)) {
+                  window.map.removeLayer(layer);
+                }
+              });
+            }
+            const response = await fetch('/app4/all-events-2026');
+            if (!response.ok) {
+              if (loader) loader.classList.remove('active');
+              alert('❌ Error loading 2026 events');
+              return;
+            }
+            const data = await response.json();
+            if (data.error || !data.data || data.data.length === 0) {
+              if (loader) loader.classList.remove('active');
+              alert('⚠️ No events found for 2026');
+              return;
+            }
+            const eventColors = {
+              'Wildfire': '#ff4444', 'Fire': '#ff4444', 'Typhoon': '#0080ff',
+              'Cyclone': '#00b4ff', 'Volcano': '#ff2a6d', 'Iceberg_A': '#ffffff',
+              'Iceberg_B': '#ffffff', 'Iceberg_C': '#ffffff', 'Iceberg_D': '#ffffff',
+              'Complex': '#ff2a6d', 'Other': '#0080ff'
+            };
+            const bounds = [];
+            let eventCount = 0;
+            let eventsByType = {};
+            let renderDelay = 0;
+            const totalEvents = data.data.length;
+            data.data.forEach(event => {
+              const lat = parseFloat(event.lat);
+              const lon = parseFloat(event.lon);
+              const eventType = event.Event_type || 'Other';
+              const intensity = parseFloat(event.intensity) || 1;
+              const year = event.year || 2026;
+              const color = eventColors[eventType] || '#0080ff';
+              eventsByType[eventType] = (eventsByType[eventType] || 0) + 1;
+              const radius = 1.5 + (intensity / 10);
+              setTimeout(() => {
+                if (!window.map) return;
+                const marker = L.circleMarker([lat, lon], {
+                  radius, fillColor: color, color, weight: 0.8,
+                  opacity: 0.85, fillOpacity: 0.5, className: 'event-marker-2026'
+                });
+                const popupContent = `<div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#fff;text-shadow:0 0 6px ${color};padding:4px 0;line-height:1.6;border-top:2px solid ${color};border-bottom:2px solid ${color};">
+                  <b style="color:${color};letter-spacing:1px;">${eventType}</b><br/>━━━━━━━━━━━━━<br/>
+                  📍 Lat: ${lat.toFixed(4)}<br/>📍 Lon: ${lon.toFixed(4)}<br/>
+                  ⚡ Intensity: ${intensity.toFixed(3)}<br/>📅 Year: ${year}<br/>📊 Month: ${event.month || 'N/A'}<br/></div>`;
+                marker.bindPopup(popupContent, { maxWidth: 200, className: 'event-popup-2026' });
+                marker.on('click', function(e) { this.openPopup(); e.stopPropagation(); });
+                marker.addTo(window.map);
+                bounds.push([lat, lon]);
+                eventCount++;
+              }, renderDelay);
+              renderDelay += 2;
+            });
+            const totalRenderTime = renderDelay + 1000;
+            setTimeout(() => {
+              if (window.map && bounds.length > 0) {
+                try { window.map.fitBounds(L.latLngBounds(bounds), { padding: [60, 60], maxZoom: 6 }); }
+                catch (e) { window.map.setView([20, 0], 2); }
+              }
+              document.getElementById('hudClusterCount').innerHTML = `<b style="color:#ff2a6d">${eventCount}</b> 2026 events`;
+              document.getElementById('hudPointCount').innerHTML = `<b style="color:#ffffff">${Object.keys(eventsByType).length}</b> types`;
+              document.getElementById('hudMode').innerHTML = '<b style="color:#ff2a6d">📍 2026 VIEW</b>';
+              if (loader) loader.classList.remove('active');
+            }, totalRenderTime);
+          } catch (error) {
+            console.error('Error loading 2026 events:', error);
+            if (loader) loader.classList.remove('active');
+            alert('❌ Error: ' + error.message);
+          }
+        });
+      }
 
-      // Charts/EDA button loader handler
+      // ── Charts/EDA button — show loader then let form submit ──
       const chartsForm = document.querySelector('form[action="/app4/charts"]');
       if (chartsForm) {
         const chartsBtn = chartsForm.querySelector('button.alt-amber');
         if (chartsBtn) {
-          chartsBtn.addEventListener('click', () => {
-            const loader = chartsBtn.querySelector('.btn-loader');
-            if (loader) {
-              loader.classList.add('active');
-            }
-          });
+          chartsBtn.addEventListener('click', () => { showChartsLoader(); });
         }
       }
 
-      // ── Satellite Data Modal ──
+      // ── Earthquake Points ──
+      const showEarthquakesBtn = document.getElementById('showEarthquakesBtn');
+      const hideEarthquakesBtn = document.getElementById('hideEarthquakesBtn');
+      const eqStatus = document.getElementById('eqStatus');
+      let earthquakeMarkers = [];
+      let eqDataCache = null;
+
+      if (showEarthquakesBtn) {
+        showEarthquakesBtn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          try {
+            eqStatus.textContent = '⏳ Loading...'; eqStatus.style.color = '#ffaa00';
+            if (!eqDataCache) {
+              const response = await fetch('/app4/earthquake-points');
+              if (!response.ok) throw new Error('Failed to load earthquake data');
+              eqDataCache = await response.json();
+            }
+            if (!eqDataCache.data || eqDataCache.data.length === 0) {
+              eqStatus.textContent = '⚠️ No data'; eqStatus.style.color = '#ff4444'; return;
+            }
+            earthquakeMarkers.forEach(marker => window.map && window.map.removeLayer(marker));
+            earthquakeMarkers = [];
+            const eqColor = '#c4a575', eqBorderColor = '#8b5a2b';
+            let plotCount = 0;
+            eqDataCache.data.forEach(eq => {
+              const lat = parseFloat(eq.lat), lon = parseFloat(eq.lon);
+              const depth = parseFloat(eq.depth_km) || 0;
+              const magnitude = parseFloat(eq.magnitude) || 0;
+              const place = eq.place || 'Unknown';
+              const time = eq.time ? new Date(eq.time).toLocaleString() : 'N/A';
+              const radius = Math.max(2, Math.min(6, magnitude + 2));
+              const marker = L.circleMarker([lat, lon], {
+                radius, fillColor: eqColor, color: eqBorderColor,
+                weight: 1, opacity: 0.9, fillOpacity: 0.6, className: 'earthquake-marker'
+              });
+              const popupContent = `<div style="font-family:'Share Tech Mono',monospace;font-size:8px;color:#fff;text-shadow:0 0 4px #8b5a2b;padding:3px 0;line-height:1.5;border-top:1px solid #c4a575;border-bottom:1px solid #c4a575;">
+                <b style="color:#ffaa00;letter-spacing:0.5px;">EARTHQUAKE</b><br/>━━━━━━━━━━━<br/>
+                📍 Lat: ${lat.toFixed(4)}<br/>📍 Lon: ${lon.toFixed(4)}<br/>
+                ⬇️ Depth: ${depth.toFixed(2)} km<br/>📊 Mag: ${magnitude.toFixed(2)}<br/>
+                📍 Place: ${place.substring(0,40)}<br/>🕐 Time: ${time}<br/></div>`;
+              marker.bindPopup(popupContent, { maxWidth: 220, className: 'earthquake-popup' });
+              marker.on('click', function(e) { this.openPopup(); e.stopPropagation(); });
+              if (window.map) marker.addTo(window.map);
+              earthquakeMarkers.push(marker);
+              plotCount++;
+            });
+            eqStatus.textContent = `✅ ${plotCount} points`; eqStatus.style.color = '#00ff88';
+          } catch (error) {
+            eqStatus.textContent = '❌ Error'; eqStatus.style.color = '#ff4444';
+          }
+        });
+      }
+
+      if (hideEarthquakesBtn) {
+        hideEarthquakesBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          earthquakeMarkers.forEach(marker => window.map && window.map.removeLayer(marker));
+          earthquakeMarkers = [];
+          eqStatus.textContent = '⬇️ Hidden'; eqStatus.style.color = '#aaa';
+        });
+      }
+
+      // ── Modals ──
       const satDataBtn = document.getElementById('satDataBtn');
       const eventTypesBtn = document.getElementById('eventTypesBtn');
       const clusteredDataBtn = document.getElementById('clusteredDataBtn');
       const satelliteModal = document.getElementById('satelliteModal');
       const eventTypesModal = document.getElementById('eventTypesModal');
       const clusteredDataModal = document.getElementById('clusteredDataModal');
-      const modalCloseBtn = document.getElementById('modalCloseBtn');
-      const eventTypesModalCloseBtn = document.getElementById('eventTypesModalCloseBtn');
-      const clusteredDataModalCloseBtn = document.getElementById('clusteredDataModalCloseBtn');
-      const modalHeader = document.getElementById('modalHeader');
 
-      if (satDataBtn) {
-        satDataBtn.addEventListener('click', () => {
-          loadSatelliteData();
-          satelliteModal.classList.add('active');
-        });
-      }
+      if (satDataBtn) satDataBtn.addEventListener('click', () => { loadSatelliteData(); satelliteModal.classList.add('active'); });
+      if (eventTypesBtn) eventTypesBtn.addEventListener('click', () => { loadEventTypes(); eventTypesModal.classList.add('active'); });
+      if (clusteredDataBtn) clusteredDataBtn.addEventListener('click', () => { loadClusteredData(); clusteredDataModal.classList.add('active'); });
 
-      if (eventTypesBtn) {
-        eventTypesBtn.addEventListener('click', () => {
-          loadEventTypes();
-          eventTypesModal.classList.add('active');
-        });
-      }
+      document.getElementById('modalCloseBtn').addEventListener('click', () => satelliteModal.classList.remove('active'));
+      document.getElementById('eventTypesModalCloseBtn').addEventListener('click', () => eventTypesModal.classList.remove('active'));
+      document.getElementById('clusteredDataModalCloseBtn').addEventListener('click', () => clusteredDataModal.classList.remove('active'));
 
-      if (clusteredDataBtn) {
-        clusteredDataBtn.addEventListener('click', () => {
-          loadClusteredData();
-          clusteredDataModal.classList.add('active');
-        });
-      }
-
-      if (modalCloseBtn) {
-        modalCloseBtn.addEventListener('click', () => {
-          satelliteModal.classList.remove('active');
-        });
-      }
-
-      if (eventTypesModalCloseBtn) {
-        eventTypesModalCloseBtn.addEventListener('click', () => {
-          eventTypesModal.classList.remove('active');
-        });
-      }
-
-      if (clusteredDataModalCloseBtn) {
-        clusteredDataModalCloseBtn.addEventListener('click', () => {
-          clusteredDataModal.classList.remove('active');
-        });
-      }
-
-      // Make modals draggable - generic approach
-      let isDragging = false;
-      let dragX = 0, dragY = 0;
-      let currentDraggedModal = null;
-      let modalPositions = {
-        satellite: { x: 0, y: 0 },
-        eventTypes: { x: 0, y: 0 },
-        clusteredData: { x: 0, y: 0 }
-      };
-
-      // Setup dragging for all modal headers
-      const modalHeaders = [
+      // Modal drag
+      let isDragging = false, dragX = 0, dragY = 0, currentDraggedModal = null;
+      let modalPositions = { satellite: {x:0,y:0}, eventTypes: {x:0,y:0}, clusteredData: {x:0,y:0} };
+      [
         { header: document.getElementById('modalHeader'), modal: satelliteModal, key: 'satellite' },
         { header: document.getElementById('eventTypesModalHeader'), modal: eventTypesModal, key: 'eventTypes' },
         { header: document.getElementById('clusteredDataModalHeader'), modal: clusteredDataModal, key: 'clusteredData' }
-      ];
-
-      modalHeaders.forEach(({ header, modal, key }) => {
+      ].forEach(({ header, modal, key }) => {
         if (header) {
           header.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            currentDraggedModal = { modal, key };
-            dragX = e.clientX - modalPositions[key].x;
-            dragY = e.clientY - modalPositions[key].y;
+            isDragging = true; currentDraggedModal = { modal, key };
+            dragX = e.clientX - modalPositions[key].x; dragY = e.clientY - modalPositions[key].y;
             header.style.cursor = 'grabbing';
           });
           header.style.cursor = 'grab';
         }
       });
-
       document.addEventListener('mousemove', (e) => {
         if (isDragging && currentDraggedModal) {
           const { modal, key } = currentDraggedModal;
-          modalPositions[key].x = e.clientX - dragX;
-          modalPositions[key].y = e.clientY - dragY;
+          modalPositions[key].x = e.clientX - dragX; modalPositions[key].y = e.clientY - dragY;
           modal.style.transform = `translate(${modalPositions[key].x}px, ${modalPositions[key].y}px)`;
-          modal.style.left = 'auto';
-          modal.style.top = 'auto';
+          modal.style.left = 'auto'; modal.style.top = 'auto';
         }
       });
-
       document.addEventListener('mouseup', () => {
-        isDragging = false;
-        currentDraggedModal = null;
+        isDragging = false; currentDraggedModal = null;
         document.querySelectorAll('.satellite-modal-header').forEach(h => h.style.cursor = 'grab');
       });
 
-      // Load satellite data from backend
       async function loadSatelliteData() {
         const tableHead = document.getElementById('tableHead');
         const tableBody = document.getElementById('tableBody');
         const modalFooter = document.getElementById('modalFooter');
-
         try {
           const response = await fetch('/app4/satellite-data');
           const result = await response.json();
-
-          if (result.error) {
-            modalFooter.textContent = `Error: ${result.error}`;
-            return;
-          }
-
+          if (result.error) { modalFooter.textContent = `Error: ${result.error}`; return; }
           const { columns, data } = result;
-
-          // Create table header
           tableHead.innerHTML = '';
           const headerRow = document.createElement('tr');
-          columns.forEach(col => {
-            const th = document.createElement('th');
-            th.textContent = col;
-            headerRow.appendChild(th);
-          });
+          columns.forEach(col => { const th = document.createElement('th'); th.textContent = col; headerRow.appendChild(th); });
           tableHead.appendChild(headerRow);
-
-          // Create table body
           tableBody.innerHTML = '';
           data.forEach(row => {
             const tr = document.createElement('tr');
-            columns.forEach(col => {
-              const td = document.createElement('td');
-              const value = row[col];
-              td.textContent = value !== null && value !== undefined ? String(value).substring(0, 100) : '-';
-              tr.appendChild(td);
-            });
+            columns.forEach(col => { const td = document.createElement('td'); td.textContent = row[col] != null ? String(row[col]).substring(0, 100) : '-'; tr.appendChild(td); });
             tableBody.appendChild(tr);
           });
-
           modalFooter.textContent = `Showing ${data.length} rows of ${result.total_rows} total events`;
-        } catch (error) {
-          modalFooter.textContent = `Error loading data: ${error.message}`;
-        }
+        } catch (error) { modalFooter.textContent = `Error: ${error.message}`; }
       }
 
-      // Load event types data from backend
       async function loadEventTypes() {
         const tableHead = document.getElementById('eventTypesTableHead');
         const tableBody = document.getElementById('eventTypesTableBody');
         const modalFooter = document.getElementById('eventTypesModalFooter');
-
         try {
           const response = await fetch('/app4/event-types');
           const result = await response.json();
-
-          if (result.error) {
-            modalFooter.textContent = `Error: ${result.error}`;
-            return;
-          }
-
+          if (result.error) { modalFooter.textContent = `Error: ${result.error}`; return; }
           const { columns, data } = result;
-
-          // Create table header
           tableHead.innerHTML = '';
           const headerRow = document.createElement('tr');
-          columns.forEach(col => {
-            const th = document.createElement('th');
-            th.textContent = col;
-            headerRow.appendChild(th);
-          });
+          columns.forEach(col => { const th = document.createElement('th'); th.textContent = col; headerRow.appendChild(th); });
           tableHead.appendChild(headerRow);
-
-          // Create table body
           tableBody.innerHTML = '';
           data.forEach(row => {
             const tr = document.createElement('tr');
-            columns.forEach(col => {
-              const td = document.createElement('td');
-              const value = row[col];
-              td.textContent = value !== null && value !== undefined ? String(value) : '-';
-              tr.appendChild(td);
-            });
+            columns.forEach(col => { const td = document.createElement('td'); td.textContent = row[col] != null ? String(row[col]) : '-'; tr.appendChild(td); });
             tableBody.appendChild(tr);
           });
-
           modalFooter.textContent = `Showing ${data.length} event types`;
-        } catch (error) {
-          modalFooter.textContent = `Error loading data: ${error.message}`;
-        }
+        } catch (error) { modalFooter.textContent = `Error: ${error.message}`; }
       }
 
-      // Load clustered data from backend
       async function loadClusteredData() {
         const tableHead = document.getElementById('clusteredDataTableHead');
         const tableBody = document.getElementById('clusteredDataTableBody');
         const modalFooter = document.getElementById('clusteredDataModalFooter');
-
         try {
           const response = await fetch('/app4/clustered-data-head');
           const result = await response.json();
-
-          if (result.error) {
-            modalFooter.textContent = `Error: ${result.error}`;
-            return;
-          }
-
+          if (result.error) { modalFooter.textContent = `Error: ${result.error}`; return; }
           const { columns, data } = result;
-
-          // Create table header
           tableHead.innerHTML = '';
           const headerRow = document.createElement('tr');
-          columns.forEach(col => {
-            const th = document.createElement('th');
-            th.textContent = col;
-            headerRow.appendChild(th);
-          });
+          columns.forEach(col => { const th = document.createElement('th'); th.textContent = col; headerRow.appendChild(th); });
           tableHead.appendChild(headerRow);
-
-          // Create table body
           tableBody.innerHTML = '';
           data.forEach(row => {
             const tr = document.createElement('tr');
-            columns.forEach(col => {
-              const td = document.createElement('td');
-              const value = row[col];
-              td.textContent = value !== null && value !== undefined ? String(value).substring(0, 50) : '-';
-              tr.appendChild(td);
-            });
+            columns.forEach(col => { const td = document.createElement('td'); td.textContent = row[col] != null ? String(row[col]).substring(0, 50) : '-'; tr.appendChild(td); });
             tableBody.appendChild(tr);
           });
-
-          modalFooter.textContent = `Showing first ${data.length} rows of clustered data`;
-        } catch (error) {
-          modalFooter.textContent = `Error loading data: ${error.message}`;
-        }
+          modalFooter.textContent = `Showing first ${data.length} rows`;
+        } catch (error) { modalFooter.textContent = `Error: ${error.message}`; }
       }
+
+      // ── Signal randomizer ──
       function randomizeSignals() {
-        const signalLabels = ['SAT', 'NET', 'GEO', 'ENC'];
-        const signalRows = document.querySelectorAll('.signal-row');
-
-        signalRows.forEach((row, idx) => {
+        document.querySelectorAll('.signal-row').forEach((row) => {
           const bars = row.querySelectorAll('.sig-b');
-          const signalBars = Array.from(bars);
-          
-          // Randomly determine how many bars should be "on"
-          const activeCount = Math.floor(Math.random() * 5) + 1; // 1-5 bars active
-          const newPercentage = (activeCount / 5) * 100;
-
-          // Update bars
-          signalBars.forEach((bar, barIdx) => {
-            if (barIdx < activeCount) {
-              bar.classList.add('on');
-              bar.classList.remove('off');
-            } else {
-              bar.classList.remove('on');
-              bar.classList.add('off');
-            }
+          const activeCount = Math.floor(Math.random() * 5) + 1;
+          bars.forEach((bar, barIdx) => {
+            bar.classList.toggle('on', barIdx < activeCount);
+            bar.classList.toggle('off', barIdx >= activeCount);
           });
-
-          // Update percentage
-          const pctSpan = row.querySelector('.signal-pct');
-          if (pctSpan) {
-            pctSpan.textContent = Math.round(newPercentage) + '%';
-          }
+          const pct = row.querySelector('.signal-pct');
+          if (pct) pct.textContent = Math.round((activeCount / 5) * 100) + '%';
         });
       }
-
-      // Randomize signals every 3-5 seconds
       setInterval(randomizeSignals, 3500 + Math.random() * 1500);
-
-      // Initial randomization
       randomizeSignals();
 
-      let predictionMarker = null; // Store reference to prediction marker
-
-      // ── Orb Globe Animation ──
+      // ── Orb Globe ──
       const orbCanvas = document.getElementById('orbCanvas');
       if (orbCanvas) {
         const ctx = orbCanvas.getContext('2d');
         const W = orbCanvas.width, H = orbCanvas.height;
         const cx = W/2, cy = H/2, R = 65;
         let t = 0;
-
         function latLon(lat, lon, rot) {
           const phi = (90 - lat) * Math.PI / 180;
           const theta = (lon + rot) * Math.PI / 180;
-          return {
-            x: R * Math.sin(phi) * Math.cos(theta),
-            y: R * Math.cos(phi),
-            z: R * Math.sin(phi) * Math.sin(theta)
-          };
+          return { x: R * Math.sin(phi) * Math.cos(theta), y: R * Math.cos(phi), z: R * Math.sin(phi) * Math.sin(theta) };
         }
-
-        const hotspots = [
-          {lat:35,lon:139},{lat:28,lon:77},{lat:-23,lon:-46},
-          {lat:51,lon:0},{lat:40,lon:-74},{lat:-33,lon:151},
-          {lat:19,lon:72},{lat:6,lon:1},{lat:25,lon:55},{lat:-1,lon:37}
-        ];
-
+        const hotspots = [{lat:35,lon:139},{lat:28,lon:77},{lat:-23,lon:-46},{lat:51,lon:0},{lat:40,lon:-74},{lat:-33,lon:151},{lat:19,lon:72},{lat:6,lon:1},{lat:25,lon:55},{lat:-1,lon:37}];
         function draw(rot) {
           ctx.clearRect(0,0,W,H);
-
-          // sphere base - solid black gradient
           const g = ctx.createRadialGradient(cx-14,cy-14,2,cx,cy,R);
-          g.addColorStop(0,'rgba(40,40,50,1)');
-          g.addColorStop(0.6,'rgba(20,20,30,1)');
-          g.addColorStop(1,'rgba(8,8,15,1)');
-          ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
-          ctx.fillStyle = g; ctx.fill();
-
-          // lat lines (red instead of white)
+          g.addColorStop(0,'rgba(40,40,50,1)'); g.addColorStop(0.6,'rgba(20,20,30,1)'); g.addColorStop(1,'rgba(8,8,15,1)');
+          ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.fillStyle=g; ctx.fill();
           for(let lat=-60;lat<=60;lat+=30){
             ctx.beginPath(); let first=true;
             for(let lon=-180;lon<=180;lon+=3){
               const p=latLon(lat,lon,rot);
               if(p.z<0){first=true;continue;}
-              const sx=cx+p.x,sy=cy-p.y;
-              first?ctx.moveTo(sx,sy):ctx.lineTo(sx,sy); first=false;
+              first?ctx.moveTo(cx+p.x,cy-p.y):ctx.lineTo(cx+p.x,cy-p.y); first=false;
             }
             ctx.strokeStyle='rgba(255,68,68,0.22)'; ctx.lineWidth=0.5; ctx.stroke();
           }
-
-          // lon lines (red)
           for(let lon=0;lon<360;lon+=30){
             ctx.beginPath(); let first=true;
             for(let lat=-90;lat<=90;lat+=3){
               const p=latLon(lat,lon,rot);
               if(p.z<0){first=true;continue;}
-              const sx=cx+p.x,sy=cy-p.y;
-              first?ctx.moveTo(sx,sy):ctx.lineTo(sx,sy); first=false;
+              first?ctx.moveTo(cx+p.x,cy-p.y):ctx.lineTo(cx+p.x,cy-p.y); first=false;
             }
             ctx.strokeStyle='rgba(255,68,68,0.18)'; ctx.lineWidth=0.5; ctx.stroke();
           }
-
-          // hotspots (red pulsing)
           hotspots.forEach((hs,i)=>{
             const p=latLon(hs.lat,hs.lon,rot);
             if(p.z<4) return;
-            const sx=cx+p.x, sy=cy-p.y;
-            const alpha=Math.min(1,p.z/R);
-            const pulse=0.5+0.5*Math.sin(t*2.2+i*0.9);
-
+            const sx=cx+p.x, sy=cy-p.y, alpha=Math.min(1,p.z/R), pulse=0.5+0.5*Math.sin(t*2.2+i*0.9);
             ctx.beginPath(); ctx.arc(sx,sy,3+pulse*2.5,0,Math.PI*2);
             ctx.strokeStyle=`rgba(255,68,68,${alpha*0.5*pulse})`; ctx.lineWidth=0.8; ctx.stroke();
-
             ctx.beginPath(); ctx.arc(sx,sy,1.5,0,Math.PI*2);
             ctx.fillStyle=`rgba(255,68,68,${alpha*0.95})`; ctx.fill();
-
-            if(pulse>0.85){
-              ctx.beginPath(); ctx.arc(sx,sy,5+pulse*3,0,Math.PI*2);
-              ctx.strokeStyle=`rgba(255,68,68,${alpha*0.2})`; ctx.lineWidth=0.5; ctx.stroke();
-            }
           });
-
-          // rim (red)
           ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
           ctx.strokeStyle='rgba(255,68,68,0.3)'; ctx.lineWidth=1; ctx.stroke();
-
-          // highlight (red tint instead of white)
-          const hl=ctx.createRadialGradient(cx-20,cy-20,1,cx-20,cy-20,28);
-          hl.addColorStop(0,'rgba(255,68,68,0.06)');
-          hl.addColorStop(1,'rgba(255,68,68,0)');
-          ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
-          ctx.fillStyle=hl; ctx.fill();
         }
-
-        function animate(){
-          t+=0.012;
-          draw(t*18);
-          requestAnimationFrame(animate);
-        }
+        function animate() { t+=0.012; draw(t*18); requestAnimationFrame(animate); }
         animate();
       }
-      
+
       // ── Orb Clock ──
       function updateOrbClock() {
         const now = new Date();
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        document.getElementById('orbTimeDisplay').textContent = hours + ':' + minutes;
+        document.getElementById('orbTimeDisplay').textContent =
+          String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
       }
-      updateOrbClock();
-      setInterval(updateOrbClock, 1000);
+      updateOrbClock(); setInterval(updateOrbClock, 1000);
 
-      // ── Map init ──
-      const map = L.map('map', { zoomControl: false }).setView([20, 0], 2);
-      
-      // Tile layers
+      // ═══════════════════════════════════════
+      // MAP INITIALIZATION
+      // ═══════════════════════════════════════
+      window.predictionMarker = null;
+
+      // Determine initial view: map or charts
+      const hasCharts = chartsData && typeof chartsData === 'object' && Object.keys(chartsData).length > 0;
+
+      // Show correct view immediately (before Leaflet init)
+      if (hasCharts) {
+        document.getElementById('map').style.display = 'none';
+        document.getElementById('charts-container').style.display = 'block';
+        HUD_IDS.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
+        const orb = document.querySelector('.orb-globe');
+        if (orb) orb.style.display = 'none';
+      } else {
+        document.getElementById('map').style.display = 'block';
+        document.getElementById('charts-container').style.display = 'none';
+      }
+
+      // Initialize Leaflet map
+      window.map = L.map('map', { zoomControl: false }).setView([20, 0], 2);
+
       const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 18,
-        attribution: '&copy; OpenStreetMap &copy; CARTO',
+        maxZoom: 18, attribution: '&copy; OpenStreetMap &copy; CARTO'
       });
-      
       const topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-        maxZoom: 17,
-        attribution: '&copy; OpenTopoMap',
+        maxZoom: 17, attribution: '&copy; OpenTopoMap'
       });
-      
       const satLayer = L.tileLayer(
         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        {
-          maxZoom: 18,
-          attribution: 'Tiles &copy; Esri',
-        }
+        { maxZoom: 18, attribution: 'Tiles &copy; Esri' }
       );
-      
       let currentLayer = darkLayer;
-      currentLayer.addTo(map);
+      currentLayer.addTo(window.map);
 
-      // ── Default Location Markers ──
+      // Default location markers
       const tinyGlowIcon = L.divIcon({
-        className: '',
-        html: '<div class="neon-marker"></div>',
-        iconSize: [6, 6],
-        iconAnchor: [3, 3]
+        className: '', html: '<div class="neon-marker"></div>', iconSize: [6,6], iconAnchor: [3,3]
       });
-
-      const defaultLocations = [
+      [
         { name: "India", lat: 28.6139, lng: 77.2090 },
         { name: "China", lat: 39.9042, lng: 116.4074 },
         { name: "Russia", lat: 55.7558, lng: 37.6173 },
         { name: "America", lat: 40.7128, lng: -74.0060 },
         { name: "Brazil", lat: -15.7801, lng: -47.9292 },
         { name: "Dubai", lat: 25.2048, lng: 55.2708 }
-      ];
-
-      // Add default location markers with pulsating glow
-      defaultLocations.forEach(loc => {
-        const marker = L.marker([loc.lat, loc.lng], { icon: tinyGlowIcon }).addTo(map);
-        
-        // Bind popup with location name
-        marker.bindPopup(`<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#ffffff;letter-spacing:1px;">${loc.name}</div>`, {
-          closeButton: false,
-          offset: [0, -10],
-          className: 'cyber-popup'
-        });
-
-        // Show popup on hover
-        marker.on('mouseover', function () {
-          this.openPopup();
-        });
-
-        // Hide popup when mouse leaves
-        marker.on('mouseout', function () {
-          this.closePopup();
-        });
+      ].forEach(loc => {
+        const marker = L.marker([loc.lat, loc.lng], { icon: tinyGlowIcon }).addTo(window.map);
+        marker.bindPopup(`<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#ffffff;letter-spacing:1px;">${loc.name}</div>`,
+          { closeButton: false, offset: [0,-10] });
+        marker.on('mouseover', function() { this.openPopup(); });
+        marker.on('mouseout', function() { this.closePopup(); });
       });
 
-      // Map mode button handlers
+      // Map mode buttons
       document.getElementById('topoMapBtn').addEventListener('click', function() {
-        if (currentLayer) map.removeLayer(currentLayer);
-        currentLayer = topoLayer;
-        topoLayer.addTo(map);
-        this.style.background = '#ffffff';
-        this.style.color = '#000000';
-        document.getElementById('worldMapBtn').style.background = 'var(--red-bright)';
-        document.getElementById('worldMapBtn').style.color = '#ffffff';
-        document.getElementById('satMapBtn').style.background = 'var(--red-bright)';
-        document.getElementById('satMapBtn').style.color = '#ffffff';
+        if (currentLayer) window.map.removeLayer(currentLayer);
+        currentLayer = topoLayer; topoLayer.addTo(window.map);
+        this.style.background='#ffffff'; this.style.color='#000000';
+        document.getElementById('worldMapBtn').style.cssText='background:var(--red-bright);color:#ffffff;';
+        document.getElementById('satMapBtn').style.cssText='background:var(--red-bright);color:#ffffff;';
       });
-
-
       document.getElementById('worldMapBtn').addEventListener('click', function() {
-        if (currentLayer) map.removeLayer(currentLayer);
-        currentLayer = darkLayer;
-        darkLayer.addTo(map);
-        this.style.background = '#ffffff';
-        this.style.color = '#000000';
-        document.getElementById('topoMapBtn').style.background = 'var(--red-bright)';
-        document.getElementById('topoMapBtn').style.color = '#ffffff';
-        document.getElementById('satMapBtn').style.background = 'var(--red-bright)';
-        document.getElementById('satMapBtn').style.color = '#ffffff';
+        if (currentLayer) window.map.removeLayer(currentLayer);
+        currentLayer = darkLayer; darkLayer.addTo(window.map);
+        this.style.background='#ffffff'; this.style.color='#000000';
+        document.getElementById('topoMapBtn').style.cssText='background:var(--red-bright);color:#ffffff;';
+        document.getElementById('satMapBtn').style.cssText='background:var(--red-bright);color:#ffffff;';
       });
-
       document.getElementById('satMapBtn').addEventListener('click', function() {
-        if (currentLayer) map.removeLayer(currentLayer);
-        currentLayer = satLayer;
-        satLayer.addTo(map);
-        this.style.background = '#ffffff';
-        this.style.color = '#000000';
-        document.getElementById('topoMapBtn').style.background = 'var(--red-bright)';
-        document.getElementById('topoMapBtn').style.color = '#ffffff';
-        document.getElementById('worldMapBtn').style.background = 'var(--red-bright)';
-        document.getElementById('worldMapBtn').style.color = '#ffffff';
+        if (currentLayer) window.map.removeLayer(currentLayer);
+        currentLayer = satLayer; satLayer.addTo(window.map);
+        this.style.background='#ffffff'; this.style.color='#000000';
+        document.getElementById('topoMapBtn').style.cssText='background:var(--red-bright);color:#ffffff;';
+        document.getElementById('worldMapBtn').style.cssText='background:var(--red-bright);color:#ffffff;';
       });
 
-      // ── Custom Zoom Controls ──
-      const zoomInBtn = document.getElementById('zoomInBtn');
-      const zoomOutBtn = document.getElementById('zoomOutBtn');
-      
-      if (zoomInBtn) {
-        zoomInBtn.addEventListener('click', () => {
-          map.zoomIn();
-        });
-      }
-      
-      if (zoomOutBtn) {
-        zoomOutBtn.addEventListener('click', () => {
-          map.zoomOut();
-        });
-      }
+      // Custom zoom
+      document.getElementById('zoomInBtn').addEventListener('click', () => window.map.zoomIn());
+      document.getElementById('zoomOutBtn').addEventListener('click', () => window.map.zoomOut());
 
       // Coordinate tracker
-      map.on('mousemove', function(e) {
+      window.map.on('mousemove', function(e) {
         document.getElementById('hudCoords').textContent =
           e.latlng.lat.toFixed(4) + ',  ' + e.latlng.lng.toFixed(4);
       });
 
       // Color palette
-      const palette = [
-        'rgba(255, 255, 255, 0.73)',  // Transparent White
-        '#ff4444',                 // Red
-        '#0080ff',                 // Electric Blue
-        '#ffaa00',                 // Electric Orange
-        '#ff0080'                  // Hot Pink
-      ];
+      const palette = ['rgba(255,255,255,0.73)', '#ff4444', '#0080ff', '#ffaa00', '#ff0080'];
 
-      // ── Show Regions ──
+      // Show Regions
       if (showRegions && regions.length > 0) {
         regions.forEach((region, idx) => {
           const color = palette[idx % palette.length];
           L.polygon(region.bounds, {
-            color, fillColor: color, fillOpacity: 0.08,
-            weight: 1.5, dashArray: '4 4'
-          })
-          .bindPopup(
+            color, fillColor: color, fillOpacity: 0.08, weight: 1.5, dashArray: '4 4'
+          }).bindPopup(
             `<div style="font-size:10px;font-family:'Share Tech Mono',monospace;line-height:1.8">` +
             `<span style="color:${color};font-size:8px;letter-spacing:2px">REGION ${region.cluster}</span><br/>` +
-            `EVENTS &nbsp;: <b>${region.count}</b><br/>` +
-            `CENTER &nbsp;: ${region.center[0].toFixed(2)}, ${region.center[1].toFixed(2)}</div>`
-          ).addTo(map);
+            `EVENTS &nbsp;: <b>${region.count}</b><br/>CENTER &nbsp;: ${region.center[0].toFixed(2)}, ${region.center[1].toFixed(2)}</div>`
+          ).addTo(window.map);
         });
         document.getElementById('hudMode').innerHTML = '<b style="color:var(--green)">REGIONS</b>';
       }
 
-      // ── Show Clusters ──
+      // Show Clusters
       if (showClusters && points.length > 0) {
         let clusters = {};
-        points.forEach(p => {
-          clusters[p.cluster] = (clusters[p.cluster] || 0) + 1;
-        });
-
+        points.forEach(p => { clusters[p.cluster] = (clusters[p.cluster] || 0) + 1; });
         document.getElementById('hudClusterCount').innerHTML =
           '<b>' + Object.keys(clusters).filter(k => k != -1).length + '</b> regions detected';
-        document.getElementById('hudPointCount').innerHTML =
-          '<b>' + points.length + '</b> data points';
+        document.getElementById('hudPointCount').innerHTML = '<b>' + points.length + '</b> data points';
         document.getElementById('hudMode').innerHTML = '<b style="color:var(--cyan)">CLUSTERS</b>';
-
         let delay = 0;
         let clusterGroups = {};
-        points.forEach(p => {
-          if (!clusterGroups[p.cluster]) clusterGroups[p.cluster] = [];
-          clusterGroups[p.cluster].push(p);
-        });
-
+        points.forEach(p => { if (!clusterGroups[p.cluster]) clusterGroups[p.cluster] = []; clusterGroups[p.cluster].push(p); });
         Object.keys(clusterGroups).forEach(cId => {
-          clusterGroups[cId].forEach((point, pIdx) => {
+          clusterGroups[cId].forEach((point) => {
             setTimeout(() => {
               const isNoise = point.cluster === -1;
               const color = isNoise ? 'rgba(200,200,200,0.3)' : palette[Math.abs(point.cluster) % palette.length];
               L.circleMarker([point.lat, point.lon], {
-                radius: isNoise ? 1.5 : 2.5,
-                color: isNoise ? 'rgba(200,200,200,0.2)' : color,
-                fillColor: color, fillOpacity: isNoise ? 0.2 : 0.4,
-                weight: 0.5,
-              })
-              .bindPopup(
+                radius: isNoise ? 1.5 : 2.5, color: isNoise ? 'rgba(200,200,200,0.2)' : color,
+                fillColor: color, fillOpacity: isNoise ? 0.2 : 0.4, weight: 0.5,
+              }).bindPopup(
                 `<div style="font-size:10px;font-family:'Share Tech Mono',monospace;line-height:1.8">` +
                 `<span style="color:${color};font-size:8px;letter-spacing:2px">${point.Event_type || 'UNKNOWN'}</span><br/>` +
                 `CLUSTER : <b>${isNoise ? 'NOISE' : point.cluster}</b><br/>` +
-                `MAG &nbsp;&nbsp;&nbsp;&nbsp;: ${(point.magnitude ?? 'N/A').toFixed ? (point.magnitude ?? 0).toFixed(1) : 'N/A'}<br/>` +
+                `INT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ${(point.intensity ?? 0).toFixed ? (point.intensity ?? 0).toFixed(2) : 'N/A'}<br/>` +
                 `LAT/LON : ${point.lat.toFixed(3)}, ${point.lon.toFixed(3)}</div>`
-              ).addTo(map);
+              ).addTo(window.map);
             }, delay);
             delay += 4;
           });
         });
       }
 
-      // ── Prediction marker ──
+      // Prediction marker
       if (prediction && prediction.lat !== undefined) {
-        const markerColor = '#38c8d8'; // Cyan blue - stable
+        const markerColor = '#38c8d8';
         const statusMessage = prediction.status === 'Assigned' ? '✓ ASSIGNED' : '⚠ NEW/NOISE';
-        
-        predictionMarker = L.circleMarker([prediction.lat, prediction.lon], {
-          radius: 8, color: markerColor,
-          fillColor: markerColor, fillOpacity: 0.9, weight: 2,
-          className: 'pulse-marker'
-        }).addTo(map);
-        
-        predictionMarker.bindPopup(
+        window.predictionMarker = L.circleMarker([prediction.lat, prediction.lon], {
+          radius: 8, color: markerColor, fillColor: markerColor,
+          fillOpacity: 0.9, weight: 2, className: 'pulse-marker'
+        }).addTo(window.map);
+        window.predictionMarker.bindPopup(
           `<div style="font-size:10px;font-family:'Share Tech Mono',monospace;line-height:1.8">` +
-          `<span style="color:${markerColor};font-size:8px;letter-spacing:2px">` +
-          `${statusMessage}</span><br/>` +
+          `<span style="color:${markerColor};font-size:8px;letter-spacing:2px">${statusMessage}</span><br/>` +
           (prediction.status === 'Assigned'
             ? `REGION : <b>${prediction.region}</b><br/>EVENT &nbsp;: ${prediction.most_common_event}<br/>`
             : `CLOSEST: <b>${prediction.closest_region}</b><br/>`) +
           `DIST &nbsp;&nbsp;: ${prediction.distance_km} km</div>`
         );
-        map.setView([prediction.lat, prediction.lon], 5);
-        document.getElementById('hudMode').innerHTML = '<b style="color:' + markerColor + '">PREDICT</b>';
+        window.map.setView([prediction.lat, prediction.lon], 5);
+        document.getElementById('hudMode').innerHTML = `<b style="color:${markerColor}">PREDICT</b>`;
       }
 
-      // ── Charts ──
-      if (chartsData) {
-        // Show loader
-        const loader = document.getElementById('chartsLoader');
-        const progressFill = document.getElementById('progressFill');
-        const progressPercent = document.getElementById('progressPercent');
-        
-        if (loader) {
-          loader.classList.add('active');
-          let progress = 0;
-          
-          // Animate progress bar
-          const progressInterval = setInterval(() => {
-            if (progress < 90) {
-              progress += Math.random() * 30;
-              if (progress > 90) progress = 90;
-            }
-            progressFill.style.width = progress + '%';
-            progressPercent.textContent = Math.floor(progress);
-          }, 100);
-          
-          // Store interval ID to clear later
-          window.chartsLoaderInterval = progressInterval;
-          window.chartsLoaderComplete = () => {
-            clearInterval(window.chartsLoaderInterval);
-            progressFill.style.width = '100%';
-            progressPercent.textContent = '100';
-            setTimeout(() => {
-              loader.classList.remove('active');
-            }, 300);
-          };
+      // Sync button active states on load
+      window.addEventListener('load', () => {
+        const clusterBtn = document.getElementById('clusterToggleBtn');
+        const regionBtn = document.getElementById('regionToggleBtn');
+        if (clusterBtn) clusterBtn.classList.toggle('active', !!showClusters);
+        if (regionBtn) regionBtn.classList.toggle('active', !!showRegions);
+        // Force Leaflet redraw if map is visible
+        if (!hasCharts && window.map) {
+          setTimeout(() => window.map.invalidateSize(), 200);
         }
-        
-        document.getElementById('map').classList.remove('active');
-        document.getElementById('mapHudTL').style.display = 'none';
-        document.getElementById('mapHudTR').style.display = 'none';
-        document.getElementById('mapHudBL').style.display = 'none';
-        document.getElementById('mapHudLC').style.display = 'none';
-        document.getElementById('mapSelector').style.display = 'none';
-        document.getElementById('zoomControls').style.display = 'none';
-        const orbGlobe = document.querySelector('.orb-globe');
-        if (orbGlobe) orbGlobe.style.display = 'none';
-        document.getElementById('charts-container').classList.add('active');
+      });
 
-        const cw = document.getElementById('charts-wrapper');
-        cw.innerHTML = '';
+      // ═══════════════════════════════════════
+      // CHARTS RENDERING
+      // ═══════════════════════════════════════
+      if (hasCharts) {
+        // Show loader overlay briefly
+        showChartsLoader();
 
-        // Chart.js defaults — white text & red accents
         Chart.defaults.color = '#ffffff';
         Chart.defaults.font.family = "'Segoe UI', Arial, sans-serif";
         Chart.defaults.font.size = 12;
         Chart.defaults.font.weight = 'normal';
         Chart.defaults.borderColor = 'rgba(255,255,255,0.15)';
+
+        const cw = document.getElementById('charts-wrapper');
+        cw.innerHTML = '';
+        const gridColor = 'rgba(255,255,255,0.08)';
+        const tickColor = '#ffffff';
 
         function mkCard(title, canvasId, height) {
           const card = document.createElement('div');
@@ -2671,141 +2607,80 @@
           return document.getElementById(canvasId).getContext('2d');
         }
 
-        const gridColor = 'rgba(255,255,255,0.08)';
-        const gridColorDim = 'rgba(255,255,255,0.04)';
-        const tickColor = '#ffffff';
-        const sciFiPalette = ['#ffffff', '#ff4444', '#ffffff', '#ff4444', '#ffffff', '#ff4444', '#ffffff', '#ff4444', '#ffffff', '#ff4444'];
-
-        // Event Distribution
         if (chartsData.event_dist) {
           const ctx = mkCard('Distribution of Event Types', 'c-event-dist');
-          new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: chartsData.event_dist.labels,
-              datasets: [{ label: 'Event Count', data: chartsData.event_dist.data,
-                backgroundColor: 'rgba(255,255,255,0.5)', borderColor: 'rgba(255,255,255,0.8)', borderWidth: 2, borderRadius: 0,
-                borderSkipped: false }]
-            },
-            options: { responsive:true, maintainAspectRatio:false,
-              plugins:{ legend:{display:false} },
-              scales:{ y:{beginAtZero:true, grid:{color:gridColor, drawBorder:true}, ticks:{color:tickColor, font:{size:12}}}, x:{grid:{display:false, drawBorder:true}, ticks:{color:tickColor, font:{size:12}}} }
-            }
-          });
+          new Chart(ctx, { type: 'bar', data: { labels: chartsData.event_dist.labels,
+            datasets: [{ label: 'Event Count', data: chartsData.event_dist.data,
+              backgroundColor: 'rgba(255,255,255,0.5)', borderColor: 'rgba(255,255,255,0.8)', borderWidth: 2, borderRadius: 0, borderSkipped: false }]
+          }, options: { responsive:true, maintainAspectRatio:false,
+            plugins:{ legend:{display:false} },
+            scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor}}, x:{grid:{display:false}, ticks:{color:tickColor}} }
+          }});
         }
-
-        // Wildfire
         if (chartsData.wildfire) {
           const ctx = mkCard('Avg Wildfire Magnitude Over Years', 'c-wildfire');
-          new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: chartsData.wildfire.labels,
-              datasets: [{ label: 'Avg Magnitude', data: chartsData.wildfire.data,
-                borderColor: 'rgba(255,68,68,0.7)', borderWidth: 2, backgroundColor: 'rgba(255,68,68,0.15)',
-                fill:true, tension:0.5, pointRadius:5, pointBackgroundColor:'rgba(255,68,68,0.7)',
-                pointBorderColor:'rgba(255,68,68,0.9)', pointBorderWidth:2, pointStyle:'circle' }]
-            },
-            options: { responsive:true, maintainAspectRatio:false,
-              plugins:{ legend:{display:false} },
-              scales:{ y:{grid:{color:gridColor}, ticks:{color:tickColor, font:{size:12}}}, x:{grid:{display:false}, ticks:{color:tickColor, font:{size:12}}} }
-            }
-          });
+          new Chart(ctx, { type: 'line', data: { labels: chartsData.wildfire.labels,
+            datasets: [{ label: 'Avg Magnitude', data: chartsData.wildfire.data,
+              borderColor: 'rgba(255,68,68,0.7)', borderWidth: 2, backgroundColor: 'rgba(255,68,68,0.15)',
+              fill:true, tension:0.5, pointRadius:5, pointBackgroundColor:'rgba(255,68,68,0.7)' }]
+          }, options: { responsive:true, maintainAspectRatio:false,
+            plugins:{ legend:{display:false} },
+            scales:{ y:{grid:{color:gridColor}, ticks:{color:tickColor}}, x:{grid:{display:false}, ticks:{color:tickColor}} }
+          }});
         }
-
-        // Volcano
         if (chartsData.volcano) {
           const ctx = mkCard('Volcano Events Per Year', 'c-volcano');
-          new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: chartsData.volcano.labels,
-              datasets: [{ label: 'Event Count', data: chartsData.volcano.data,
-                backgroundColor: 'rgba(255,68,68,0.5)', borderColor:'rgba(255,68,68,0.8)', borderWidth:2, borderRadius:0,
-                borderSkipped: false }]
-            },
-            options: { responsive:true, maintainAspectRatio:false,
-              plugins:{ legend:{display:false} },
-              scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{size:12}}}, x:{grid:{display:false}, ticks:{color:tickColor, font:{size:12}}} }
-            }
-          });
+          new Chart(ctx, { type: 'bar', data: { labels: chartsData.volcano.labels,
+            datasets: [{ label: 'Event Count', data: chartsData.volcano.data,
+              backgroundColor: 'rgba(255,68,68,0.5)', borderColor:'rgba(255,68,68,0.8)', borderWidth:2, borderRadius:0, borderSkipped:false }]
+          }, options: { responsive:true, maintainAspectRatio:false,
+            plugins:{ legend:{display:false} },
+            scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor}}, x:{grid:{display:false}, ticks:{color:tickColor}} }
+          }});
         }
-
-        // Cluster summary
         if (chartsData.cluster_summary) {
           const ctx = mkCard('Top 15 Events per Region', 'c-cluster', 320);
-          new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: chartsData.cluster_summary.labels,
-              datasets: [{ label: 'Event Count', data: chartsData.cluster_summary.data,
-                backgroundColor: 'rgba(0,255,255,0.5)', borderColor:'rgba(0,255,255,0.8)', borderWidth:2, borderRadius:0,
-                borderSkipped: false }]
-            },
-            options: { indexAxis:'y', responsive:true, maintainAspectRatio:false,
-              plugins:{ legend:{display:false} },
-              scales:{ x:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{size:12}}}, y:{grid:{display:false}, ticks:{color:tickColor, font:{size:11}}} }
-            }
-          });
+          new Chart(ctx, { type: 'bar', data: { labels: chartsData.cluster_summary.labels,
+            datasets: [{ label: 'Event Count', data: chartsData.cluster_summary.data,
+              backgroundColor: 'rgba(0,255,255,0.5)', borderColor:'rgba(0,255,255,0.8)', borderWidth:2, borderRadius:0, borderSkipped:false }]
+          }, options: { indexAxis:'y', responsive:true, maintainAspectRatio:false,
+            plugins:{ legend:{display:false} },
+            scales:{ x:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor}}, y:{grid:{display:false}, ticks:{color:tickColor, font:{size:11}}} }
+          }});
         }
-
-        // Events by type doughnut
         if (chartsData.events_by_type) {
           const ctx = mkCard('Events by Hazard Type', 'c-bytype');
-          new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-              labels: chartsData.events_by_type.labels,
-              datasets: [{ data: chartsData.events_by_type.data,
-                backgroundColor: ['#ff4444', '#ffffff', '#0080ff', '#00ffff', '#ff4444', '#ffffff', '#0080ff', '#00ffff'],
-                borderColor:'#1a1a1a', borderWidth:2 }]
-            },
-            options: { responsive:true, maintainAspectRatio:false,
-              plugins:{ legend:{ position:'right', labels:{color:tickColor, padding:14, font:{size:11}} } }
-            }
-          });
+          new Chart(ctx, { type: 'doughnut', data: { labels: chartsData.events_by_type.labels,
+            datasets: [{ data: chartsData.events_by_type.data,
+              backgroundColor: ['#ff4444','#ffffff','#0080ff','#00ffff','#ff4444','#ffffff','#0080ff','#00ffff'],
+              borderColor:'#1a1a1a', borderWidth:2 }]
+          }, options: { responsive:true, maintainAspectRatio:false,
+            plugins:{ legend:{ position:'right', labels:{color:tickColor, padding:14, font:{size:11}} } }
+          }});
         }
-
-        // Events per year
         if (chartsData.events_per_year) {
           const ctx = mkCard('Total Hazard Events Per Year', 'c-epyr');
-          new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: chartsData.events_per_year.labels,
-              datasets: [{ label: 'Event Count', data: chartsData.events_per_year.data,
-                borderColor: '#ffffff', borderWidth: 3, backgroundColor: 'rgba(255,255,255,0.04)',
-                fill:true, tension:0.5, pointRadius:6, pointBackgroundColor:'#ffffff',
-                pointBorderColor:'#ffffff', pointBorderWidth:2 }]
-            },
-            options: { responsive:true, maintainAspectRatio:false,
-              plugins:{ legend:{display:false} },
-              scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{size:12}}}, x:{grid:{display:false}, ticks:{color:tickColor, font:{size:12}}} }
-            }
-          });
+          new Chart(ctx, { type: 'line', data: { labels: chartsData.events_per_year.labels,
+            datasets: [{ label: 'Event Count', data: chartsData.events_per_year.data,
+              borderColor: '#ffffff', borderWidth: 3, backgroundColor: 'rgba(255,255,255,0.04)',
+              fill:true, tension:0.5, pointRadius:6, pointBackgroundColor:'#ffffff' }]
+          }, options: { responsive:true, maintainAspectRatio:false,
+            plugins:{ legend:{display:false} },
+            scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor}}, x:{grid:{display:false}, ticks:{color:tickColor}} }
+          }});
         }
-
-        // Magnitude by region
         if (chartsData.magnitude_dist && chartsData.magnitude_dist.clusters) {
           const clusters = chartsData.magnitude_dist.clusters;
           const means = clusters.map(c => chartsData.magnitude_dist.data[c].mean);
           const ctx = mkCard('Avg Magnitude by Region', 'c-mag');
-          new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: clusters.map(c => `R-${c}`),
-              datasets: [{ label: 'Avg Magnitude', data: means,
-                backgroundColor: 'rgba(255,255,255,0.6)', borderColor:'rgba(255,255,255,0.9)', borderWidth:2, borderRadius:0,
-                borderSkipped: false }]
-            },
-            options: { responsive:true, maintainAspectRatio:false,
-              plugins:{ legend:{display:false} },
-              scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor, font:{size:12}}}, x:{grid:{display:false}, ticks:{color:tickColor, font:{size:12}}} }
-            }
-          });
+          new Chart(ctx, { type: 'bar', data: { labels: clusters.map(c => `R-${c}`),
+            datasets: [{ label: 'Avg Magnitude', data: means,
+              backgroundColor: 'rgba(255,255,255,0.6)', borderColor:'rgba(255,255,255,0.9)', borderWidth:2, borderRadius:0, borderSkipped:false }]
+          }, options: { responsive:true, maintainAspectRatio:false,
+            plugins:{ legend:{display:false} },
+            scales:{ y:{beginAtZero:true, grid:{color:gridColor}, ticks:{color:tickColor}}, x:{grid:{display:false}, ticks:{color:tickColor}} }
+          }});
         }
-
-        // Geo cluster iframes at bottom
         if (chartsData.geo_clusters_url) {
           const card = document.createElement('div');
           card.className = 'chart-card map-full-width';
@@ -2818,11 +2693,9 @@
           card.innerHTML = `<h3>Clustered Hazard Regions — Noise Removed</h3><iframe src="${chartsData.geo_clusters_clean_url}" class="plotly-iframe"></iframe>`;
           cw.appendChild(card);
         }
-        
-        // Complete loading animation
-        if (window.chartsLoaderComplete) {
-          setTimeout(window.chartsLoaderComplete, 200);
-        }
+
+        // Hide loader after charts are built
+        setTimeout(() => hideChartsLoader(), 400);
       }
     </script>
   </body>

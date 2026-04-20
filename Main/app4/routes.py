@@ -7,6 +7,7 @@ from fastapi import APIRouter, Request, status
 from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from joblib import load
+from sklearn.metrics.pairwise import haversine_distances
 
 from .Model_train import train_and_save_model
 from .Prepaire import load_prepare_data
@@ -20,6 +21,14 @@ from .plots import (
     get_magnitude_distribution_data,
     get_geo_clusters_html,
     get_geo_clusters_clean_html,
+    get_high_risk_regions_html,
+    get_comprehensive_analysis_html,
+    get_clustered_events_html,
+    get_all_events_by_type_html,
+    get_wildfire_intensity_trend_data,
+    get_volcano_intensity_trend_data,
+    get_event_type_count_data,
+    get_high_risk_regions_data,
 )
 
 router = APIRouter()
@@ -52,7 +61,7 @@ def _load_cluster_points() -> list[dict]:
         return []
     df = pd.read_csv(data_path)
     df = df.dropna(subset=["lat", "lon", "cluster"]).copy()
-    return df[["lat", "lon", "cluster", "Event_type", "magnitude"]].to_dict("records")
+    return df[["lat", "lon", "cluster", "Event_type", "intensity"]].to_dict("records")
 
 
 def _compute_cluster_regions() -> list[dict]:
@@ -105,55 +114,71 @@ def _compute_cluster_regions() -> list[dict]:
     return regions
 
 
+def predict_region(lat: float, lon: float, df, eps_km: float = 200):
+	"""
+	Predict which region a new point belongs to.
+	Enhanced version with better handling of clustered data.
+	"""
+	clustered_df = df[df['cluster'] != -1].copy()
+
+	if clustered_df.empty:
+		return {
+			"status": "NoData",
+			"message": "No clusters available."
+		}
+
+	# Compute centroids
+	centroids = (
+		clustered_df
+		.groupby('cluster')[['lat', 'lon']]
+		.mean()
+		.reset_index()
+	)
+
+	new_point = np.radians([[lat, lon]])
+	centroid_coords = np.radians(centroids[['lat', 'lon']].values)
+
+	distances = haversine_distances(new_point, centroid_coords) * 6371.0088
+
+	min_dist = float(distances.min())
+	nearest_idx = int(distances.argmin())
+	nearest_cluster = int(centroids.iloc[nearest_idx]['cluster'])
+
+	# Get event type for nearest cluster
+	subset = clustered_df[clustered_df['cluster'] == nearest_cluster]
+	event_type = subset['Event_type'].mode()[0] if not subset.empty else "Unknown"
+
+	if min_dist <= eps_km:
+		return {
+			"status": "Assigned",
+			"region": nearest_cluster,
+			"most_common_event": event_type,
+			"distance_km": round(min_dist, 1),
+			"message": f"→ Assigned to Region {nearest_cluster} ({event_type})\n   Distance: {min_dist:.1f} km"
+		}
+	else:
+		return {
+			"status": "NewNoise",
+			"closest_region": nearest_cluster,
+			"event_type": event_type,
+			"distance_km": round(min_dist, 1),
+			"message": f"→ NEW / Noise Event\n   Closest region: {nearest_cluster} ({min_dist:.1f} km away)"
+		}
+
+
 def _predict_region(lat: float, lon: float) -> dict:
-    if not model_path.exists():
-        return {"status": "ModelMissing"}
+	if not data_path.exists():
+		return {"status": "NoData"}
 
-    try:
-        model = load(model_path)
-        core_coords = model["core_coords"]  # Already in radians
-        core_labels = model["core_labels"]
-        eps_km = float(model["eps_km"])
-        summary_df = model["cluster_summary"]
-
-        # Convert new point to radians for haversine
-        new_lat_rad = np.radians(lat)
-        new_lon_rad = np.radians(lon)
-        
-        # Extract lat/lon from core_coords (already in radians)
-        core_lats = core_coords[:, 0]
-        core_lons = core_coords[:, 1]
-        
-        # Calculate haversine distances
-        dlat = core_lats - new_lat_rad
-        dlon = core_lons - new_lon_rad
-        a = np.sin(dlat / 2) ** 2 + np.cos(new_lat_rad) * np.cos(core_lats) * np.sin(dlon / 2) ** 2
-        distances = 2 * 6371.0 * np.arcsin(np.sqrt(a))
-        
-        min_dist = float(distances.min())
-        nearest_idx = int(distances.argmin())
-        nearest_cluster = int(core_labels[nearest_idx])
-
-        if min_dist <= eps_km:
-            most_common = "Unknown"
-            if isinstance(summary_df, pd.DataFrame):
-                match = summary_df[summary_df["cluster"] == nearest_cluster]
-                if not match.empty:
-                    most_common = str(match.iloc[0]["most_common_event"])
-            return {
-                "status": "Assigned",
-                "region": nearest_cluster,
-                "distance_km": round(min_dist, 1),
-                "most_common_event": most_common,
-            }
-
-        return {
-            "status": "New/Noise",
-            "closest_region": nearest_cluster,
-            "distance_km": round(min_dist, 1),
-        }
-    except Exception as exc:
-        return {"status": f"PredictionError: {str(exc)}"}
+	try:
+		df = pd.read_csv(data_path)
+		df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+		result = predict_region(lat, lon, df)
+		result["lat"] = lat
+		result["lon"] = lon
+		return result
+	except Exception as exc:
+		return {"status": f"PredictionError: {str(exc)}"}
 
 
 def _render_page(request: Request, prediction: dict | None = None, message: str | None = None, show_clusters: bool = True, show_regions: bool = False, charts: dict | None = None):
@@ -365,3 +390,170 @@ def get_clustered_data_head():
         return {"columns": columns, "data": data}
     except Exception as e:
         return {"error": str(e), "data": []}
+
+@router.get("/cluster-summary")
+def get_cluster_summary():
+	"""Serve cluster summary with risk scores as JSON."""
+	base_dir = Path(__file__).resolve().parent
+	cluster_summary_path = base_dir / "Data" / "cluster_summary.csv"
+	
+	if not cluster_summary_path.exists():
+		return {"error": "Cluster summary file not found", "data": []}
+	
+	try:
+		df = pd.read_csv(cluster_summary_path)
+		df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+		data = df.to_dict(orient="records")
+		columns = df.columns.tolist()
+		return {"columns": columns, "data": data, "count": len(df)}
+	except Exception as e:
+		return {"error": str(e), "data": []}
+
+
+@router.get("/high-risk-regions")
+def get_high_risk_regions():
+	"""Serve high-risk regions with time-aware risk scores as JSON."""
+	base_dir = Path(__file__).resolve().parent
+	high_risk_path = base_dir / "Data" / "High_risk_regions.csv"
+	
+	if not high_risk_path.exists():
+		return {"error": "High-risk regions file not found", "data": []}
+	
+	try:
+		df = pd.read_csv(high_risk_path)
+		df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+		# Sort by time_risk_score descending
+		df = df.sort_values(by='time_risk_score', ascending=False)
+		data = df.to_dict(orient="records")
+		columns = df.columns.tolist()
+		return {"columns": columns, "data": data, "count": len(df)}
+	except Exception as e:
+		return {"error": str(e), "data": []}
+
+
+@router.get("/wildfire-intensity-trend")
+def wildfire_intensity_trend():
+	"""Serve wildfire intensity trend data."""
+	data = get_wildfire_intensity_trend_data()
+	return data if data else {"error": "No wildfire data available"}
+
+
+@router.get("/volcano-intensity-trend")
+def volcano_intensity_trend():
+	"""Serve volcano intensity trend data."""
+	data = get_volcano_intensity_trend_data()
+	return data if data else {"error": "No volcano data available"}
+
+
+@router.get("/event-type-count")
+def event_type_count():
+	"""Serve event type distribution."""
+	data = get_event_type_count_data()
+	return data if data else {"error": "No event data available"}
+
+
+@router.get("/high-risk-regions-summary")
+def high_risk_regions_summary():
+	"""Serve high-risk regions summary data."""
+	data = get_high_risk_regions_data()
+	return data if data else {"error": "No high-risk data available"}
+
+
+@router.get("/all-events-2026")
+def all_events_2026():
+	"""Serve all events from 2026 for map display."""
+	try:
+		# Load the raw hazard dataset (not clustered)
+		if not prepared_data_path.exists():
+			return {"error": "Data file not found", "data": []}
+		
+		df = pd.read_csv(prepared_data_path)
+		
+		# Clean column names
+		df.columns = df.columns.str.replace('^Unnamed: ', '', regex=True)
+		
+		# Filter for 2026 only
+		if 'year' in df.columns:
+			df_2026 = df[df['year'] == 2026].copy()
+		else:
+			# If year column doesn't exist, try to extract from date columns
+			df_2026 = df.copy()
+		
+		if df_2026.empty:
+			return {"error": "No events found for 2026", "data": [], "count": 0}
+		
+		# Prepare response data with required fields
+		events_list = []
+		for _, row in df_2026.iterrows():
+			event_dict = {
+				'lat': float(row.get('lat', row.get('latitude', row.get('Latitude', 0)))),
+				'lon': float(row.get('lon', row.get('longitude', row.get('Longitude', 0)))),
+				'Event_type': str(row.get('Event_type', row.get('most_common_event', 'Other'))),
+				'intensity': float(row.get('intensity', row.get('magnitude', 1))),
+				'year': int(row.get('year', 2026)),
+				'month': int(row.get('month', 1)) if 'month' in row else 1
+			}
+			events_list.append(event_dict)
+		
+		return {
+			"data": events_list,
+			"count": len(events_list),
+			"year": 2026
+		}
+	
+	except Exception as e:
+		return {
+			"error": str(e),
+			"data": [],
+			"count": 0
+		}
+
+
+@router.get("/earthquake-points")
+def get_earthquake_points():
+	"""Serve earthquake data for map display from CSV file - Limited to top 1000 points."""
+	try:
+		earthquake_data_path = Path(__file__).resolve().parent.parent.parent / "USGS_DATA" / "earthquakes.csv"
+		
+		if not earthquake_data_path.exists():
+			return {"error": "Earthquake data file not found", "data": [], "count": 0}
+		
+		# Load earthquake data from CSV with limit
+		df = pd.read_csv(earthquake_data_path)
+		
+		if df.empty:
+			return {"error": "No earthquake data available", "data": [], "count": 0}
+		
+		# Limit to top 1000 records (sorted by magnitude descending for most significant events)
+		df_limited = df.nlargest(1000, 'magnitude') if 'magnitude' in df.columns else df.head(1000)
+		
+		# Extract earthquake points
+		earthquakes_list = []
+		for _, row in df_limited.iterrows():
+			try:
+				earthquake_dict = {
+					'lon': float(row.get('longitude', row.get('lon', 0))),
+					'lat': float(row.get('latitude', row.get('lat', 0))),
+					'depth_km': float(row.get('depth_km', 0)),
+					'magnitude': float(row.get('magnitude', 0)),
+					'place': str(row.get('place', 'Unknown')),
+					'time': str(row.get('time', 'N/A')),
+					'url': str(row.get('url', ''))
+				}
+				earthquakes_list.append(earthquake_dict)
+			except (ValueError, TypeError, KeyError):
+				continue
+		
+		return {
+			"data": earthquakes_list,
+			"count": len(earthquakes_list),
+			"total_in_file": len(df),
+			"limited_to": 1000
+		}
+	
+	except Exception as e:
+		return {
+			"error": str(e),
+			"data": [],
+			"count": 0
+		}

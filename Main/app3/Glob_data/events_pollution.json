@@ -1,0 +1,60 @@
+{
+  "saved_at": "2026-04-20T21:37:51.564350Z",
+  "data": {
+    "type": "pollution",
+    "events": [
+      {
+        "id": "pol-beijing",
+        "type": "pollution",
+        "lat": 39.9,
+        "lng": 116.4,
+        "aqi": 172,
+        "pm25": 95.45,
+        "title": "AQI 172 — Beijing",
+        "date": "2026-04-20T21:37:46.785369Z"
+      },
+      {
+        "id": "pol-seoul",
+        "type": "pollution",
+        "lat": 37.57,
+        "lng": 126.98,
+        "aqi": 157,
+        "pm25": 67.63,
+        "title": "AQI 157 — Seoul",
+        "date": "2026-04-20T21:37:49.647276Z"
+      },
+      {
+        "id": "pol-chengdu",
+        "type": "pollution",
+        "lat": 30.66,
+        "lng": 104.07,
+        "aqi": 135,
+        "pm25": 49.21,
+        "title": "AQI 135 — Chengdu",
+        "date": "2026-04-20T21:37:51.124263Z"
+      },
+      {
+        "id": "pol-riyadh",
+        "type": "pollution",
+        "lat": 24.69,
+        "lng": 46.72,
+        "aqi": 112,
+        "pm25": 40.05,
+        "title": "AQI 112 — Riyadh",
+        "date": "2026-04-20T21:37:51.540929Z"
+      },
+      {
+        "id": "pol-lahore",
+        "type": "pollution",
+        "lat": 31.5,
+        "lng": 74.3,
+        "aqi": 103,
+        "pm25": 36.5,
+        "title": "AQI 103 — Lahore",
+        "date": "2026-04-20T21:37:47.089814Z"
+      }
+    ],
+    "count": 5,
+    "fetched_at": "2026-04-20T21:37:51.564350Z"
+  }
+}

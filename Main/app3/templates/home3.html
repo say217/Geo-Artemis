@@ -1,20 +1,1032 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>App 3</title>
-  </head>
-  <body>
-    <h1>EARTH ORB</h1>
-    <p>This is the App 3 page.</p>
-    <nav class="nav-links">
-        <a href="/app1/">Home</a>
-        <a href="/app3/">EARTH ORB</a>
-        <a href="/app4/">app04</a>
-        <a href="/app5/">NEWS</a>
-        <a href="/app6/">app06</a>
-        <a href="/app2/logout" class="logout">logout</a>
-      </nav>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEO ARTEMIS — Earth Orb Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Core palette — deep crimson cyberpunk */
+      --void:       #04020a;
+      --bg:         #07030f;
+      --bg-panel:   rgba(10, 4, 18, 0.88);
+      --bg-card:    rgba(14, 5, 22, 0.80);
+      --red:        #ff2040;
+      --red-dim:    rgba(255, 32, 64, 0.15);
+      --red-glow:   rgba(255, 32, 64, 0.35);
+      --red-mid:    #cc1a33;
+      --crimson:    #8b0020;
+      --orange:     #ff5a1f;
+      --amber:      #ffb020;
+      --cyan-trace: #00d4c8;
+      --violet:     #9b30ff;
+      --white:      #f0eaf8;
+      --muted:      #7a6e88;
+      --dim:        #3d3348;
+      --border:     rgba(255, 32, 64, 0.12);
+      --border-hi:  rgba(255, 32, 64, 0.28);
+      --border-hot: rgba(255, 32, 64, 0.55);
+
+      --ff-display: 'Syne', sans-serif;
+      --ff-mono:    'Space Mono', monospace;
+      --ff-body:    'DM Mono', monospace;
+
+      --header-h: 54px;
+    }
+
+    html, body {
+      width: 100vw; height: 100vh;
+      background: var(--void);
+      overflow: hidden;
+      font-family: var(--ff-body);
+      color: var(--white);
+    }
+
+    /* Scanline overlay */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 200;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.08) 2px,
+        rgba(0,0,0,0.08) 4px
+      );
+      pointer-events: none;
+    }
+
+    /* Ambient glow */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 50% 40% at 50% 100%, rgba(139,0,32,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 25% at 0% 50%, rgba(255,32,64,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 25% 30% at 100% 20%, rgba(155,48,255,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────────────────────── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      z-index: 100;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0 1.4rem;
+      background: rgba(4, 1, 10, 0.97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-hi);
+      box-shadow: 0 0 40px rgba(255,32,64,0.08), inset 0 -1px 0 var(--border);
+    }
+
+    /* Left: logo */
+    .h-left {
+      display: flex; align-items: center; gap: 14px;
+    }
+
+    .logo-mark {
+      display: flex; align-items: center; gap: 0;
+      font-family: var(--ff-display);
+      font-weight: 800; font-size: 15px;
+      letter-spacing: 3px;
+      color: var(--white);
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    .logo-mark .geo {
+      color: var(--red);
+      text-shadow: 0 0 20px rgba(255,32,64,0.7), 0 0 40px rgba(255,32,64,0.3);
+    }
+
+    .logo-slash {
+      color: var(--border-hot);
+      margin: 0 2px;
+      font-weight: 400;
+    }
+
+    .logo-sep { width: 1px; height: 22px; background: var(--border-hi); }
+
+    .logo-sub {
+      font-family: var(--ff-mono);
+      font-size: 9px; font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .logo-sub span { color: var(--red); }
+
+    /* Center: nav */
+    .h-center { display: flex; align-items: center; gap: 2px; }
+
+    .nav-item {
+      font-family: var(--ff-mono);
+      font-size: 10px; font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 5px 12px;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .nav-item:hover {
+      color: var(--red);
+      border-color: var(--border-hi);
+      background: var(--red-dim);
+      text-shadow: 0 0 8px rgba(255,32,64,0.5);
+    }
+
+    .nav-item.active {
+      color: var(--red);
+      border-color: var(--border-hot);
+      background: rgba(255,32,64,0.08);
+    }
+
+    .nav-item.logout {
+      color: var(--dim);
+      margin-left: 8px;
+      border-color: var(--dim);
+    }
+    .nav-item.logout:hover {
+      color: var(--red);
+      border-color: var(--red);
+      background: var(--red-dim);
+    }
+
+    /* Right: status */
+    .h-right { display: flex; align-items: center; gap: 10px; justify-content: flex-end; }
+
+    .status-pill {
+      display: flex; align-items: center; gap: 6px;
+      padding: 4px 10px;
+      border: 1px solid rgba(255,32,64,0.25);
+      background: rgba(255,32,64,0.06);
+      border-radius: 2px;
+      font-family: var(--ff-mono);
+      font-size: 9px; letter-spacing: 1px;
+      color: var(--red);
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 6px var(--red);
+      animation: blink 1.6s ease-in-out infinite;
+    }
+
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+
+    .clock-display {
+      font-family: var(--ff-mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    /* Header accent line */
+    .header-line {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        var(--red-glow) 20%,
+        var(--red) 50%,
+        var(--red-glow) 80%,
+        transparent 100%
+      );
+      opacity: 0.6;
+    }
+
+    /* ── GLOBE ──────────────────────────────────────────────────────────── */
+    #globe-container {
+      position: absolute; inset: 0; z-index: 1;
+    }
+
+    /* ── FILTER PANEL (left) ────────────────────────────────────────────── */
+    #filter-panel {
+      position: absolute;
+      top: calc(var(--header-h) + 20px);
+      left: 20px;
+      z-index: 20;
+      width: 154px;
+      animation: slideInLeft 0.5s ease both;
+    }
+
+    @keyframes slideInLeft {
+      from { opacity:0; transform: translateX(-12px); }
+      to   { opacity:1; transform: translateX(0); }
+    }
+
+    .panel-label {
+      font-family: var(--ff-mono);
+      font-size: 9px; font-weight: 400;
+      letter-spacing: 2px;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      padding-left: 2px;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .panel-label::after {
+      content: '';
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--border-hi), transparent);
+    }
+
+    #filter-buttons { display: flex; flex-direction: column; gap: 3px; }
+
+    .f-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 12px;
+      background: rgba(10,4,18,0.7);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      font-family: var(--ff-mono);
+      font-size: 11px; font-weight: 400;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.18s ease;
+      position: relative;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .f-btn::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+      background: var(--red);
+      transform: scaleY(0);
+      transition: transform 0.18s ease;
+    }
+
+    .f-btn:hover {
+      color: var(--white);
+      border-color: var(--border-hi);
+      background: rgba(255,32,64,0.06);
+    }
+
+    .f-btn.active {
+      color: var(--red);
+      border-color: var(--border-hot);
+      background: rgba(255,32,64,0.09);
+      text-shadow: 0 0 8px rgba(255,32,64,0.4);
+    }
+
+    .f-btn.active::before { transform: scaleY(1); }
+
+    .f-icon { font-size: 10px; color: var(--red); opacity: 0.7; }
+    .f-btn.active .f-icon { opacity: 1; }
+
+    .f-count {
+      margin-left: auto;
+      font-size: 9px;
+      color: var(--dim);
+      background: rgba(255,255,255,0.04);
+      padding: 2px 5px;
+      border-radius: 2px;
+      min-width: 22px; text-align: center;
+    }
+    .f-btn.active .f-count {
+      color: var(--red);
+      background: rgba(255,32,64,0.12);
+    }
+
+    /* ── RIGHT PANEL ────────────────────────────────────────────────────── */
+    #intel-panel {
+      position: absolute;
+      top: calc(var(--header-h) + 20px);
+      right: 20px;
+      bottom: 20px;
+      z-index: 20;
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      animation: slideInRight 0.5s ease 0.1s both;
+    }
+
+    @keyframes slideInRight {
+      from { opacity:0; transform: translateX(12px); }
+      to   { opacity:1; transform: translateX(0); }
+    }
+
+    /* Panel header */
+    .intel-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 14px;
+      background: rgba(8, 3, 15, 0.95);
+      border: 1px solid var(--border-hi);
+      border-bottom: none;
+      border-radius: 4px 4px 0 0;
+      flex-shrink: 0;
+    }
+
+    .intel-head-left {
+      display: flex; flex-direction: column; gap: 2px;
+    }
+
+    .intel-title {
+      font-family: var(--ff-display);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+
+    .intel-sub {
+      font-family: var(--ff-mono);
+      font-size: 9px;
+      color: var(--red);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .live-tag {
+      display: flex; align-items: center; gap: 5px;
+      padding: 3px 8px;
+      border: 1px solid var(--border-hot);
+      background: rgba(255,32,64,0.08);
+      border-radius: 2px;
+      font-family: var(--ff-mono);
+      font-size: 9px; letter-spacing: 1.5px;
+      color: var(--red);
+    }
+
+    .live-dot-sm {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--red);
+      animation: blink 1.4s infinite;
+    }
+
+    /* Scroll zone */
+    #news-scroll {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: rgba(8,3,14,0.85);
+      border: 1px solid var(--border-hi);
+      border-top: 1px solid rgba(255,32,64,0.08);
+      border-radius: 0 0 4px 4px;
+      padding: 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-hot) transparent;
+    }
+
+    #news-scroll::-webkit-scrollbar { width: 2px; }
+    #news-scroll::-webkit-scrollbar-thumb {
+      background: var(--red-glow);
+      border-radius: 1px;
+    }
+
+    /* News card */
+    .news-card {
+      border-bottom: 1px solid var(--border);
+      padding: 14px;
+      cursor: pointer;
+      transition: background 0.18s ease;
+      position: relative;
+    }
+
+    .news-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+      background: var(--red);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.2s ease;
+    }
+
+    .news-card:hover { background: rgba(255,32,64,0.04); }
+    .news-card:hover::before { transform: scaleY(1); }
+    .news-card:last-child { border-bottom: none; }
+
+    /* Image holder */
+    .card-img {
+      width: 100%;
+      height: 120px;
+      background: rgba(255,32,64,0.06);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      transition: opacity 0.3s ease;
+    }
+
+    .card-img img:hover { opacity: 1; }
+
+    .card-img-placeholder {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--dim);
+      font-family: var(--ff-mono);
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    .card-img-placeholder::before {
+      content: '▣';
+      font-size: 22px;
+      color: var(--border-hi);
+    }
+
+    /* Image type badge overlay */
+    .img-badge {
+      position: absolute; top: 6px; left: 6px;
+      padding: 2px 7px;
+      border-radius: 2px;
+      font-family: var(--ff-mono);
+      font-size: 9px; font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .badge-wildfire   { background: rgba(255,90,31,0.85);  color: #fff; }
+    .badge-earthquake { background: rgba(0,212,200,0.85);  color: #000; }
+    .badge-war        { background: rgba(255,32,64,0.85);  color: #fff; }
+    .badge-protest    { background: rgba(255,176,32,0.85); color: #000; }
+    .badge-pollution  { background: rgba(120,200,80,0.85); color: #000; }
+    .badge-all        { background: rgba(155,48,255,0.85); color: #fff; }
+
+    /* Card content */
+    .card-body { }
+
+    .card-title {
+      font-family: var(--ff-display);
+      font-size: 12.5px; font-weight: 600;
+      color: var(--white);
+      line-height: 1.45;
+      margin-bottom: 7px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-decoration: none;
+    }
+
+    .card-title:hover { color: var(--red); }
+
+    .card-desc {
+      font-family: var(--ff-body);
+      font-size: 10.5px; font-weight: 300;
+      color: var(--muted);
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 9px;
+    }
+
+    .card-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: var(--ff-mono);
+      font-size: 9px;
+      color: var(--dim);
+    }
+
+    .card-source { color: var(--muted); }
+    .card-date   { color: var(--dim); }
+
+    /* Empty / loading states */
+    .news-empty {
+      padding: 40px 20px;
+      text-align: center;
+      font-family: var(--ff-mono);
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+
+    .news-skeleton {
+      margin: 14px;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .skel-img {
+      height: 90px;
+      background: linear-gradient(90deg, rgba(255,32,64,0.03) 0%, rgba(255,32,64,0.08) 50%, rgba(255,32,64,0.03) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 1.8s infinite;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+
+    .skel-line {
+      height: 10px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 1.8s infinite;
+      border-radius: 2px;
+      margin-bottom: 6px;
+    }
+
+    .skel-line.short { width: 60%; }
+
+    @keyframes shimmer {
+      0%   { background-position: -200% 0; }
+      100% { background-position:  200% 0; }
+    }
+
+    /* ── ALERT BAR (bottom center) ──────────────────────────────────────── */
+    #proximity-alert {
+      position: absolute;
+      bottom: 28px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: none; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      white-space: nowrap;
+      backdrop-filter: blur(16px);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #proximity-alert.normal {
+      background: rgba(4,1,10,0.92);
+      border: 1px solid rgba(255,32,64,0.3);
+      box-shadow: 0 0 24px rgba(255,32,64,0.1), 0 8px 32px rgba(0,0,0,0.7);
+      animation: alertIn 0.4s ease;
+    }
+
+    #proximity-alert.danger {
+      background: rgba(12,0,4,0.95);
+      border: 1px solid rgba(255,32,64,0.6);
+      box-shadow: 0 0 40px rgba(255,32,64,0.3), 0 8px 32px rgba(0,0,0,0.7);
+      animation: alertIn 0.4s ease, dangerPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes alertIn    { from{opacity:0;transform:translateX(-50%) translateY(8px)} to{opacity:1;transform:translateX(-50%) translateY(0)} }
+    @keyframes dangerPulse{ 0%,100%{box-shadow:0 0 40px rgba(255,32,64,0.3)} 50%{box-shadow:0 0 60px rgba(255,32,64,0.5)} }
+
+    .alert-dot   { width:6px;height:6px;border-radius:50%;flex-shrink:0; }
+    .normal .alert-dot { background:var(--red);box-shadow:0 0 6px var(--red);animation:blink 2s infinite; }
+    .danger .alert-dot { background:var(--red);box-shadow:0 0 10px var(--red);animation:blink 0.8s infinite; }
+
+    .alert-label {
+      font-family: var(--ff-mono);
+      font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    }
+    .normal .alert-label { color: var(--red); }
+    .danger .alert-label { color: var(--red); text-shadow: 0 0 8px var(--red-glow); }
+
+    .alert-divider { height:16px;width:1px;background:var(--border-hi); }
+    .alert-text    { font-size:11px;font-family:var(--ff-body);color:rgba(240,234,248,0.7); }
+    .alert-text b  { color:var(--white);font-weight:500; }
+
+    /* ── LEGEND ─────────────────────────────────────────────────────────── */
+    #legend {
+      position: absolute; bottom: 20px; left: 20px; z-index: 20;
+      background: rgba(8,3,14,0.88);
+      border: 1px solid var(--border-hi);
+      border-radius: 3px;
+      padding: 10px 14px;
+      backdrop-filter: blur(16px);
+      animation: slideInLeft 0.5s ease 0.25s both;
+    }
+
+    .legend-title {
+      font-family: var(--ff-mono); font-size: 9px; letter-spacing: 2px;
+      color: var(--red); text-transform: uppercase; margin-bottom: 9px;
+    }
+
+    .legend-items { display:flex;flex-direction:column;gap:5px; }
+
+    .legend-item {
+      display:flex;align-items:center;gap:8px;
+      font-family:var(--ff-mono);font-size:10px;
+      color:var(--muted);
+    }
+
+    .ldot { width:5px;height:5px;border-radius:50%;flex-shrink:0; }
+    .l-fire  { background:#ff5a1f;box-shadow:0 0 5px #ff5a1f66; }
+    .l-quake { background:var(--cyan-trace);box-shadow:0 0 5px rgba(0,212,200,0.4); }
+    .l-war   { background:var(--red);box-shadow:0 0 5px var(--red-glow); }
+    .l-unrest{ background:var(--amber);box-shadow:0 0 5px rgba(255,176,32,0.4); }
+    .l-aqi   { background:#70d040;box-shadow:0 0 5px rgba(112,208,64,0.4); }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="h-left">
+      <div class="logo-mark">
+        <span class="geo">GEO</span>
+        <span class="logo-slash">/</span>
+        <span>ARTEMIS</span>
+      </div>
+      <div class="logo-sep"></div>
+      <div class="logo-sub">
+        EARTH ORB INTELLIGENCE<br>
+        <span>v4.1 // LIVE FEED</span>
+      </div>
+    </div>
+
+    <nav class="h-center">
+      <a href="/app1/"  class="nav-item">Home</a>
+      <a href="/app3/"  class="nav-item active">Earth Orb</a>
+      <a href="/app4/"  class="nav-item">World View</a>
+      <a href="/app5/"  class="nav-item">News</a>
+      <a href="/app6/"  class="nav-item">App06</a>
+      <a href="/app2/logout" class="nav-item logout">Logout</a>
+    </nav>
+
+    <div class="h-right">
+      <div class="clock-display" id="hdr-clock">--:--:--</div>
+      <div class="status-pill">
+        <div class="status-dot"></div>
+        <span>ONLINE</span>
+      </div>
+    </div>
+
+    <div class="header-line"></div>
+  </header>
+
+  <!-- GLOBE -->
+  <div id="globe-container"></div>
+
+  <!-- LEFT: FILTER PANEL -->
+  <div id="filter-panel">
+    <div class="panel-label">Filters</div>
+    <div id="filter-buttons"></div>
+  </div>
+
+  <!-- RIGHT: INTEL / NEWS PANEL -->
+  <div id="intel-panel">
+    <div class="intel-head">
+      <div class="intel-head-left">
+        <div class="intel-title" id="news-title">Intel Feed</div>
+        <div class="intel-sub" id="news-count">Loading…</div>
+      </div>
+      <div class="live-tag">
+        <div class="live-dot-sm"></div>
+        <span>LIVE</span>
+      </div>
+    </div>
+    <div id="news-scroll">
+      <!-- skeleton -->
+      <div class="news-skeleton"><div class="skel-img"></div><div class="skel-line"></div><div class="skel-line short"></div></div>
+      <div class="news-skeleton"><div class="skel-img"></div><div class="skel-line"></div><div class="skel-line short"></div></div>
+      <div class="news-skeleton"><div class="skel-img"></div><div class="skel-line"></div><div class="skel-line short"></div></div>
+    </div>
+  </div>
+
+  <!-- PROXIMITY ALERT -->
+  <div id="proximity-alert">
+    <div class="alert-dot"></div>
+    <div class="alert-label">Local Alert</div>
+    <div class="alert-divider"></div>
+    <div class="alert-text"></div>
+  </div>
+
+  <!-- LEGEND -->
+  <div id="legend">
+    <div class="legend-title">Event Types</div>
+    <div class="legend-items">
+      <div class="legend-item"><div class="ldot l-fire"></div>Wildfire</div>
+      <div class="legend-item"><div class="ldot l-quake"></div>Seismic</div>
+      <div class="legend-item"><div class="ldot l-war"></div>Conflict</div>
+      <div class="legend-item"><div class="ldot l-unrest"></div>Unrest</div>
+      <div class="legend-item"><div class="ldot l-aqi"></div>Pollution</div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/globe.gl@2.45.3/dist/globe.gl.min.js"></script>
+  <script>
+  'use strict';
+
+  const API_BASE = '/app3/api';
+
+  // ── Clock ─────────────────────────────────────────────────────────────────
+  (function clock() {
+    const el = document.getElementById('hdr-clock');
+    const tick = () => {
+      const d = new Date();
+      el.textContent = [d.getHours(), d.getMinutes(), d.getSeconds()]
+        .map(n => String(n).padStart(2,'0')).join(':') + ' UTC';
+    };
+    tick(); setInterval(tick, 1000);
+  })();
+
+  // ── Helpers ───────────────────────────────────────────────────────────────
+  function haversine(la1,lo1,la2,lo2) {
+    const R=3958.8,r=Math.PI/180,
+          dLa=(la2-la1)*r, dLo=(lo2-lo1)*r;
+    const a=Math.sin(dLa/2)**2+Math.cos(la1*r)*Math.cos(la2*r)*Math.sin(dLo/2)**2;
+    return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+  }
+
+  function fmtDate(iso) {
+    if (!iso) return '';
+    try {
+      return new Date(iso).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    } catch { return ''; }
+  }
+
+  // ── State ─────────────────────────────────────────────────────────────────
+  let activeFilter  = 'all';
+  let allEvents     = [];
+  let userLocation  = null;
+  let globe         = null;
+  let hoverD        = null;
+  let hoverPoint    = null;
+
+  // ── Filter config ─────────────────────────────────────────────────────────
+  const FILTERS = [
+    { id:'all',        label:'All Events',  icon:'◈' },
+    { id:'wildfire',   label:'Wildfire',    icon:'◉' },
+    { id:'earthquake', label:'Seismic',     icon:'◎' },
+    { id:'war',        label:'Conflict',    icon:'⬡' },
+    { id:'protest',    label:'Unrest',      icon:'◆' },
+    { id:'pollution',  label:'Pollution',   icon:'◇' },
+  ];
+
+  const COLORS = {
+    wildfire:   '#ff5a1f',
+    earthquake: '#00d4c8',
+    war:        '#ff2040',
+    protest:    '#ffb020',
+    pollution:  '#70d040',
+  };
+
+  // ── Build filters ─────────────────────────────────────────────────────────
+  const filterWrap = document.getElementById('filter-buttons');
+  FILTERS.forEach(fc => {
+    const btn = document.createElement('button');
+    btn.className   = 'f-btn' + (fc.id==='all'?' active':'');
+    btn.dataset.id  = fc.id;
+    btn.innerHTML   = `<span class="f-icon">${fc.icon}</span>${fc.label}<span class="f-count" id="fc-${fc.id}">0</span>`;
+    btn.addEventListener('click', () => {
+      activeFilter = fc.id;
+      document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('news-title').textContent =
+        fc.id==='all' ? 'Intel Feed' : fc.label + ' Intel';
+      updateGlobe();
+      fetchNews();
+    });
+    filterWrap.appendChild(btn);
+  });
+
+  // ── Tooltip builder ───────────────────────────────────────────────────────
+  function tooltip(d) {
+    const col = COLORS[d.type] || '#ff2040';
+    return `<div style="background:rgba(4,1,10,0.96);border:1px solid ${col}44;border-left:3px solid ${col};padding:9px 13px;border-radius:3px;color:#f0eaf8;font-family:'Space Mono',monospace;min-width:150px;box-shadow:0 4px 24px rgba(0,0,0,0.8),0 0 16px ${col}22;">
+      <div style="font-size:9px;color:${col};letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">${d.type}</div>
+      <div style="font-size:12px;font-weight:700;line-height:1.4;">${d.title}</div>
+      ${d.mag?`<div style="font-size:10px;color:#7a6e88;margin-top:4px;">Mag ${d.mag}</div>`:''}
+      ${d.aqi?`<div style="font-size:10px;color:#7a6e88;margin-top:4px;">AQI ${d.aqi}</div>`:''}
+    </div>`;
+  }
+
+  // ── Globe init ────────────────────────────────────────────────────────────
+  function initGlobe() {
+    const container = document.getElementById('globe-container');
+    globe = Globe()(container)
+      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+      .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
+      .pointsMerge(false)
+      .pointAltitude(d => ({
+        wildfire:   0.25,
+        pollution:  d.aqi ? Math.min(d.aqi * 0.0012, 0.4) : 0.15,
+        earthquake: 0.01,
+        protest:    0.20,
+      }[d.type] || 0.05))
+      .pointRadius(d => ({
+        wildfire: 0.40, protest: 0.35, pollution: 0.35, earthquake: 0.15
+      }[d.type] || 0.22))
+      .pointColor(d => COLORS[d.type] || '#ff2040')
+      .pointLabel(d => tooltip(d))
+      .onPointHover(p => { hoverPoint = p; })
+      .onPointClick(flyTo)
+      // Rings for earthquakes
+      .ringColor(() => '#00d4c8')
+      .ringMaxRadius(d => d.mag ? d.mag * 1.3 : 4)
+      .ringPropagationSpeed(d => d.mag ? d.mag * 0.28 : 0.8)
+      .ringRepeatPeriod(1400)
+      // Arcs for conflicts
+      .arcColor(() => ['rgba(255,32,64,0.04)', '#ff2040'])
+      .arcDashLength(0.4).arcDashGap(0.12)
+      .arcDashInitialGap(() => Math.random())
+      .arcDashAnimateTime(1600).arcAltitude(0.22).arcStroke(0.45)
+      .arcLabel(d => `<div style="background:rgba(4,1,10,0.96);border:1px solid rgba(255,32,64,0.4);border-left:3px solid #ff2040;padding:9px 13px;border-radius:3px;color:#f0eaf8;font-family:'Space Mono',monospace;font-size:11px;">
+        <div style="font-size:9px;color:#ff2040;letter-spacing:1px;margin-bottom:4px;">ACTIVE CONFLICT</div>
+        <div style="font-weight:700;">${d.title}</div>
+      </div>`)
+      .onArcClick(flyTo)
+      // Ocean labels
+      .labelsData([
+        { lat:10, lng:-160, text:'PACIFIC OCEAN'  },
+        { lat:10, lng: -40, text:'ATLANTIC OCEAN' },
+        { lat:-20,lng:  80, text:'INDIAN OCEAN'   },
+        { lat:-60,lng:   0, text:'SOUTHERN OCEAN' },
+        { lat: 80,lng:   0, text:'ARCTIC OCEAN'   },
+      ])
+      .labelLat(d=>d.lat).labelLng(d=>d.lng).labelText(d=>d.text)
+      .labelSize(1.3).labelDotRadius(0)
+      .labelColor(() => 'rgba(255,32,64,0.12)').labelResolution(2)
+      // Country polygons
+      .polygonCapColor(d => d===hoverD ? 'rgba(255,32,64,0.10)' : 'rgba(255,255,255,0.025)')
+      .polygonSideColor(() => 'rgba(255,32,64,0.04)')
+      .polygonAltitude(d => d===hoverD ? 0.04 : 0.006)
+      .polygonsTransitionDuration(280)
+      .onPolygonHover(p => {
+        hoverD = p;
+        globe.polygonCapColor(globe.polygonCapColor());
+        globe.polygonAltitude(globe.polygonAltitude());
+      })
+      .polygonLabel(({ properties:d }) =>
+        hoverPoint ? '' :
+        `<div style="background:rgba(4,1,10,0.92);border:1px solid rgba(255,32,64,0.2);padding:6px 11px;border-radius:3px;color:#f0eaf8;font-family:'Space Mono',monospace;font-size:11px;">${d.ADMIN||''}</div>`
+      );
+
+    // Load country polygons
+    fetch('https://raw.githubusercontent.com/vasturiano/globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson')
+      .then(r => r.json())
+      .then(data => globe.polygonsData(data.features))
+      .catch(() => {});
+  }
+
+  // ── Fly to event ──────────────────────────────────────────────────────────
+  function flyTo(event) {
+    if (!globe) return;
+    const lat = event.lat  ?? event.startLat;
+    const lng = event.lng  ?? event.startLng;
+    globe.pointOfView({ lat, lng, altitude: 0.75 }, 1100);
+  }
+
+  // ── Update globe ──────────────────────────────────────────────────────────
+  function updateGlobe() {
+    if (!globe) return;
+    const f = e => activeFilter==='all' || e.type===activeFilter;
+    const filtered = allEvents.filter(f);
+
+    globe
+      .pointsData(filtered.filter(e => ['wildfire','protest','pollution','earthquake'].includes(e.type)))
+      .ringsData(filtered.filter(e => e.type==='earthquake'))
+      .arcsData(filtered.filter(e => e.type==='war'));
+
+    // Update counts
+    const counts = {};
+    allEvents.forEach(e => { counts[e.type] = (counts[e.type]||0)+1; });
+    counts.all = allEvents.length;
+    FILTERS.forEach(fc => {
+      const el = document.getElementById(`fc-${fc.id}`);
+      if (el) el.textContent = counts[fc.id] || 0;
+    });
+  }
+
+  // ── Proximity alert ───────────────────────────────────────────────────────
+  function updateProximity() {
+    const alert = document.getElementById('proximity-alert');
+    if (!userLocation || !allEvents.length) { alert.style.display='none'; return; }
+
+    let closest=null, minD=Infinity;
+    allEvents.forEach(e => {
+      const la = e.lat??e.startLat, lo = e.lng??e.startLng;
+      if (la!=null) {
+        const d = haversine(userLocation.lat, userLocation.lng, la, lo);
+        if (d<minD) { minD=d; closest={...e, distance:Math.round(d)}; }
+      }
+    });
+
+    if (!closest) { alert.style.display='none'; return; }
+    alert.style.display = 'flex';
+    alert.className = closest.distance<500 ? 'danger' : 'normal';
+    alert.querySelector('.alert-text').innerHTML =
+      `Nearest: <b>${closest.title}</b> &mdash; ${closest.distance.toLocaleString()} mi`;
+    alert.onclick = () => flyTo(closest);
+  }
+
+  // ── Fetch events ──────────────────────────────────────────────────────────
+  function fetchEvents() {
+    fetch(`${API_BASE}/events/all`)
+      .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(data => {
+        if (!data.events) return;
+        allEvents = data.events.map(e => {
+          if (['protest','pollution','wildfire'].includes(e.type)) {
+            return { ...e,
+              lat: (e.lat||0) + (Math.random()-0.5)*0.6,
+              lng: (e.lng||0) + (Math.random()-0.5)*0.6,
+            };
+          }
+          return e;
+        });
+        updateGlobe();
+        updateProximity();
+      })
+      .catch(err => console.error('[Events] fetch failed:', err));
+  }
+
+  // ── Fetch news ────────────────────────────────────────────────────────────
+  function fetchNews() {
+    const scroll = document.getElementById('news-scroll');
+    const countEl = document.getElementById('news-count');
+
+    // Show skeletons
+    scroll.innerHTML = `
+      <div class="news-skeleton"><div class="skel-img"></div><div class="skel-line"></div><div class="skel-line short"></div></div>
+      <div class="news-skeleton"><div class="skel-img"></div><div class="skel-line"></div><div class="skel-line short"></div></div>
+      <div class="news-skeleton"><div class="skel-img"></div><div class="skel-line"></div><div class="skel-line short"></div></div>
+    `;
+    countEl.textContent = 'Fetching…';
+
+    fetch(`${API_BASE}/news?filter_type=${activeFilter}`)
+      .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(data => {
+        scroll.innerHTML = '';
+        const articles = data.news || [];
+        countEl.textContent = `${articles.length} articles`;
+
+        if (!articles.length) {
+          scroll.innerHTML = '<div class="news-empty">No intel available</div>';
+          return;
+        }
+
+        articles.forEach(art => {
+          const type   = art.type || activeFilter;
+          const badge  = `badge-${type}`;
+          const date   = fmtDate(art.date);
+          const hasImg = !!art.image;
+
+          const card = document.createElement('div');
+          card.className = 'news-card';
+          card.innerHTML = `
+            <div class="card-img">
+              ${hasImg
+                ? `<img src="${art.image}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\"card-img-placeholder\\">NO IMAGE</div>'">`
+                : `<div class="card-img-placeholder">NO IMAGE</div>`
+              }
+              <span class="img-badge ${badge}">${type.toUpperCase()}</span>
+            </div>
+            <div class="card-body">
+              <a class="card-title" href="${art.url}" target="_blank" rel="noopener">${art.title}</a>
+              ${art.description ? `<div class="card-desc">${art.description}</div>` : ''}
+              <div class="card-meta">
+                <span class="card-source">${art.source||'Unknown'}</span>
+                <span class="card-date">${date}</span>
+              </div>
+            </div>
+          `;
+          scroll.appendChild(card);
+        });
+      })
+      .catch(err => {
+        console.error('[News] fetch failed:', err);
+        document.getElementById('news-scroll').innerHTML =
+          '<div class="news-empty">Feed offline</div>';
+        document.getElementById('news-count').textContent = 'Error';
+      });
+  }
+
+  // ── Geolocation ───────────────────────────────────────────────────────────
+  function initGeo() {
+    if (!('geolocation' in navigator)) return;
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        updateProximity();
+      },
+      () => {}
+    );
+  }
+
+  // ── Boot ──────────────────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    initGlobe();
+    fetchEvents();
+    fetchNews();
+    initGeo();
+    // Auto-refresh every 90 seconds
+    setInterval(() => { fetchEvents(); fetchNews(); }, 90_000);
+  });
+  </script>
+</body>
 </html>
