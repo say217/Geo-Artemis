@@ -4,7 +4,7 @@ Remove the serp_api_key argument from initialize_fetcher().
 """
 import os
 from pathlib import Path
-NASA_EVENT_FETCH_ENABLED = True  # Set to False to skip NASA event fetch
+NASA_EVENT_FETCH_ENABLED = False# Set to False to skip NASA event fetch
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -34,7 +34,7 @@ async def lifespan(app: FastAPI):
     print(" Starting Geo Artemis Application...")
     print("=" * 50)
 
-    # NASA event fetch logic
+    # nasa event data fetching logic i will add later a logic for mutlple trying if bu chace it fails and a time delay
     if NASA_EVENT_FETCH_ENABLED:
         try:
             import requests
@@ -75,6 +75,12 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 app.add_middleware(SessionMiddleware, secret_key=os.getenv("SECRET_KEY", "change-me"))
 
+app.mount(
+    "/static",
+    StaticFiles(directory=str(Path(__file__).resolve().parent / "app2" / "static")),
+    name="static",
+)
+# i mount the static same as app2
 app.mount(
     "/static",
     StaticFiles(directory=str(Path(__file__).resolve().parent / "app1" / "static")),

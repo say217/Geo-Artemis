@@ -13,3 +13,5 @@ def home(request: Request):
     if not request.session.get("is_verified"):
         return RedirectResponse(url="/app2/login", status_code=status.HTTP_303_SEE_OTHER)
     return templates.TemplateResponse("home.html", {"request": request})
+
+#simple home page routing or nothing fancy yooo

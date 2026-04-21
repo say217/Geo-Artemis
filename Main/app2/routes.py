@@ -46,7 +46,7 @@ SMTP_USE_TLS = os.getenv("SMTP_USE_TLS", "true").lower() == "true"
 SMTP_USE_SSL = os.getenv("SMTP_USE_SSL", "false").lower() == "true"
 BASE_URL = os.getenv("BASE_URL", "http://127.0.0.1:8000")
 VERIFY_TOKEN_TTL_MINUTES = get_env_int("VERIFY_CODE_EXP_MINUTES", 10)
-WELCOME_EMAIL_ACTIVE = os.getenv("WELCOME_EMAIL_ACTIVE", "false").lower() == "true"
+WELCOME_EMAIL_ACTIVE = os.getenv("WELCOME_EMAIL_ACTIVE", "true").lower() == "true"   # true false logic avoiding unwanted emilas in developing phase 000000oouuu
 
 
 def get_db_connection():
