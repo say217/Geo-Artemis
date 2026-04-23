@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-20T21:37:51.574473Z",
+  "saved_at": "2026-04-22T18:02:52.094955Z",
   "data": {
     "events": [
       {
@@ -203,279 +203,249 @@
         "date": "2026-04-13T09:16:00Z"
       },
       {
-        "id": "us7000s789",
+        "id": "us6000srvu",
         "type": "earthquake",
-        "lat": -18.597,
-        "lng": -175.3917,
-        "mag": 7.5,
-        "title": "M 7.5 - 148 km W of Neiafu, Tonga",
-        "date": "2026-03-24T04:37:51.514000+00:00"
+        "lat": 40.1562,
+        "lng": 143.4599,
+        "mag": 5.6,
+        "title": "M 5.6 - 140 km E of Noda, Japan",
+        "date": "2026-04-21T18:44:12.001000+00:00"
       },
       {
-        "id": "us6000slss",
+        "id": "us6000sru5",
         "type": "earthquake",
-        "lat": 1.1171,
-        "lng": 126.2965,
+        "lat": 16.7709,
+        "lng": -95.7767,
+        "mag": 5,
+        "title": "M 5.0 - 12 km SSW of Santiago Quiavicuzas, Mexico",
+        "date": "2026-04-21T14:52:17.411000+00:00"
+      },
+      {
+        "id": "us6000srtg",
+        "type": "earthquake",
+        "lat": -23.1597,
+        "lng": 170.8816,
+        "mag": 4.7,
+        "title": "M 4.7 - southeast of the Loyalty Islands",
+        "date": "2026-04-21T11:03:15.713000+00:00"
+      },
+      {
+        "id": "us6000srtd",
+        "type": "earthquake",
+        "lat": -62.0123,
+        "lng": 164.998,
+        "mag": 5.7,
+        "title": "M 5.7 - Balleny Islands region",
+        "date": "2026-04-21T10:30:27.397000+00:00"
+      },
+      {
+        "id": "us6000srs6",
+        "type": "earthquake",
+        "lat": 39.8481,
+        "lng": 143.6273,
+        "mag": 5.4,
+        "title": "M 5.4 - 146 km E of Miyako, Japan",
+        "date": "2026-04-21T05:29:09.335000+00:00"
+      },
+      {
+        "id": "us6000srs5",
+        "type": "earthquake",
+        "lat": 39.862,
+        "lng": 143.6712,
+        "mag": 4.7,
+        "title": "M 4.7 - 150 km E of Miyako, Japan",
+        "date": "2026-04-21T05:19:56.456000+00:00"
+      },
+      {
+        "id": "us6000srrc",
+        "type": "earthquake",
+        "lat": -9.068,
+        "lng": 124.0863,
+        "mag": 5.5,
+        "title": "M 5.5 - 35 km WNW of Pante Makasar, Timor Leste",
+        "date": "2026-04-21T03:17:07.811000+00:00"
+      },
+      {
+        "id": "us6000srr7",
+        "type": "earthquake",
+        "lat": 39.8608,
+        "lng": 143.1656,
+        "mag": 4.8,
+        "title": "M 4.8 - 107 km ENE of Miyako, Japan",
+        "date": "2026-04-21T02:35:47.967000+00:00"
+      },
+      {
+        "id": "us6000srr2",
+        "type": "earthquake",
+        "lat": 0.3364,
+        "lng": -78.3232,
+        "mag": 5.2,
+        "title": "M 5.2 - 7 km WNW of Cotacachi, Ecuador",
+        "date": "2026-04-21T02:22:21.410000+00:00"
+      },
+      {
+        "id": "us6000srr3",
+        "type": "earthquake",
+        "lat": 52.0097,
+        "lng": 160.3252,
+        "mag": 4.7,
+        "title": "M 4.7 - 164 km SE of Petropavlovsk-Kamchatsky, Russia",
+        "date": "2026-04-21T02:17:48.029000+00:00"
+      },
+      {
+        "id": "us6000srqj",
+        "type": "earthquake",
+        "lat": 24.6039,
+        "lng": 94.5961,
+        "mag": 5,
+        "title": "M 5.0 - 53 km E of Wāngjing, India",
+        "date": "2026-04-21T00:29:35.894000+00:00"
+      },
+      {
+        "id": "us6000srqg",
+        "type": "earthquake",
+        "lat": 23.219,
+        "lng": 94.7634,
+        "mag": 4.7,
+        "title": "M 4.7 - 59 km SE of Mawlaik, Burma (Myanmar)",
+        "date": "2026-04-21T00:08:27.796000+00:00"
+      },
+      {
+        "id": "us6000srpn",
+        "type": "earthquake",
+        "lat": 1.1357,
+        "lng": -85.3693,
+        "mag": 4.6,
+        "title": "M 4.6 - off the coast of Ecuador",
+        "date": "2026-04-20T21:59:56.780000+00:00"
+      },
+      {
+        "id": "us6000srn6",
+        "type": "earthquake",
+        "lat": -2.374,
+        "lng": 139.1482,
+        "mag": 5.3,
+        "title": "M 5.3 - 166 km W of Abepura, Indonesia",
+        "date": "2026-04-20T18:47:05.797000+00:00"
+      },
+      {
+        "id": "us6000srka",
+        "type": "earthquake",
+        "lat": 39.856,
+        "lng": 143.2291,
+        "mag": 4.7,
+        "title": "M 4.7 - 112 km ENE of Miyako, Japan",
+        "date": "2026-04-20T14:15:29.099000+00:00"
+      },
+      {
+        "id": "us6000srjx",
+        "type": "earthquake",
+        "lat": 39.5889,
+        "lng": 143.4485,
+        "mag": 5.1,
+        "title": "M 5.1 - 129 km E of Yamada, Japan",
+        "date": "2026-04-20T12:56:45.171000+00:00"
+      },
+      {
+        "id": "us6000srjn",
+        "type": "earthquake",
+        "lat": 10.8663,
+        "lng": 125.9345,
+        "mag": 4.6,
+        "title": "M 4.6 - 14 km ESE of Sulangan, Philippines",
+        "date": "2026-04-20T11:44:37.901000+00:00"
+      },
+      {
+        "id": "us6000srj9",
+        "type": "earthquake",
+        "lat": 39.4819,
+        "lng": 143.2471,
+        "mag": 5,
+        "title": "M 5.0 - 111 km E of Yamada, Japan",
+        "date": "2026-04-20T10:44:16.040000+00:00"
+      },
+      {
+        "id": "us6000srix",
+        "type": "earthquake",
+        "lat": 51.0635,
+        "lng": 179.3113,
+        "mag": 4.7,
+        "title": "M 4.7 - 295 km WSW of Adak, Alaska",
+        "date": "2026-04-20T09:54:45.442000+00:00"
+      },
+      {
+        "id": "us6000sriv",
+        "type": "earthquake",
+        "lat": 39.7888,
+        "lng": 143.2807,
+        "mag": 5.1,
+        "title": "M 5.1 - 115 km E of Miyako, Japan",
+        "date": "2026-04-20T09:49:43.363000+00:00"
+      },
+      {
+        "id": "us6000srih",
+        "type": "earthquake",
+        "lat": 39.6393,
+        "lng": 143.2591,
+        "mag": 5.6,
+        "title": "M 5.6 - 113 km E of Miyako, Japan",
+        "date": "2026-04-20T08:32:46.679000+00:00"
+      },
+      {
+        "id": "us6000sri7",
+        "type": "earthquake",
+        "lat": 39.9532,
+        "lng": 143.0462,
         "mag": 7.4,
-        "title": "M 7.4 - 126 km WNW of Ternate, Indonesia",
-        "date": "2026-04-01T22:48:13.172000+00:00"
+        "title": "M 7.4 - 100 km ENE of Miyako, Japan",
+        "date": "2026-04-20T07:53:00.185000+00:00"
       },
       {
-        "id": "us7000s8q0",
+        "id": "us6000srhw",
         "type": "earthquake",
-        "lat": -15.3139,
-        "lng": 167.5616,
-        "mag": 7.3,
-        "title": "M 7.3 - 48 km ENE of Luganville, Vanuatu",
-        "date": "2026-03-30T08:44:13.823000+00:00"
+        "lat": -32.4235,
+        "lng": -178.3141,
+        "mag": 5.1,
+        "title": "M 5.1 - south of the Kermadec Islands",
+        "date": "2026-04-20T07:04:23.455000+00:00"
       },
       {
-        "id": "us6000si5l",
+        "id": "us6000srhi",
         "type": "earthquake",
-        "lat": 23.8601,
-        "lng": -45.7987,
-        "mag": 6.6,
-        "title": "M 6.6 - northern Mid-Atlantic Ridge",
-        "date": "2026-03-21T12:16:46.629000+00:00"
+        "lat": -7.9677,
+        "lng": 124.3047,
+        "mag": 5.2,
+        "title": "M 5.2 - 122 km NW of Maubara, Timor Leste",
+        "date": "2026-04-20T05:19:35.993000+00:00"
       },
       {
-        "id": "us7000s7u4",
+        "id": "us6000srh9",
         "type": "earthquake",
-        "lat": 39.4377,
-        "lng": 143.3826,
-        "mag": 6.5,
-        "title": "M 6.5 - 123 km E of Yamada, Japan",
-        "date": "2026-03-26T14:18:51.927000+00:00"
-      },
-      {
-        "id": "us6000sii1",
-        "type": "earthquake",
-        "lat": -15.3376,
-        "lng": -172.652,
-        "mag": 6.3,
-        "title": "M 6.3 - 140 km ENE of Hihifo, Tonga",
-        "date": "2026-03-22T15:30:36.570000+00:00"
-      },
-      {
-        "id": "us6000sidb",
-        "type": "earthquake",
-        "lat": -15.1922,
-        "lng": -172.96,
-        "mag": 6.2,
-        "title": "M 6.2 - 123 km NE of Hihifo, Tonga",
-        "date": "2026-03-22T06:15:36.306000+00:00"
-      },
-      {
-        "id": "us6000sii0",
-        "type": "earthquake",
-        "lat": -15.2769,
-        "lng": -172.5558,
-        "mag": 6.2,
-        "title": "M 6.2 - 152 km ENE of Hihifo, Tonga",
-        "date": "2026-03-22T15:27:55.074000+00:00"
-      },
-      {
-        "id": "us6000slwy",
-        "type": "earthquake",
-        "lat": 1.2031,
-        "lng": 126.474,
-        "mag": 6.2,
-        "title": "M 6.2 - 111 km WNW of Ternate, Indonesia",
-        "date": "2026-04-02T03:23:53.642000+00:00"
-      },
-      {
-        "id": "us6000sred",
-        "type": "earthquake",
-        "lat": -15.1256,
-        "lng": -173.6164,
-        "mag": 6.1,
-        "title": "M 6.1 - 93 km NNE of Hihifo, Tonga",
-        "date": "2026-04-19T17:34:47.472000+00:00"
-      },
-      {
-        "id": "us7000s9cg",
-        "type": "earthquake",
-        "lat": -7.0198,
-        "lng": -76.1931,
-        "mag": 6,
-        "title": "M 6.0 - 18 km SE of Picota, Peru",
-        "date": "2026-04-01T11:20:27.357000+00:00"
-      },
-      {
-        "id": "us6000smj4",
-        "type": "earthquake",
-        "lat": 4.8733,
-        "lng": 126.1392,
-        "mag": 6,
-        "title": "M 6.0 - 95 km SE of Sarangani, Philippines",
-        "date": "2026-04-04T10:34:28.266000+00:00"
-      },
-      {
-        "id": "us6000sqjb",
-        "type": "earthquake",
-        "lat": -32.2098,
-        "lng": -178.0541,
-        "mag": 6,
-        "title": "M 6.0 - south of the Kermadec Islands",
-        "date": "2026-04-16T13:30:01.088000+00:00"
-      },
-      {
-        "id": "us6000siln",
-        "type": "earthquake",
-        "lat": -15.6311,
-        "lng": -172.8184,
-        "mag": 5.9,
-        "title": "M 5.9 - 110 km ENE of Hihifo, Tonga",
-        "date": "2026-03-22T22:26:14.332000+00:00"
-      },
-      {
-        "id": "us6000sm1v",
-        "type": "earthquake",
-        "lat": 1.2401,
-        "lng": 126.3004,
-        "mag": 5.9,
-        "title": "M 5.9 - 130 km WNW of Ternate, Indonesia",
-        "date": "2026-04-02T14:13:49.201000+00:00"
-      },
-      {
-        "id": "us6000sn11",
-        "type": "earthquake",
-        "lat": -54.994,
-        "lng": -129.111,
-        "mag": 5.9,
-        "title": "M 5.9 - Pacific-Antarctic Ridge",
-        "date": "2026-04-06T11:18:37.401000+00:00"
-      },
-      {
-        "id": "us6000sr3l",
-        "type": "earthquake",
-        "lat": -32.0876,
-        "lng": -178.0627,
-        "mag": 5.9,
-        "title": "M 5.9 - south of the Kermadec Islands",
-        "date": "2026-04-18T10:47:54.936000+00:00"
-      },
-      {
-        "id": "us6000sr4k",
-        "type": "earthquake",
-        "lat": -10.6594,
-        "lng": 161.575,
-        "mag": 5.8,
-        "title": "M 5.8 - 44 km WSW of Kirakira, Solomon Islands",
-        "date": "2026-04-18T15:03:00.197000+00:00"
-      },
-      {
-        "id": "us7000s8ec",
-        "type": "earthquake",
-        "lat": -7.5517,
-        "lng": 127.7983,
-        "mag": 5.8,
-        "title": "M 5.8 - 138 km NE of Lospalos, Timor Leste",
-        "date": "2026-03-28T18:38:29.292000+00:00"
-      },
-      {
-        "id": "us6000sm21",
-        "type": "earthquake",
-        "lat": 1.2035,
-        "lng": 126.3735,
-        "mag": 5.8,
-        "title": "M 5.8 - 121 km WNW of Ternate, Indonesia",
-        "date": "2026-04-02T14:34:59.320000+00:00"
-      },
-      {
-        "id": "us6000smda",
-        "type": "earthquake",
-        "lat": 36.5479,
-        "lng": 70.852,
-        "mag": 5.8,
-        "title": "M 5.8 - 35 km S of Jurm, Afghanistan",
-        "date": "2026-04-03T16:12:58.037000+00:00"
-      },
-      {
-        "id": "us6000si17",
-        "type": "earthquake",
-        "lat": -16.011,
-        "lng": 166.9002,
-        "mag": 5.7,
-        "title": "M 5.7 - 53 km W of Norsup, Vanuatu",
-        "date": "2026-03-21T03:20:58.592000+00:00"
-      },
-      {
-        "id": "us6000sic3",
-        "type": "earthquake",
-        "lat": -8.9092,
-        "lng": -108.3968,
-        "mag": 5.7,
-        "title": "M 5.7 - central East Pacific Rise",
-        "date": "2026-03-22T03:03:45.129000+00:00"
-      },
-      {
-        "id": "us6000sisb",
-        "type": "earthquake",
-        "lat": -15.5458,
-        "lng": -172.8966,
-        "mag": 5.7,
-        "title": "M 5.7 - 106 km ENE of Hihifo, Tonga",
-        "date": "2026-03-23T06:02:46.592000+00:00"
-      },
-      {
-        "id": "us7000s7z5",
-        "type": "earthquake",
-        "lat": -3.1237,
-        "lng": 139.3955,
-        "mag": 5.7,
-        "title": "M 5.7 - 149 km WSW of Abepura, Indonesia",
-        "date": "2026-03-26T22:51:01.209000+00:00"
+        "lat": -4.3965,
+        "lng": 144.3557,
+        "mag": 4.7,
+        "title": "M 4.7 - 48 km SE of Angoram, Papua New Guinea",
+        "date": "2026-04-20T03:47:03.766000+00:00"
       },
       {
         "id": "pol-beijing",
         "type": "pollution",
         "lat": 39.9,
         "lng": 116.4,
-        "aqi": 172,
-        "pm25": 95.45,
-        "title": "AQI 172 — Beijing",
-        "date": "2026-04-20T21:37:46.785369Z"
-      },
-      {
-        "id": "pol-seoul",
-        "type": "pollution",
-        "lat": 37.57,
-        "lng": 126.98,
-        "aqi": 157,
-        "pm25": 67.63,
-        "title": "AQI 157 — Seoul",
-        "date": "2026-04-20T21:37:49.647276Z"
-      },
-      {
-        "id": "pol-chengdu",
-        "type": "pollution",
-        "lat": 30.66,
-        "lng": 104.07,
-        "aqi": 135,
-        "pm25": 49.21,
-        "title": "AQI 135 — Chengdu",
-        "date": "2026-04-20T21:37:51.124263Z"
-      },
-      {
-        "id": "pol-riyadh",
-        "type": "pollution",
-        "lat": 24.69,
-        "lng": 46.72,
-        "aqi": 112,
-        "pm25": 40.05,
-        "title": "AQI 112 — Riyadh",
-        "date": "2026-04-20T21:37:51.540929Z"
+        "aqi": 168,
+        "pm25": 88.41,
+        "title": "AQI 168 — Beijing",
+        "date": "2026-04-22T18:02:47.204460Z"
       },
       {
         "id": "pol-lahore",
         "type": "pollution",
         "lat": 31.5,
         "lng": 74.3,
-        "aqi": 103,
-        "pm25": 36.5,
-        "title": "AQI 103 — Lahore",
-        "date": "2026-04-20T21:37:47.089814Z"
+        "aqi": 153,
+        "pm25": 59.13,
+        "title": "AQI 153 — Lahore",
+        "date": "2026-04-22T18:02:47.509867Z"
       },
       {
         "id": "war-ukraine",
@@ -543,7 +513,7 @@
         "lat": 48.85,
         "lng": 2.35,
         "title": "Civil Unrest: Paris",
-        "date": "2026-04-20T21:37:42.000210Z"
+        "date": "2026-04-22T18:02:42.701129Z"
       },
       {
         "id": "pro-delhi",
@@ -551,7 +521,7 @@
         "lat": 28.61,
         "lng": 77.2,
         "title": "Farmers Protest: New Delhi",
-        "date": "2026-04-20T21:37:42.000210Z"
+        "date": "2026-04-22T18:02:42.701129Z"
       },
       {
         "id": "pro-london",
@@ -559,7 +529,7 @@
         "lat": 51.5,
         "lng": -0.12,
         "title": "Climate March: London",
-        "date": "2026-04-20T21:37:42.000210Z"
+        "date": "2026-04-22T18:02:42.701129Z"
       },
       {
         "id": "pro-dhaka",
@@ -567,7 +537,7 @@
         "lat": 23.81,
         "lng": 90.41,
         "title": "Student Protests: Dhaka",
-        "date": "2026-04-20T21:37:42.000210Z"
+        "date": "2026-04-22T18:02:42.701129Z"
       },
       {
         "id": "pro-tbilisi",
@@ -575,7 +545,7 @@
         "lat": 41.69,
         "lng": 44.83,
         "title": "Pro-EU March: Tbilisi",
-        "date": "2026-04-20T21:37:42.000210Z"
+        "date": "2026-04-22T18:02:42.701129Z"
       },
       {
         "id": "pro-belgrade",
@@ -583,9 +553,9 @@
         "lat": 44.8,
         "lng": 20.47,
         "title": "Anti-Govt Protests: Belgrade",
-        "date": "2026-04-20T21:37:42.000210Z"
+        "date": "2026-04-22T18:02:42.701129Z"
       }
     ],
-    "fetched_at": "2026-04-20T21:37:51.574473Z"
+    "fetched_at": "2026-04-22T18:02:52.094955Z"
   }
 }

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ img.title }} — Orbital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #060608;
+      --surface:     #0c0c10;
+      --surface2:    #111118;
+      --surface3:    #16161e;
+      --border:      rgba(255,255,255,0.06);
+      --border-hi:   rgba(255,255,255,0.18);
+      --text:        #ececec;
+      --dim:         #686878;
+      --muted:       #333340;
+      --red:         #e03030;
+      --red-dim:     rgba(224,48,48,0.12);
+      --red-bright:  #ff4444;
+      --red-glow:    rgba(255,68,68,0.25);
+      --green:       #3dba78;
+      --cyan:        #38c8d8;
+      --amber:       #e8a020;
+      --mono:        'Share Tech Mono', monospace;
+      --ui:          'Rajdhani', sans-serif;
+      --hud:         'Orbitron', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--ui);
+      min-height: 100vh;
+      /* grid texture */
+      background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9998;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 3px,
+        rgba(0,0,0,0.018) 3px, rgba(0,0,0,0.018) 4px
+      );
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      height: 52px;
+      background: rgba(6,6,8,0.96);
+      border-bottom: 1px solid var(--border-hi);
+      backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+    }
+
+    .back {
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .back:hover { color: var(--red-bright); }
+
+    .nav-counter {
+      font-family: var(--mono);
+      font-size: 8px;
+      color: var(--muted);
+      letter-spacing: 2px;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .detail {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      min-height: calc(100vh - 52px);
+    }
+
+    @media (max-width: 900px) {
+      .detail { grid-template-columns: 1fr; }
+    }
+
+    /* ── IMAGE SIDE ── */
+    .img-side {
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      animation: img-reveal 0.5s ease both;
+    }
+
+    @keyframes img-reveal {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .img-main {
+      flex: 1;
+      position: relative;
+      background: #050508;
+      overflow: hidden;
+      min-height: 250px;
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .img-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      filter: contrast(1.1) brightness(0.95);
+      transition: filter 0.4s, transform 0.4s;
+    }
+
+    .img-main img:hover { filter: contrast(1.05) brightness(1); }
+
+    /* corner brackets */
+    .bracket {
+      position: absolute;
+      width: 24px; height: 24px;
+      border-color: rgba(255, 68, 68, 0.4);
+      border-style: solid;
+      z-index: 2;
+    }
+
+    .bracket.tl { top: 2rem;  left: 2rem;  border-width: 1px 0 0 1px; }
+    .bracket.tr { top: 2rem;  right: 2rem; border-width: 1px 1px 0 0; }
+    .bracket.bl { bottom: 2rem; left: 2rem;  border-width: 0 0 1px 1px; }
+    .bracket.br { bottom: 2rem; right: 2rem; border-width: 0 1px 1px 0; }
+
+    /* type badge over image */
+    .img-badge {
+      position: absolute;
+      top: 16px; left: 50%; transform: translateX(-50%);
+      font-family: var(--mono);
+      font-size: 7px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: 1px solid;
+      z-index: 2;
+      clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+    }
+
+    .img-badge.wildfire {
+      color: var(--red-bright);
+      border-color: rgba(255,68,68,0.5);
+      background: rgba(6,6,8,0.85);
+    }
+
+    .img-badge.storm {
+      color: var(--cyan);
+      border-color: rgba(56,200,216,0.3);
+      background: rgba(6,6,8,0.85);
+    }
+
+    /* caption strip below image */
+    .img-caption {
+      padding: 0.8rem 1.5rem;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .img-caption span {
+      font-family: var(--mono);
+      font-size: 7px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── INFO SIDE ── */
+    .info-side {
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      animation: info-slide 0.5s 0.1s ease both;
+      overflow-y: auto;
+    }
+
+    @keyframes info-slide {
+      from { opacity: 0; transform: translateX(16px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .info-label {
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 3px;
+      color: var(--red-bright);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .info-title {
+      font-family: var(--hud);
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    /* data table */
+    .data-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border-hi);
+      border: 1px solid var(--border-hi);
+    }
+
+    .data-cell {
+      background: var(--surface);
+      padding: 1rem 1.2rem;
+    }
+
+    .data-cell-label {
+      font-family: var(--mono);
+      font-size: 7px;
+      letter-spacing: 2px;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .data-cell-value {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text);
+      letter-spacing: 1px;
+    }
+
+    /* description block */
+    .desc-block {
+      border-left: 2px solid var(--red-bright);
+      padding-left: 1.2rem;
+      background: linear-gradient(90deg, rgba(255,68,68,0.03) 0%, transparent 100%);
+      padding-top: 8px; padding-bottom: 8px;
+    }
+
+    .desc-text {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--dim);
+      line-height: 1.8;
+      letter-spacing: 1px;
+    }
+
+    /* source link */
+    .source-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--red-bright);
+      padding: 0.8rem 1.4rem;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      background: transparent;
+      box-shadow: 0 0 10px var(--red-glow);
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+
+    .source-btn:hover {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+      box-shadow: none;
+    }
+
+    /* prev / next */
+    .pager {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border-hi);
+      border: 1px solid var(--border-hi);
+      margin-top: auto;
+    }
+
+    .pager a {
+      background: var(--surface);
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--dim);
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .pager a:hover {
+      color: var(--red-bright);
+      background: var(--surface2);
+    }
+
+    .pager a.disabled {
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .pager a:last-child { justify-content: flex-end; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="back" href="/app6/">← Gallery</a>
+    <div class="nav-counter">{{ index + 1 }} / {{ total }}</div>
+  </nav>
+
+  <div class="detail">
+
+    <!-- IMAGE -->
+    <div class="img-side">
+      <div class="img-main">
+        <img
+          src="/app6/static/{{ img.image_file }}"
+          alt="{{ img.title }}"
+          onerror="this.style.opacity='0.1';"
+        />
+        <div class="bracket tl"></div>
+        <div class="bracket tr"></div>
+        <div class="bracket bl"></div>
+        <div class="bracket br"></div>
+        <div class="img-badge {{ 'wildfire' if img.category == 'wildfires' else 'storm' }}">
+          {{ img.emoji }} {{ img.label }}
+        </div>
+      </div>
+      <div class="img-caption">
+        <span>MODIS Terra · True Colour · 250m</span>
+        <span>{{ img.date }}</span>
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <div class="info-side">
+
+      <div>
+        <div class="info-label">// Event Record</div>
+        <div class="info-title">{{ img.title }}</div>
+      </div>
+
+      <div class="data-table">
+        <div class="data-cell">
+          <div class="data-cell-label">Latitude</div>
+          <div class="data-cell-value">{{ "%.4f"|format(img.lat) }}°</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-cell-label">Longitude</div>
+          <div class="data-cell-value">{{ "%.4f"|format(img.lon) }}°</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-cell-label">Date Detected</div>
+          <div class="data-cell-value">{{ img.date }}</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-cell-label">Category</div>
+          <div class="data-cell-value">{{ img.label }}</div>
+        </div>
+      </div>
+
+      <div class="desc-block">
+        <div class="info-label">// Description</div>
+        <div class="desc-text">{{ img.description }}</div>
+      </div>
+
+
+      <div class="pager">
+        <a href="/app6/image/{{ index - 1 }}" {% if index == 0 %}class="disabled"{% endif %}>
+          ← Prev
+        </a>
+        <a href="/app6/image/{{ index + 1 }}" {% if index >= total - 1 %}class="disabled"{% endif %}>
+          Next →
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

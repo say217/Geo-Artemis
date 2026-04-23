@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbital — Satellite Event Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600&family=Orbitron:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #060608;
+      --surface: #0c0c10;
+      --surface2: #111118;
+      --surface3: #16161e;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hi: rgba(255, 255, 255, 0.18);
+      --text: #ececec;
+      --dim: #686878;
+      --muted: #333340;
+      --red: #e03030;
+      --red-dim: rgba(224, 48, 48, 0.12);
+      --red-bright: #ff4444;
+      --red-glow: rgba(255, 68, 68, 0.25);
+      --green: #3dba78;
+      --cyan: #38c8d8;
+      --amber: #e8a020;
+      --storm: #c8e0ff;
+      --mono: 'Share Tech Mono', monospace;
+      --ui: 'Rajdhani', sans-serif;
+      --hud: 'Orbitron', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--ui);
+      min-height: 100vh;
+      /* grid texture */
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+
+    /* scanline overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px,
+          rgba(0, 0, 0, 0.018) 3px, rgba(0, 0, 0, 0.018) 4px);
+    }
+
+    /* ── BOOT LOADER ── */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+    }
+
+    .loader-hud {
+      font-family: var(--hud);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--red-bright);
+      filter: drop-shadow(0 0 8px var(--red-bright));
+      animation: flicker 3s infinite;
+    }
+
+    @keyframes flicker {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      8% {
+        opacity: 0.85
+      }
+
+      9% {
+        opacity: 1
+      }
+
+      42% {
+        opacity: 1
+      }
+
+      43% {
+        opacity: 0.7
+      }
+
+      44% {
+        opacity: 1
+      }
+    }
+
+    .loader-bar-wrap {
+      width: 320px;
+      border: 1px solid rgba(255, 68, 68, 0.35);
+      padding: 3px;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+
+    .loader-bar {
+      height: 3px;
+      background: var(--red-bright);
+      box-shadow: 0 0 10px var(--red-bright), 0 0 24px var(--red-glow);
+      width: 0%;
+      animation: bar-fill 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes bar-fill {
+      to {
+        width: 100%;
+      }
+    }
+
+    .loader-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 320px;
+    }
+
+    .loader-line {
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: var(--dim);
+      opacity: 0;
+      animation: line-in 0.3s ease forwards;
+    }
+
+    .loader-line span {
+      color: var(--green);
+    }
+
+    .loader-line:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .loader-line:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+
+    .loader-line:nth-child(3) {
+      animation-delay: 1.0s;
+    }
+
+    .loader-line:nth-child(4) {
+      animation-delay: 1.4s;
+    }
+
+    .loader-line:nth-child(5) {
+      animation-delay: 1.8s;
+    }
+
+    @keyframes line-in {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .loader-cursor {
+      display: inline-block;
+      width: 6px;
+      height: 10px;
+      background: var(--green);
+      animation: blink-c 0.7s step-start infinite;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+
+    @keyframes blink-c {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      height: 50px;
+      background: rgba(6, 6, 8, 0.95);
+      border-bottom: 1px solid var(--border-hi);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border: 1px solid rgba(255, 68, 68, 0.4);
+      background: rgba(255, 68, 68, 0.07);
+      clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+    }
+
+    .logo-tri {
+      width: 7px;
+      height: 7px;
+      background: var(--red-bright);
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+      animation: tri-blink 2s infinite;
+      filter: drop-shadow(0 0 4px var(--red-bright));
+    }
+
+    @keyframes tri-blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.15
+      }
+    }
+
+    .brand-name {
+      font-family: var(--hud);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.9rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: #000;
+      border: 1.5px solid var(--red-bright);
+      padding: 5px 10px;
+      box-shadow: 0 0 8px var(--red-glow), inset 0 0 8px rgba(255, 68, 68, 0.05);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a::before {
+      content: '// ';
+      color: var(--red-bright);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+      box-shadow: none;
+    }
+
+    .nav-links a:hover::before {
+      color: #000;
+    }
+
+    .nav-links a.logout {
+      border-color: var(--dim);
+      color: var(--dim);
+      box-shadow: none;
+    }
+
+    .nav-links a.logout:hover {
+      background: var(--dim);
+      color: #000;
+      border-color: var(--dim);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .live-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 7px;
+      letter-spacing: 2px;
+      color: var(--green);
+      border: 1px solid rgba(61, 186, 120, 0.25);
+      padding: 3px 9px;
+      clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+    }
+
+    .live-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 6px var(--green);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.15
+      }
+    }
+
+    .count-badge {
+      font-family: var(--mono);
+      font-size: 7px;
+      color: var(--dim);
+      letter-spacing: 2px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 3rem 2rem 2rem;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 2rem;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 7px;
+      letter-spacing: 3px;
+      color: var(--red-bright);
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    /* ── TITLE SIZE HALVED (was clamp(2.8rem,6vw,5.5rem)) ── */
+    .hero-title {
+      font-family: var(--hud);
+      font-size: clamp(1.4rem, 3vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      text-transform: uppercase;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255, 68, 68, 0.5);
+    }
+
+    .hero-sub {
+      font-family: var(--mono);
+      font-size: 7px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      margin-top: 1rem;
+      line-height: 2;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: right;
+    }
+
+    .stat {
+      border-right: 2px solid rgba(255, 68, 68, 0.4);
+      padding-right: 1rem;
+    }
+
+    .stat-n {
+      font-family: var(--hud);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--red-bright);
+      filter: drop-shadow(0 0 8px var(--red-glow));
+      line-height: 1;
+    }
+
+    .stat-l {
+      font-family: var(--mono);
+      font-size: 7px;
+      letter-spacing: 2px;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    /* ── FILTER BAR ── */
+    .filters {
+      display: flex;
+      padding: 0 2rem;
+      border-bottom: 1px solid var(--border);
+      gap: 0;
+    }
+
+    .filter-btn {
+      font-family: var(--mono);
+      font-size: 7px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.8rem 1.2rem;
+      background: transparent;
+      color: var(--dim);
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      margin-bottom: -1px;
+    }
+
+    .filter-btn:hover {
+      color: var(--text);
+    }
+
+    .filter-btn.active {
+      color: var(--text);
+      border-bottom-color: var(--border-hi);
+    }
+
+    .filter-btn.fire.active {
+      color: var(--red-bright);
+      border-bottom-color: var(--red-bright);
+    }
+
+    .filter-btn.storm.active {
+      color: var(--storm);
+      border-bottom-color: var(--storm);
+    }
+
+    /* ── GRID ── */
+    .grid-section {
+      padding: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--surface);
+      display: block;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      animation: card-in 0.4s ease both;
+      transition: background 0.25s;
+    }
+
+    .card:hover {
+      background: var(--surface2);
+    }
+
+    .card:nth-child(1) {
+      animation-delay: 0.04s;
+    }
+
+    .card:nth-child(2) {
+      animation-delay: 0.08s;
+    }
+
+    .card:nth-child(3) {
+      animation-delay: 0.12s;
+    }
+
+    .card:nth-child(4) {
+      animation-delay: 0.16s;
+    }
+
+    .card:nth-child(5) {
+      animation-delay: 0.20s;
+    }
+
+    .card:nth-child(6) {
+      animation-delay: 0.24s;
+    }
+
+    .card:nth-child(n+7) {
+      animation-delay: 0.28s;
+    }
+
+    @keyframes card-in {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* corner accent */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 18px;
+      height: 18px;
+      border-top: 1px solid rgba(255, 68, 68, 0.5);
+      border-right: 1px solid rgba(255, 68, 68, 0.5);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #0a0a0d;
+      position: relative;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter: grayscale(20%) contrast(1.1) brightness(0.85) saturate(0.9);
+      transition: transform 0.5s ease, filter 0.4s ease;
+    }
+
+    .card:hover .card-img img {
+      transform: scale(1.04);
+      filter: grayscale(0%) contrast(1.12) brightness(1) saturate(1.2);
+    }
+
+    .card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(6, 6, 8, 0.75) 100%);
+      pointer-events: none;
+    }
+
+    /* scan line on image hover */
+    .card-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px,
+          rgba(0, 0, 0, 0.06) 2px, rgba(0, 0, 0, 0.06) 3px);
+    }
+
+    .chip {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 3;
+      font-family: var(--mono);
+      font-size: 7px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+    }
+
+    .chip.wildfire {
+      color: var(--red-bright);
+      border: 1px solid rgba(255, 68, 68, 0.5);
+      background: rgba(255, 68, 68, 0.1);
+    }
+
+    .chip.storm {
+      color: var(--storm);
+      border: 1px solid rgba(200, 224, 255, 0.35);
+      background: rgba(200, 224, 255, 0.06);
+    }
+
+    .card-coords {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      z-index: 3;
+      font-family: var(--mono);
+      font-size: 7px;
+      color: rgba(240, 240, 240, 0.45);
+      letter-spacing: 1px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover .card-coords {
+      opacity: 1;
+    }
+
+    .card-body {
+      padding: 0.9rem 1rem 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-date {
+      font-family: var(--mono);
+      font-size: 7px;
+      color: var(--red-bright);
+      letter-spacing: 2px;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-family: var(--ui);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-desc {
+      font-family: var(--mono);
+      font-size: 7px;
+      color: var(--dim);
+      line-height: 1.7;
+      margin-top: 0.4rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-arrow {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      width: 20px;
+      height: 20px;
+      border: 1px solid rgba(255, 68, 68, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: var(--red-bright);
+      opacity: 0;
+      transform: translate(4px, 4px);
+      transition: opacity 0.3s, transform 0.3s;
+      clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+    }
+
+    .card:hover .card-arrow {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    /* ── EMPTY ── */
+    .empty {
+      padding: 6rem 2rem;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .empty-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      opacity: 0.3;
+    }
+
+    .empty h2 {
+      font-family: var(--hud);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .empty p {
+      font-family: var(--mono);
+      font-size: 7px;
+      letter-spacing: 2px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 0.7rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: var(--mono);
+      font-size: 7px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    footer span.accent {
+      color: rgba(255, 68, 68, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── BOOT LOADER ── -->
+  <div id="loader">
+    <div class="loader-hud">Orbital · Geo Artemis · App-06</div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar"></div>
+    </div>
+    <div class="loader-lines">
+      <div class="loader-line">// <span>INIT</span> · connecting NASA EONET v3 …</div>
+      <div class="loader-line">// <span>FETCH</span> · pulling wildfire + storm events …</div>
+      <div class="loader-line">// <span>GIBS</span> · requesting MODIS Terra tiles …</div>
+      <div class="loader-line">// <span>INDEX</span> · building image metadata cache …</div>
+      <div class="loader-line">// <span>READY</span> · orbital view online <span class="loader-cursor"></span></div>
+    </div>
+  </div>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo-badge">
+        <div class="logo-tri"></div>
+      </div>
+      <span class="brand-name">Orbital</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="/app1/">Home</a>
+      <a href="/app2/logout" class="logout">Logout</a>
+    </nav>
+
+    <div class="topbar-right">
+      <div class="live-pill">
+        <span class="live-dot"></span>
+        NASA EONET · MODIS TERRA
+      </div>
+      <div class="count-badge">{{ total }} EVENTS</div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-eyebrow">// Satellite Imagery · Past 30 Days</div>
+      <div class="hero-title">Earth <em>Events</em><br>From Orbit</div>
+      <div class="hero-sub">
+        MODIS TERRA TRUE-COLOUR · 250M RESOLUTION<br>
+        WILDFIRES + SEVERE STORMS · AUTO-INDEXED ON STARTUP
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-n">{{ images | selectattr('category','eq','wildfires') | list | length }}</div>
+        <div class="stat-l">Wildfires</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">{{ images | selectattr('category','eq','severeStorms') | list | length }}</div>
+        <div class="stat-l">Storms</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <button class="filter-btn active" onclick="filter('all',this)">All</button>
+    <button class="filter-btn fire" onclick="filter('wildfires',this)">🔥 Wildfires</button>
+    <button class="filter-btn storm" onclick="filter('severeStorms',this)">🌀 Storms</button>
+  </div>
+
+  <!-- GRID -->
+  <section class="grid-section">
+    {% if images %}
+    <div class="grid" id="grid">
+      {% for img in images %}
+      <a class="card" href="/app6/image/{{ loop.index0 }}" data-cat="{{ img.category }}">
+        <div class="card-img">
+          <img src="/app6/static/{{ img.image_file }}" alt="{{ img.title }}" loading="lazy"
+            onerror="this.parentElement.style.background='#0a0a0d';this.style.display='none';" />
+          <div class="chip {{ 'wildfire' if img.category == 'wildfires' else 'storm' }}">
+            {{ img.emoji }} {{ img.label }}
+          </div>
+          <div class="card-coords">{{ "%.2f"|format(img.lat) }}° {{ "%.2f"|format(img.lon) }}°</div>
+        </div>
+        <div class="card-body">
+          <div class="card-date">{{ img.date }}</div>
+          <div class="card-title">{{ img.title }}</div>
+          <div class="card-desc">{{ img.description }}</div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty">
+      <div class="empty-icon">🛰️</div>
+      <h2>No Imagery Available</h2>
+      <p>NASA EONET returned no active events — check back later.</p>
+    </div>
+    {% endif %}
+  </section>
+
+  <footer>
+    <span>Source: NASA EONET v3 · NASA GIBS WMTS MODIS Terra · 250m</span>
+    <span class="accent">Geo Artemis · App6 · Orbital</span>
+  </footer>
+
+  <script>
+    // ── Dismiss loader after boot sequence ──
+    window.addEventListener('DOMContentLoaded', () => {
+      const loader = document.getElementById('loader');
+      // 2.6s matches the last loader-line animation-delay + a brief hold
+      setTimeout(() => {
+        loader.style.transition = 'opacity 0.6s ease';
+        loader.style.opacity = '0';
+        setTimeout(() => loader.remove(), 650);
+      }, 2600);
+    });
+
+    // ── Category filter ──
+    function filter(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.card').forEach(card => {
+        card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
+      });
+    }
+  </script>
+
+</body>
+
+</html>

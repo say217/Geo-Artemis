@@ -264,16 +264,21 @@ def get_high_risk_regions_html():
         if len(high_risk) == 0:
             return None
         
-        centroids = high_risk[['cluster', 'avg_lat', 'avg_lon', 'time_risk_score', 'Event_type']].copy()
+        risk_col = 'risk_score' if 'risk_score' in high_risk.columns else ('time_risk_score' if 'time_risk_score' in high_risk.columns else None)
+        
+        if not risk_col:
+            return None
+            
+        centroids = high_risk[['cluster', 'avg_lat', 'avg_lon', risk_col, 'Event_type']].copy()
         
         fig = px.scatter_geo(
             centroids,
             lat='avg_lat',
             lon='avg_lon',
             color='Event_type',
-            size='time_risk_score',
-            hover_data=['cluster', 'time_risk_score', 'Event_type'],
-            title='🔥 High-Risk Regions (Time-Aware Risk)',
+            size=risk_col,
+            hover_data=['cluster', risk_col, 'Event_type'],
+            title='🔥 High-Risk Regions Analysis',
             projection='natural earth',
             color_discrete_sequence=px.colors.qualitative.Set1
         )
@@ -577,14 +582,18 @@ def get_high_risk_regions_data():
         if len(high_risk) == 0:
             return None
         
-        # Sort by time_risk_score and get top 10
-        top_regions = high_risk.nlargest(10, 'time_risk_score')
+        # Sort by risk score and get top 10
+        risk_col = 'risk_score' if 'risk_score' in high_risk.columns else ('time_risk_score' if 'time_risk_score' in high_risk.columns else None)
+        if not risk_col:
+            return None
+            
+        top_regions = high_risk.nlargest(10, risk_col)
         
         return {
             "labels": top_regions['cluster'].astype(str).tolist(),
-            "data": top_regions['time_risk_score'].round(2).tolist(),
+            "data": top_regions[risk_col].round(2).tolist(),
             "event_types": top_regions['Event_type'].tolist(),
-            "title": "Top 10 High-Risk Regions (Time-Aware Risk Score)"
+            "title": f"Top 10 High-Risk Regions ({risk_col.replace('_', ' ').title()})"
         }
     except Exception as e:
         print(f"Error loading high-risk regions data: {e}")

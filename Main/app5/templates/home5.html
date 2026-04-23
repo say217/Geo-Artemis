@@ -32,8 +32,20 @@
   --font-ui: 'Rajdhani', sans-serif;
   --font-hud: 'Orbitron', sans-serif;
   --panel-w: 290px;
-  --header-h: 50px;
+  --header-h: 58px;
   --footer-h: 34px;
+
+  /* app3 colour aliases used by header */
+  --void:        #03010a;
+  --white:       #f0eaf8;
+  --dim:         #3d3348;
+  --cyan-trace:  #00d4c8;
+  --violet:      #9b30ff;
+  --red-a3:      #ff2040;
+  --crimson:     #8b0020;
+  --glass-bg:    rgba(10, 4, 22, 0.52);
+  --ff-display:  'Orbitron', sans-serif;
+  --ff-body:     'Share Tech Mono', monospace;
 }
 
 html, body { height: 100%; overflow: hidden; }
@@ -58,76 +70,238 @@ body::after {
   );
 }
 
-/* ── HEADER ── */
+/* ════════════════════════════════════════
+   HEADER — CYBERPUNK HUD (app3 style)
+════════════════════════════════════════ */
 header {
   position: fixed; top: 0; left: 0; right: 0;
   height: var(--header-h);
-  background: rgba(6,6,8,0.95);
-  border-bottom: 1px solid var(--border-hi);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 1.5rem;
-  z-index: 300;
-  backdrop-filter: blur(12px);
-}
-
-.header-left { display: flex; align-items: center; gap: 12px; }
-
-.logo {
-  font-family: var(--font-hud);
-  font-size: 11px; font-weight: 700;
-  color: #ffffff; letter-spacing: 5px; text-transform: uppercase;
-  display: flex; align-items: center; gap: 12px; user-select: none;
-}
-
-.logo-badge {
-  display: flex; align-items: center; gap: 5px;
-  padding: 3px 8px;
-  border: 1px solid rgba(255,68,68,0.4);
-  background: rgba(255,68,68,0.07);
-  clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
-}
-
-.logo-tri {
-  width: 7px; height: 7px;
-  background: var(--red-bright);
-  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-  animation: blink 2s infinite;
-  filter: drop-shadow(0 0 4px var(--red-bright));
-}
-
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
-
-.header-meta {
-  display: flex; align-items: center; gap: 6px;
-  font-family: var(--font-mono); font-size: 8px; color: #ffffff; letter-spacing: 3px;
-  text-transform: uppercase; font-weight: 600;
-}
-.header-meta span { color: var(--red-bright); }
-
-.nav-links { display: flex; gap: 1.2rem; align-items: center; }
-.nav-links a {
-  color: #ffffff; text-decoration: none;
-  font-family: var(--font-mono); font-size: 8px;
-  letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease;
-  position: relative;
-  background: #000000;
-  border: 2px solid #ff4444;
-  padding: 6px 12px;
-  display: inline-flex; align-items: center; justify-content: center; gap: 4px;
-  box-shadow: 0 0 10px rgba(255,68,68,0.3), inset 0 0 10px rgba(255,68,68,0.05);
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 1.4rem;
+  background: linear-gradient(180deg, rgba(8,0,18,0.98) 0%, rgba(4,0,10,0.96) 100%);
   overflow: hidden;
 }
-.nav-links a::before { content: '//'; color: #ff4444; margin-right: 2px; opacity: 0.7; transition: all 0.3s ease; }
-.nav-links a:hover { background: #ffffff; color: #000000; border: 2px solid #ffffff; box-shadow: none; }
-.nav-links a:hover::before { color: #000000; opacity: 1; }
-.nav-links a::after {
-  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,68,68,0.3), transparent);
-  transition: left 0.5s ease; pointer-events: none;
+
+/* Bottom edge: split accent line with corner ticks */
+header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(255,32,64,0.55) 25%, rgba(0,212,200,0.25) 50%, rgba(255,32,64,0.55) 75%, transparent 100%) bottom/100% 1px no-repeat,
+    linear-gradient(90deg, rgba(255,32,64,0.9) 0px, rgba(255,32,64,0.9) 50px, transparent 50px) bottom left/50px 2px no-repeat,
+    linear-gradient(180deg, rgba(255,32,64,0.9) 0px, rgba(255,32,64,0.9) 10px, transparent 10px) bottom left/2px 10px no-repeat,
+    linear-gradient(90deg, transparent calc(100% - 50px), rgba(255,32,64,0.9) calc(100% - 50px)) bottom right/50px 2px no-repeat,
+    linear-gradient(180deg, rgba(255,32,64,0.9) 0px, rgba(255,32,64,0.9) 10px, transparent 10px) bottom right/2px 10px no-repeat,
+    linear-gradient(90deg, rgba(255,32,64,0.4) 0px, rgba(255,32,64,0.4) 30px, transparent 30px) top left/30px 1px no-repeat,
+    linear-gradient(180deg, rgba(255,32,64,0.4) 0px, rgba(255,32,64,0.4) 8px, transparent 8px) top left/1px 8px no-repeat,
+    linear-gradient(90deg, transparent calc(100% - 30px), rgba(255,32,64,0.4) calc(100% - 30px)) top right/30px 1px no-repeat,
+    linear-gradient(180deg, rgba(255,32,64,0.4) 0px, rgba(255,32,64,0.4) 8px, transparent 8px) top right/1px 8px no-repeat;
+  pointer-events: none;
 }
-.nav-links a:hover::after { left: 100%; opacity: 0; }
-.nav-links a:active { background: #ffffff; color: #000000; border: 2px solid #ffffff; box-shadow: none; }
-.nav-links a:active::before { color: #000000; opacity: 1; }
+
+/* Scanning beam sweep */
+header::after {
+  content: '';
+  position: absolute; top: 0; left: -50%; width: 35%; height: 100%;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,32,64,0.03) 30%,
+    rgba(255,32,64,0.07) 50%,
+    rgba(255,32,64,0.03) 70%,
+    transparent 100%
+  );
+  animation: hdrScan 5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes hdrScan { 0% { left: -50%; } 100% { left: 140%; } }
+
+/* ── Logo Left ── */
+.h-left { display: flex; align-items: center; gap: 12px; position: relative; }
+
+.logo-mark {
+  display: flex; align-items: center; gap: 0;
+  font-family: var(--font-hud);
+  font-weight: 800; font-size: 13px;
+  letter-spacing: 4px;
+  color: var(--white);
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.logo-geo {
+  color: #ff2040;
+  position: relative;
+  text-shadow: 0 0 14px rgba(255,32,64,0.9), 0 0 28px rgba(255,32,64,0.4);
+  animation: geoGlitch 6s infinite;
+}
+@keyframes geoGlitch {
+  0%,90%,100% {
+    text-shadow: 0 0 14px rgba(255,32,64,0.9), 0 0 28px rgba(255,32,64,0.4);
+    transform: none;
+  }
+  91% { text-shadow: -3px 0 rgba(0,212,200,0.9), 3px 0 rgba(255,32,64,0.9); transform: skewX(-5deg); }
+  92% { text-shadow: 3px 0 rgba(155,48,255,0.9), -3px 0 rgba(255,32,64,0.9); transform: skewX(5deg); }
+  93% { text-shadow: none; transform: none; }
+  94% { text-shadow: -2px 0 rgba(0,212,200,0.8); transform: skewX(-2deg); }
+  95% { text-shadow: 0 0 14px rgba(255,32,64,0.9), 0 0 28px rgba(255,32,64,0.4); transform: none; }
+}
+
+.logo-slash { color: rgba(255,32,64,0.30); margin: 0 2px; font-weight: 300; }
+
+.logo-sep {
+  width: 1px; height: 26px;
+  background: linear-gradient(180deg, transparent, rgba(255,32,64,0.35), transparent);
+  margin: 0 2px;
+}
+
+.logo-sub {
+  font-family: var(--font-mono);
+  font-size: 8px; font-weight: 400;
+  color: rgba(122,110,136,0.6);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 1.55;
+}
+.logo-sub span { color: rgba(255,32,64,0.65); }
+
+/* Active badge */
+.v-badge {
+  display: flex; align-items: center; gap: 5px;
+  padding: 3px 10px;
+  background: rgba(255,32,64,0.06);
+  border: 1px solid rgba(255,32,64,0.20);
+  border-left: 2px solid rgba(255,32,64,0.75);
+  font-family: var(--font-mono);
+  font-size: 8px; letter-spacing: 2px;
+  color: rgba(255,32,64,0.75);
+  text-transform: uppercase;
+  position: relative; overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 50%, calc(100% - 5px) 100%, 0 100%);
+  padding-right: 14px;
+}
+.v-badge::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,32,64,0.10), transparent);
+  animation: shimmer 2.5s infinite;
+}
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+/* ── Nav Centre ── */
+.h-center { display: flex; align-items: center; gap: 2px; }
+
+.nav-item {
+  font-family: var(--font-mono);
+  font-size: 9px; font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(122,110,136,0.65);
+  text-decoration: none;
+  padding: 5px 13px;
+  border: 1px solid transparent;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  transition: all 0.2s ease;
+  position: relative; overflow: hidden;
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute; bottom: 0; left: 10%; right: 10%; height: 1px;
+  background: #ff2040;
+  transform: scaleX(0); transform-origin: center;
+  transition: transform 0.25s ease;
+  box-shadow: 0 0 6px #ff2040;
+}
+
+.nav-item:hover {
+  color: var(--white);
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.05);
+}
+.nav-item:hover::before { transform: scaleX(1); }
+
+.nav-item.active {
+  color: #ff2040;
+  background: rgba(255,32,64,0.08);
+  border-color: rgba(255,32,64,0.28);
+  text-shadow: 0 0 10px rgba(255,32,64,0.5);
+}
+.nav-item.active::before { transform: scaleX(1); }
+
+.nav-item.logout {
+  color: rgba(61,51,72,0.8);
+  margin-left: 10px;
+}
+.nav-item.logout:hover { color: #ff2040; }
+
+/* ── Right Status ── */
+.h-right { display: flex; align-items: center; gap: 10px; justify-content: flex-end; }
+
+/* Animated signal bars */
+.hdr-signal-bars {
+  display: flex; align-items: flex-end; gap: 2px;
+  height: 18px;
+}
+.hdr-signal-bars span {
+  width: 3px; border-radius: 1px;
+  animation: sigPulse 1.6s ease-in-out infinite;
+}
+.hdr-signal-bars span:nth-child(1) { height: 4px;  animation-delay: 0.0s; }
+.hdr-signal-bars span:nth-child(2) { height: 8px;  animation-delay: 0.12s; }
+.hdr-signal-bars span:nth-child(3) { height: 12px; animation-delay: 0.24s; }
+.hdr-signal-bars span:nth-child(4) { height: 16px; animation-delay: 0.36s; }
+@keyframes sigPulse {
+  0%,100% { background: #ff2040; box-shadow: 0 0 4px rgba(255,32,64,0.6); opacity: 1; }
+  50%      { background: rgba(255,32,64,0.18); opacity: 0.6; }
+}
+
+.clock-wrap {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 1px;
+  padding: 3px 10px 3px 10px;
+  border-left: 1px solid rgba(255,32,64,0.14);
+}
+.clock-utc {
+  font-family: var(--font-mono);
+  font-size: 12px; font-weight: 700;
+  color: var(--white);
+  letter-spacing: 1px;
+}
+.clock-label {
+  font-family: var(--font-mono);
+  font-size: 7px; letter-spacing: 2.5px;
+  color: rgba(255,32,64,0.55);
+  text-transform: uppercase;
+}
+
+.status-pill {
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 18px 5px 12px;
+  background: rgba(255,32,64,0.05);
+  border: 1px solid rgba(255,32,64,0.22);
+  position: relative; overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 9px; letter-spacing: 1.5px;
+  color: #ff2040;
+  text-transform: uppercase;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
+}
+.status-pill::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,32,64,0.06), transparent);
+  animation: shimmer 2s infinite 0.5s;
+}
+
+.status-dot-hdr {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: #ff2040;
+  box-shadow: 0 0 6px #ff2040, 0 0 12px rgba(255,32,64,0.4);
+  animation: hdrBlink 1.6s ease-in-out infinite;
+}
+@keyframes hdrBlink { 0%,100%{opacity:1} 50%{opacity:0.12} }
 
 .fetch-status {
   display: none; align-items: center; gap: 5px;
@@ -202,69 +376,87 @@ header {
 }
 
 .video-card {
-  background: var(--surface);
-  border: 1px solid rgba(56,200,216,0.18);
+  background: rgba(10, 4, 18, 0.65);
+  border: 1px solid rgba(255, 32, 64, 0.12);
   border-radius: 2px; overflow: hidden; position: relative;
-  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), border-color 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .video-card::before {
   content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-  width: 2px; background: var(--cyan); opacity: 0; transition: opacity 0.25s;
-  box-shadow: 0 0 6px rgba(56,200,216,0.4);
+  width: 2px; background: var(--red-bright); opacity: 0; transition: opacity 0.3s;
+  box-shadow: 0 0 10px var(--red-bright);
+  z-index: 5;
 }
-.video-card:hover { transform: translateY(-3px); border-color: rgba(56,200,216,0.6); box-shadow: 0 8px 18px rgba(56,200,216,0.15); }
+.video-card::after {
+  content: ''; position: absolute; top: 0; right: 0; width: 12px; height: 12px;
+  border-top: 1.5px solid rgba(255, 32, 64, 0.4);
+  border-right: 1.5px solid rgba(255, 32, 64, 0.4);
+  pointer-events: none; transition: border-color 0.3s;
+}
+.video-card:hover { transform: translateY(-4px); border-color: rgba(255, 32, 64, 0.5); box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 15px rgba(255, 32, 64, 0.1); }
 .video-card:hover::before { opacity: 1; }
+.video-card:hover::after { border-color: var(--red-bright); }
 
 .video-thumb {
-  position: relative; height: 200px; background: #000; overflow: hidden;
+  position: relative; height: 180px; background: #000; overflow: hidden;
 }
 .video-thumb img {
   width: 100%; height: 100%; object-fit: cover;
-  filter: grayscale(30%) contrast(1.1);
-  transition: transform 0.35s, filter 0.35s, opacity 0.35s; opacity: 0.85;
+  filter: grayscale(100%) contrast(1.1);
+  transition: transform 0.35s, filter 0.35s, opacity 0.35s; opacity: 0.65;
 }
-.video-card:hover .video-thumb img { transform: scale(1.04); filter: grayscale(0%) contrast(1.1); opacity: 1; }
+.video-card:hover .video-thumb img { transform: scale(1.04); filter: grayscale(20%) contrast(1.05); opacity: 0.85; }
 
 .video-play {
-  position: absolute; width: 46px; height: 46px; border-radius: 50%;
-  background: rgba(56,200,216,0.85);
+  position: absolute; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--red-bright);
   display: flex; align-items: center; justify-content: center;
-  color: #05050a; font-weight: 700; font-size: 18px;
+  color: #ffffff; font-weight: 700; font-size: 16px;
   top: 50%; left: 50%; transform: translate(-50%, -50%);
-  box-shadow: 0 0 12px rgba(56,200,216,0.4); cursor: pointer;
+  box-shadow: 0 0 15px var(--red-glow); cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.4);
+  z-index: 10; transition: transform 0.2s, background 0.2s;
 }
-.video-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
-.video-title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 700; color: #ffffff; line-height: 1.4; }
-.video-channel { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; color: var(--cyan); letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+.video-play:hover { transform: translate(-50%, -50%) scale(1.1); background: #ffffff; color: var(--red); }
+
+.video-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--border); }
+.video-title { font-family: var(--font-hud); font-size: 12px; font-weight: 600; color: #ffffff; line-height: 1.4; letter-spacing: 0.5px; }
+.video-channel { font-family: var(--font-mono); font-size: 9px; color: var(--red-bright); letter-spacing: 1.5px; text-transform: uppercase; font-weight: 400; opacity: 0.7; }
 
 /* ── NEWS CARD ── */
 .news-card {
-  background: var(--surface);
+  background: rgba(10, 4, 18, 0.6);
   display: flex; flex-direction: column;
   cursor: pointer; position: relative; overflow: hidden;
-  transition: background 0.25s; border-radius: 2px;
-  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.3s, background 0.3s; border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 .news-card::after {
   content: ''; position: absolute; inset: 0; opacity: 0;
-  background: linear-gradient(135deg, rgba(255,68,68,0.04) 0%, transparent 60%);
-  transition: opacity 0.25s; pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,32,64,0.06) 0%, transparent 60%);
+  transition: opacity 0.3s; pointer-events: none;
 }
 .news-card::before {
   content: ''; position: absolute; top:0; left:0;
-  width: 2px; height: 0; background: var(--red-bright);
-  box-shadow: 0 0 6px var(--red-bright);
-  transition: height 0.3s ease; z-index: 2;
+  width: 2px; height: 0; background: #ff2040;
+  box-shadow: 0 0 10px #ff2040;
+  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1); z-index: 2;
 }
-.news-card:hover { background: var(--surface2); }
+.news-card:hover { background: rgba(15, 6, 24, 0.8); transform: scale(1.01); }
 .news-card:hover::before { height: 100%; }
 .news-card:hover::after { opacity: 1; }
 
 .card-corner {
-  position: absolute; top: 0; right: 0; width: 10px; height: 10px;
-  border-top: 1px solid rgba(255,68,68,0.4);
-  border-right: 1px solid rgba(255,68,68,0.4); z-index: 3;
+  position: absolute; top: 0; right: 0; width: 14px; height: 14px;
+  border-top: 1.5px solid rgba(255,32,64,0.5);
+  border-right: 1.5px solid rgba(255,32,64,0.5); z-index: 3;
+  transition: border-color 0.3s;
 }
+.news-card:hover .card-corner { border-color: #ff2040; }
 
 /* Image wrapper — only shown when image exists */
 .card-img-wrap {
@@ -485,36 +677,43 @@ footer {
 <body>
 
 <header>
-  <div class="header-left">
-    <div class="logo">
-      <div class="logo-badge">
-        <div class="logo-tri"></div>
-        HAZARD.NEWS
-      </div>
+  <div class="h-left">
+    <div class="logo-mark">
+      <span class="logo-geo">GEO</span>
+      <span class="logo-slash">/</span>
+      <span>ARTEMIS</span>
     </div>
-    <div class="header-user">
-      <div class="header-user-icon" id="userAvatar">U</div>
-      <div class="user-info">
-        <div class="user-status">Online</div>
-        <div class="user-clearance">LVL-2 ACCESS</div>
-      </div>
+    <div class="logo-sep"></div>
+    <div class="logo-sub">
+      HAZARD NEWS DASHBOARD<br>
+      <span>v4.2 // LIVE FEED</span>
     </div>
+    <div class="v-badge">ACTIVE</div>
   </div>
-  <div class="header-meta">
-    SYS<span>ONLINE</span> &nbsp;|&nbsp; FEED<span>ACTIVE</span> &nbsp;|&nbsp; ENC<span>AES-256</span>
-  </div>
-  <div style="display:flex;align-items:center;gap:1.5rem;">
-    <nav class="nav-links">
-      <a href="/app1/"> Home </a>
-      <a href="/app3/">EARTH ORB</a>
-      <a href="/app4/"> WORLD VIEW</a>
-      <a href="/app5/"> NEWS </a>
-      <a href="/app6/">app06</a>
-      <a href="/app2/logout" class="logout">logout</a>
-    </nav>
-    <span id="fetchStatus" class="fetch-status">
+
+  <nav class="h-center">
+    <a href="/app1/"       class="nav-item">HOME</a>
+    <a href="/app3/"       class="nav-item">EARTH ORB</a>
+    <a href="/app4/"       class="nav-item">WORLD VIEW</a>
+    <a href="/app5/"       class="nav-item active">NEWS</a>
+    <a href="/app2/logout" class="nav-item logout">LOGOUT</a>
+  </nav>
+
+  <div class="h-right">
+    <span id="fetchStatus" class="fetch-status" style="margin-right: 10px;">
       <span class="status-dot"></span>Fetching
     </span>
+    <div class="hdr-signal-bars">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="clock-wrap">
+      <div class="clock-utc" id="hdr-clock">--:--:--</div>
+      <div class="clock-label">UTC SYNC</div>
+    </div>
+    <div class="status-pill">
+      <div class="status-dot-hdr"></div>
+      <span>ONLINE</span>
+    </div>
   </div>
 </header>
 
@@ -821,14 +1020,14 @@ let autoRefreshInterval = null;
 async function loadVideos(){
   const container = document.getElementById('videoContainer');
   if(!container) return;
-  container.innerHTML = '<div class="card-desc" style="padding:12px;">Loading videos...</div>';
+  container.innerHTML = '<div style="padding:40px;text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;animation:pulse 1.5s infinite;">Initializing video downlink...</div>';
   try {
     const res = await fetch('/app5/video/videos.json');
     if(!res.ok) throw new Error('Failed to load videos');
     const data = await res.json();
     renderVideos(data.videos || []);
   } catch(e) {
-    container.innerHTML = '<div class="card-desc" style="padding:12px;color:#ff6b6b;">Unable to load videos.</div>';
+    container.innerHTML = '<div style="padding:40px;text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--red-bright);letter-spacing:1px;text-transform:uppercase;border:1px dashed var(--red-dim);">Downlink failure: Protocol error [403]</div>';
   }
 }
 
@@ -836,7 +1035,7 @@ function renderVideos(videos){
   const container = document.getElementById('videoContainer');
   container.innerHTML = '';
   if(!videos.length){
-    container.innerHTML = '<div class="card-desc" style="padding:12px;">No videos available.</div>';
+    container.innerHTML = '<div style="padding:40px;text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase;">No compatible video signatures detected</div>';
     return;
   }
   videos.forEach(video => {
@@ -859,14 +1058,29 @@ function renderVideos(videos){
 
 function openVideoModal(videoId, title){
   const modal = document.createElement('div');
-  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:9999;';
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(10px);';
   modal.innerHTML = `
-    <div style="position:relative;width:90%;max-width:1000px;background:#000;">
-      <button style="position:absolute;top:10px;right:10px;background:#38c8d8;color:#05050a;border:none;padding:8px 12px;border-radius:4px;cursor:pointer;z-index:10;font-weight:700;" id="closeVideo">✕ Close</button>
-      <iframe width="100%" height="600" src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <div style="background:#0b0b12;padding:14px;color:#ffffff;">
-        <div style="font-weight:700;">${title}</div>
-        <div style="color:#888;font-size:12px;margin-top:4px;">Powered by YouTube</div>
+    <div style="position:relative;width:95%;max-width:1100px;background:#050508;border:1px solid rgba(255,32,64,0.3);box-shadow:0 0 50px rgba(0,0,0,1);">
+      <!-- Techy edge highlights -->
+      <div style="position:absolute;top:-1px;left:-1px;width:30px;height:30px;border-top:2px solid #ff2040;border-left:2px solid #ff2040;"></div>
+      <div style="position:absolute;bottom:-1px;right:-1px;width:30px;height:30px;border-bottom:2px solid #ff2040;border-right:2px solid #ff2040;"></div>
+      
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:rgba(255,32,64,0.08);border-bottom:1px solid rgba(255,32,64,0.2);">
+        <div style="font-family:var(--font-hud);font-size:10px;letter-spacing:2px;color:#ff2040;text-transform:uppercase;">
+          <span style="opacity:0.6;">▶</span> VIDEO FEED_SECURE
+        </div>
+        <button style="background:var(--red-bright);color:#ffffff;border:none;padding:5px 12px;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;cursor:pointer;clip-path:polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);" id="closeVideo">✕ CLOSE</button>
+      </div>
+
+      <div style="padding:1px;background:#000;">
+        <iframe width="100%" height="560" src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
+      </div>
+
+      <div style="background:rgba(10,4,18,0.9);padding:16px 20px;border-top:1px solid rgba(255,255,255,0.05);">
+        <div style="font-family:var(--font-hud);font-size:16px;font-weight:700;color:#ffffff;letter-spacing:0.5px;margin-bottom:6px;">${title}</div>
+        <div style="font-family:var(--font-mono);font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;">
+          SOURCE: <span style="color:#ff2040;">EXTERNAL_COMMS_YOUTUBE</span> | STATUS: <span style="color:#3dba78;">DECRYPTED</span>
+        </div>
       </div>
     </div>
   `;
@@ -1003,11 +1217,18 @@ function updateClock(){
   const now = new Date();
   const hm = [now.getHours(), now.getMinutes()].map(n => String(n).padStart(2,'0')).join(':');
   const s = String(now.getSeconds()).padStart(2,'0');
-  document.getElementById('clockHM').textContent = hm;
-  document.getElementById('clockS').textContent = s;
-  document.getElementById('footerTime').textContent = hm + ':' + s;
+  
+  if(document.getElementById('clockHM')) document.getElementById('clockHM').textContent = hm;
+  if(document.getElementById('clockS')) document.getElementById('clockS').textContent = s;
+  if(document.getElementById('footerTime')) document.getElementById('footerTime').textContent = hm + ':' + s;
+  
+  const utcStr = now.toUTCString().slice(17, 25);
+  const hdrClock = document.getElementById('hdr-clock');
+  if(hdrClock) hdrClock.textContent = utcStr;
+
   const d = now.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'});
-  document.getElementById('dateDisplay').textContent = d;
+  if(document.getElementById('dateDisplay')) document.getElementById('dateDisplay').textContent = d;
+  
   setTimeout(updateClock, 1000);
 }
 

@@ -32,7 +32,7 @@ DATA_FOLDER.mkdir(parents=True, exist_ok=True)
 FETCH_ENABLED: bool = False  # ← flip to True when you want to test live fetching
 
 # ── File paths ────────────────────────────────────────────────────────────────
-EVENTS_FILE = DATA_FOLDER / "events_data.json"          # capped globe payload
+EVENTS_FILE = DATA_FOLDER / "events_data.json"      
 
 EVENTS_FILES = {
     "wildfire":   DATA_FOLDER / "events_wildfire.json",
@@ -55,10 +55,10 @@ NEWS_API_KEY    = os.getenv("NEWS_API_KEY_GLOB")
 OPENWEATHER_KEY = os.getenv("OPENWEATHER_KEY")
 
 # ── Request config ────────────────────────────────────────────────────────────
-REQUEST_TIMEOUT   = 10
+REQUEST_TIMEOUT   = 15
 MAX_RETRIES       = 2
 RETRY_BACKOFF     = 1.5
-NEWS_FETCH_DELAY  = 12    # seconds between NewsAPI calls (free tier rate limit)
+NEWS_FETCH_DELAY  = 7    # seconds between NewsAPI calls (free tier rate limit)
 NEWS_PAGE_SIZE    = 15    # articles saved per category (10–15 is plenty)
 
 # ── Globe display cap per category ────────────────────────────────────────────
@@ -160,32 +160,43 @@ def _us_aqi(pm25: float) -> int:
 # ── Event fetchers (only called when FETCH_ENABLED = True) ───────────────────
 
 def _fetch_wildfires() -> list[dict]:
+    import time
     events = []
-    resp = _get(
-        "https://eonet.gsfc.nasa.gov/api/v3/events",
-        params={
-            "category": "wildfires",
-            "status":   "open",
-            "limit":    200,
-            "start":    _one_month_ago_iso(),
-        },
-    )
-    if resp is None:
-        logger.error("Wildfire fetch failed after retries")
-        return events
-    for event in resp.json().get("events", []):
-        lat, lng = _extract_coords(event)
-        if lat is not None:
-            events.append({
-                "id":    event.get("id"),
-                "type":  "wildfire",
-                "lat":   lat,
-                "lng":   lng,
-                "title": event.get("title"),
-                "date":  event.get("geometry", [{}])[0].get("date", ""),
-            })
-    logger.info("Wildfires (past 30 days): %d total", len(events))
-    return events
+
+    for attempt in range(1, 3):                         # attempt 1, then attempt 2
+        resp = _get(
+            "https://eonet.gsfc.nasa.gov/api/v3/events",
+            params={
+                "category": "wildfires",
+                "status":   "open",
+                "limit":    200,
+                "start":    _one_month_ago_iso(),
+            },
+        )
+
+        if resp is not None:                            # success — parse and return
+            for event in resp.json().get("events", []):
+                lat, lng = _extract_coords(event)
+                if lat is not None:
+                    events.append({
+                        "id":    event.get("id"),
+                        "type":  "wildfire",
+                        "lat":   lat,
+                        "lng":   lng,
+                        "title": event.get("title"),
+                        "date":  event.get("geometry", [{}])[0].get("date", ""),
+                    })
+            logger.info("Wildfires (past 30 days): %d total", len(events))
+            return events
+
+        # resp is None — fetch failed
+        if attempt == 1:
+            logger.warning("Wildfire fetch attempt 1 failed — waiting 20s before retry...")
+            time.sleep(20)
+        else:
+            logger.error("Wildfire fetch attempt 2 also failed — skipping wildfire data.")
+
+    return events                                       # empty list, app continues normally
 
 
 def _fetch_earthquakes() -> list[dict]:
@@ -218,6 +229,7 @@ def _fetch_earthquakes() -> list[dict]:
                          props["time"] / 1000, tz=timezone.utc
                      ).isoformat() if props.get("time") else "",
         })
+    events.sort(key=lambda e: e["date"], reverse=True)   # most recent first
     logger.info("Earthquakes (past 30 days, M≥4.5): %d total", len(events))
     return events
 
@@ -418,12 +430,6 @@ def prefetch_all_data() -> None:
     # 2. News — one file per category, throttled to avoid 429s
     import time
     for idx, (category, file_path) in enumerate(NEWS_FILES.items()):
-        # Skip categories that already have a valid non-empty cache
-        existing = load_json(file_path)
-        if existing and existing.get("news"):
-            logger.info("News cache hit — skipping '%s' (%d articles cached)", category, len(existing["news"]))
-            continue
-
         if idx > 0:
             logger.info("Waiting %ds before next NewsAPI request …", NEWS_FETCH_DELAY)
             time.sleep(NEWS_FETCH_DELAY)
@@ -518,5 +524,3 @@ def get_news(filter_type: str = Query(default="all")):
     payload = fetch_news_for_category(category)
     save_json(file_path, payload)
     return JSONResponse(content=payload)
-
-
