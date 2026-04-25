@@ -1,9 +1,9 @@
 """
-Model_train.py — Improved DBSCAN Hazard Clustering
+Model_train.py — Improved HDBSCAN Hazard Clustering
 ===================================================
 Key fixes vs. the original:
   • eps correctly converted km → radians (eps = km / 6371.0088)
-  • Per-event-type DBSCAN with carefully tuned eps / min_samples
+  • Per-event-type HDBSCAN with carefully tuned eps / min_samples
   • Cluster-label offsetting uses a stable deterministic offset
   • Noise target: 20–40 %
   • Risk score fully normalised to [0, 100]
@@ -14,7 +14,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from joblib import dump
-from sklearn.cluster import DBSCAN
+from sklearn.cluster import HDBSCAN
 
 # ──────────────────────────────────────────────────────────────────────────────
 #  Constants
@@ -25,18 +25,18 @@ EARTH_RADIUS_KM = 6371.0088          # WGS-84 mean radius
 # Larger eps  → fewer, bigger clusters, less noise
 # Smaller eps → more, tighter clusters, more noise
 EPS_KM_BY_EVENT: dict[str, float] = {
-    "Cyclone":          500.0,   # tracks span ocean basins
-    "Typhoon":          500.0,
-    "Wildfire":         120.0,   # regional clusters
-    "Prescribed_Fire":  120.0,
-    "Fire":             120.0,
-    "Iceberg_A":        300.0,
-    "Iceberg_B":        300.0,
-    "Iceberg_C":        300.0,
-    "Iceberg_D":        300.0,
-    "Volcano":          200.0,
-    "Complex":          200.0,
-    "Other":            200.0,
+    'Cyclone':         500.0,
+    'Typhoon':         500.0,
+    'Wildfire':        120.0,
+    'Prescribed_Fire': 120.0,
+    'Fire':            120.0,
+    'Iceberg_A':       300.0,
+    'Iceberg_B':       300.0,
+    'Iceberg_C':       300.0,
+    'Iceberg_D':       300.0,
+    'Volcano':         700.0, # Increased eps for Volcano
+    'Complex':         200.0,
+    'Other':           200.0,
 }
 DEFAULT_EPS_KM = 200.0
 
@@ -51,7 +51,7 @@ MIN_SAMPLES_CAP    = 20      # never require more than this
 # ──────────────────────────────────────────────────────────────────────────────
 
 def _eps_radians(eps_km: float) -> float:
-    """Convert kilometres to radians for sklearn Haversine DBSCAN."""
+    """Convert kilometres to radians for sklearn Haversine HDBSCAN."""
     return eps_km / EARTH_RADIUS_KM
 
 
@@ -61,11 +61,13 @@ def _min_samples(n: int) -> int:
                        MIN_SAMPLES_FLOOR, MIN_SAMPLES_CAP))
 
 
-def _run_dbscan(coords_rad: np.ndarray, eps_km: float, n: int) -> np.ndarray:
-    """Fit DBSCAN with Haversine metric and return labels."""
-    db = DBSCAN(
-        eps=_eps_radians(eps_km),
-        min_samples=_min_samples(n),
+def _run_hdbscan(coords_rad: np.ndarray, eps_km: float, n: int) -> np.ndarray:
+    """Fit HDBSCAN with Haversine metric and return labels."""
+    ms = _min_samples(n)
+    db = HDBSCAN(
+        min_cluster_size=ms,
+        min_samples=ms,
+        cluster_selection_epsilon=_eps_radians(eps_km),
         metric="haversine",
         algorithm="ball_tree",
         n_jobs=-1,
@@ -82,12 +84,12 @@ def _safe_normalise(series: pd.Series) -> pd.Series:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-#  Step 1 — Per-event-type DBSCAN
+#  Step 1 — Per-event-type HDBSCAN
 # ──────────────────────────────────────────────────────────────────────────────
 
 def _cluster_per_event_type(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Run DBSCAN independently for each event type.
+    Run HDBSCAN independently for each event type.
 
     Cluster labels are offset by a deterministic per-type integer so that IDs
     never collide across event types.  Noise remains -1.
@@ -100,42 +102,38 @@ def _cluster_per_event_type(df: pd.DataFrame) -> pd.DataFrame:
     summary_rows = []
     type_offset = 0   # incremented after each event type
 
-    for event in sorted(df["Event_type"].unique()):
-        mask   = df["Event_type"] == event
+    for event in sorted(df['Event_type'].unique()):
+        mask   = df['Event_type'] == event
         subset = df[mask]
         n      = len(subset)
 
         if n < MIN_SAMPLES_FLOOR:
-            print(f"  [{event}] SKIPPED — only {n} points (< {MIN_SAMPLES_FLOOR})")
+            print(f'[{event}] SKIPPED — only {n} points')
             continue
 
         eps_km = EPS_KM_BY_EVENT.get(event, DEFAULT_EPS_KM)
         ms     = _min_samples(n)
 
-        coords_rad = np.radians(subset[["lat", "lon"]].values)
-        labels     = _run_dbscan(coords_rad, eps_km, n)
+        coords = np.radians(subset[['lat', 'lon']].values)
 
-        # Offset positive labels; keep -1 as noise marker
-        pos_mask       = labels != -1
-        labels[pos_mask] = labels[pos_mask] + type_offset
+        labels = HDBSCAN(
+            min_cluster_size=ms,
+            min_samples=ms,
+            cluster_selection_epsilon=_eps_radians(eps_km),
+            metric='haversine',
+            algorithm='ball_tree',
+            n_jobs=-1,
+        ).fit_predict(coords)
 
-        df.loc[mask, "cluster"] = labels
+        # Offset positive labels; noise stays -1
+        pos = labels != -1
+        labels[pos] = labels[pos] + type_offset
 
-        n_clusters   = int(labels[pos_mask].max() - labels[pos_mask].min() + 1) if pos_mask.any() else 0
-        noise_pct    = round((labels == -1).sum() / n * 100, 1)
+        df.loc[mask, 'cluster'] = labels
 
-        # Determine next safe offset (leave a gap of 100 between event types)
-        type_offset += (n_clusters + 100)
-
-        # Quality label
-        if noise_pct < 20:
-            structure = "Highly Structured"
-        elif noise_pct < 40:
-            structure = "Moderately Structured"
-        elif noise_pct < 60:
-            structure = "Weakly Structured"
-        else:
-            structure = "Scattered / Sparse"
+        n_clusters = int(labels[pos].max() - labels[pos].min() + 1) if pos.any() else 0
+        noise_pct  = round((labels == -1).sum() / n * 100, 1)
+        type_offset += (n_clusters + 100)   # leave a gap between event types
 
         summary_rows.append({
             "Event_type":   event,
@@ -144,11 +142,10 @@ def _cluster_per_event_type(df: pd.DataFrame) -> pd.DataFrame:
             "min_samples":  ms,
             "num_clusters": n_clusters,
             "noise_%":      noise_pct,
-            "structure":    structure,
         })
 
-        print(f"  [{event}] eps={eps_km} km | min_s={ms} | "
-              f"n={n} | clusters={n_clusters} | noise={noise_pct}%  → {structure}")
+        print(f'[{event}] eps={eps_km} km | min_s={ms} | n={n} | '
+              f'clusters={n_clusters} | noise={noise_pct}%')
 
     event_summary = pd.DataFrame(summary_rows)
     return df, event_summary
@@ -336,7 +333,7 @@ def train_and_save_model(
     clustered_path: Path,
 ) -> dict:
     """
-    Main entry point: load prepared data, run per-event-type DBSCAN,
+    Main entry point: load prepared data, run per-event-type HDBSCAN,
     compute risk scores, persist artefacts, and return a model payload dict.
 
     Parameters
@@ -360,8 +357,8 @@ def train_and_save_model(
     print(f"\n[TRAIN] Loaded {len(df):,} rows | {df['Event_type'].nunique()} event types")
     print(f"[TRAIN] Year range: {df['year'].min()} – {df['year'].max()}")
 
-    # ── Step 1: Per-event-type DBSCAN ─────────────────────────────────────────
-    print("\n=== STEP 1 — PER-EVENT-TYPE DBSCAN ===")
+    # ── Step 1: Per-event-type HDBSCAN ─────────────────────────────────────────
+    print("\n=== STEP 1 — PER-EVENT-TYPE HDBSCAN ===")
     df, event_summary = _cluster_per_event_type(df)
 
     overall_noise = (df["cluster"] == -1).mean() * 100
@@ -443,7 +440,7 @@ def train_and_save_model(
 if __name__ == "__main__":
     base_dir       = Path(__file__).resolve().parent
     data_file      = base_dir / "Data"  / "final_hazard_dataset.csv"
-    model_file     = base_dir / "model" / "dbscan_model.joblib"
+    model_file     = base_dir / "model" / "hdbscan_model.joblib"
     clustered_file = base_dir / "Data"  / "final_hazard_dataset_with_clusters.csv"
 
     train_and_save_model(data_file, model_file, clustered_file)

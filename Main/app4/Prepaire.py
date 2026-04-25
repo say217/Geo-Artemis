@@ -5,7 +5,7 @@ import numpy as np
 
 
 # ─────────────────────────────────────────────
-#  Event classification map (order matters — more specific first)
+#  Event classification map we preprcess raw data first and filtwer out event type remove extra texts
 # ─────────────────────────────────────────────
 _EVENT_RULES: list[tuple[str, str]] = [
     ("iceberg a",        "Iceberg_A"),
@@ -65,7 +65,7 @@ def load_prepare_data(source_path: Path, output_path: Path) -> pd.DataFrame:
     Returns
     -------
     pd.DataFrame
-        Cleaned and feature-engineered dataframe ready for DBSCAN.
+        Cleaned and feature-engineered dataframe ready for HDBSCAN.
     """
     source_path = Path(source_path)
     output_path = Path(output_path)

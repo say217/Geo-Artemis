@@ -53,7 +53,7 @@ templates = Jinja2Templates(directory=str(Path(__file__).resolve().parent / "tem
 #            High_risk_regions.csv
 #            event_counts.csv
 #          model/
-#            dbscan_model.joblib
+#            hdbscan_model.joblib
 # ─────────────────────────────────────────────
 _APP4_DIR    = Path(__file__).resolve().parent           # …/Main/app4
 _MAIN_DIR    = _APP4_DIR.parent                          # …/Main
@@ -68,7 +68,7 @@ prepared_data_path = _DATA_DIR / "final_hazard_dataset.csv"
 data_path          = _DATA_DIR / "final_hazard_dataset_with_clusters.csv"
 
 # Model
-model_path = _APP4_DIR / "model" / "dbscan_model.joblib"
+model_path = _APP4_DIR / "model" / "hdbscan_model.joblib"
 
 # USGS earthquake CSV written by main.py lifespan
 _usgs_data_path = PROJECT_ROOT / "Data_Source" / "USGS_DATA" / "earthquakes.csv"
@@ -98,7 +98,7 @@ def _load_cluster_points() -> list[dict]:
 
 
 def _compute_cluster_regions() -> list[dict]:
-    """Compute convex hull regions for each cluster."""
+    """Compute refined regions for each cluster, filtering out excessively large areas."""
     if not data_path.exists():
         return []
 
@@ -110,35 +110,54 @@ def _compute_cluster_regions() -> list[dict]:
         if cluster_id == -1:  # Skip noise
             continue
 
-        cluster_points = df[df["cluster"] == cluster_id][["lat", "lon"]].values
+        points = df[df["cluster"] == cluster_id][["lat", "lon"]].values
+        
+        # ── 1. Filter out "Too Big" or "Too Wide" regions ──────────────────────
+        # Clusters spanning more than 40 degrees longitude or 30 degrees latitude
+        # are often artifacts or global trends rather than localized hazards.
+        lat_span = points[:, 0].max() - points[:, 0].min()
+        lon_span = points[:, 1].max() - points[:, 1].min()
+        
+        if lon_span > 40 or lat_span > 30:
+            continue
 
-        if len(cluster_points) < 3:
-            centroid = cluster_points.mean(axis=0)
-            radius = 0.5
+        center = points.mean(axis=0)
+
+        # ── 2. Create Bounds ──────────────────────────────────────────────────
+        if len(points) < 3:
+            # For 1-2 points, create a very tight bounding box
+            radius = 0.08  # Approx 9km
             bounds = [
-                [centroid[0] - radius, centroid[1] - radius],
-                [centroid[0] + radius, centroid[1] - radius],
-                [centroid[0] + radius, centroid[1] + radius],
-                [centroid[0] - radius, centroid[1] + radius],
+                [center[0] - radius, center[1] - radius],
+                [center[0] + radius, center[1] - radius],
+                [center[0] + radius, center[1] + radius],
+                [center[0] - radius, center[1] + radius],
             ]
         else:
             try:
                 from scipy.spatial import ConvexHull
-                hull = ConvexHull(cluster_points)
-                bounds = cluster_points[hull.vertices].tolist()
+                hull = ConvexHull(points)
+                raw_bounds = points[hull.vertices].tolist()
+                
+                # Tiny buffer expansion
+                bounds = []
+                for p in raw_bounds:
+                    lat_buf = 0.02 if p[0] >= center[0] else -0.02
+                    lon_buf = 0.02 if p[1] >= center[1] else -0.02
+                    bounds.append([p[0] + lat_buf, p[1] + lon_buf])
             except Exception:
                 bounds = [
-                    [cluster_points[:, 0].min(), cluster_points[:, 1].min()],
-                    [cluster_points[:, 0].max(), cluster_points[:, 1].min()],
-                    [cluster_points[:, 0].max(), cluster_points[:, 1].max()],
-                    [cluster_points[:, 0].min(), cluster_points[:, 1].max()],
+                    [points[:, 0].min() - 0.05, points[:, 1].min() - 0.05],
+                    [points[:, 0].max() + 0.05, points[:, 1].min() - 0.05],
+                    [points[:, 0].max() + 0.05, points[:, 1].max() + 0.05],
+                    [points[:, 0].min() - 0.05, points[:, 1].max() + 0.05],
                 ]
 
         regions.append({
             "cluster": int(cluster_id),
             "bounds":  bounds,
-            "center":  cluster_points.mean(axis=0).tolist(),
-            "count":   len(cluster_points),
+            "center":  center.tolist(),
+            "count":   len(points),
         })
 
     return regions
@@ -225,6 +244,24 @@ def _render_page(
             "charts":       charts,
         },
     )
+
+
+# ─────────────────────────────────────────────
+#  API Endpoints for AJAX
+# ─────────────────────────────────────────────
+
+@router.get("/api/cluster-points")
+def api_cluster_points():
+    """Return all cluster points as JSON."""
+    points = _load_cluster_points()
+    return {"data": points, "count": len(points)}
+
+
+@router.get("/api/cluster-regions")
+def api_cluster_regions():
+    """Return all cluster polygons as JSON."""
+    regions = _compute_cluster_regions()
+    return {"data": regions, "count": len(regions)}
 
 
 # ─────────────────────────────────────────────
@@ -346,6 +383,9 @@ def charts(request: Request):
 
         chart_data["geo_clusters_url"]       = "/app4/plot/geo_clusters_all" if geo_clusters_path else None
         chart_data["geo_clusters_clean_url"] = "/app4/plot/geo_clusters_clean" if geo_clusters_clean_path else None
+
+        comprehensive_path = get_comprehensive_analysis_html()
+        chart_data["comprehensive_url"] = "/app4/plot/comprehensive_analysis" if comprehensive_path else None
 
         return _render_page(
             request,

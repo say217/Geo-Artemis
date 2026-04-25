@@ -184,7 +184,7 @@ def get_geo_clusters_html():
         color='cluster',
         hover_name='Event_type',
         hover_data=['intensity', 'year', 'month', 'day'],
-        title=f'Hazard Regions Discovered by DBSCAN (eps={eps_km} km)',
+        title=f'Hazard Regions Discovered by HDBSCAN (eps={eps_km} km)',
         labels={'cluster': 'Region ID'},
         color_continuous_scale='Plasma',
         projection='natural earth',
@@ -307,103 +307,156 @@ def get_comprehensive_analysis_html():
     
     import matplotlib.pyplot as plt
     import seaborn as sns
+    import io
+    import base64
     
     try:
-        plt.figure(figsize=(16, 12))
+        # Use Agg backend for non-interactive environments
+        plt.switch_backend('Agg')
+        plt.style.use('dark_background')
         
-        # ========================
-        # Graph 1: Top regions by event count
-        # ========================
-        plt.subplot(2, 2, 1)
-        
-        cluster_summary = (
+        # Prepare data for plotting
+        cluster_summary_data = (
             df[df['cluster'] != -1]
             .groupby(['cluster', 'Event_type'])
             .size()
             .reset_index(name='num_events')
         )
         
-        top_clusters = cluster_summary.groupby('cluster')['num_events'].sum().nlargest(10)
+        # Calculate top clusters by total event count
+        top_clusters_total = (
+            df[df['cluster'] != -1]
+            .groupby('cluster')
+            .size()
+            .nlargest(10)
+        )
         
-        top_data = cluster_summary[cluster_summary['cluster'].isin(top_clusters.index)]
+        fig = plt.figure(figsize=(15, 11))
+        fig.patch.set_facecolor('#060608')
         
+        # ──────────────────────────────────────────────────────────
+        # Graph 1: Top regions by event count
+        # ──────────────────────────────────────────────────────────
+        plt.subplot(2, 2, 1)
+        top_data = cluster_summary_data[cluster_summary_data['cluster'].isin(top_clusters_total.index)]
         sns.barplot(
             data=top_data,
             x='cluster',
             y='num_events',
             hue='Event_type',
-            palette='husl'
+            palette='flare'
         )
-        
-        plt.title('Top 10 Hazard Regions by Event Count', fontsize=12, fontweight='bold')
-        plt.xlabel('Cluster ID')
-        plt.ylabel('Event Count')
+        plt.title('Top Hazard Regions by Event Count', color='#ff4444', fontsize=13, fontweight='bold', pad=10)
+        plt.xlabel('Cluster ID', fontsize=10)
+        plt.ylabel('Event Count', fontsize=10)
         plt.xticks(rotation=45)
-        plt.legend(title='Event Type', bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=8)
+        plt.legend(title='Hazard Type', fontsize=8, title_fontsize=9)
         
-        # ========================
+        # ──────────────────────────────────────────────────────────
         # Graph 2: Intensity distribution by region
-        # ========================
+        # ──────────────────────────────────────────────────────────
         plt.subplot(2, 2, 2)
-        
         subset = df[df['cluster'] != -1].copy()
-        top_ids = top_clusters.index.tolist()
-        subset = subset[subset['cluster'].isin(top_ids)]
-        
+        subset = subset[subset['cluster'].isin(top_clusters_total.index)]
         sns.boxplot(
             data=subset,
             x='cluster',
             y='intensity',
-            palette='Set2'
+            palette='magma'
         )
-        
-        plt.title('Intensity Distribution (Top Regions)', fontsize=12, fontweight='bold')
-        plt.xlabel('Cluster ID')
-        plt.ylabel('Intensity (log-scaled)')
+        plt.title('Intensity Distribution (Top Regions)', color='#ff4444', fontsize=13, fontweight='bold', pad=10)
+        plt.xlabel('Cluster ID', fontsize=10)
+        plt.ylabel('Intensity Score', fontsize=10)
         plt.xticks(rotation=45)
         
-        # ========================
+        # ──────────────────────────────────────────────────────────
         # Graph 3: Events by type
-        # ========================
+        # ──────────────────────────────────────────────────────────
         plt.subplot(2, 2, 3)
-        
         event_counts = df['Event_type'].value_counts()
-        
         sns.barplot(
             x=event_counts.index,
             y=event_counts.values,
             palette='viridis'
         )
-        
-        plt.title('Events by Hazard Type', fontsize=12, fontweight='bold')
-        plt.ylabel('Count')
-        plt.xlabel('Event Type')
+        plt.title('Events by Hazard Type (Global)', color='#ff4444', fontsize=13, fontweight='bold', pad=10)
+        plt.ylabel('Total Count', fontsize=10)
+        plt.xlabel('Hazard Category', fontsize=10)
         plt.xticks(rotation=45)
         
-        # ========================
+        # ──────────────────────────────────────────────────────────
         # Graph 4: Events per year
-        # ========================
+        # ──────────────────────────────────────────────────────────
         plt.subplot(2, 2, 4)
-        
         yearly = df.groupby('year').size().reset_index(name='count')
+        sns.lineplot(
+            data=yearly,
+            x='year',
+            y='count',
+            marker='o',
+            color='#ff4444',
+            linewidth=2.5,
+            markersize=8
+        )
+        plt.fill_between(yearly['year'], yearly['count'], color='#ff4444', alpha=0.1)
+        plt.title('Total Hazard Events per Year', color='#ff4444', fontsize=13, fontweight='bold', pad=10)
+        plt.xlabel('Observation Year', fontsize=10)
+        plt.ylabel('Number of Events', fontsize=10)
+        plt.grid(True, linestyle='--', alpha=0.2)
         
-        sns.lineplot(data=yearly, x='year', y='count', marker='o', linewidth=2, markersize=8, color='#FF6B6B')
+        plt.tight_layout(pad=4.0)
         
-        plt.title('Total Hazard Events per Year', fontsize=12, fontweight='bold')
-        plt.xlabel('Year')
-        plt.ylabel('Number of Events')
-        plt.grid(True, alpha=0.3)
+        # Encode to base64
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png', dpi=100, bbox_inches='tight', facecolor='#060608')
+        buf.seek(0)
+        img_str = base64.b64encode(buf.read()).decode('utf-8')
+        plt.close(fig)
         
-        plt.tight_layout()
+        # Build HTML wrapper
+        html_content = f"""
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <style>
+                body {{ 
+                    background-color: #060608; 
+                    margin: 0; 
+                    display: flex; 
+                    justify-content: center; 
+                    align-items: center; 
+                    min-height: 100vh;
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                }}
+                .plot-container {{
+                    padding: 20px;
+                    background: #0d0d12;
+                    border: 1px solid #333;
+                    border-radius: 8px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                }}
+                img {{ 
+                    max-width: 100%; 
+                    height: auto; 
+                }}
+            </style>
+        </head>
+        <body>
+            <div class="plot-container">
+                <img src="data:image/png;base64,{img_str}" alt="Hazard Analysis Dashboard" />
+            </div>
+        </body>
+        </html>
+        """
         
-        # Save to plots folder
         plot_dir = Path(__file__).resolve().parent / "plots"
         plot_dir.mkdir(parents=True, exist_ok=True)
+        file_path = plot_dir / "comprehensive_analysis.html"
         
-        file_path = plot_dir / "comprehensive_analysis.png"
-        plt.savefig(file_path, dpi=100, bbox_inches='tight')
-        plt.close()
-        
+        with open(file_path, "w", encoding="utf-8") as f:
+            f.write(html_content)
+            
         return str(file_path)
     except Exception as e:
         print(f"Error generating comprehensive analysis plot: {e}")
@@ -411,7 +464,7 @@ def get_comprehensive_analysis_html():
 
 
 def get_clustered_events_html():
-    """Map: Hazard regions discovered by DBSCAN - saves HTML file and returns path."""
+    """Map: Hazard regions discovered by HDBSCAN - saves HTML file and returns path."""
     df = _get_df()
     if df is None or len(df) == 0:
         return None
@@ -438,7 +491,7 @@ def get_clustered_events_html():
                 'day': True,
                 'cluster': True
             },
-            title='Hazard Regions Discovered by DBSCAN',
+            title='Hazard Regions Discovered by HDBSCAN',
             labels={'color': 'Region ID'},
             projection='natural earth',
             size='intensity',

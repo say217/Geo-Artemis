@@ -1,8 +1,179 @@
 {
-  "saved_at": "2026-04-22T18:02:52.077896Z",
+  "saved_at": "2026-04-24T21:25:38.031392Z",
   "data": {
     "type": "earthquake",
     "events": [
+      {
+        "id": "us6000ssgf",
+        "type": "earthquake",
+        "lat": 13.8985,
+        "lng": 144.9045,
+        "mag": 4.9,
+        "title": "M 4.9 - 40 km N of Yigo Village, Guam",
+        "date": "2026-04-23T23:22:33.956000+00:00"
+      },
+      {
+        "id": "us6000ssga",
+        "type": "earthquake",
+        "lat": 28.3412,
+        "lng": 131.0964,
+        "mag": 5,
+        "title": "M 5.0 - 147 km E of Tatsugō, Japan",
+        "date": "2026-04-23T22:52:54.569000+00:00"
+      },
+      {
+        "id": "us6000ssfy",
+        "type": "earthquake",
+        "lat": -7.1972,
+        "lng": 129.1163,
+        "mag": 4.6,
+        "title": "M 4.6 - 275 km ENE of Lospalos, Timor Leste",
+        "date": "2026-04-23T22:13:24.099000+00:00"
+      },
+      {
+        "id": "us6000ssci",
+        "type": "earthquake",
+        "lat": -34.7876,
+        "lng": -179.1302,
+        "mag": 4.8,
+        "title": "M 4.8 - south of the Kermadec Islands",
+        "date": "2026-04-23T17:46:13.559000+00:00"
+      },
+      {
+        "id": "us6000ssak",
+        "type": "earthquake",
+        "lat": 13.1854,
+        "lng": -89.4104,
+        "mag": 4.8,
+        "title": "M 4.8 - 34 km SSW of La Libertad, El Salvador",
+        "date": "2026-04-23T14:09:26.046000+00:00"
+      },
+      {
+        "id": "us6000ss9m",
+        "type": "earthquake",
+        "lat": -42.2859,
+        "lng": -18.4093,
+        "mag": 5.2,
+        "title": "M 5.2 - southern Mid-Atlantic Ridge",
+        "date": "2026-04-23T10:07:48.736000+00:00"
+      },
+      {
+        "id": "us6000ss90",
+        "type": "earthquake",
+        "lat": -20.7822,
+        "lng": -176.2603,
+        "mag": 5.2,
+        "title": "M 5.2 - 108 km WNW of Houma, Tonga",
+        "date": "2026-04-23T06:31:10.762000+00:00"
+      },
+      {
+        "id": "us6000ss8w",
+        "type": "earthquake",
+        "lat": -57.1,
+        "lng": -24.5095,
+        "mag": 5,
+        "title": "M 5.0 - South Sandwich Islands region",
+        "date": "2026-04-23T05:30:59.775000+00:00"
+      },
+      {
+        "id": "us6000ss8a",
+        "type": "earthquake",
+        "lat": 51.3012,
+        "lng": 159.842,
+        "mag": 4.9,
+        "title": "M 4.9 - 206 km SSE of Vilyuchinsk, Russia",
+        "date": "2026-04-23T01:43:46.712000+00:00"
+      },
+      {
+        "id": "us6000ss7p",
+        "type": "earthquake",
+        "lat": 39.6744,
+        "lng": 143.3289,
+        "mag": 4.9,
+        "title": "M 4.9 - 119 km E of Miyako, Japan",
+        "date": "2026-04-23T00:07:57.051000+00:00"
+      },
+      {
+        "id": "us6000ss58",
+        "type": "earthquake",
+        "lat": -10.9927,
+        "lng": 113.8493,
+        "mag": 4.7,
+        "title": "M 4.7 - 282 km SSW of Jimbaran, Indonesia",
+        "date": "2026-04-22T18:15:00.002000+00:00"
+      },
+      {
+        "id": "nn00916046",
+        "type": "earthquake",
+        "lat": 39.2758,
+        "lng": -119.0955,
+        "mag": 4.78,
+        "title": "M 4.8 - 19 km SE of Silver Springs, Nevada",
+        "date": "2026-04-22T17:23:37.085000+00:00"
+      },
+      {
+        "id": "us6000ss20",
+        "type": "earthquake",
+        "lat": -15.4409,
+        "lng": 167.4412,
+        "mag": 5,
+        "title": "M 5.0 - 31 km ENE of Luganville, Vanuatu",
+        "date": "2026-04-22T13:20:45.869000+00:00"
+      },
+      {
+        "id": "us6000ss1u",
+        "type": "earthquake",
+        "lat": 39.9953,
+        "lng": 142.9285,
+        "mag": 5,
+        "title": "M 5.0 - 93 km ENE of Miyako, Japan",
+        "date": "2026-04-22T12:18:37.573000+00:00"
+      },
+      {
+        "id": "us6000ss1r",
+        "type": "earthquake",
+        "lat": -10.6533,
+        "lng": 161.5333,
+        "mag": 4.6,
+        "title": "M 4.6 - 47 km WSW of Kirakira, Solomon Islands",
+        "date": "2026-04-22T12:04:45.398000+00:00"
+      },
+      {
+        "id": "us6000ss1k",
+        "type": "earthquake",
+        "lat": 46.8378,
+        "lng": 92.8983,
+        "mag": 4.9,
+        "title": "M 4.9 - 160 km SE of Khovd, Mongolia",
+        "date": "2026-04-22T11:11:46.916000+00:00"
+      },
+      {
+        "id": "us6000ss13",
+        "type": "earthquake",
+        "lat": 10.4424,
+        "lng": -41.8425,
+        "mag": 4.9,
+        "title": "M 4.9 - northern Mid-Atlantic Ridge",
+        "date": "2026-04-22T08:35:51.205000+00:00"
+      },
+      {
+        "id": "us6000srzq",
+        "type": "earthquake",
+        "lat": 49.9647,
+        "lng": 157.1919,
+        "mag": 4.9,
+        "title": "M 4.9 - 109 km SE of Severo-Kuril’sk, Russia",
+        "date": "2026-04-22T07:40:49.877000+00:00"
+      },
+      {
+        "id": "us6000srxu",
+        "type": "earthquake",
+        "lat": 39.9179,
+        "lng": 143.2055,
+        "mag": 5.3,
+        "title": "M 5.3 - 112 km ENE of Miyako, Japan",
+        "date": "2026-04-22T00:01:12.294000+00:00"
+      },
       {
         "id": "us6000srvu",
         "type": "earthquake",
@@ -1077,20 +1248,20 @@
       {
         "id": "us6000spea",
         "type": "earthquake",
-        "lat": 1.9632,
-        "lng": 94.7702,
+        "lat": 1.9326,
+        "lng": 94.7324,
         "mag": 5.2,
-        "title": "M 5.2 - 187 km WSW of Sinabang, Indonesia",
-        "date": "2026-04-12T02:40:36.099000+00:00"
+        "title": "M 5.2 - 193 km WSW of Sinabang, Indonesia",
+        "date": "2026-04-12T02:40:36.042000+00:00"
       },
       {
         "id": "us6000spe2",
         "type": "earthquake",
-        "lat": 18.5002,
-        "lng": 145.5867,
-        "mag": 5,
-        "title": "M 5.0 - Pagan region, Northern Mariana Islands",
-        "date": "2026-04-12T01:09:42.258000+00:00"
+        "lat": 18.459,
+        "lng": 145.6238,
+        "mag": 4.9,
+        "title": "M 4.9 - Pagan region, Northern Mariana Islands",
+        "date": "2026-04-12T01:09:42.878000+00:00"
       },
       {
         "id": "us6000spdm",
@@ -1122,11 +1293,11 @@
       {
         "id": "us6000spac",
         "type": "earthquake",
-        "lat": 41.808,
-        "lng": 146.4358,
-        "mag": 5.4,
-        "title": "M 5.4 - 182 km SSE of Nemuro, Japan",
-        "date": "2026-04-11T09:49:51.545000+00:00"
+        "lat": 41.8066,
+        "lng": 146.5285,
+        "mag": 5.2,
+        "title": "M 5.2 - 185 km SSE of Nemuro, Japan",
+        "date": "2026-04-11T09:49:51.393000+00:00"
       },
       {
         "id": "us6000sp8g",
@@ -1203,11 +1374,11 @@
       {
         "id": "us6000snw6",
         "type": "earthquake",
-        "lat": -29.3883,
-        "lng": -177.0968,
+        "lat": -29.1776,
+        "lng": -177.3958,
         "mag": 4.9,
         "title": "M 4.9 - Kermadec Islands, New Zealand",
-        "date": "2026-04-10T08:17:13.268000+00:00"
+        "date": "2026-04-10T08:17:16.189000+00:00"
       },
       {
         "id": "us6000sra0",
@@ -1786,31 +1957,22 @@
         "date": "2026-04-05T17:10:41.552000+00:00"
       },
       {
-        "id": "us6000smvy",
-        "type": "earthquake",
-        "lat": 24.8579,
-        "lng": 123.066,
-        "mag": 4.6,
-        "title": "M 4.6 - 43 km N of Yonakuni, Japan",
-        "date": "2026-04-05T15:34:01.749000+00:00"
-      },
-      {
         "id": "us6000smul",
         "type": "earthquake",
-        "lat": 39.5371,
-        "lng": 74.6933,
+        "lat": 39.4406,
+        "lng": 74.5526,
         "mag": 4.9,
-        "title": "M 4.9 - 111 km W of Kashgar, China",
-        "date": "2026-04-05T13:24:30.692000+00:00"
+        "title": "M 4.9 - 123 km W of Kashgar, China",
+        "date": "2026-04-05T13:24:30.583000+00:00"
       },
       {
         "id": "us6000smui",
         "type": "earthquake",
-        "lat": -32.0412,
-        "lng": -177.8645,
+        "lat": -32.0535,
+        "lng": -177.9094,
         "mag": 5.5,
         "title": "M 5.5 - south of the Kermadec Islands",
-        "date": "2026-04-05T13:22:15.957000+00:00"
+        "date": "2026-04-05T13:22:15.854000+00:00"
       },
       {
         "id": "us6000smtb",
@@ -2103,11 +2265,11 @@
       {
         "id": "us6000smda",
         "type": "earthquake",
-        "lat": 36.5479,
-        "lng": 70.852,
+        "lat": 36.5316,
+        "lng": 70.7966,
         "mag": 5.8,
-        "title": "M 5.8 - 35 km S of Jurm, Afghanistan",
-        "date": "2026-04-03T16:12:58.037000+00:00"
+        "title": "M 5.8 - 37 km S of Jurm, Afghanistan",
+        "date": "2026-04-03T16:12:58.118000+00:00"
       },
       {
         "id": "us6000smcw",
@@ -2292,11 +2454,11 @@
       {
         "id": "us6000sm7t",
         "type": "earthquake",
-        "lat": 0.8569,
-        "lng": 126.366,
+        "lat": 0.8833,
+        "lng": 126.3419,
         "mag": 4.6,
-        "title": "M 4.6 - 113 km W of Ternate, Indonesia",
-        "date": "2026-04-02T21:52:02.193000+00:00"
+        "title": "M 4.6 - 116 km W of Ternate, Indonesia",
+        "date": "2026-04-02T21:52:02.151000+00:00"
       },
       {
         "id": "us6000smcr",
@@ -2371,58 +2533,103 @@
         "date": "2026-04-02T17:47:12.915000+00:00"
       },
       {
+        "id": "us6000sp3k",
+        "type": "earthquake",
+        "lat": 1.2964,
+        "lng": 126.3173,
+        "mag": 4.6,
+        "title": "M 4.6 - 131 km WNW of Ternate, Indonesia",
+        "date": "2026-04-02T16:16:22.078000+00:00"
+      },
+      {
         "id": "us6000sm5i",
         "type": "earthquake",
-        "lat": 1.2405,
-        "lng": 126.1543,
+        "lat": 1.2537,
+        "lng": 126.1624,
         "mag": 5.1,
         "title": "M 5.1 - 116 km E of Bitung, Indonesia",
-        "date": "2026-04-02T16:10:26.585000+00:00"
+        "date": "2026-04-02T16:10:26.394000+00:00"
       },
       {
         "id": "us6000sm43",
         "type": "earthquake",
-        "lat": -3.7097,
-        "lng": 134.8597,
+        "lat": -3.6613,
+        "lng": 134.811,
         "mag": 5.3,
-        "title": "M 5.3 - 81 km WSW of Nabire, Indonesia",
-        "date": "2026-04-02T15:36:36.646000+00:00"
+        "title": "M 5.3 - 83 km WSW of Nabire, Indonesia",
+        "date": "2026-04-02T15:36:36.246000+00:00"
       },
       {
         "id": "us6000sm40",
         "type": "earthquake",
-        "lat": 1.5322,
-        "lng": 126.3035,
+        "lat": 1.5269,
+        "lng": 126.3415,
         "mag": 5.1,
-        "title": "M 5.1 - 131 km E of Bitung, Indonesia",
-        "date": "2026-04-02T15:34:23.732000+00:00"
+        "title": "M 5.1 - 135 km E of Bitung, Indonesia",
+        "date": "2026-04-02T15:34:27.060000+00:00"
       },
       {
         "id": "us6000sm21",
         "type": "earthquake",
-        "lat": 1.2035,
-        "lng": 126.3735,
+        "lat": 1.2481,
+        "lng": 126.4069,
         "mag": 5.8,
-        "title": "M 5.8 - 121 km WNW of Ternate, Indonesia",
-        "date": "2026-04-02T14:34:59.320000+00:00"
+        "title": "M 5.8 - 119 km WNW of Ternate, Indonesia",
+        "date": "2026-04-02T14:34:59.369000+00:00"
+      },
+      {
+        "id": "us6000sp3c",
+        "type": "earthquake",
+        "lat": 39.3989,
+        "lng": 142.0514,
+        "mag": 4.7,
+        "title": "M 4.7 - 11 km SE of Yamada, Japan",
+        "date": "2026-04-02T14:22:23.088000+00:00"
+      },
+      {
+        "id": "us6000sp39",
+        "type": "earthquake",
+        "lat": 1.17,
+        "lng": 126.793,
+        "mag": 5,
+        "title": "M 5.0 - 78 km WNW of Ternate, Indonesia",
+        "date": "2026-04-02T14:16:23.978000+00:00"
       },
       {
         "id": "us6000sm1v",
         "type": "earthquake",
-        "lat": 1.2401,
-        "lng": 126.3004,
+        "lat": 1.3006,
+        "lng": 126.398,
         "mag": 5.9,
-        "title": "M 5.9 - 130 km WNW of Ternate, Indonesia",
-        "date": "2026-04-02T14:13:49.201000+00:00"
+        "title": "M 5.9 - 123 km WNW of Ternate, Indonesia",
+        "date": "2026-04-02T14:13:49.432000+00:00"
+      },
+      {
+        "id": "us6000sp3a",
+        "type": "earthquake",
+        "lat": 1.0777,
+        "lng": 126.0596,
+        "mag": 4.5,
+        "title": "M 4.5 - 111 km ESE of Bitung, Indonesia",
+        "date": "2026-04-02T14:10:26.853000+00:00"
+      },
+      {
+        "id": "us6000sm1u",
+        "type": "earthquake",
+        "lat": 1.3289,
+        "lng": 126.353,
+        "mag": 4.5,
+        "title": "M 4.5 - 129 km WNW of Ternate, Indonesia",
+        "date": "2026-04-02T14:06:08.674000+00:00"
       },
       {
         "id": "us6000slzz",
         "type": "earthquake",
-        "lat": 1.1667,
-        "lng": 126.2529,
-        "mag": 4.9,
-        "title": "M 4.9 - 128 km ESE of Bitung, Indonesia",
-        "date": "2026-04-02T13:03:04.811000+00:00"
+        "lat": 1.2357,
+        "lng": 126.238,
+        "mag": 4.8,
+        "title": "M 4.8 - 125 km E of Bitung, Indonesia",
+        "date": "2026-04-02T13:03:04.640000+00:00"
       },
       {
         "id": "us6000slzy",
@@ -2454,20 +2661,20 @@
       {
         "id": "us6000slzg",
         "type": "earthquake",
-        "lat": 1.186,
-        "lng": 126.222,
-        "mag": 4.9,
-        "title": "M 4.9 - 124 km ESE of Bitung, Indonesia",
-        "date": "2026-04-02T11:18:42.599000+00:00"
+        "lat": 1.1724,
+        "lng": 126.224,
+        "mag": 4.8,
+        "title": "M 4.8 - 125 km ESE of Bitung, Indonesia",
+        "date": "2026-04-02T11:18:42.486000+00:00"
       },
       {
         "id": "us6000slz6",
         "type": "earthquake",
-        "lat": 1.383,
-        "lng": 126.3217,
+        "lat": 1.3983,
+        "lng": 126.3011,
         "mag": 4.8,
-        "title": "M 4.8 - 132 km E of Bitung, Indonesia",
-        "date": "2026-04-02T10:21:30.842000+00:00"
+        "title": "M 4.8 - 130 km E of Bitung, Indonesia",
+        "date": "2026-04-02T10:21:30.768000+00:00"
       },
       {
         "id": "us6000slza",
@@ -2481,20 +2688,20 @@
       {
         "id": "us6000slz4",
         "type": "earthquake",
-        "lat": 1.3704,
-        "lng": 126.1704,
-        "mag": 4.8,
-        "title": "M 4.8 - 116 km E of Bitung, Indonesia",
-        "date": "2026-04-02T10:10:21.983000+00:00"
+        "lat": 1.3837,
+        "lng": 126.227,
+        "mag": 4.9,
+        "title": "M 4.9 - 122 km E of Bitung, Indonesia",
+        "date": "2026-04-02T10:10:21.905000+00:00"
       },
       {
         "id": "us6000slz0",
         "type": "earthquake",
-        "lat": 1.203,
-        "lng": 126.4993,
+        "lat": 1.1479,
+        "lng": 126.3689,
         "mag": 4.6,
-        "title": "M 4.6 - 108 km WNW of Ternate, Indonesia",
-        "date": "2026-04-02T09:05:54.559000+00:00"
+        "title": "M 4.6 - 119 km WNW of Ternate, Indonesia",
+        "date": "2026-04-02T09:05:54.460000+00:00"
       },
       {
         "id": "us6000slz1",
@@ -2929,49 +3136,130 @@
         "date": "2026-04-01T23:40:24.721000+00:00"
       },
       {
+        "id": "us6000snzf",
+        "type": "earthquake",
+        "lat": 1.1401,
+        "lng": 126.4095,
+        "mag": 4.8,
+        "title": "M 4.8 - 115 km WNW of Ternate, Indonesia",
+        "date": "2026-04-01T23:19:33.517000+00:00"
+      },
+      {
+        "id": "us6000snzd",
+        "type": "earthquake",
+        "lat": 1.2961,
+        "lng": 126.0699,
+        "mag": 4.9,
+        "title": "M 4.9 - 106 km E of Bitung, Indonesia",
+        "date": "2026-04-01T23:18:28.491000+00:00"
+      },
+      {
+        "id": "us6000snzx",
+        "type": "earthquake",
+        "lat": 1.2506,
+        "lng": 125.8558,
+        "mag": 4.8,
+        "title": "M 4.8 - 83 km ESE of Bitung, Indonesia",
+        "date": "2026-04-01T23:15:37.518000+00:00"
+      },
+      {
         "id": "us6000slue",
         "type": "earthquake",
-        "lat": 1.0926,
-        "lng": 126.2459,
-        "mag": 5.4,
-        "title": "M 5.4 - 130 km ESE of Bitung, Indonesia",
-        "date": "2026-04-01T23:13:29.354000+00:00"
+        "lat": 1.1323,
+        "lng": 126.1307,
+        "mag": 5.5,
+        "title": "M 5.5 - 116 km ESE of Bitung, Indonesia",
+        "date": "2026-04-01T23:13:28.831000+00:00"
+      },
+      {
+        "id": "us6000snzb",
+        "type": "earthquake",
+        "lat": 1.1568,
+        "lng": 126.1184,
+        "mag": 4.8,
+        "title": "M 4.8 - 114 km ESE of Bitung, Indonesia",
+        "date": "2026-04-01T23:12:30.446000+00:00"
       },
       {
         "id": "us6000sltp",
         "type": "earthquake",
-        "lat": 1.0043,
-        "lng": 126.419,
-        "mag": 5.5,
-        "title": "M 5.5 - 110 km WNW of Ternate, Indonesia",
-        "date": "2026-04-01T23:07:23.967000+00:00"
+        "lat": 1.063,
+        "lng": 126.3444,
+        "mag": 5.4,
+        "title": "M 5.4 - 119 km WNW of Ternate, Indonesia",
+        "date": "2026-04-01T23:07:23.723000+00:00"
+      },
+      {
+        "id": "us6000snze",
+        "type": "earthquake",
+        "lat": 1.0453,
+        "lng": 126.1772,
+        "mag": 4.5,
+        "title": "M 4.5 - 124 km ESE of Bitung, Indonesia",
+        "date": "2026-04-01T23:06:58.939000+00:00"
+      },
+      {
+        "id": "us6000snzw",
+        "type": "earthquake",
+        "lat": 1.1817,
+        "lng": 126.4053,
+        "mag": 4.9,
+        "title": "M 4.9 - 117 km WNW of Ternate, Indonesia",
+        "date": "2026-04-01T23:04:00.910000+00:00"
+      },
+      {
+        "id": "us6000snza",
+        "type": "earthquake",
+        "lat": 1.2357,
+        "lng": 126.2159,
+        "mag": 5,
+        "title": "M 5.0 - 123 km E of Bitung, Indonesia",
+        "date": "2026-04-01T23:02:57.879000+00:00"
+      },
+      {
+        "id": "us6000slu5",
+        "type": "earthquake",
+        "lat": -35.6171,
+        "lng": 179.4099,
+        "mag": 4.8,
+        "title": "M 4.8 - 241 km NNE of Hicks Bay, New Zealand",
+        "date": "2026-04-01T23:00:52.105000+00:00"
+      },
+      {
+        "id": "us6000snzc",
+        "type": "earthquake",
+        "lat": 1.2523,
+        "lng": 126.1332,
+        "mag": 5,
+        "title": "M 5.0 - 113 km E of Bitung, Indonesia",
+        "date": "2026-04-01T23:00:21.315000+00:00"
       },
       {
         "id": "us6000slss",
         "type": "earthquake",
-        "lat": 1.1171,
-        "lng": 126.2965,
+        "lat": 1.0931,
+        "lng": 126.2354,
         "mag": 7.4,
-        "title": "M 7.4 - 126 km WNW of Ternate, Indonesia",
-        "date": "2026-04-01T22:48:13.172000+00:00"
+        "title": "M 7.4 - 129 km ESE of Bitung, Indonesia",
+        "date": "2026-04-01T22:48:13.063000+00:00"
       },
       {
         "id": "us6000slsj",
         "type": "earthquake",
-        "lat": -22.536,
-        "lng": -66.3556,
-        "mag": 4.6,
-        "title": "M 4.6 - 70 km WNW of Abra Pampa, Argentina",
-        "date": "2026-04-01T21:09:47.921000+00:00"
+        "lat": -22.4535,
+        "lng": -66.2878,
+        "mag": 4.5,
+        "title": "M 4.5 - 67 km WNW of Abra Pampa, Argentina",
+        "date": "2026-04-01T21:09:47.762000+00:00"
       },
       {
         "id": "us6000slsi",
         "type": "earthquake",
-        "lat": -10.4517,
-        "lng": 161.2363,
+        "lat": -10.4029,
+        "lng": 161.2582,
         "mag": 4.9,
-        "title": "M 4.9 - 74 km W of Kirakira, Solomon Islands",
-        "date": "2026-04-01T21:01:39.291000+00:00"
+        "title": "M 4.9 - 72 km W of Kirakira, Solomon Islands",
+        "date": "2026-04-01T21:01:39.858000+00:00"
       },
       {
         "id": "us6000slqr",
@@ -2992,22 +3280,13 @@
         "date": "2026-04-01T16:55:14.170000+00:00"
       },
       {
-        "id": "us7000s9et",
-        "type": "earthquake",
-        "lat": 17.0548,
-        "lng": -94.6988,
-        "mag": 4.5,
-        "title": "M 4.5 - 16 km N of Santa María Chimalapa, Mexico",
-        "date": "2026-04-01T14:02:25.730000+00:00"
-      },
-      {
         "id": "us7000s9da",
         "type": "earthquake",
-        "lat": -7.1861,
-        "lng": 155.926,
+        "lat": -7.2095,
+        "lng": 156.0562,
         "mag": 4.7,
-        "title": "M 4.7 - 107 km SSE of Panguna, Papua New Guinea",
-        "date": "2026-04-01T13:13:27.425000+00:00"
+        "title": "M 4.7 - 117 km SSE of Panguna, Papua New Guinea",
+        "date": "2026-04-01T13:13:26.448000+00:00"
       },
       {
         "id": "us7000s9d1",
@@ -3044,6 +3323,15 @@
         "mag": 4.9,
         "title": "M 4.9 - western Indian-Antarctic Ridge",
         "date": "2026-04-01T08:42:56.507000+00:00"
+      },
+      {
+        "id": "us6000snys",
+        "type": "earthquake",
+        "lat": -15.9531,
+        "lng": -172.6841,
+        "mag": 4.5,
+        "title": "M 4.5 - 119 km E of Hihifo, Tonga",
+        "date": "2026-04-01T07:04:43.299000+00:00"
       },
       {
         "id": "us7000s9ay",
@@ -3111,47 +3399,47 @@
       {
         "id": "us7000s954",
         "type": "earthquake",
-        "lat": 33.9265,
-        "lng": 139.9842,
+        "lat": 33.9451,
+        "lng": 140.0919,
         "mag": 4.5,
         "title": "M 4.5 - 117 km S of Tateyama, Japan",
-        "date": "2026-03-31T15:38:48.865000+00:00"
+        "date": "2026-03-31T15:38:47.911000+00:00"
       },
       {
         "id": "us6000sny3",
         "type": "earthquake",
-        "lat": -56.73,
-        "lng": -141.379,
-        "mag": 4.5,
-        "title": "M 4.5 - Pacific-Antarctic Ridge",
-        "date": "2026-03-31T13:51:40.595000+00:00"
+        "lat": -56.6958,
+        "lng": -141.3559,
+        "mag": 4.6,
+        "title": "M 4.6 - Pacific-Antarctic Ridge",
+        "date": "2026-03-31T13:51:40.571000+00:00"
       },
       {
         "id": "us7000s92w",
         "type": "earthquake",
-        "lat": 2.009,
-        "lng": 121.8692,
-        "mag": 5.1,
-        "title": "M 5.1 - 210 km NW of Gorontalo, Indonesia",
-        "date": "2026-03-31T11:14:24.054000+00:00"
+        "lat": 2.0083,
+        "lng": 121.8243,
+        "mag": 4.8,
+        "title": "M 4.8 - 213 km NW of Gorontalo, Indonesia",
+        "date": "2026-03-31T11:14:23.982000+00:00"
       },
       {
         "id": "us7000s92b",
         "type": "earthquake",
-        "lat": -16.3201,
-        "lng": 167.6327,
-        "mag": 4.9,
-        "title": "M 4.9 - 33 km SE of Lakatoro, Vanuatu",
-        "date": "2026-03-31T10:03:48.641000+00:00"
+        "lat": -16.2565,
+        "lng": 167.6355,
+        "mag": 4.7,
+        "title": "M 4.7 - 29 km SE of Lakatoro, Vanuatu",
+        "date": "2026-03-31T10:03:47.820000+00:00"
       },
       {
         "id": "us7000s920",
         "type": "earthquake",
-        "lat": -20.4789,
-        "lng": -177.9852,
-        "mag": 4.6,
-        "title": "M 4.6 - 289 km WNW of Houma, Tonga",
-        "date": "2026-03-31T09:32:56.271000+00:00"
+        "lat": -20.4721,
+        "lng": -177.9989,
+        "mag": 4.5,
+        "title": "M 4.5 - 291 km WNW of Houma, Tonga",
+        "date": "2026-03-31T09:32:55.133000+00:00"
       },
       {
         "id": "pr2026090003",
@@ -3244,6 +3532,15 @@
         "date": "2026-03-30T14:26:30.204000+00:00"
       },
       {
+        "id": "us6000snsk",
+        "type": "earthquake",
+        "lat": -15.3624,
+        "lng": 167.4361,
+        "mag": 4.5,
+        "title": "M 4.5 - 34 km ENE of Luganville, Vanuatu",
+        "date": "2026-03-30T10:59:03.455000+00:00"
+      },
+      {
         "id": "us7000s8sa",
         "type": "earthquake",
         "lat": -47.7724,
@@ -3273,47 +3570,65 @@
       {
         "id": "us7000s8q0",
         "type": "earthquake",
-        "lat": -15.3139,
-        "lng": 167.5616,
+        "lat": -15.2858,
+        "lng": 167.5826,
         "mag": 7.3,
-        "title": "M 7.3 - 48 km ENE of Luganville, Vanuatu",
-        "date": "2026-03-30T08:44:13.823000+00:00"
+        "title": "M 7.3 - 52 km ENE of Luganville, Vanuatu",
+        "date": "2026-03-30T08:44:13.789000+00:00"
       },
       {
         "id": "us7000s8v7",
         "type": "earthquake",
-        "lat": -15.2696,
-        "lng": 167.4673,
+        "lat": -15.3021,
+        "lng": 167.4979,
         "mag": 5.4,
-        "title": "M 5.4 - 42 km NE of Luganville, Vanuatu",
-        "date": "2026-03-30T08:44:07.642000+00:00"
+        "title": "M 5.4 - 43 km NE of Luganville, Vanuatu",
+        "date": "2026-03-30T08:44:07.626000+00:00"
+      },
+      {
+        "id": "us6000snsf",
+        "type": "earthquake",
+        "lat": -21.7282,
+        "lng": 68.8613,
+        "mag": 4.6,
+        "title": "M 4.6 - Mid-Indian Ridge",
+        "date": "2026-03-30T08:19:56.621000+00:00"
       },
       {
         "id": "us7000s8pt",
         "type": "earthquake",
-        "lat": 40.5605,
-        "lng": 142.7159,
+        "lat": 40.3864,
+        "lng": 142.8716,
         "mag": 4.5,
-        "title": "M 4.5 - 90 km ENE of Kuji, Japan",
-        "date": "2026-03-30T07:46:59.029000+00:00"
+        "title": "M 4.5 - 94 km ENE of Noda, Japan",
+        "date": "2026-03-30T07:46:57.887000+00:00"
       },
       {
         "id": "us7000s8pl",
         "type": "earthquake",
-        "lat": 11.4154,
-        "lng": -86.8927,
+        "lat": 11.388,
+        "lng": -86.8964,
         "mag": 5.4,
-        "title": "M 5.4 - 58 km SW of Masachapa, Nicaragua",
-        "date": "2026-03-30T07:30:28.018000+00:00"
+        "title": "M 5.4 - 60 km SW of Masachapa, Nicaragua",
+        "date": "2026-03-30T07:30:25.551000+00:00"
       },
       {
         "id": "us7000s8p7",
         "type": "earthquake",
-        "lat": 12.6049,
-        "lng": -89.4064,
+        "lat": 12.6046,
+        "lng": -89.3916,
         "mag": 4.6,
         "title": "M 4.6 - 98 km S of La Libertad, El Salvador",
-        "date": "2026-03-30T05:15:27.722000+00:00"
+        "date": "2026-03-30T05:15:27.778000+00:00"
+      },
+      {
+        "id": "us6000snsd",
+        "type": "earthquake",
+        "lat": -11.6433,
+        "lng": 163.1102,
+        "mag": 4.5,
+        "title": "M 4.5 - 184 km SE of Kirakira, Solomon Islands",
+        "date": "2026-03-30T05:03:46.859000+00:00"
       },
       {
         "id": "us7000s8nq",
@@ -3514,31 +3829,58 @@
         "date": "2026-03-28T19:09:35.196000+00:00"
       },
       {
+        "id": "us7000sb6d",
+        "type": "earthquake",
+        "lat": 11.8518,
+        "lng": 125.818,
+        "mag": 4.5,
+        "title": "M 4.5 - 39 km E of Sulat, Philippines",
+        "date": "2026-03-28T18:59:18.390000+00:00"
+      },
+      {
         "id": "us7000s8ec",
         "type": "earthquake",
-        "lat": -7.5517,
-        "lng": 127.7983,
+        "lat": -7.5072,
+        "lng": 127.8579,
         "mag": 5.8,
-        "title": "M 5.8 - 138 km NE of Lospalos, Timor Leste",
-        "date": "2026-03-28T18:38:29.292000+00:00"
+        "title": "M 5.8 - 146 km NE of Lospalos, Timor Leste",
+        "date": "2026-03-28T18:38:29.315000+00:00"
+      },
+      {
+        "id": "us7000sb67",
+        "type": "earthquake",
+        "lat": 37.119,
+        "lng": -33.0034,
+        "mag": 4.5,
+        "title": "M 4.5 - 297 km SSW of Lajes das Flores, Portugal",
+        "date": "2026-03-28T16:21:13.151000+00:00"
       },
       {
         "id": "us7000s8dr",
         "type": "earthquake",
-        "lat": 52.1476,
-        "lng": 160.8257,
-        "mag": 4.7,
-        "title": "M 4.7 - 180 km SE of Petropavlovsk-Kamchatsky, Russia",
-        "date": "2026-03-28T15:59:08.560000+00:00"
+        "lat": 52.0927,
+        "lng": 160.7631,
+        "mag": 4.5,
+        "title": "M 4.5 - 180 km SE of Petropavlovsk-Kamchatsky, Russia",
+        "date": "2026-03-28T15:59:08.316000+00:00"
       },
       {
         "id": "us7000s8dk",
         "type": "earthquake",
-        "lat": 16.5453,
-        "lng": -98.3736,
+        "lat": 16.2783,
+        "lng": -98.4457,
         "mag": 4.9,
-        "title": "M 4.9 - 4 km NW of San Juan Bautista Lo de Soto, Mexico",
-        "date": "2026-03-28T15:02:10.052000+00:00"
+        "title": "M 4.9 - 6 km S of Santiago Tepextla, Mexico",
+        "date": "2026-03-28T15:02:07.026000+00:00"
+      },
+      {
+        "id": "us7000sb66",
+        "type": "earthquake",
+        "lat": -5.6389,
+        "lng": 149.069,
+        "mag": 4.5,
+        "title": "M 4.5 - 82 km NW of Kandrian, Papua New Guinea",
+        "date": "2026-03-28T15:01:46.452000+00:00"
       },
       {
         "id": "us7000s8d7",
@@ -3687,11 +4029,11 @@
       {
         "id": "us7000s88b",
         "type": "earthquake",
-        "lat": -57.031,
-        "lng": -26.4035,
-        "mag": 4.7,
-        "title": "M 4.7 - South Sandwich Islands region",
-        "date": "2026-03-27T20:10:43.571000+00:00"
+        "lat": -57.0534,
+        "lng": -26.4051,
+        "mag": 4.6,
+        "title": "M 4.6 - South Sandwich Islands region",
+        "date": "2026-03-27T20:10:43.109000+00:00"
       },
       {
         "id": "us6000sn97",
@@ -3948,11 +4290,11 @@
       {
         "id": "us7000s7re",
         "type": "earthquake",
-        "lat": -23.3111,
-        "lng": 170.6301,
+        "lat": -23.3355,
+        "lng": 170.6163,
         "mag": 4.7,
         "title": "M 4.7 - southeast of the Loyalty Islands",
-        "date": "2026-03-26T09:08:34.006000+00:00"
+        "date": "2026-03-26T09:08:33.946000+00:00"
       },
       {
         "id": "us7000s7rc",
@@ -3975,11 +4317,11 @@
       {
         "id": "us7000s7qi",
         "type": "earthquake",
-        "lat": -7.2698,
-        "lng": 120.3547,
+        "lat": -7.2688,
+        "lng": 120.358,
         "mag": 4.6,
         "title": "M 4.6 - 145 km NNE of Labuan Bajo, Indonesia",
-        "date": "2026-03-26T05:32:24.234000+00:00"
+        "date": "2026-03-26T05:32:24.233000+00:00"
       },
       {
         "id": "us6000sm4g",
@@ -4160,351 +4502,9 @@
         "mag": 5,
         "title": "M 5.0 - 158 km W of Neiafu, Tonga",
         "date": "2026-03-25T02:24:40.600000+00:00"
-      },
-      {
-        "id": "us6000sm1h",
-        "type": "earthquake",
-        "lat": -5.7625,
-        "lng": 153.1523,
-        "mag": 4.6,
-        "title": "M 4.6 - 185 km SSE of Kokopo, Papua New Guinea",
-        "date": "2026-03-24T23:18:22.439000+00:00"
-      },
-      {
-        "id": "us7000s7ex",
-        "type": "earthquake",
-        "lat": 52.2733,
-        "lng": 160.7536,
-        "mag": 5,
-        "title": "M 5.0 - 168 km ESE of Petropavlovsk-Kamchatsky, Russia",
-        "date": "2026-03-24T22:35:49.010000+00:00"
-      },
-      {
-        "id": "us7000s7er",
-        "type": "earthquake",
-        "lat": -18.586,
-        "lng": -175.6873,
-        "mag": 4.6,
-        "title": "M 4.6 - 179 km W of Neiafu, Tonga",
-        "date": "2026-03-24T21:57:36.957000+00:00"
-      },
-      {
-        "id": "us7000s7ee",
-        "type": "earthquake",
-        "lat": 52.2729,
-        "lng": 176.3839,
-        "mag": 5.2,
-        "title": "M 5.2 - 226 km ESE of Attu Station, Alaska",
-        "date": "2026-03-24T20:59:35.952000+00:00"
-      },
-      {
-        "id": "us7000s7ed",
-        "type": "earthquake",
-        "lat": -21.8456,
-        "lng": 68.8952,
-        "mag": 4.9,
-        "title": "M 4.9 - Mid-Indian Ridge",
-        "date": "2026-03-24T20:47:59.248000+00:00"
-      },
-      {
-        "id": "us7000s7cn",
-        "type": "earthquake",
-        "lat": 51.6256,
-        "lng": -176.6784,
-        "mag": 4.5,
-        "title": "M 4.5 - 27 km S of Adak, Alaska",
-        "date": "2026-03-24T16:43:30.875000+00:00"
-      },
-      {
-        "id": "us7000s7cg",
-        "type": "earthquake",
-        "lat": -14.9874,
-        "lng": -72.6318,
-        "mag": 4.5,
-        "title": "M 4.5 - 10 km NE of Puyca, Peru",
-        "date": "2026-03-24T15:36:43.163000+00:00"
-      },
-      {
-        "id": "us6000sm15",
-        "type": "earthquake",
-        "lat": -17.7128,
-        "lng": -178.354,
-        "mag": 4.6,
-        "title": "M 4.6 - 249 km E of Levuka, Fiji",
-        "date": "2026-03-24T14:04:13.765000+00:00"
-      },
-      {
-        "id": "us6000sm12",
-        "type": "earthquake",
-        "lat": -14.1747,
-        "lng": 167.4219,
-        "mag": 4.5,
-        "title": "M 4.5 - 35 km SSW of Sola, Vanuatu",
-        "date": "2026-03-24T13:26:29.122000+00:00"
-      },
-      {
-        "id": "us7000s7a9",
-        "type": "earthquake",
-        "lat": -20.0026,
-        "lng": -70.9658,
-        "mag": 4.6,
-        "title": "M 4.6 - 88 km WNW of Puerto, Chile",
-        "date": "2026-03-24T09:07:19.267000+00:00"
-      },
-      {
-        "id": "us7000s7a4",
-        "type": "earthquake",
-        "lat": -23.8106,
-        "lng": -179.5854,
-        "mag": 4.7,
-        "title": "M 4.7 - south of the Fiji Islands",
-        "date": "2026-03-24T08:34:38.158000+00:00"
-      },
-      {
-        "id": "us7000s79u",
-        "type": "earthquake",
-        "lat": -18.5261,
-        "lng": -175.5298,
-        "mag": 4.6,
-        "title": "M 4.6 - 163 km W of Neiafu, Tonga",
-        "date": "2026-03-24T06:45:57.590000+00:00"
-      },
-      {
-        "id": "us6000sm0t",
-        "type": "earthquake",
-        "lat": -2.9839,
-        "lng": 101.0425,
-        "mag": 4.5,
-        "title": "M 4.5 - 109 km SSW of Sungai Penuh, Indonesia",
-        "date": "2026-03-24T06:11:50.358000+00:00"
-      },
-      {
-        "id": "us6000sm0r",
-        "type": "earthquake",
-        "lat": -18.219,
-        "lng": -175.3046,
-        "mag": 4.6,
-        "title": "M 4.6 - 147 km WNW of Neiafu, Tonga",
-        "date": "2026-03-24T05:51:22.749000+00:00"
-      },
-      {
-        "id": "us7000s79e",
-        "type": "earthquake",
-        "lat": -18.4489,
-        "lng": -175.4135,
-        "mag": 5.1,
-        "title": "M 5.1 - 152 km W of Neiafu, Tonga",
-        "date": "2026-03-24T05:22:23.968000+00:00"
-      },
-      {
-        "id": "us7000s799",
-        "type": "earthquake",
-        "lat": -18.1688,
-        "lng": -175.195,
-        "mag": 5,
-        "title": "M 5.0 - 138 km WNW of Neiafu, Tonga",
-        "date": "2026-03-24T05:18:32.220000+00:00"
-      },
-      {
-        "id": "us6000sm0l",
-        "type": "earthquake",
-        "lat": -18.3487,
-        "lng": -175.23,
-        "mag": 5,
-        "title": "M 5.0 - 135 km WNW of Neiafu, Tonga",
-        "date": "2026-03-24T04:51:06.863000+00:00"
-      },
-      {
-        "id": "us7000s789",
-        "type": "earthquake",
-        "lat": -18.597,
-        "lng": -175.3917,
-        "mag": 7.5,
-        "title": "M 7.5 - 148 km W of Neiafu, Tonga",
-        "date": "2026-03-24T04:37:51.514000+00:00"
-      },
-      {
-        "id": "us7000s77u",
-        "type": "earthquake",
-        "lat": 51.4525,
-        "lng": 159.7301,
-        "mag": 4.6,
-        "title": "M 4.6 - 187 km SSE of Vilyuchinsk, Russia",
-        "date": "2026-03-24T02:23:37.245000+00:00"
-      },
-      {
-        "id": "us6000sm0c",
-        "type": "earthquake",
-        "lat": -59.5352,
-        "lng": -25.8838,
-        "mag": 4.5,
-        "title": "M 4.5 - South Sandwich Islands region",
-        "date": "2026-03-24T00:54:02.399000+00:00"
-      },
-      {
-        "id": "us7000s77c",
-        "type": "earthquake",
-        "lat": -16.0545,
-        "lng": -172.9567,
-        "mag": 4.9,
-        "title": "M 4.9 - 90 km E of Hihifo, Tonga",
-        "date": "2026-03-24T00:30:04.050000+00:00"
-      },
-      {
-        "id": "us7000s774",
-        "type": "earthquake",
-        "lat": 32.3287,
-        "lng": 142.4471,
-        "mag": 4.9,
-        "title": "M 4.9 - Izu Islands, Japan region",
-        "date": "2026-03-23T23:49:10.553000+00:00"
-      },
-      {
-        "id": "us7000s775",
-        "type": "earthquake",
-        "lat": 32.2846,
-        "lng": 142.564,
-        "mag": 4.5,
-        "title": "M 4.5 - Izu Islands, Japan region",
-        "date": "2026-03-23T23:47:17.694000+00:00"
-      },
-      {
-        "id": "us7000s76x",
-        "type": "earthquake",
-        "lat": -15.9481,
-        "lng": -173.0499,
-        "mag": 4.5,
-        "title": "M 4.5 - 79 km E of Hihifo, Tonga",
-        "date": "2026-03-23T23:07:08.561000+00:00"
-      },
-      {
-        "id": "us7000s76q",
-        "type": "earthquake",
-        "lat": -19.9914,
-        "lng": -70.916,
-        "mag": 4.9,
-        "title": "M 4.9 - 83 km WNW of Puerto, Chile",
-        "date": "2026-03-23T22:52:17.090000+00:00"
-      },
-      {
-        "id": "us7000s76i",
-        "type": "earthquake",
-        "lat": -20.0312,
-        "lng": -71.0124,
-        "mag": 4.6,
-        "title": "M 4.6 - 92 km WNW of Puerto, Chile",
-        "date": "2026-03-23T22:19:19.431000+00:00"
-      },
-      {
-        "id": "us7000s9g7",
-        "type": "earthquake",
-        "lat": -57.8449,
-        "lng": -25.7193,
-        "mag": 4.5,
-        "title": "M 4.5 - South Sandwich Islands region",
-        "date": "2026-03-23T19:48:08.283000+00:00"
-      },
-      {
-        "id": "us6000sivm",
-        "type": "earthquake",
-        "lat": 29.3951,
-        "lng": 130.6543,
-        "mag": 4.6,
-        "title": "M 4.6 - 93 km S of Koshima, Japan",
-        "date": "2026-03-23T12:39:45.756000+00:00"
-      },
-      {
-        "id": "us6000siwl",
-        "type": "earthquake",
-        "lat": -15.2987,
-        "lng": -173.0189,
-        "mag": 4.6,
-        "title": "M 4.6 - 110 km NE of Hihifo, Tonga",
-        "date": "2026-03-23T11:58:49.864000+00:00"
-      },
-      {
-        "id": "us6000siv4",
-        "type": "earthquake",
-        "lat": 2.1769,
-        "lng": 126.8095,
-        "mag": 4.6,
-        "title": "M 4.6 - 142 km WNW of Tobelo, Indonesia",
-        "date": "2026-03-23T11:25:02.380000+00:00"
-      },
-      {
-        "id": "us7000s9fi",
-        "type": "earthquake",
-        "lat": -60.4887,
-        "lng": -22.7404,
-        "mag": 4.6,
-        "title": "M 4.6 - South Sandwich Islands region",
-        "date": "2026-03-23T08:45:00.201000+00:00"
-      },
-      {
-        "id": "us6000siu5",
-        "type": "earthquake",
-        "lat": -15.3073,
-        "lng": -172.8398,
-        "mag": 5,
-        "title": "M 5.0 - 125 km NE of Hihifo, Tonga",
-        "date": "2026-03-23T08:44:28.828000+00:00"
-      },
-      {
-        "id": "us6000sisy",
-        "type": "earthquake",
-        "lat": 18.4792,
-        "lng": -102.8486,
-        "mag": 4.5,
-        "title": "M 4.5 - 29 km SSW of Aguililla, Mexico",
-        "date": "2026-03-23T06:26:54.624000+00:00"
-      },
-      {
-        "id": "us6000sisb",
-        "type": "earthquake",
-        "lat": -15.5458,
-        "lng": -172.8966,
-        "mag": 5.7,
-        "title": "M 5.7 - 106 km ENE of Hihifo, Tonga",
-        "date": "2026-03-23T06:02:46.592000+00:00"
-      },
-      {
-        "id": "us6000sirk",
-        "type": "earthquake",
-        "lat": -23.4061,
-        "lng": -175.4444,
-        "mag": 4.8,
-        "title": "M 4.8 - 234 km SSW of ‘Ohonua, Tonga",
-        "date": "2026-03-23T04:23:00.205000+00:00"
-      },
-      {
-        "id": "us6000sire",
-        "type": "earthquake",
-        "lat": -19.3098,
-        "lng": 168.2542,
-        "mag": 4.6,
-        "title": "M 4.6 - 110 km WNW of Isangel, Vanuatu",
-        "date": "2026-03-23T03:48:01.110000+00:00"
-      },
-      {
-        "id": "us6000sipj",
-        "type": "earthquake",
-        "lat": 23.9067,
-        "lng": -45.9617,
-        "mag": 5.1,
-        "title": "M 5.1 - northern Mid-Atlantic Ridge",
-        "date": "2026-03-23T01:41:37.445000+00:00"
-      },
-      {
-        "id": "us6000sipe",
-        "type": "earthquake",
-        "lat": -48.8353,
-        "lng": 124.4997,
-        "mag": 5.1,
-        "title": "M 5.1 - western Indian-Antarctic Ridge",
-        "date": "2026-03-23T01:29:33.154000+00:00"
       }
     ],
     "count": 500,
-    "fetched_at": "2026-04-22T18:02:52.077896Z"
+    "fetched_at": "2026-04-24T21:25:38.031392Z"
   }
 }

@@ -1,11 +1,11 @@
-Event_type,num_events,eps_km,min_samples,num_clusters,noise_%,structure
-Complex,11,200.0,3,1,54.5,Weakly Structured
-Iceberg_A,140,300.0,3,2,0.0,Highly Structured
-Iceberg_B,85,300.0,3,3,1.2,Highly Structured
-Iceberg_C,88,300.0,3,2,0.0,Highly Structured
-Iceberg_D,173,300.0,3,3,0.6,Highly Structured
-Other,3,200.0,3,0,100.0,Scattered / Sparse
-Prescribed_Fire,755,120.0,3,25,4.9,Highly Structured
-Typhoon,41,500.0,3,1,0.0,Highly Structured
-Volcano,45,200.0,3,1,91.1,Scattered / Sparse
-Wildfire,5721,120.0,20,40,37.9,Moderately Structured
+Event_type,num_events,eps_km,min_samples,num_clusters,noise_%
+Complex,11,200.0,3,0,100.0
+Iceberg_A,140,300.0,3,2,0.0
+Iceberg_B,85,300.0,3,2,4.7
+Iceberg_C,88,300.0,3,2,0.0
+Iceberg_D,173,300.0,3,11,2.9
+Other,4,200.0,3,0,100.0
+Prescribed_Fire,772,120.0,3,60,11.5
+Typhoon,41,500.0,3,2,19.5
+Volcano,45,700.0,3,4,2.2
+Wildfire,5732,120.0,20,41,21.0

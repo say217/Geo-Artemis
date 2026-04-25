@@ -599,7 +599,10 @@
 
     /* THE BUTTONS */
     .panel-btn {
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
       width: 100%;
       background: rgba(255, 68, 68, 0.1);
       color: #fff;
@@ -612,7 +615,7 @@
       cursor: pointer;
       transition: all 0.12s ease-out;
       clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
-      text-align: left;
+      text-align: center;
       position: relative;
       overflow: hidden;
       font-weight: 600;
@@ -757,6 +760,14 @@
       border-color: rgba(255, 20, 147, 0.35) !important;
       color: #ff2a6d !important;
       position: relative;
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .panel-btn.alt-pink .btn-loader {
+      border-top-color: #ff2a6d;
     }
 
     .panel-btn.alt-pink::before {
@@ -1685,6 +1696,15 @@
       animation: pulse-default-glow 1.5s infinite ease-in-out;
     }
 
+    /* Glow for cluster markers and regions */
+    .cluster-marker-glow {
+      filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
+    }
+
+    .region-polygon-glow {
+      filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.4));
+    }
+
     @keyframes pulse-default-glow {
       0% {
         opacity: 0.7;
@@ -1746,7 +1766,7 @@
     .map-hud.bottom-left {
       bottom: 20px;
       left: 12px;
-      width: 420px;
+      width: 273px;
     }
 
     .map-hud.bottom-right {
@@ -2129,15 +2149,15 @@
 
 
     .hud-box.mini-risk {
-      padding: 6px 8px;
-      min-height: 55px;
-      width: 115px;
-      border-left: 2px solid #ff2a6d;
+      padding: 10px 14px;
+      min-height: 75px;
+      width: 180px;
+      border-left: 3px solid #ff2a6d;
       margin-top: 10px;
     }
     .hud-box.mini-risk .hud-title {
       color: #ff2a6d;
-      font-size: 6.5px;
+      font-size: 9px;
       display: flex;
       align-items: center;
       gap: 4px;
@@ -2158,13 +2178,14 @@
       max-width: 100% !important;
       width: 100%;
       border-color: #ff2a6d !important;
-      color: #ff2a6d !important;
-      background: rgba(255, 42, 109, 0.05) !important;
-      margin-top: 4px;
-      padding: 2px 4px;
-      font-size: 5.5px !important;
-      letter-spacing: 0.5px !important;
-      height: 18px;
+      color: #ffffff !important;
+      background: rgba(255, 42, 109, 0.15) !important;
+      margin-top: 8px;
+      padding: 4px 6px;
+      font-size: 8px !important;
+      letter-spacing: 1px !important;
+      height: 26px;
+      font-weight: 700;
     }
     .risk-btn:hover {
       background: #ff2a6d !important;
@@ -2783,14 +2804,14 @@
       </div>
 
       <div class="btn-group" style="padding: 6px 14px; gap: 0; flex-shrink: 0;">
-        <button id="removeClustersBtn" class="panel-btn"
+        <button id="removeClustersBtn" class="panel-btn" onclick="removeClusters()"
           style="width: 100%; background: #ff4444; border-color: #ff4444; color: #ffffff;">
           <span class="btn-icon">✕</span><span>Remove Clusters</span>
         </button>
       </div>
 
       <div class="btn-group" style="padding: 6px 14px; gap: 0; flex-shrink: 0;">
-        <button id="removeRegionsBtn" class="panel-btn"
+        <button id="removeRegionsBtn" class="panel-btn" onclick="removeRegions()"
           style="width: 100%; background: #ff4444; border-color: #ff4444; color: #ffffff;">
           <span class="btn-icon">✕</span><span>Remove Regions</span>
         </button>
@@ -2798,10 +2819,10 @@
 
       <div class="btn-group" style="padding: 4px 14px; gap: 0; flex-shrink: 0;">
         <button id="allEventsBtn" class="panel-btn alt-pink"
-          style="width: 100%; background: rgba(255, 20, 147, 0.12); border-color: rgba(255, 20, 147, 0.4); color: #ff2a6d; font-size: 7px; padding: 5px 8px;"
+          style="width: 100%; background: rgba(255, 20, 147, 0.12); border-color: rgba(255, 20, 147, 0.4); color: #ff2a6d; font-size: 8px; padding: 6px 10px;"
           data-click-sound>
           <span class="btn-icon">◆</span><span>All Events</span>
-          <span class="btn-loader" style="margin-left: 4px;"></span>
+          <span class="btn-loader"></span>
         </button>
       </div>
 
@@ -2819,6 +2840,7 @@
         <form method="post" action="/app4/train">
           <button class="panel-btn" type="submit" data-click-sound>
             <span class="btn-icon">⬡</span><span>Train Model</span>
+            <span class="btn-loader"></span>
           </button>
         </form>
       </div>
@@ -2833,6 +2855,7 @@
           <br /><br />
           <button class="panel-btn" type="submit" style="margin-top:6px;" data-click-sound>
             <span class="btn-icon">➤</span><span>Execute Predict</span>
+            <span class="btn-loader"></span>
           </button>
         </form>
       </div>
@@ -2936,8 +2959,8 @@
             <div class="risk-dot"></div>
             <span>Hazard Analysis</span>
           </div>
-          <div class="hud-val" style="font-size: 6px; opacity: 0.7;">SCANNING SECTOR 7G...</div>
-          <button class="nasa-data-btn cluster-feed-btn risk-btn" id="riskScanBtn">Initialize Deep Scan</button>
+          <div class="hud-val" style="font-size: 8px; opacity: 1; color: #ffffff; margin-top: 4px;">SCANNING SECTOR 7G...</div>
+          <button class="nasa-data-btn cluster-feed-btn risk-btn" id="riskScanBtn" style="color: #ffffff;">Initialize Deep Scan</button>
         </div>
       </div>
 
@@ -2971,7 +2994,7 @@
 
       <div class="map-hud bottom-left" id="mapHudBL">
         <!-- System Status (Moved) -->
-        <div class="hud-box system-status" style="margin-bottom: 8px; width: 200px;">
+        <div class="hud-box system-status" style="margin-bottom: 8px; width: 130px;">
           <div class="hud-title"> System Status</div>
           <div class="status-bar">
             <div class="status-bar-label">CPU</div>
@@ -2998,8 +3021,8 @@
 
         <!-- Coordinates + Earthquake side by side -->
         <div style="display: flex; gap: 8px; align-items: flex-start;">
-          <div class="hud-box" style="flex: 1;">
-            <div class="hud-title">⊕ Coordinates</div>
+          <div class="hud-box" style="flex: 0.54; font-size: 9px;">
+            <div class="hud-title" style="font-size: 8px;">⊕ Coordinates</div>
             <div class="hud-val" id="hudCoords">Hover map to track</div>
           </div>
           <div class="hud-box" style="flex: 1;">
@@ -3102,7 +3125,7 @@
 
   <!-- ══ FOOTER ══ -->
   <footer>
-    <div class="footer-text">GEO ARTEMIS // DBSCAN Hazard Engine</div>
+    <div class="footer-text">GEO ARTEMIS // HDBSCAN Hazard Engine</div>
     <div class="footer-mid">
       <span>PROJ v4.0.1</span>
       <span>|</span>
@@ -3130,12 +3153,12 @@
     });
 
     // ── Jinja data injection ──
-    const points = {{ points_json | safe }};
-    const regions = {{ regions_json | safe }};
-    const prediction = {{ prediction | tojson | safe }};
-    const showClusters = {{ show_clusters | tojson | safe }};
-    const showRegions = {{ show_regions | tojson | safe }};
-    const chartsData = {{ charts | tojson | safe }};
+    const points = {{ points_json | safe | default('[]', true) }};
+    const regions = {{ regions_json | safe | default('[]', true) }};
+    const prediction = {{ prediction | tojson | safe | default('null', true) }};
+    const showClusters = {{ show_clusters | tojson | safe | default('false', true) }};
+    const showRegions = {{ show_regions | tojson | safe | default('false', true) }};
+    const chartsData = {{ charts | tojson | safe | default('null', true) }};
 
     // ── Footer + Header clocks ──
     function tickClock() {
@@ -3230,43 +3253,84 @@
       });
     }
 
-    // ── Cluster button toggle ──
+    // ── Cluster button toggle (AJAX) ──
     const clusterToggleBtn = document.getElementById('clusterToggleBtn');
     if (clusterToggleBtn) {
-      clusterToggleBtn.addEventListener('click', (e) => {
+      clusterToggleBtn.addEventListener('click', async (e) => {
         e.preventDefault();
-        clusterToggleBtn.classList.add('active');
-        const regionBtn = document.getElementById('regionToggleBtn');
-        if (regionBtn) regionBtn.classList.remove('active');
-        clusterToggleBtn.closest('form').submit();
-      });
-    }
-
-    // ── Remove Regions ──
-    const removeRegionsBtn = document.getElementById('removeRegionsBtn');
-    if (removeRegionsBtn) {
-      removeRegionsBtn.addEventListener('click', () => {
-        if (window.map) {
-          window.map.eachLayer(layer => {
-            if (layer instanceof L.Polygon) window.map.removeLayer(layer);
-          });
+        if (clusterToggleBtn.classList.contains('active')) {
+          removeClusters();
+          return;
         }
-        document.getElementById('hudMode').innerHTML = '<b>IDLE</b>';
-        const regionBtn = document.getElementById('regionToggleBtn');
-        if (regionBtn) regionBtn.classList.remove('active');
+        
+        try {
+          const loader = clusterToggleBtn.querySelector('.btn-loader');
+          if (loader) loader.classList.add('active');
+          clusterToggleBtn.classList.add('active');
+          
+          const response = await fetch('/app4/api/cluster-points');
+          const result = await response.json();
+          
+          if (result.data && result.data.length > 0) {
+            renderClusters(result.data);
+          } else {
+            alert('⚠ No clusters found. Please train the model first.');
+            clusterToggleBtn.classList.remove('active');
+          }
+          if (loader) loader.classList.remove('active');
+        } catch (err) {
+          console.error('Cluster fetch error:', err);
+          clusterToggleBtn.classList.remove('active');
+        }
       });
     }
 
-    // ── Region button toggle ──
+    // ── Region button toggle (AJAX) ──
     const regionToggleBtn = document.getElementById('regionToggleBtn');
     if (regionToggleBtn) {
-      regionToggleBtn.addEventListener('click', (e) => {
+      regionToggleBtn.addEventListener('click', async (e) => {
         e.preventDefault();
-        regionToggleBtn.classList.add('active');
-        const clusterBtn = document.getElementById('clusterToggleBtn');
-        if (clusterBtn) clusterBtn.classList.remove('active');
-        regionToggleBtn.closest('form').submit();
+        if (regionToggleBtn.classList.contains('active')) {
+          removeRegions();
+          return;
+        }
+
+        try {
+          const loader = regionToggleBtn.querySelector('.btn-loader');
+          if (loader) loader.classList.add('active');
+          regionToggleBtn.classList.add('active');
+
+          const response = await fetch('/app4/api/cluster-regions');
+          const result = await response.json();
+
+          if (result.data && result.data.length > 0) {
+            renderRegions(result.data);
+          } else {
+            alert('⚠ No regions found. Please train the model first.');
+            regionToggleBtn.classList.remove('active');
+          }
+          if (loader) loader.classList.remove('active');
+        } catch (err) {
+          console.error('Region fetch error:', err);
+          regionToggleBtn.classList.remove('active');
+        }
       });
+    }
+
+    function removeClusters() {
+      if (window.clusterLayer) window.clusterLayer.clearLayers();
+      document.getElementById('hudClusterCount').innerHTML = '<b>--</b> regions detected';
+      document.getElementById('hudPointCount').innerHTML = '<b>--</b> data points';
+      document.getElementById('hudMode').innerHTML = '<b>IDLE</b>';
+      const clusterBtn = document.getElementById('clusterToggleBtn');
+      if (clusterBtn) clusterBtn.classList.remove('active');
+    }
+
+    function removeRegions() {
+      if (window.regionLayer) window.regionLayer.clearLayers();
+      document.getElementById('hudMode').innerHTML = '<b>IDLE</b>';
+      const regionBtn = document.getElementById('regionToggleBtn');
+      if (regionBtn) regionBtn.classList.remove('active');
     }
 
     // ── All Events 2026 ──
@@ -3359,8 +3423,32 @@
     if (chartsForm) {
       const chartsBtn = chartsForm.querySelector('button.alt-amber');
       if (chartsBtn) {
-        chartsBtn.addEventListener('click', () => { showChartsLoader(); });
+        chartsBtn.addEventListener('click', () => { 
+          showChartsLoader(); 
+          const bl = chartsBtn.querySelector('.btn-loader');
+          if (bl) bl.classList.add('active');
+        });
       }
+    }
+
+    // Loader for Train Model
+    const trainForm = document.querySelector('form[action="/app4/train"]');
+    if (trainForm) {
+      trainForm.addEventListener('submit', () => {
+        const btn = trainForm.querySelector('button');
+        const bl = btn.querySelector('.btn-loader');
+        if (bl) bl.classList.add('active');
+      });
+    }
+
+    // Loader for Predict
+    const predictForm = document.querySelector('form[action="/app4/predict"]');
+    if (predictForm) {
+      predictForm.addEventListener('submit', () => {
+        const btn = predictForm.querySelector('button[type="submit"]');
+        const bl = btn.querySelector('.btn-loader');
+        if (bl) bl.classList.add('active');
+      });
     }
 
     // ── Earthquake Points ──
@@ -3815,55 +3903,91 @@
         e.latlng.lat.toFixed(4) + ',  ' + e.latlng.lng.toFixed(4);
     });
 
-    // Color palette
-    const palette = ['rgba(255,255,255,0.73)', '#ff4444', '#0080ff', '#ffaa00', '#ff0080'];
+    // Color palette for clusters
+    const palette = ['#00f3ff', '#ff0055', '#00ff9f', '#ff9900', '#9d00ff', '#ffff00'];
 
-    // Show Regions
-    if (showRegions && regions.length > 0) {
-      regions.forEach((region, idx) => {
+    window.clusterLayer = L.layerGroup().addTo(window.map);
+    window.regionLayer = L.layerGroup().addTo(window.map);
+
+    function renderRegions(regionsList) {
+      window.regionLayer.clearLayers();
+      regionsList.forEach((region, idx) => {
         const color = palette[idx % palette.length];
-        L.polygon(region.bounds, {
-          color, fillColor: color, fillOpacity: 0.08, weight: 1.5, dashArray: '4 4'
-        }).bindPopup(
-          `<div style="font-size:10px;font-family:'Share Tech Mono',monospace;line-height:1.8">` +
-          `<span style="color:${color};font-size:8px;letter-spacing:2px">REGION ${region.cluster}</span><br/>` +
-          `EVENTS &nbsp;: <b>${region.count}</b><br/>CENTER &nbsp;: ${region.center[0].toFixed(2)}, ${region.center[1].toFixed(2)}</div>`
-        ).addTo(window.map);
+        const polygon = L.polygon(region.bounds, {
+          color: color,
+          fillColor: color,
+          fillOpacity: 0.06, // Lower opacity
+          weight: 1.5,
+          className: 'region-polygon-glow'
+        });
+        
+        polygon.bindPopup(
+          `<div style="font-size:10px;font-family:'Share Tech Mono',monospace;line-height:1.8;color:#fff;min-width:140px;">` +
+          `<span style="color:${color};font-size:9px;letter-spacing:1px;font-weight:bold;">REGION ${region.cluster}</span><br/>` +
+          `<div style="height:1px;background:rgba(255,255,255,0.08);margin:4px 0;"></div>` +
+          `EVENTS : <b>${region.count}</b><br/>` +
+          `LAT &nbsp;&nbsp;: ${region.center[0].toFixed(3)}<br/>` +
+          `LON &nbsp;&nbsp;: ${region.center[1].toFixed(3)}</div>`
+        );
+
+        polygon.on('mouseover', function() {
+          this.setStyle({ fillOpacity: 0.15, weight: 2 });
+        });
+        polygon.on('mouseout', function() {
+          this.setStyle({ fillOpacity: 0.06, weight: 1.5 });
+        });
+
+        polygon.addTo(window.regionLayer);
       });
-      document.getElementById('hudMode').innerHTML = '<b style="color:var(--green)">REGIONS</b>';
+      document.getElementById('hudMode').innerHTML = '<b style="color:#00ff9f">REGION OVERLAY</b>';
+      if (regionsList.length > 0 && window.map) {
+        const allBounds = regionsList.map(r => r.bounds).flat();
+        if (allBounds.length > 0) window.map.fitBounds(L.latLngBounds(allBounds), { padding: [50, 50] });
+      }
     }
 
-    // Show Clusters
-    if (showClusters && points.length > 0) {
+    function renderClusters(pointsList) {
+      window.clusterLayer.clearLayers();
       let clusters = {};
-      points.forEach(p => { clusters[p.cluster] = (clusters[p.cluster] || 0) + 1; });
+      pointsList.forEach(p => { clusters[p.cluster] = (clusters[p.cluster] || 0) + 1; });
+      
       document.getElementById('hudClusterCount').innerHTML =
         '<b>' + Object.keys(clusters).filter(k => k != -1).length + '</b> regions detected';
-      document.getElementById('hudPointCount').innerHTML = '<b>' + points.length + '</b> data points';
-      document.getElementById('hudMode').innerHTML = '<b style="color:var(--cyan)">CLUSTERS</b>';
+      document.getElementById('hudPointCount').innerHTML = '<b>' + pointsList.length + '</b> data points';
+      document.getElementById('hudMode').innerHTML = '<b style="color:#00f3ff">CLUSTER SCAN</b>';
+      
       let delay = 0;
-      let clusterGroups = {};
-      points.forEach(p => { if (!clusterGroups[p.cluster]) clusterGroups[p.cluster] = []; clusterGroups[p.cluster].push(p); });
-      Object.keys(clusterGroups).forEach(cId => {
-        clusterGroups[cId].forEach((point) => {
-          setTimeout(() => {
-            const isNoise = point.cluster === -1;
-            const color = isNoise ? 'rgba(200,200,200,0.3)' : palette[Math.abs(point.cluster) % palette.length];
-            L.circleMarker([point.lat, point.lon], {
-              radius: isNoise ? 1.5 : 2.5, color: isNoise ? 'rgba(200,200,200,0.2)' : color,
-              fillColor: color, fillOpacity: isNoise ? 0.2 : 0.4, weight: 0.5,
-            }).bindPopup(
-              `<div style="font-size:10px;font-family:'Share Tech Mono',monospace;line-height:1.8">` +
-              `<span style="color:${color};font-size:8px;letter-spacing:2px">${point.Event_type || 'UNKNOWN'}</span><br/>` +
-              `CLUSTER : <b>${isNoise ? 'NOISE' : point.cluster}</b><br/>` +
-              `INT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ${(point.intensity ?? 0).toFixed ? (point.intensity ?? 0).toFixed(2) : 'N/A'}<br/>` +
-              `LAT/LON : ${point.lat.toFixed(3)}, ${point.lon.toFixed(3)}</div>`
-            ).addTo(window.map);
-          }, delay);
-          delay += 4;
-        });
+      pointsList.forEach((point) => {
+        setTimeout(() => {
+          const isNoise = point.cluster === -1;
+          const color = isNoise ? 'rgba(150,150,150,0.4)' : palette[Math.abs(point.cluster) % palette.length];
+          const marker = L.circleMarker([point.lat, point.lon], {
+            radius: isNoise ? 1 : 2, // Smaller points for precision
+            color: isNoise ? 'rgba(150,150,150,0.1)' : color,
+            fillColor: color,
+            fillOpacity: isNoise ? 0.2 : 0.5,
+            weight: 0.5,
+            className: isNoise ? '' : 'cluster-marker-glow'
+          });
+
+          marker.bindPopup(
+            `<div style="font-size:10px;font-family:'Share Tech Mono',monospace;line-height:1.8;color:#fff;">` +
+            `<span style="color:${color};font-size:8px;letter-spacing:2px;font-weight:bold;">${(point.Event_type || 'UNKNOWN').toUpperCase()}</span><br/>` +
+            `<div style="height:1px;background:rgba(255,255,255,0.1);margin:4px 0;"></div>` +
+            `CLUSTER : <b>${isNoise ? 'NOISE' : point.cluster}</b><br/>` +
+            `INT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ${(point.intensity ?? 0).toFixed ? (point.intensity ?? 0).toFixed(2) : 'N/A'}<br/>` +
+            `LAT/LON : ${point.lat.toFixed(3)}, ${point.lon.toFixed(3)}</div>`
+          );
+          
+          marker.addTo(window.clusterLayer);
+        }, delay);
+        delay += (pointsList.length > 1000 ? 0.5 : 1.5); // Dynamic speed
       });
     }
+
+    // Initial load from Jinja
+    if (showRegions && regions.length > 0) renderRegions(regions);
+    if (showClusters && points.length > 0) renderClusters(points);
 
     // Prediction marker
     if (prediction && prediction.lat !== undefined) {
@@ -4042,13 +4166,20 @@
       if (chartsData.geo_clusters_url) {
         const card = document.createElement('div');
         card.className = 'chart-card map-full-width';
-        card.innerHTML = `<h3>Hazard Regions — DBSCAN (All Events)</h3><iframe src="${chartsData.geo_clusters_url}" class="plotly-iframe"></iframe>`;
+        card.innerHTML = `<h3>Hazard Regions — HDBSCAN (All Events)</h3><iframe src="${chartsData.geo_clusters_url}" class="plotly-iframe"></iframe>`;
         cw.appendChild(card);
       }
       if (chartsData.geo_clusters_clean_url) {
         const card = document.createElement('div');
         card.className = 'chart-card map-full-width';
         card.innerHTML = `<h3>Clustered Hazard Regions — Noise Removed</h3><iframe src="${chartsData.geo_clusters_clean_url}" class="plotly-iframe"></iframe>`;
+        cw.appendChild(card);
+      }
+      if (chartsData.comprehensive_url) {
+        const card = document.createElement('div');
+        card.className = 'chart-card map-full-width';
+        card.style.height = 'auto';
+        card.innerHTML = `<h3>Comprehensive Hazard Analysis Dashboard</h3><iframe src="${chartsData.comprehensive_url}" class="plotly-iframe" style="height: 1000px;"></iframe>`;
         cw.appendChild(card);
       }
 

@@ -29,7 +29,7 @@ DATA_FOLDER.mkdir(parents=True, exist_ok=True)
 #                              from whatever JSON files already exist on disk.
 #                              No crashes, no quota usage, safe for dev/testing.
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-FETCH_ENABLED: bool = False  # ← flip to True when you want to test live fetching
+FETCH_ENABLED: bool = False # ← flip to True when you want to test live fetching
 
 # ── File paths ────────────────────────────────────────────────────────────────
 EVENTS_FILE = DATA_FOLDER / "events_data.json"      

@@ -25,10 +25,8 @@ IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
-# ── fetch-once guard ──────────────────────────────────────────────────────────
-# FIX: Was incorrectly initialised to True, which caused the fetch to be
-#      skipped every single time the application started.
-_data_fetched: bool = True
+# ── cache window ──────────────────────────────────────────────────────────────
+CACHE_HOURS = 12   # evry 12 hourse it refresh it self added a time stamp in the json
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #  Sources:
@@ -38,15 +36,12 @@ _data_fetched: bool = True
 
 EONET_URL = "https://eonet.gsfc.nasa.gov/api/v3/events"
 
-# NASA GIBS WMTS – MODIS Terra True Colour, 250 m, no API key required
-# Fires show as bright red hotspots, storm cloud structures clearly visible
 GIBS_TILE_URL = (
     "https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/"
     "MODIS_Terra_CorrectedReflectance_TrueColor/default/"
     "{date}/250m/{z}/{y}/{x}.jpg"
 )
 
-# Categories we care about
 CATEGORIES = ["wildfires", "severeStorms"]
 
 CATEGORY_LABELS = {
@@ -55,93 +50,134 @@ CATEGORY_LABELS = {
 }
 
 CATEGORY_EMOJI = {
-    "wildfires":    "🔥",
-    "severeStorms": "🌀",
+    "wildfires":    "",
+    "severeStorms": "",
 }
 
 REQUEST_TIMEOUT = 15
-MAX_IMAGES      = 24      # total tiles to download (12 fires + 12 storms)
-
-# FIX: Removed the hard-coded global TILE_Z/Y/X constants — tiles are now
-#      always computed per-event from the event's actual lat/lon coordinates.
-TILE_ZOOM = 6             # zoom level used for all tile downloads
+MAX_IMAGES      = 24
+TILE_ZOOM       = 6
 
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 
+def _now_utc() -> datetime:
+    return datetime.now(timezone.utc)
+
+
 def _now_iso() -> str:
-    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+    return _now_utc().isoformat().replace("+00:00", "Z")
 
 
 def _today() -> str:
-    return (datetime.now(timezone.utc) - timedelta(days=1)).strftime("%Y-%m-%d")
+    return (_now_utc() - timedelta(days=1)).strftime("%Y-%m-%d")
 
 
-def _safe_get(url: str, stream: bool = False, **kwargs) -> Optional[requests.Response]:
-    """Single GET with one 20-second retry on failure."""
+def _metadata_is_fresh() -> bool:
+    """
+    Return True if metadata.json exists AND was fetched less than CACHE_HOURS ago.
+    Reads the 'fetched_at' timestamp written by fetch_and_save_all().
+    """
+    if not META_FILE.exists():
+        logger.info("metadata.json not found — fetch required.")
+        return False
+
+    try:
+        with open(META_FILE, "r", encoding="utf-8") as fh:
+            data = json.load(fh)
+
+        fetched_at_str = data.get("fetched_at")
+        if not fetched_at_str:
+            logger.warning("metadata.json has no 'fetched_at' field — treating as stale.")
+            return False
+
+        fetched_at = datetime.fromisoformat(fetched_at_str.replace("Z", "+00:00"))
+        age = _now_utc() - fetched_at
+        age_hours = age.total_seconds() / 3600
+
+        if age_hours < CACHE_HOURS:
+            logger.info(
+                "Cache is fresh (%.1f h old, threshold %d h) — skipping fetch.",
+                age_hours, CACHE_HOURS,
+            )
+            return True
+
+        logger.info(
+            "Cache is stale (%.1f h old, threshold %d h) — re-fetching.",
+            age_hours, CACHE_HOURS,
+        )
+        return False
+
+    except (json.JSONDecodeError, ValueError, KeyError) as exc:
+        logger.warning("Could not parse metadata.json: %s — treating as stale.", exc)
+        return False
+
+
+def _api_get(url: str, **kwargs) -> Optional[requests.Response]:
+    """
+    GET for critical API calls (EONET metadata).
+    Retries once after a short 5-second pause so a transient hiccup doesn't
+    abort the whole fetch session.  Does NOT stream.
+    """
     for attempt in range(1, 3):
         try:
-            resp = requests.get(url, timeout=REQUEST_TIMEOUT, stream=stream, **kwargs)
+            resp = requests.get(url, timeout=REQUEST_TIMEOUT, **kwargs)
             resp.raise_for_status()
             return resp
         except requests.RequestException as exc:
-            logger.warning("Attempt %d failed — %s: %s", attempt, url, exc)
+            logger.warning("API attempt %d failed — %s: %s", attempt, url, exc)
             if attempt == 1:
-                logger.info("Waiting 20 s before retry …")
-                time.sleep(20)
-    logger.error("Both attempts failed, skipping: %s", url)
+                logger.info("Waiting 5 s before API retry …")
+                time.sleep(5)
+    logger.error("API: both attempts failed, skipping: %s", url)
     return None
 
 
+def _tile_get(url: str) -> Optional[requests.Response]:
+    """
+    GET for a single GIBS tile — fails instantly with NO retry and NO sleep.
+    Tiles are expendable: a bad tile is logged and skipped so the rest of the
+    batch is not delayed.
+    """
+    try:
+        resp = requests.get(url, timeout=REQUEST_TIMEOUT, stream=True)
+        resp.raise_for_status()
+        return resp
+    except requests.RequestException as exc:
+        logger.warning("Tile fetch failed (skipping, no retry) — %s: %s", url, exc)
+        return None
+
+
 def _lat_lon_to_tile(lat: float, lon: float, zoom: int):
-    """
-    Convert lat/lon to WMTS tile row/col for EPSG:4326 (geographic) tiling.
-    NASA GIBS uses a 2:1 aspect ratio grid.
-    """
-    n_tiles_y = 2 ** zoom          # rows
-    n_tiles_x = 2 * n_tiles_y      # cols (2:1)
+    """Convert lat/lon to WMTS tile row/col for EPSG:4326 geographic tiling."""
+    n_tiles_y = 2 ** zoom
+    n_tiles_x = 2 * n_tiles_y
     col = int((lon + 180.0) / 360.0 * n_tiles_x)
     row = int((90.0 - lat) / 180.0 * n_tiles_y)
-    # clamp
     col = max(0, min(col, n_tiles_x - 1))
     row = max(0, min(row, n_tiles_y - 1))
     return zoom, row, col
 
 
 def _parse_event_geometry(event: dict) -> Optional[tuple[float, float, str]]:
-    """
-    Extract (lat, lon, date_str) from an EONET event.
-
-    EONET geometry can be:
-      - A single Point:      {"type": "Point", "coordinates": [lon, lat]}
-      - A list of Points:    [{"type": "Point", "coordinates": [lon, lat], "date": "..."}, ...]
-
-    FIX: The original code assumed geometry was always a list of dicts and
-         directly indexed coords[0]/coords[1], which broke for nested lists
-         (e.g. Polygon/MultiPoint) and for Point geometries stored as
-         plain lists.  This function handles all common EONET shapes.
-    """
+    """Extract (lat, lon, date_str) from an EONET event."""
     geo = event.get("geometry", [])
     if not geo:
         return None
 
-    # Normalise: if it's a single geometry dict, wrap it
     if isinstance(geo, dict):
         geo = [geo]
 
     entry = geo[0]
     coords = entry.get("coordinates", [])
-    date_str = entry.get("date", _today())[:10]   # YYYY-MM-DD
+    date_str = entry.get("date", _today())[:10]
 
-    # Point: [lon, lat]
     if isinstance(coords[0], (int, float)):
         if len(coords) < 2:
             return None
         lon, lat = float(coords[0]), float(coords[1])
         return lat, lon, date_str
 
-    # Polygon / MultiPoint outer ring: [[lon, lat], ...]
-    # Take the centroid of the first ring for a representative location.
     if isinstance(coords[0], list):
         ring = coords[0] if isinstance(coords[0][0], list) else coords
         lons = [c[0] for c in ring if len(c) >= 2]
@@ -159,13 +195,13 @@ def _fetch_eonet_events() -> list[dict]:
     """Fetch recent open wildfire + storm events from NASA EONET."""
     all_events = []
     for cat in CATEGORIES:
-        resp = _safe_get(
+        resp = _api_get(
             EONET_URL,
             params={
                 "category": cat,
                 "status":   "open",
                 "limit":    MAX_IMAGES // len(CATEGORIES),
-                "start":    (datetime.now(timezone.utc) - timedelta(days=30)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "start":    (_now_utc() - timedelta(days=30)).strftime("%Y-%m-%dT%H:%M:%SZ"),
             },
         )
         if resp is None:
@@ -205,52 +241,155 @@ def _fetch_eonet_events() -> list[dict]:
     return all_events
 
 
-def _download_tile(event: dict, index: int) -> Optional[str]:
+def _fetch_raw_tile(date: str, z: int, y: int, x: int) -> Optional["Image.Image"]:
     """
-    Download MODIS GIBS tile closest to the event location.
-
-    FIX: Tile coordinates are now derived from the event's actual lat/lon via
-         _lat_lon_to_tile() instead of the old hard-coded (z=4, y=4, x=9)
-         constants, which pointed to a single fixed tile regardless of where
-         the event was located — causing storm tiles to be fetched from the
-         wrong location (or returning HTTP 404s).
+    Download a single GIBS tile and return it as a Pillow Image.
+    Returns None instantly if the tile errors — no retry, no sleep.
+    Tiles outside the valid grid are skipped silently.
     """
-    z, y, x = _lat_lon_to_tile(event["lat"], event["lon"], zoom=TILE_ZOOM)
-    url = GIBS_TILE_URL.format(date=event["date"], z=z, y=y, x=x)
-    logger.info(
-        "Fetching tile for '%s' [%s] → lat=%.2f lon=%.2f → z=%d y=%d x=%d date=%s",
-        event["title"], event["category"], event["lat"], event["lon"], z, y, x, event["date"],
-    )
+    from PIL import Image
+    import io
 
-    resp = _safe_get(url, stream=True)
+    n_tiles_y = 2 ** z
+    n_tiles_x = 2 * n_tiles_y
+    if not (0 <= y < n_tiles_y and 0 <= x < n_tiles_x):
+        return None   # outside grid boundary — fill with blank later
+
+    url  = GIBS_TILE_URL.format(date=date, z=z, y=y, x=x)
+    resp = _tile_get(url)
     if resp is None:
         return None
 
-    filename = f"{event['category']}_{index:03d}_{event['date']}.jpg"
-    filepath  = IMAGES_DIR / filename
     try:
-        with open(filepath, "wb") as fh:
-            for chunk in resp.iter_content(chunk_size=8192):
-                fh.write(chunk)
-        logger.info("Saved tile → %s", filename)
+        raw = b"".join(resp.iter_content(chunk_size=8192))
+        img = Image.open(io.BytesIO(raw)).convert("RGB")
+        return img
+    except Exception as exc:
+        logger.warning("Could not decode tile z=%d y=%d x=%d: %s", z, y, x, exc)
+        return None
+
+
+def _download_tile(event: dict, index: int) -> Optional[str]:
+    """
+    Fetch a 3×3 grid of GIBS tiles centred on the event's location and stitch
+    them into one composite image so the event is never cut off at a tile edge.
+
+    - Any individual tile that fails is replaced with a dark-grey blank —
+      no retry, no sleep, no delay to the rest of the batch.
+    - If the centre tile itself fails the whole event is skipped (nothing
+      useful to show).
+    - The stitched JPEG is saved with a UTC fetch timestamp in the filename.
+    """
+    from PIL import Image
+
+    z, cy, cx = _lat_lon_to_tile(event["lat"], event["lon"], zoom=TILE_ZOOM)
+    date       = event["date"]
+
+    logger.info(
+        "Stitching 3×3 tiles for '%s' [%s] → lat=%.2f lon=%.2f → centre z=%d y=%d x=%d date=%s",
+        event["title"], event["category"], event["lat"], event["lon"], z, cy, cx, date,
+    )
+
+    # ── fetch 3×3 neighbourhood ───────────────────────────────────────────────
+    grid: list[list[Optional[Image.Image]]] = []
+    tile_w = tile_h = None   # determined from the first successfully decoded tile
+
+    for dy in (-1, 0, 1):
+        row_imgs: list[Optional[Image.Image]] = []
+        for dx in (-1, 0, 1):
+            img = _fetch_raw_tile(date, z, cy + dy, cx + dx)
+            if img is not None and tile_w is None:
+                tile_w, tile_h = img.size
+            row_imgs.append(img)
+        grid.append(row_imgs)
+
+    # Centre tile is mandatory — if it failed, skip the event entirely
+    centre = grid[1][1]
+    if centre is None:
+        logger.warning(
+            "Centre tile missing for '%s' — skipping event.", event["title"]
+        )
+        return None
+
+    if tile_w is None or tile_h is None:
+        tile_w, tile_h = centre.size   # fallback
+
+    # ── stitch ───────────────────────────────────────────────────────────────
+    blank = Image.new("RGB", (tile_w, tile_h), color=(30, 30, 30))
+    canvas_w = tile_w * 3
+    canvas_h = tile_h * 3
+    canvas   = Image.new("RGB", (canvas_w, canvas_h), color=(30, 30, 30))
+
+    for row_idx, row_imgs in enumerate(grid):
+        for col_idx, img in enumerate(row_imgs):
+            paste_x = col_idx * tile_w
+            paste_y = row_idx * tile_h
+            canvas.paste(img if img is not None else blank, (paste_x, paste_y))
+            if img is None:
+                logger.debug(
+                    "Blank fill for missing tile at grid[%d][%d] (dy=%d dx=%d)",
+                    row_idx, col_idx, row_idx - 1, col_idx - 1,
+                )
+
+    # ── save ─────────────────────────────────────────────────────────────────
+    fetched_ts = _now_utc().strftime("%Y%m%dT%H%M%SZ")
+    filename   = f"{event['category']}_{index:03d}_{date}_{fetched_ts}.jpg"
+    filepath   = IMAGES_DIR / filename
+
+    try:
+        canvas.save(str(filepath), format="JPEG", quality=85, optimize=True)
+        logger.info("Saved stitched 3×3 tile → %s (%dx%d px)", filename, canvas_w, canvas_h)
         return filename
     except OSError as exc:
-        logger.error("Could not write tile %s: %s", filename, exc)
+        logger.error("Could not write stitched tile %s: %s", filename, exc)
         return None
+
+
+def _purge_old_images(keep: set) -> None:
+    """
+    Delete every .jpg in IMAGES_DIR whose filename is NOT in *keep*.
+
+    Called only AFTER new images have been saved and metadata.json has been
+    written successfully, so a failed fetch never leaves the directory empty.
+
+    Only .jpg files are touched — metadata.json and any other files are
+    left untouched regardless.
+    """
+    deleted = skipped = 0
+    for path in IMAGES_DIR.glob("*.jpg"):
+        if path.name in keep:
+            skipped += 1
+            continue
+        try:
+            path.unlink()
+            logger.info("Deleted old image → %s", path.name)
+            deleted += 1
+        except OSError as exc:
+            logger.warning("Could not delete %s: %s", path.name, exc)
+
+    logger.info(
+        "Purge complete — deleted %d old image(s), kept %d current image(s).",
+        deleted, skipped,
+    )
 
 
 def fetch_and_save_all() -> None:
     """
-    One-time fetch: pulls EONET events, downloads one MODIS tile per event,
-    writes metadata.json. Called once when the router is first activated.
+    Fetch EONET events and download one MODIS tile per event, then write
+    metadata.json.  Skips everything if metadata is less than CACHE_HOURS old.
+    Called on every route activation; the freshness check is cheap (one file read).
+
+    Cleanup order (safe):
+      1. Fetch new images and save to disk
+      2. Write metadata.json with the new filenames
+      3. Only then delete images NOT in the new set
+    This guarantees a failed fetch never wipes the previous cache.
     """
-    global _data_fetched
-    if _data_fetched:
-        logger.info("Satellite data already fetched this session — skipping.")
-        return
+    if _metadata_is_fresh():
+        return   # cache still valid — nothing to do
 
     logger.info("=" * 55)
-    logger.info("  APP6 — fetching satellite imagery …")
+    logger.info("  Fetching new satellite imagery …")
     logger.info("=" * 55)
 
     events   = _fetch_eonet_events()
@@ -263,20 +402,32 @@ def fetch_and_save_all() -> None:
         else:
             logger.warning("No tile saved for event: %s", event["title"])
 
-    # Save metadata
+    # ── write metadata first ──────────────────────────────────────────────────
+    metadata_written = False
     try:
         with open(META_FILE, "w", encoding="utf-8") as fh:
             json.dump(
-                {"fetched_at": _now_iso(), "count": len(metadata), "images": metadata},
+                {
+                    "fetched_at": _now_iso(),   # ISO-8601 UTC — used by _metadata_is_fresh()
+                    "count":      len(metadata),
+                    "images":     metadata,
+                },
                 fh, indent=2, ensure_ascii=False,
             )
         logger.info("Metadata saved → %s (%d entries)", META_FILE.name, len(metadata))
+        metadata_written = True
     except OSError as exc:
-        logger.error("Could not write metadata: %s", exc)
+        logger.error("Could not write metadata: %s — skipping purge to preserve old images.", exc)
 
-    _data_fetched = True
+    # ── purge old images only after metadata is safely on disk ────────────────
+    if metadata_written and metadata:
+        current_files = {entry["image_file"] for entry in metadata}
+        _purge_old_images(keep=current_files)
+    elif metadata_written and not metadata:
+        logger.warning("No images were fetched — skipping purge to avoid empty gallery.")
+
     logger.info("=" * 55)
-    logger.info("  APP6 — satellite fetch complete.")
+    logger.info("  Satellite fetch complete.")
     logger.info("=" * 55)
 
 
@@ -292,7 +443,7 @@ def _load_metadata() -> list[dict]:
 
 @router.get("/")
 def gallery(request: Request):
-    """Trigger one-time fetch then render the image gallery."""
+    """Check cache freshness, fetch if stale, then render the image gallery."""
     fetch_and_save_all()
     images = _load_metadata()
     return templates.TemplateResponse(

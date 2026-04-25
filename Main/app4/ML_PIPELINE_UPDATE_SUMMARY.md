@@ -37,7 +37,7 @@ Updated the ML pipeline in `Main/app4/` with enhanced data preprocessing, cluste
 
 #### New Features:
 
-##### A. Event-Type Specific DBSCAN:
+##### A. Event-Type Specific HDBSCAN:
 - Different clustering parameters per event type:
   - **Cyclone/Typhoon**: eps_km = 300 km
   - **Wildfire**: eps_km = 100 km
@@ -66,7 +66,7 @@ Updated the ML pipeline in `Main/app4/` with enhanced data preprocessing, cluste
 - `final_hazard_dataset_with_clusters.csv` - Data with cluster assignments
 - `cluster_summary.csv` - Detailed cluster statistics with risk scores
 - `High_risk_regions.csv` - High-risk regions with time-aware risk metrics
-- `dbscan_model.joblib` - Serialized model payload
+- `hdbscan_model.joblib` - Serialized model payload
 
 #### Cluster Summary Fields:
 ```
@@ -140,7 +140,7 @@ final_hazard_dataset.csv
 ├─ final_hazard_dataset_with_clusters.csv
 ├─ cluster_summary.csv
 ├─ High_risk_regions.csv
-└─ dbscan_model.joblib
+└─ hdbscan_model.joblib
     ↓
 [routes.py] - Prediction & API serving
     ↓
@@ -200,7 +200,7 @@ GET /app4/high-risk-regions
 - Supports historical data analysis and near real-time prediction
 - Risk scores adjust based on recent trends
 - Event types can be customized in `classify_event()` function
-- DBSCAN parameters can be tuned per event type in `train_and_save_model()`
+- HDBSCAN parameters can be tuned per event type in `train_and_save_model()`
 
 ---
 

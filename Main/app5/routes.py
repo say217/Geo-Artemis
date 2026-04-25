@@ -39,7 +39,7 @@ VIDEO_FILE_PATH = VIDEO_DATA_DIR / "videos.json"
 
 YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 VIDEO_REFRESH_INTERVAL = 6 * 60 * 60   # 6 hours
-MAX_VIDEOS = 8
+MAX_VIDEOS = 12
 
 NEWS_CHANNEL_IDS = [
     "UCupvZG-5ko_eiXAupbDfxWw",  # CNN

@@ -1,10 +1,34 @@
 event,date,magnitude,lat,lon
+"rx-66 Prescribed Fire, Burnett, Wisconsin",2026-04-23T14:23:00Z,1490.3,45.8508587,-92.6535178
+"Bauman Wildfire, Jackson, South Dakota",2026-04-23T12:13:00Z,1000.0,43.631,-101.3950833
+"Baldwin Fuels 6 RX Prescribed Fire, Lake, Michigan",2026-04-23T11:03:00Z,658.0,43.88275,-85.896883
+"Peterson Wildfire, Holt, Nebraska",2026-04-23T09:06:00Z,1000.0,42.12483,-99.04273
+"Andrews Wildfire, Cherry, Nebraska",2026-04-22T21:43:00Z,2500.0,42.763583,-101.004
+"Hammer Wildfire, El Paso, Colorado",2026-04-22T21:07:00Z,4900.0,38.67,-104.61
+"Taber Rec Wildfire, Bon Homme, South Dakota",2026-04-22T20:05:00Z,4000.0,42.862657,-97.647004
+"Pressey Wildfire, Cherry, Nebraska",2026-04-22T17:15:00Z,5000.0,42.246685,-101.029476
+"Lone Pine Wildfire, Becker, Minnesota",2026-04-22T13:40:00Z,1500.0,47.020535,-95.912189
+"Wells Rd Unit 1 RX Prescribed Fire, Iosco, Michigan",2026-04-22T08:34:00Z,537.0,44.425,-83.483333
+"COW CREEK Wildfire, Levy, Florida",2026-04-21T23:15:00Z,2000.0,29.2822222,-82.6311111
+"rx-73 Prescribed Fire, Burnett, Wisconsin",2026-04-21T17:12:00Z,557.3,45.8694852,-92.645347
+"MM-45- Broward (06) Wildfire, Broward, Florida",2026-04-21T16:28:00Z,9600.0,26.3002778,-80.5
+"Hwy 82 Wildfire, Brantley, Georgia",2026-04-21T12:01:00Z,5531.0,31.2222222,-81.8438889
+"DeSoto BB 9370 C507 508 509 RX Prescribed Fire, Jackson, Mississippi",2026-04-21T10:19:00Z,2564.0,30.698133,-88.86195
+"RX CALE BU 44-367 Prescribed Fire, Rapides, Louisiana",2026-04-21T09:00:00Z,1701.0,31.132467,-92.615933
+"East Side Wildfire, Carbon, Montana",2026-04-20T15:26:00Z,1241.0,45.092167,-109.3142
+"Hansen WPA RX Prescribed Fire, Clay, Nebraska",2026-04-20T15:04:00Z,642.0,40.452,-97.862
+"Krause RX Prescribed Fire, Fillmore, Nebraska",2026-04-20T15:02:00Z,535.0,40.467,-97.792
+"Burn Unit 17 RX Prescribed Fire, Sherburne, Minnesota",2026-04-20T13:16:00Z,881.0,45.525011,-93.683986
+"Peacock 545 and 159 RX Prescribed Fire, Lake, Michigan",2026-04-20T13:11:00Z,704.0,44.150617,-85.829167
 "Crews Rd (10) Wildfire, Clay, Florida",2026-04-20T10:45:00Z,1700.0,29.8861111,-81.6333333
 "RAILROAD COMPLEX Wildfire, Putnam, Florida",2026-04-19T21:13:00Z,700.0,29.7855556,-81.6330556
 "RAILROAD COMPLEX Wildfire, Putnam, Florida",2026-04-19T19:36:00Z,700.0,29.7855556,-81.6327778
+"River Road 16 RX Prescribed Fire, Iosco, Michigan",2026-04-19T15:19:00Z,613.0,44.416667,-83.591667
+"Barren Plains Units 1 &amp; 3 RX Prescribed Fire, Lake, Michigan",2026-04-19T14:53:00Z,522.0,43.849417,-85.80305
 "Pineland Rd Wildfire, Clinch, Georgia",2026-04-19T10:47:00Z,4000.0,30.7563889,-82.7680556
 "rx-45_041526 Prescribed Fire, Burnett, Wisconsin",2026-04-19T09:53:00Z,675.6,45.8375735,-92.6494912
 "Conner-Nelson Rd (45) Wildfire, Nassau, Florida",2026-04-18T14:41:00Z,500.0,30.6886111,-81.9855556
+"RX D4 Piquett Creek Prescribed Fire, Ravalli, Montana",2026-04-17T16:15:00Z,535.0,45.848167,-114.202833
 "Holm RX Prescribed Fire, Blaine, Montana",2026-04-17T12:12:00Z,705.0,48.81675,-109.41723
 "Rx Cherokee 3533 Prescribed Fire, Cherokee, Texas",2026-04-17T10:51:00Z,1300.0,31.56589,-95.10404
 "RX Trinity 3522 Prescribed Fire, Trinity, Texas",2026-04-17T10:46:00Z,500.0,31.0137,-95.2677
@@ -86,6 +110,7 @@ Super Typhoon Sinlaku,2026-04-19T18:00:00Z,50.0,28.7,156.1
 "HARRISON Wildfire, Osage, Oklahoma",2026-04-09T13:08:00Z,4934.0,36.568752,-96.849207
 "JOY Wildfire, Osage, Oklahoma",2026-04-09T11:29:00Z,5591.0,36.471122,-96.232358
 "DeSoto BB 8301 C-214 RX Prescribed Fire, Perry, Mississippi",2026-04-09T10:53:00Z,1050.0,30.974167,-88.866111
+"Cameron Creek Unit 1 RX Prescribed Fire, Fergus, Montana",2026-04-09T10:47:00Z,1116.0,46.751617,-109.100917
 "Bienville CPT 44 45 RX Prescribed Fire, Scott, Mississippi",2026-04-09T10:34:00Z,1072.0,32.3711,-89.5408
 "Rx Cherokee 3464 Prescribed Fire, Cherokee, Texas",2026-04-09T10:30:00Z,500.0,31.56518,-95.13378
 "Rosindale Road Wildfire, Bladen, North Carolina",2026-04-09T10:20:00Z,762.0,34.435,-78.5313889
@@ -114,6 +139,7 @@ Super Typhoon Sinlaku,2026-04-19T18:00:00Z,50.0,28.7,156.1
 "RX Spud Rock Prescribed Fire, Franklin, Arkansas",2026-04-08T08:24:00Z,1359.0,35.734,-93.9
 "RX Fourche Valley Unit 1 and 2 Prescribed Fire, Yell, Arkansas",2026-04-08T08:09:00Z,3441.0,34.933333,-93.666667
 "RX County Liine Prescribed Fire, Newton, Arkansas",2026-04-08T08:08:00Z,1747.0,35.845119,-93.523297
+"Piton de la Fournaise, Reunion (France)",2026-04-08T00:00:00Z,,-21.244,55.708
 "School House B RX Prescribed Fire, Clay, Alabama",2026-04-07T20:00:00Z,545.0,33.155833,-86.091944
 "Compartment 156 RX Prescribed Fire, Putnam, Georgia",2026-04-07T17:48:00Z,1178.0,33.407033,-83.376383
 "RX D2 Hog Sapphire Prescribed Fire, Ravalli, Montana",2026-04-07T13:34:00Z,800.0,46.164317,-113.877617
@@ -149,10 +175,13 @@ Super Typhoon Sinlaku,2026-04-19T18:00:00Z,50.0,28.7,156.1
 "Hilux Wildfire, Collier, Florida",2026-04-03T15:54:00Z,511.0,26.228889,-81.279167
 "SPRINGS Wildfire, Riverside, California",2026-04-03T14:19:00Z,4176.0,33.891678,-117.078415
 "rx-Young 1 Prescribed Fire, Jefferson, Wisconsin",2026-04-03T13:28:00Z,802.3,42.8455985,-88.630401
-"Sargent Wildfire, Polk, Florida",2026-04-02T17:18:00Z,2712.0,27.652481,-81.350623
+"C-31 RX Burn 2 Prescribed Fire, Aiken, South Carolina",2026-04-03T10:31:00Z,863.0,33.339944,-81.586056
+"Sargent Wildfire, Polk, Florida",2026-04-02T17:18:00Z,2523.0,30.5716667,-82.4283333
 "rx-12_ 13_ 14 Prescribed Fire, Burnett, Wisconsin",2026-04-02T11:26:00Z,655.7,45.7153853,-92.6888328
 "Rx Houston 3041 Prescribed Fire, Houston, Texas",2026-04-02T10:05:00Z,1000.0,31.407942,-95.537898
+"C-82 RX Burn 6 Prescribed Fire, Barnwell, South Carolina",2026-04-02T08:37:00Z,910.0,33.214186,-81.497269
 "RX PCS Beauchamp North Prescribed Fire, Scott, Arkansas",2026-04-01T09:11:00Z,1402.0,34.800258,-94.327475
+"Elkhorn RX Prescribed Fire, Augusta, Virginia",2026-04-01T07:48:00Z,1118.0,38.337334,-79.221611
 "Julie Pond Wildfire, Dorchester, Maryland",2026-03-31T13:22:00Z,1500.0,38.396085,-75.97625
 "Caddo Lake C-6 RX Prescribed Fire, Harrison, Texas",2026-03-31T10:13:00Z,509.0,32.667308,-94.104296
 "C-148 BLK 9 10 &amp; 11 EN RX Prescribed Fire, Newberry, South Carolina",2026-03-31T07:55:00Z,606.3,34.421667,-81.528333

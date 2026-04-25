@@ -39,7 +39,7 @@
   - Size by intensity
   - Hover data: intensity, year, month, day, cluster
   - Semi-transparent markers (opacity=0.7)
-  - Title: "Hazard Regions Discovered by DBSCAN"
+  - Title: "Hazard Regions Discovered by HDBSCAN"
 
 ---
 
@@ -120,7 +120,7 @@ All plots are saved to `Main/app4/plots/` directory:
 |------|------|-------------|
 | `high_risk_regions.html` | HTML | Interactive high-risk region centroids map |
 | `comprehensive_analysis.png` | PNG | 4-panel analysis dashboard |
-| `clustered_events.html` | HTML | Interactive DBSCAN clustered events map |
+| `clustered_events.html` | HTML | Interactive HDBSCAN clustered events map |
 | `all_events_by_type.html` | HTML | Interactive baseline view (all events) |
 
 ---
@@ -172,7 +172,7 @@ GET /app4/wildfire-intensity-trend
 ### Explore Clustered Events
 ```bash
 GET /app4/plot/clustered_events
-# Opens interactive map of DBSCAN clusters
+# Opens interactive map of HDBSCAN clusters
 ```
 
 ---
