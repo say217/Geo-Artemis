@@ -51,13 +51,25 @@ NEWS_CHANNEL_IDS = [
     "UCsytnH6PDjPz0pgfzbqpeDw",  # Sky News
     "UCt4t-jeY85JegMlZ-E5UWtA",  # India Today
     "UCIRYBXDze5krPDzAEOxFGVA",  # WION
+    "UCwqusr8YDwM-3mEYTDeJHzw",  # Republic World
+    "UCIvaYmXn910QMdemBG3v1pQ",  # Zee News
+    "UCknLrEdhRCp1aegoMqRaCZg",  # DW News
+    "UCQfwfsi5VrQ8yKZ-UWmAEFg",  # France 24
+    "UCBi2mrWuNuyYy4gbM6fU18Q",  # ABC News
+    "UC8p1vwvWtl6T73JiExfWs1g",  # CBS News
+    "UCeY0bbntWzzVIaj2z3QigXg",  # NBC News
+    "UCGTUbwceCMibvpbd2NaIP7A",  # The Weather Channel
+    "UCuYqi3hOfz6-3Hdp6tEJjAg",  # AccuWeather
+    "UCIALMKvObZNtJ6AmdCLP7Lg",  # Bloomberg Television
+    "UCKwucPzHZ7zCUIf7If-Wo1g",  # DD News
 ]
 
 VIDEO_SEARCH_QUERY = (
     "climate change OR natural disaster OR flood OR earthquake OR wildfire "
     "OR cyclone OR heatwave OR tsunami OR war OR conflict OR pollution "
-    "OR environmental hazard OR international summit"
+    "OR environmental hazard OR international summit OR geopolitics OR weather forecast"
 )
+
 
 
 # ── YouTube helpers (unchanged) ───────────────────────────────────────────────
@@ -341,3 +353,12 @@ async def get_video_feed(request: Request):
 
     data = get_or_refresh_videos()
     return JSONResponse(data)
+
+
+@router.on_event("startup")
+async def startup_video_prefetch():
+    """Ensure video data is fresh on startup without overloading APIs."""
+    import threading
+    # Run in a thread to not block startup if fetching takes time
+    thread = threading.Thread(target=get_or_refresh_videos)
+    thread.start()

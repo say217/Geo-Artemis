@@ -29,7 +29,7 @@ DATA_FOLDER.mkdir(parents=True, exist_ok=True)
 #                              from whatever JSON files already exist on disk.
 #                              No crashes, no quota usage, safe for dev/testing.
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-FETCH_ENABLED: bool = False # ← flip to True when you want to test live fetching
+FETCH_ENABLED: bool = True # ← Set to True for live fetching; 6h cache logic protects against overloading
 
 # ── File paths ────────────────────────────────────────────────────────────────
 EVENTS_FILE = DATA_FOLDER / "events_data.json"      
@@ -128,6 +128,25 @@ def load_json(file_path: Path) -> Optional[dict]:
     except (OSError, json.JSONDecodeError) as exc:
         logger.warning("Could not read %s: %s", file_path, exc)
         return None
+
+
+def is_cache_fresh(file_path: Path, max_age_hours: int = 6) -> bool:
+    if not file_path.exists():
+        return False
+    try:
+        with open(file_path, "r", encoding="utf-8") as fh:
+            wrapped = json.load(fh)
+        saved_at_str = wrapped.get("saved_at")
+        if not saved_at_str:
+            return False
+        # Handle the 'Z' suffix for UTC
+        dt_str = saved_at_str.replace("Z", "+00:00")
+        saved_at = datetime.fromisoformat(dt_str)
+        now = datetime.now(timezone.utc)
+        return (now - saved_at) < timedelta(hours=max_age_hours)
+    except Exception as exc:
+        logger.warning("Cache freshness check failed for %s: %s", file_path.name, exc)
+        return False
 
 
 def _extract_coords(event: dict):
@@ -423,23 +442,37 @@ def prefetch_all_data() -> None:
     logger.info("=" * 55)
 
     # 1. Events (also writes per-category full files)
-    events_payload = fetch_events_payload()
-    save_json(EVENTS_FILE, events_payload)
-    logger.info("Globe events cache: %d display points saved", len(events_payload["events"]))
+    if is_cache_fresh(EVENTS_FILE, 6):
+        logger.info("Events cache is fresh (within 6h) — skipping fetch.")
+    else:
+        logger.info("Events cache stale or missing — fetching live data.")
+        events_payload = fetch_events_payload()
+        save_json(EVENTS_FILE, events_payload)
+        logger.info("Globe events cache: %d display points saved", len(events_payload["events"]))
 
     # 2. News — one file per category, throttled to avoid 429s
     import time
-    for idx, (category, file_path) in enumerate(NEWS_FILES.items()):
-        if idx > 0:
-            logger.info("Waiting %ds before next NewsAPI request …", NEWS_FETCH_DELAY)
-            time.sleep(NEWS_FETCH_DELAY)
+    last_fetch_time = 0.0
+    for category, file_path in NEWS_FILES.items():
+        if is_cache_fresh(file_path, 6):
+            logger.info("News cache for '%-10s' is fresh — skipping.", category)
+            continue
+
+        # Throttling
+        now_time = time.time()
+        if last_fetch_time > 0 and (now_time - last_fetch_time) < NEWS_FETCH_DELAY:
+            wait_time = NEWS_FETCH_DELAY - (now_time - last_fetch_time)
+            logger.info("Throttling NewsAPI: waiting %.1fs …", wait_time)
+            time.sleep(wait_time)
 
         payload = fetch_news_for_category(category)
         save_json(file_path, payload)
+        last_fetch_time = time.time()
 
     logger.info("=" * 55)
-    logger.info("  Prefetch complete → %s", DATA_FOLDER)
+    logger.info("  Startup data sync complete.")
     logger.info("=" * 55)
+
 
 
 # ── FastAPI startup hook ──────────────────────────────────────────────────────

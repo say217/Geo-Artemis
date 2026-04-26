@@ -4,13 +4,33 @@ from pathlib import Path
 import pandas as pd
 
 
+import threading
+from functools import lru_cache
+
+# Cache for the dataframe
+_cached_df = None
+_cached_df_time = 0
+
 def _get_df():
-    """Load clustered dataset."""
+    """Load clustered dataset with caching."""
+    global _cached_df, _cached_df_time
     base_dir = Path(__file__).resolve().parent
     data_path = base_dir / "Data" / "final_hazard_dataset_with_clusters.csv"
+    
     if not data_path.exists():
         return None
-    return pd.read_csv(data_path)
+    
+    try:
+        mtime = data_path.stat().st_mtime
+        if _cached_df is not None and mtime <= _cached_df_time:
+            return _cached_df
+            
+        _cached_df = pd.read_csv(data_path)
+        _cached_df_time = mtime
+        return _cached_df
+    except Exception as e:
+        print(f"Error loading dataframe: {e}")
+        return None
 
 
 def read_plot_html(file_path: str) -> str:
@@ -167,8 +187,14 @@ def get_magnitude_distribution_data():
     }
 
 
-def get_geo_clusters_html():
+def get_geo_clusters_html(force=False):
     """Map 1: All events colored by cluster - saves HTML file and returns path."""
+    plot_dir = Path(__file__).resolve().parent / "plots"
+    file_path = plot_dir / "geo_clusters_all.html"
+    
+    if not force and file_path.exists():
+        return str(file_path)
+
     df = _get_df()
     if df is None or len(df) == 0:
         return None
@@ -204,8 +230,14 @@ def get_geo_clusters_html():
     return str(file_path)
 
 
-def get_geo_clusters_clean_html():
+def get_geo_clusters_clean_html(force=False):
     """Map 2: Clean view (no noise points) - saves HTML file and returns path."""
+    plot_dir = Path(__file__).resolve().parent / "plots"
+    file_path = plot_dir / "geo_clusters_clean.html"
+    
+    if not force and file_path.exists():
+        return str(file_path)
+
     df = _get_df()
     if df is None or len(df) == 0:
         return None
@@ -242,8 +274,14 @@ def get_geo_clusters_clean_html():
     return str(file_path)
 
 
-def get_high_risk_regions_html():
+def get_high_risk_regions_html(force=False):
     """Map 3: High-risk regions centroid view - saves HTML file and returns path."""
+    plot_dir = Path(__file__).resolve().parent / "plots"
+    file_path = plot_dir / "high_risk_regions.html"
+    
+    if not force and file_path.exists():
+        return str(file_path)
+
     df = _get_df()
     if df is None or len(df) == 0:
         return None
@@ -299,8 +337,14 @@ def get_high_risk_regions_html():
         return None
 
 
-def get_comprehensive_analysis_html():
+def get_comprehensive_analysis_html(force=False):
     """Comprehensive 4-panel matplotlib analysis - saves HTML file and returns path."""
+    plot_dir = Path(__file__).resolve().parent / "plots"
+    file_path = plot_dir / "comprehensive_analysis.html"
+    
+    if not force and file_path.exists():
+        return str(file_path)
+
     df = _get_df()
     if df is None or len(df) == 0:
         return None
@@ -463,8 +507,14 @@ def get_comprehensive_analysis_html():
         return None
 
 
-def get_clustered_events_html():
+def get_clustered_events_html(force=False):
     """Map: Hazard regions discovered by HDBSCAN - saves HTML file and returns path."""
+    plot_dir = Path(__file__).resolve().parent / "plots"
+    file_path = plot_dir / "clustered_events.html"
+    
+    if not force and file_path.exists():
+        return str(file_path)
+
     df = _get_df()
     if df is None or len(df) == 0:
         return None
@@ -515,8 +565,14 @@ def get_clustered_events_html():
         return None
 
 
-def get_all_events_by_type_html():
+def get_all_events_by_type_html(force=False):
     """Map: All hazard events by type baseline view - saves HTML file and returns path."""
+    plot_dir = Path(__file__).resolve().parent / "plots"
+    file_path = plot_dir / "all_events_by_type.html"
+    
+    if not force and file_path.exists():
+        return str(file_path)
+
     df = _get_df()
     if df is None or len(df) == 0:
         return None
@@ -651,4 +707,24 @@ def get_high_risk_regions_data():
     except Exception as e:
         print(f"Error loading high-risk regions data: {e}")
         return None
+
+
+def precompute_all_plots(force=False):
+    """Start background thread to precompute all plots."""
+    def _task():
+        print("[PLOTS] Starting background precomputation...")
+        try:
+            get_geo_clusters_html(force=force)
+            get_geo_clusters_clean_html(force=force)
+            get_high_risk_regions_html(force=force)
+            get_comprehensive_analysis_html(force=force)
+            get_clustered_events_html(force=force)
+            get_all_events_by_type_html(force=force)
+            print("[PLOTS] Background precomputation finished successfully.")
+        except Exception as e:
+            print(f"[PLOTS] Background precomputation failed: {e}")
+
+    thread = threading.Thread(target=_task, daemon=True)
+    thread.start()
+    return thread
 

@@ -26,7 +26,7 @@ IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 # ── cache window ──────────────────────────────────────────────────────────────
-CACHE_HOURS = 12   # evry 12 hourse it refresh it self added a time stamp in the json
+CACHE_HOURS = 6   # Every 6 hours it refreshes itself; added a timestamp in the JSON
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #  Sources:
@@ -443,8 +443,7 @@ def _load_metadata() -> list[dict]:
 
 @router.get("/")
 def gallery(request: Request):
-    """Check cache freshness, fetch if stale, then render the image gallery."""
-    fetch_and_save_all()
+    """Render the image gallery using cached metadata."""
     images = _load_metadata()
     return templates.TemplateResponse(
         "gallery.html",
@@ -454,8 +453,7 @@ def gallery(request: Request):
 
 @router.get("/image/{index}")
 def image_detail(request: Request, index: int):
-    """Detail page for a single satellite image."""
-    fetch_and_save_all()
+    """Detail page for a single satellite image (cached)."""
     images = _load_metadata()
     if index < 0 or index >= len(images):
         return templates.TemplateResponse(
@@ -472,5 +470,4 @@ def image_detail(request: Request, index: int):
 @router.get("/api/images")
 def api_images():
     """JSON endpoint returning full image metadata list."""
-    fetch_and_save_all()
     return JSONResponse(content={"images": _load_metadata()})

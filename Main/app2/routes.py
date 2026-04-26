@@ -97,6 +97,17 @@ def ensure_tables():
         )
         if cursor.fetchone()[0] == 0:
             cursor.execute("ALTER TABLE users ADD COLUMN code_expires_at DATETIME")
+
+        cursor.execute(
+            """
+            SELECT COUNT(*)
+            FROM information_schema.COLUMNS
+            WHERE TABLE_SCHEMA = %s AND TABLE_NAME = 'users' AND COLUMN_NAME = 'welcome_email_sent'
+            """,
+            (DB_NAME,),
+        )
+        if cursor.fetchone()[0] == 0:
+            cursor.execute("ALTER TABLE users ADD COLUMN welcome_email_sent TINYINT(1) NOT NULL DEFAULT 0")
         conn.commit()
     finally:
         conn.close()
@@ -179,7 +190,6 @@ def send_welcome_email(recipient_email: str) -> str | None:
         "• View hazard clustering and hotspot analysis\n"
         "• Access advanced predictive analytics\n"
         "• Set up custom alerts and notifications\n\n"
-        "Log in now: https://artemis.example.com/app1/\n\n"
         "Thank you for joining Geo Artemis.\n"
         "— The Geo Artemis Team"
     )
@@ -207,15 +217,8 @@ def send_welcome_email(recipient_email: str) -> str | None:
                 <li>Configure custom alerts for regions of interest</li>
               </ul>
             </div>
-            
-            <div style="margin:18px 0;padding:0;">
-              <p style="margin:0 0 10px 0;color:#d0d0d8;font-size:14px;line-height:1.6;">Get started now by logging into the dashboard:</p>
-              <div style="padding:12px 16px;background:linear-gradient(135deg,#ff4444 0%,rgba(255,68,68,0.7) 100%);border-radius:1px;text-align:center;">
-                <a href="https://artemis.example.com/app1/" style="color:#ffffff;text-decoration:none;font-weight:600;font-size:14px;letter-spacing:1px;text-transform:uppercase;">Open Dashboard &#x2192;</a>
-              </div>
-            </div>
-            
             <p style="margin:16px 0 0 0;color:#9a9a9e;font-size:12px;line-height:1.5;">If you have any questions or need assistance, our support team is available 24/7.</p>
+
           </div>
           <!-- Footer -->
           <div style="padding:12px 24px;border-top:1px solid rgba(255,68,68,0.2);background:#0a0a0e;color:#7a7a82;font-size:10px;line-height:1.5;">
@@ -370,7 +373,7 @@ def login(request: Request, email: str = Form(...), password: str = Form(...)):
     try:
         cursor = conn.cursor(dictionary=True)
         cursor.execute(
-            "SELECT id, password_hash, is_verified FROM users WHERE email = %s",
+            "SELECT id, password_hash, is_verified, welcome_email_sent FROM users WHERE email = %s",
             (email,),
         )
         user = cursor.fetchone()
@@ -401,8 +404,17 @@ def login(request: Request, email: str = Form(...), password: str = Form(...)):
 
     request.session["user_id"] = user["id"]
     request.session["is_verified"] = True
-    if WELCOME_EMAIL_ACTIVE:
+
+    if WELCOME_EMAIL_ACTIVE and not user["welcome_email_sent"]:
         send_welcome_email(email)
+        conn = get_db_connection()
+        try:
+            cursor = conn.cursor()
+            cursor.execute("UPDATE users SET welcome_email_sent = 1 WHERE id = %s", (user["id"],))
+            conn.commit()
+        finally:
+            conn.close()
+
     response = RedirectResponse(url="/app1/", status_code=status.HTTP_303_SEE_OTHER)
     return response
 

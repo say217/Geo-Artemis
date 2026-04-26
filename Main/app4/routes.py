@@ -29,6 +29,7 @@ from .plots import (
     get_volcano_intensity_trend_data,
     get_event_type_count_data,
     get_high_risk_regions_data,
+    precompute_all_plots,
 )
 
 router = APIRouter()
@@ -319,8 +320,12 @@ def train(request: Request):
         train_and_save_model(prepared_data_path, model_path, data_path)
         print(f"[TRAIN] Model saved at:    {model_path}")
         print(f"[TRAIN] Clusters saved at: {data_path}")
+        
+        # Trigger background precomputation of plots
+        print("[TRAIN] Triggering background plot precomputation...")
+        precompute_all_plots(force=True)
 
-        message = "[OK] Model trained & saved successfully. Click 'Show Clusters' to visualize."
+        message = "[OK] Model trained & saved successfully. Background plot generation started. Charts will be available instantly."
     except Exception as exc:
         print(f"[TRAIN ERROR] {str(exc)}")
         message = f"[ERROR] Training failed: {str(exc)}"

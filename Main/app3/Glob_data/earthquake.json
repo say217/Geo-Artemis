@@ -1,144 +1,126 @@
 {
-  "saved_at": "2026-04-24T21:25:53.779298Z",
+  "saved_at": "2026-04-26T15:40:17.373612Z",
   "data": {
     "news": [
       {
         "type": "earthquake",
-        "title": "Diana Ross Scenes Cut From Michael Jackson Biopic, Kat Graham Confirms",
-        "description": "Actress Kat Graham explains why her scenes as Diana Ross are no longer in the new Michael Jackson biopic. Get all the details.",
-        "source": "Billboard",
-        "url": "http://www.billboard.com/music/music-news/diana-ross-scenes-michael-jackson-movie-cut-kat-graham-1236230326/",
-        "image": "https://www.billboard.com/wp-content/uploads/2026/04/P102EU9Z-e1776977770317.jpg?w=1024",
-        "date": "2026-04-23T21:20:29Z"
+        "title": "Japan wildfires rage: Over 1,000 firefighters battle flames as 3,000 flee Otsuchi",
+        "description": "The fires, which broke out earlier this week in mountainous terrain in Iwate Prefecture, have burned through around 730 hectares.",
+        "source": "The Indian Express",
+        "url": "https://indianexpress.com/article/world/japan-iwate-wildfires-evacuations-firefighters-response-10655840/",
+        "image": "https://images.indianexpress.com/2026/04/IE-Image-32-1.jpg",
+        "date": "2026-04-25T15:34:37Z"
       },
       {
         "type": "earthquake",
-        "title": "These Beautiful Golden Photo Prints Fell Out of Favor Over a Century Ago",
-        "description": "A new exhibit celebrates the golden beauty of the classic orotone photo print, giving the eye-catching but short-lived photographic printing process more time in the spotlight.\n[Read More]",
-        "source": "PetaPixel",
-        "url": "https://petapixel.com/2026/04/23/these-beautiful-golden-photo-prints-fell-out-of-favor-over-a-century-ago/",
-        "image": "https://petapixel.com/assets/uploads/2026/04/orotone-robert-mann-exhibit-featured.jpg",
-        "date": "2026-04-23T20:22:55Z"
+        "title": "Bank robber's cellphone gave him away; now Supreme Court hears his case",
+        "description": "Supreme Court weighs whether geofence warrants violate the Fourth Amendment.",
+        "source": "Abcnews.com",
+        "url": "https://abcnews.com/Technology/wireStory/bank-robbers-cellphone-gave-now-supreme-court-hearing-132376827",
+        "image": "https://i.abcnewsfe.com/a/c1868655-e89f-440c-94aa-35766eccf283/wirestory_a61c200a806cba89ded43685279eccae_16x9.jpg?w=1600",
+        "date": "2026-04-25T14:43:55Z"
       },
       {
         "type": "earthquake",
-        "title": "PL & FA Cup Predictions: Wolves to stamp Spurs' passport to the Championship",
-        "description": "Our football betting expert Jones Knows offers his insight across the weekend action and is tipping Wolves to send Tottenham closer to a remarkable relegation.",
-        "source": "Sky Sports",
-        "url": "https://www.skysports.com/football/news/11661/13535651/premier-league-and-fa-cup-predictions-and-best-bets-tottenhams-woes-to-grow-at-wolves",
-        "image": "https://e0.365dm.com/26/04/1600x900/skysports-premier-league-premier-league-prediction_7223294.jpg?20260418114637",
-        "date": "2026-04-23T20:00:00Z"
+        "title": "African governments need to take urgent action on fertiliser shortages",
+        "description": "Tensions in the Strait of Hormuz have slowed fertiliser shipments which could put harvests at risk.",
+        "source": "Al Jazeera English",
+        "url": "https://www.aljazeera.com/opinions/2026/4/25/african-governments-need-to-take-urgent-action-on-fertiliser-shortages",
+        "image": "https://www.aljazeera.com/wp-content/uploads/2026/04/2026-04-06T143247Z_28407230_RC2MJKAH1T4N_RTRMADP_3_NIGERIA-OIL-DANGOTE-1777120843.jpg?resize=1920%2C1440",
+        "date": "2026-04-25T14:27:27Z"
       },
       {
         "type": "earthquake",
-        "title": "Missouri's Cooter rattled by earthquake with shockwaves felt across multiple states",
-        "description": "A small Missouri town at the heart of an ancient seismic zone has experienced a large earthquake, sending shockwaves for hundreds of miles.",
-        "source": "Dailymail.com",
-        "url": "https://www.dailymail.com/sciencetech/article-15760137/missouri-cooter-earthquake-new-madrid-zone.html",
-        "image": "https://i.dailymail.com/1s/2026/04/23/20/87825067-0-image-m-16_1776971474196.jpg",
-        "date": "2026-04-23T19:18:38Z"
+        "title": "A bank robber's cellphone gave him away. His case is at the Supreme Court",
+        "description": "Okello Chatrie’s cellphone gave him away. Chatrie made off with $195,000 from the bank he robbed in suburban Richmond, Virginia, and he eluded the police. But then they turned to a powerful technologi",
+        "source": "Associated Press",
+        "url": "https://apnews.com/article/supreme-court-geofence-warrants-unreasonable-searches-constitution-a61c200a806cba89ded43685279eccae",
+        "image": "https://dims.apnews.com/dims4/default/da43be3/2147483647/strip/true/crop/4607x3070+428+0/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F25%2F51%2F757c4e4f75c901c7d035342112d1%2F2eb460692ed4422d80d4d92c20135adc",
+        "date": "2026-04-25T13:57:45Z"
       },
       {
         "type": "earthquake",
-        "title": "Seismic ‘whiplash’ – new research shows what happens when earthquakes stop suddenly",
-        "description": "A new study uncovers a hidden pattern of ground motions at the end of big earthquakes that could help scientists and planners identify likely danger zones.",
-        "source": "The Conversation Africa",
-        "url": "https://theconversation.com/seismic-whiplash-new-research-shows-what-happens-when-earthquakes-stop-suddenly-280846",
-        "image": "https://images.theconversation.com/files/731779/original/file-20260422-71-ii1pk9.jpg?ixlib=rb-4.1.0&rect=0%2C252%2C5472%2C2736&q=45&auto=format&w=1356&h=668&fit=crop",
-        "date": "2026-04-23T19:00:02Z"
+        "title": "Firefighters in northern Japan struggle to contain blazes as over 3,000 people evacuated",
+        "description": "OTSUCHI, Japan: More than 1,000 firefighters in northern Japan battled to contain two wildfires for a fourth straight day on Saturday, as the blazes pushed closer to residential areas and forced",
+        "source": "CNA",
+        "url": "https://www.channelnewsasia.com/east-asia/japan-fire-iwate-blazes-otsuchi-wildfires-6080516",
+        "image": "https://dam.mediacorp.sg/image/upload/s--sLXRcGHM--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2026-04-25T084545Z_1_LYNXMPEM3O0CI_RTROPTP_3_JAPAN-WILDFIRES.JPG?itok=Ana7zDoT",
+        "date": "2026-04-25T13:39:00Z"
       },
       {
         "type": "earthquake",
-        "title": "The Best Anime of 2026 (So Far)",
-        "description": "The best anime of 2026 so far, from returning favorites like Jujutsu Kaisen and Frieren to breakout newcomers like Witch Hat Atelier and Nippon Sangoku.",
-        "source": "esquire.com",
-        "url": "https://www.esquire.com/entertainment/tv/a71110607/best-anime-of-2026/",
-        "image": "https://hips.hearstapps.com/hmg-prod/images/f83dc1cb-74ab-4f6c-b893-4b6a0d21497f.png?crop=0.940848990953xw:1xh;center,top&resize=1200:*",
-        "date": "2026-04-23T18:57:00Z"
+        "title": "Firefighters in northern Japan struggle to contain blazes as over 3,000 people evacuated",
+        "description": "More than 1,000 firefighters in northern Japan battled to contain two wildfires for a fourth straight day on Saturday, as the blazes pushed closer to residential areas and forced more than 3,000 resid",
+        "source": "Independent.ie",
+        "url": "https://www.independent.ie/world-news/firefighters-in-northern-japan-struggle-to-contain-blazes-as-over-3000-people-evacuated/a576131008.html",
+        "image": "https://focus.independent.ie/thumbor/7XWg9jUJYsuK_7fZWpasqIhxCjk=/0x0:2452x1635/629x0/prod-mh-ireland/c14c1970-29f4-43db-a9b9-2ef2c582b4b2/fbec29ce-c716-4927-a913-813e04fc507a/c14c1970-29f4-43db-a9b9-2ef2c582b4b2.jpg",
+        "date": "2026-04-25T13:26:51Z"
       },
       {
         "type": "earthquake",
-        "title": "California is ground zero for the growing battery backlash",
-        "description": "Locals worried about fire risks and industrialization are fighting developers looking to build hundreds of energy storage installations.",
-        "source": "OCRegister",
-        "url": "https://www.ocregister.com/2026/04/23/california-is-ground-zero-for-the-growing-battery-backlash/",
-        "image": "https://www.ocregister.com/wp-content/uploads/2026/04/SUT-L-MOSSFIRE-2.jpg?w=1024&h=660",
-        "date": "2026-04-23T18:20:25Z"
+        "title": "Invincible season 5: release window, likely cast, and what else we know about the Prime Video show's return",
+        "description": "Invincible season 5 is expected to premiere in early 2027 — here are the key details we know ahead of its eventual launch.",
+        "source": "TechRadar",
+        "url": "https://www.techradar.com/streaming/amazon-prime-video/invincible-season-5-hub",
+        "image": "https://cdn.mos.cms.futurecdn.net/fXGaJLMhauVd3KLgJknExb-1920-80.jpg",
+        "date": "2026-04-25T13:00:00Z"
       },
       {
         "type": "earthquake",
-        "title": "Indie Film Release Guide: April 24th [An ONTD Original]",
-        "description": "The biggest new release this weekend is Universal’s Michael, a (poorly reviewed) biopic about the late Michael Jackson. If that doesn’t grab you, there are plenty of other new releases, including John",
-        "source": "Livejournal.com",
-        "url": "https://ohnotheydidnt.livejournal.com/132252137.html",
-        "image": "https://l-files.livejournal.net/og_image/3616053/516609?v=1776968300",
-        "date": "2026-04-23T18:18:15Z"
-      },
-      {
-        "type": "earthquake",
-        "title": "Patrick Mahomes' agent reveals real story of night Kansas City Chiefs drafted him, why NFL rivals ignored star... and how he negotiated THAT record-breaking contract",
-        "description": "An NFL super agent who has represented eight No. 1 draft picks, and 64 overall in the first round, Leigh Steinberg has an eye for star quality as distinguished as anyone.",
-        "source": "Dailymail.com",
-        "url": "https://www.dailymail.com/sport/nfl/article-15749335/patrick-mahomes-agent-chiefs-draft.html",
-        "image": "https://i.dailymail.co.uk/1s/2026/04/20/19/108025775-0-image-m-19_1776708412391.jpg",
-        "date": "2026-04-23T18:16:29Z"
-      },
-      {
-        "type": "earthquake",
-        "title": "Captain Tsunami 2025 1080p WEB-DL x264-TheMrG",
-        "description": "Captain Tsunami's Army (original title) Plot: After her mother mysteriously goes missing, a young runaway tracks down an estranged family friend, convinced only he can decipher the secret meaning and ",
-        "source": "Rlsbb.to",
-        "url": "https://post.rlsbb.to/captain-tsunami-2025-1080p-web-dl-x264-themrg/",
+        "title": "eggseis 0.0.2",
+        "description": "An open-source desktop application for viewing and analyzing seismic data, with a Python plugin system.",
+        "source": "Pypi.org",
+        "url": "https://pypi.org/project/eggseis/0.0.2/",
         "image": "",
-        "date": "2026-04-23T18:05:12Z"
+        "date": "2026-04-25T12:40:50Z"
       },
       {
         "type": "earthquake",
-        "title": "The real-life KRAKEN: Giant octopuses the same size as sperm whales roamed the oceans 72 million years ago, study finds",
-        "description": "The ancient oceans were once ruled by giant 'kraken-like' octopuses that measured up to 62 feet (19m) long, new research reveals.",
-        "source": "Dailymail.com",
-        "url": "https://www.dailymail.com/sciencetech/article-15759039/KRAKEN-Giant-octopuses-size-sperm-whales.html",
-        "image": "https://i.dailymail.com/1s/2026/04/23/16/108106221-0-image-m-19_1776956716489.jpg",
-        "date": "2026-04-23T18:00:46Z"
+        "title": "eggseis 0.0.1",
+        "description": "An open-source desktop application for viewing and analyzing seismic data, with a Python plugin system.",
+        "source": "Pypi.org",
+        "url": "https://pypi.org/project/eggseis/0.0.1/",
+        "image": "",
+        "date": "2026-04-25T12:40:49Z"
       },
       {
         "type": "earthquake",
-        "title": "How do earthquakes end? A seismic 'stop sign' could help predict earthquake risk",
-        "description": "When an earthquake rupturing along a fault hits a barrier, it creates a seismic signature called the “stopping phase.” Scientists have isolated this and could use it to better predict earthquake risk",
-        "source": "Scientific American",
-        "url": "https://www.scientificamerican.com/article/how-do-earthquakes-end-a-seismic-stop-sign-could-help-predict-earthquake-risk/",
-        "image": "https://static.scientificamerican.com/dam/m/67f6c411e3c7b5d9/original/san_andreas_fault_in_california.jpg?m=1760036090.04&w=1200",
-        "date": "2026-04-23T18:00:00Z"
+        "title": "eggseis added to PyPI",
+        "description": "An open-source desktop application for viewing and analyzing seismic data, with a Python plugin system.",
+        "source": "Pypi.org",
+        "url": "https://pypi.org/project/eggseis/",
+        "image": "",
+        "date": "2026-04-25T12:40:49Z"
       },
       {
         "type": "earthquake",
-        "title": "Pete Hegseth Is America’s New Secretary of Pestilence",
-        "description": "Reversing vaccine mandates is a disaster for military readiness.",
-        "source": "Foreign Policy",
-        "url": "http://foreignpolicy.com/2026/04/23/pete-hegseth-pestilence-vaccine-mandates-disaster-military/",
-        "image": "https://foreignpolicy.com/wp-content/uploads/2026/04/flu-military-hegseth-vaccine-GettyImages-906330984.jpg",
-        "date": "2026-04-23T17:23:42Z"
+        "title": "Meta and Microsoft have joined the tech layoff tsunami – but is AI really to blame?",
+        "description": "Meta and Microsoft are the latest software companies to announce big cuts to their global workforce. Both companies are also making big investments in artificial intelligence (AI). The link seems obvi",
+        "source": "Khabarhub.com",
+        "url": "https://english.khabarhub.com/2026/25/545711/",
+        "image": "https://english.khabarhub.com/wp-content/uploads/2026/04/IT-Computer--scaled.jpg",
+        "date": "2026-04-25T12:15:45Z"
       },
       {
         "type": "earthquake",
-        "title": "Sky Sport: Roma to part ways with Ranieri",
-        "description": "The corporate earthquake at Roma has reached its most drastic conclusion. After thirteen days of tension, sparked by statements made before the match against Pisa, the relationship between Claudio Ran",
-        "source": "RomaPress",
-        "url": "https://romapress.net/sky-sport-roma-to-part-ways-with-ranieri/",
-        "image": "https://s.yimg.com/os/en/romapress_articles_142/9308793713892059d467f83d25328948",
-        "date": "2026-04-23T17:10:00Z"
+        "title": "Show HN: GitHub Directory for Public APIs",
+        "description": "Article URL: https://github.com/public-apis/public-apis/blob/master/README.md\nComments URL: https://news.ycombinator.com/item?id=47899891\nPoints: 1\n# Comments: 1",
+        "source": "Github.com",
+        "url": "https://github.com/public-apis/public-apis/blob/master/README.md",
+        "image": "https://repository-images.githubusercontent.com/54346799/e5ee272c-dfe1-40e5-b66b-b0a36e815254",
+        "date": "2026-04-25T09:03:03Z"
       },
       {
         "type": "earthquake",
-        "title": "A tsunami-like wave of change is certain in Tamil Nadu: Anbumani",
-        "description": "CHENNAI: PMK president Anbumani Ramadoss, while commenting on the brisk pace of polling, on Thursday claimed that a massive \\\"tsunami-like wave\\\" of ant.",
+        "title": "Bengal polls: Tata exit still shapes Singur, 18 years on",
+        "description": "Singur's landscape is marked by abandoned factory remnants and damaged farmland. The Tata Motors Nano project's 2008 exit reshaped Bengal politics, bringing Mamata Banerjee to power. Eighteen years la",
         "source": "The Times of India",
-        "url": "https://timesofindia.indiatimes.com/city/coimbatore/a-tsunami-like-wave-of-change-is-certain-in-tamil-nadu-anbumani/articleshow/130474800.cms",
-        "image": "https://static.toiimg.com/thumb/msid-130474835,width-1280,height-720,imgsize-497306,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
-        "date": "2026-04-23T16:59:21Z"
+        "url": "https://economictimes.indiatimes.com/news/elections/assembly-elections/west-bengal/bengal-polls-tata-exit-still-shapes-singur-18-years-on/articleshow/130510697.cms",
+        "image": "https://img.etimg.com/thumb/msid-130510762,width-1200,height-630,imgsize-238068,overlay-economictimes/articleshow.jpg",
+        "date": "2026-04-25T07:54:47Z"
       }
     ],
     "filter": "earthquake",
-    "fetched_at": "2026-04-24T21:25:53.772395Z"
+    "fetched_at": "2026-04-26T15:40:17.371586Z"
   }
 }
