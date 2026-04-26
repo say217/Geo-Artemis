@@ -6,7 +6,7 @@ from email.message import EmailMessage
 from pathlib import Path
 
 import bcrypt
-import mysql.connector
+import sqlite3
 from fastapi import APIRouter, Form, Request, status
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
@@ -46,17 +46,17 @@ SMTP_USE_TLS = os.getenv("SMTP_USE_TLS", "true").lower() == "true"
 SMTP_USE_SSL = os.getenv("SMTP_USE_SSL", "false").lower() == "true"
 BASE_URL = os.getenv("BASE_URL", "http://127.0.0.1:8000")
 VERIFY_TOKEN_TTL_MINUTES = get_env_int("VERIFY_CODE_EXP_MINUTES", 10)
-WELCOME_EMAIL_ACTIVE = os.getenv("WELCOME_EMAIL_ACTIVE", "true").lower() == "true"   # true false logic avoiding unwanted emilas in developing phase 000000oouuu
+WELCOME_EMAIL_ACTIVE = os.getenv("WELCOME_EMAIL_ACTIVE", "true").lower() == "true"
 
 
 def get_db_connection():
-    return mysql.connector.connect(
-        host=DB_HOST,
-        port=DB_PORT,
-        user=DB_USER,
-        password=DB_PASSWORD,
-        database=DB_NAME,
-    )
+    INSTANCE_DIR = Path(__file__).resolve().parent.parent.parent / 'instance'
+    INSTANCE_DIR.mkdir(parents=True, exist_ok=True)
+    db_path = INSTANCE_DIR / 'geoartemis.db'
+
+    conn = sqlite3.connect(str(db_path))
+    conn.row_factory = sqlite3.Row
+    return conn
 
 
 def ensure_tables():
@@ -66,51 +66,40 @@ def ensure_tables():
         cursor.execute(
             """
             CREATE TABLE IF NOT EXISTS users (
-                id INT AUTO_INCREMENT PRIMARY KEY,
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 email VARCHAR(255) NOT NULL UNIQUE,
                 username VARCHAR(100) NOT NULL UNIQUE,
                 password_hash VARCHAR(255) NOT NULL,
-                is_verified TINYINT(1) NOT NULL DEFAULT 0,
+                is_verified INTEGER NOT NULL DEFAULT 0,
                 verification_code VARCHAR(10),
-                code_expires_at DATETIME
+                code_expires_at DATETIME,
+                welcome_email_sent INTEGER NOT NULL DEFAULT 0
             )
             """
         )
-        cursor.execute(
-            """
-            SELECT COUNT(*)
-            FROM information_schema.COLUMNS
-            WHERE TABLE_SCHEMA = %s AND TABLE_NAME = 'users' AND COLUMN_NAME = 'verification_code'
-            """,
-            (DB_NAME,),
-        )
-        if cursor.fetchone()[0] == 0:
+
+        cursor.execute("PRAGMA table_info(users)")
+        columns = [row['name'] for row in cursor.fetchall()]
+
+        if 'verification_code' not in columns:
             cursor.execute("ALTER TABLE users ADD COLUMN verification_code VARCHAR(10)")
-
-        cursor.execute(
-            """
-            SELECT COUNT(*)
-            FROM information_schema.COLUMNS
-            WHERE TABLE_SCHEMA = %s AND TABLE_NAME = 'users' AND COLUMN_NAME = 'code_expires_at'
-            """,
-            (DB_NAME,),
-        )
-        if cursor.fetchone()[0] == 0:
+        if 'code_expires_at' not in columns:
             cursor.execute("ALTER TABLE users ADD COLUMN code_expires_at DATETIME")
-
-        cursor.execute(
-            """
-            SELECT COUNT(*)
-            FROM information_schema.COLUMNS
-            WHERE TABLE_SCHEMA = %s AND TABLE_NAME = 'users' AND COLUMN_NAME = 'welcome_email_sent'
-            """,
-            (DB_NAME,),
-        )
-        if cursor.fetchone()[0] == 0:
-            cursor.execute("ALTER TABLE users ADD COLUMN welcome_email_sent TINYINT(1) NOT NULL DEFAULT 0")
+        if 'welcome_email_sent' not in columns:
+            cursor.execute("ALTER TABLE users ADD COLUMN welcome_email_sent INTEGER NOT NULL DEFAULT 0")
         conn.commit()
     finally:
         conn.close()
+
+
+def _parse_expires_at(value: str | None) -> datetime | None:
+    """Safely parse a SQLite DATETIME string into a datetime object."""
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(value)
+    except (ValueError, TypeError):
+        return None
 
 
 def send_verification_email(recipient_email: str, code: str) -> str | None:
@@ -206,7 +195,7 @@ def send_welcome_email(recipient_email: str) -> str | None:
           <!-- Content -->
           <div style="padding:24px;">
             <p style="margin:0 0 16px 0;color:#d0d0d8;font-size:14px;line-height:1.6;">Your account is now verified and active. Welcome to the Geo Artemis hazard intelligence network. You now have full access to real-time global disaster monitoring, predictive analytics, and advanced event intelligence.</p>
-            
+
             <div style="margin:18px 0;padding:12px 16px;border-left:3px solid #ff4444;background:rgba(255,68,68,0.08);">
               <div style="color:#ff4444;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin:0 0 8px 0;">What You Can Do Now</div>
               <ul style="margin:0;padding:0 0 0 18px;color:#c0c0c8;font-size:13px;line-height:1.7;">
@@ -244,6 +233,7 @@ def send_welcome_email(recipient_email: str) -> str | None:
 
     return None
 
+
 @router.get("/")
 def home(request: Request):
     return RedirectResponse(url="/app2/login", status_code=status.HTTP_303_SEE_OTHER)
@@ -263,8 +253,8 @@ def signup(
 ):
     conn = get_db_connection()
     try:
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT id FROM users WHERE email = %s OR username = %s", (email, username))
+        cursor = conn.cursor()
+        cursor.execute("SELECT id FROM users WHERE email = ? OR username = ?", (email, username))
         if cursor.fetchone():
             return templates.TemplateResponse(
                 "signup.html",
@@ -278,9 +268,9 @@ def signup(
         cursor.execute(
             """
             INSERT INTO users (email, username, password_hash, is_verified, verification_code, code_expires_at)
-            VALUES (%s, %s, %s, 0, %s, %s)
+            VALUES (?, ?, ?, 0, ?, ?)
             """,
-            (email, username, password_hash, verification_code, expires_at),
+            (email, username, password_hash, verification_code, expires_at.isoformat()),
         )
         conn.commit()
     finally:
@@ -311,12 +301,12 @@ def verify_form(request: Request, email: str | None = None):
 def verify_account(request: Request, email: str = Form(...), code: str = Form(...)):
     conn = get_db_connection()
     try:
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor()
         cursor.execute(
             """
-            SELECT id, code_expires_at, is_verified, verification_code
+            SELECT id, code_expires_at, is_verified, verification_code, welcome_email_sent
             FROM users
-            WHERE email = %s
+            WHERE email = ?
             """,
             (email,),
         )
@@ -333,7 +323,9 @@ def verify_account(request: Request, email: str = Form(...), code: str = Form(..
             request.session["is_verified"] = True
             return RedirectResponse(url="/app1/", status_code=status.HTTP_303_SEE_OTHER)
 
-        if user["code_expires_at"] and user["code_expires_at"] < datetime.utcnow():
+        # FIX: SQLite returns code_expires_at as a string; parse it before comparing.
+        expires_at = _parse_expires_at(user["code_expires_at"])
+        if expires_at and expires_at < datetime.utcnow():
             return templates.TemplateResponse(
                 "verify.html",
                 {"request": request, "error": "Verification code has expired.", "email": email},
@@ -349,7 +341,7 @@ def verify_account(request: Request, email: str = Form(...), code: str = Form(..
             """
             UPDATE users
             SET is_verified = 1, verification_code = NULL, code_expires_at = NULL
-            WHERE id = %s
+            WHERE id = ?
             """,
             (user["id"],),
         )
@@ -357,13 +349,14 @@ def verify_account(request: Request, email: str = Form(...), code: str = Form(..
     finally:
         conn.close()
 
-    if WELCOME_EMAIL_ACTIVE and not user.get("welcome_email_sent", 0):
+    # FIX: welcome_email_sent is now included in the SELECT above, so this always works.
+    if WELCOME_EMAIL_ACTIVE and not user["welcome_email_sent"]:
         try:
             send_welcome_email(email)
             conn = get_db_connection()
             try:
                 cursor = conn.cursor()
-                cursor.execute("UPDATE users SET welcome_email_sent = 1 WHERE id = %s", (user["id"],))
+                cursor.execute("UPDATE users SET welcome_email_sent = 1 WHERE id = ?", (user["id"],))
                 conn.commit()
             finally:
                 conn.close()
@@ -384,9 +377,9 @@ def login_form(request: Request):
 def login(request: Request, email: str = Form(...), password: str = Form(...)):
     conn = get_db_connection()
     try:
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor()
         cursor.execute(
-            "SELECT id, password_hash, is_verified, welcome_email_sent FROM users WHERE email = %s",
+            "SELECT id, password_hash, is_verified, welcome_email_sent FROM users WHERE email = ?",
             (email,),
         )
         user = cursor.fetchone()
@@ -424,15 +417,14 @@ def login(request: Request, email: str = Form(...), password: str = Form(...)):
             conn = get_db_connection()
             try:
                 cursor = conn.cursor()
-                cursor.execute("UPDATE users SET welcome_email_sent = 1 WHERE id = %s", (user["id"],))
+                cursor.execute("UPDATE users SET welcome_email_sent = 1 WHERE id = ?", (user["id"],))
                 conn.commit()
             finally:
                 conn.close()
         except Exception as e:
             print(f"Failed to send welcome email for {email}: {e}")
 
-    response = RedirectResponse(url="/app1/", status_code=status.HTTP_303_SEE_OTHER)
-    return response
+    return RedirectResponse(url="/app1/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 @router.get("/logout")
@@ -442,6 +434,3 @@ def logout(request: Request):
 
 
 ensure_tables()
-
-
-
