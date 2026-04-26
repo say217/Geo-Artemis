@@ -241,7 +241,7 @@ def _fetch_eonet_events() -> list[dict]:
     return all_events
 
 
-def _fetch_raw_tile(date: str, z: int, y: int, x: int) -> Optional["Image.Image"]:
+def _fetch_raw_tile(date: str, z: int, y: int, x: int) -> Optional[object]:
     """
     Download a single GIBS tile and return it as a Pillow Image.
     Returns None instantly if the tile errors — no retry, no sleep.

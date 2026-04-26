@@ -33,7 +33,7 @@ Thumbs.db
 *.tmp
 *.log
 test/
-Clustering_Events/
+
 
 # Large data files (exceed GitHub limits)
 USGS_DATA/
