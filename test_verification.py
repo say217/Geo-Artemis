@@ -20,7 +20,7 @@ def print_header(text):
     print(f"  {text}")
     print("="*70)
 
-def test_endpoint(name, url):
+def verify_endpoint(name, url):
     """Test a single endpoint"""
     print(f"\n✓ Testing: {name}")
     print(f"  URL: {BASE_URL}{url}")
@@ -97,7 +97,7 @@ def main():
     
     results = {}
     for name, url in ENDPOINTS.items():
-        results[name] = test_endpoint(name, url)
+        results[name] = verify_endpoint(name, url)
     
     # Step 3: Summary
     print_header("TEST SUMMARY")
