@@ -35,7 +35,7 @@ seaborn==0.13.2
 plotly==6.1.2
 pydantic==2.13.0
 pydantic_core==2.46.0
-pyee==13.0.1
+pyee==12.0.0
 pyparsing==3.3.2
 python-dateutil==2.9.0.post0
 python-dotenv==0.9.1
