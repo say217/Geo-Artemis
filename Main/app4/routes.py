@@ -426,7 +426,7 @@ def get_satellite_data():
 
     try:
         df      = pd.read_csv(nasa_data_path)
-        data    = df.head(100).to_dict(orient="records")
+        data    = json.loads(df.head(100).to_json(orient="records"))
         columns = df.columns.tolist()
         return {"columns": columns, "data": data, "total_rows": len(df)}
     except Exception as e:
@@ -444,7 +444,8 @@ def get_event_types():
     try:
         df = pd.read_csv(event_counts_path)
         df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
-        return {"columns": df.columns.tolist(), "data": df.to_dict(orient="records")}
+        data = json.loads(df.to_json(orient="records"))
+        return {"columns": df.columns.tolist(), "data": data}
     except Exception as e:
         return {"error": str(e), "data": []}
 
@@ -458,7 +459,8 @@ def get_clustered_data_head():
     try:
         df = pd.read_csv(data_path)
         df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
-        return {"columns": df.columns.tolist(), "data": df.head(10).to_dict(orient="records")}
+        data = json.loads(df.head(10).to_json(orient="records"))
+        return {"columns": df.columns.tolist(), "data": data}
     except Exception as e:
         return {"error": str(e), "data": []}
 
@@ -474,7 +476,8 @@ def get_cluster_summary():
     try:
         df = pd.read_csv(cluster_summary_path)
         df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
-        return {"columns": df.columns.tolist(), "data": df.to_dict(orient="records"), "count": len(df)}
+        data = json.loads(df.to_json(orient="records"))
+        return {"columns": df.columns.tolist(), "data": data, "count": len(df)}
     except Exception as e:
         return {"error": str(e), "data": []}
 
@@ -494,7 +497,8 @@ def get_high_risk_regions():
         sort_col = "risk_score" if "risk_score" in df.columns else (df.columns[0] if not df.empty else None)
         if sort_col:
             df = df.sort_values(by=sort_col, ascending=False)
-        return {"columns": df.columns.tolist(), "data": df.to_dict(orient="records"), "count": len(df)}
+        data = json.loads(df.to_json(orient="records"))
+        return {"columns": df.columns.tolist(), "data": data, "count": len(df)}
     except Exception as e:
         return {"error": str(e), "data": []}
 

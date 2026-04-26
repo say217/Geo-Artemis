@@ -46,7 +46,7 @@ SMTP_USE_TLS = os.getenv("SMTP_USE_TLS", "true").lower() == "true"
 SMTP_USE_SSL = os.getenv("SMTP_USE_SSL", "false").lower() == "true"
 BASE_URL = os.getenv("BASE_URL", "http://127.0.0.1:8000")
 VERIFY_TOKEN_TTL_MINUTES = get_env_int("VERIFY_CODE_EXP_MINUTES", 10)
-WELCOME_EMAIL_ACTIVE = os.getenv("WELCOME_EMAIL_ACTIVE", "false").lower() == "true"   # true false logic avoiding unwanted emilas in developing phase 000000oouuu
+WELCOME_EMAIL_ACTIVE = os.getenv("WELCOME_EMAIL_ACTIVE", "true").lower() == "true"   # true false logic avoiding unwanted emilas in developing phase 000000oouuu
 
 
 def get_db_connection():
@@ -357,6 +357,19 @@ def verify_account(request: Request, email: str = Form(...), code: str = Form(..
     finally:
         conn.close()
 
+    if WELCOME_EMAIL_ACTIVE and not user.get("welcome_email_sent", 0):
+        try:
+            send_welcome_email(email)
+            conn = get_db_connection()
+            try:
+                cursor = conn.cursor()
+                cursor.execute("UPDATE users SET welcome_email_sent = 1 WHERE id = %s", (user["id"],))
+                conn.commit()
+            finally:
+                conn.close()
+        except Exception as e:
+            print(f"Failed to send welcome email for {email}: {e}")
+
     request.session["user_id"] = user["id"]
     request.session["is_verified"] = True
     return RedirectResponse(url="/app1/", status_code=status.HTTP_303_SEE_OTHER)
@@ -406,14 +419,17 @@ def login(request: Request, email: str = Form(...), password: str = Form(...)):
     request.session["is_verified"] = True
 
     if WELCOME_EMAIL_ACTIVE and not user["welcome_email_sent"]:
-        send_welcome_email(email)
-        conn = get_db_connection()
         try:
-            cursor = conn.cursor()
-            cursor.execute("UPDATE users SET welcome_email_sent = 1 WHERE id = %s", (user["id"],))
-            conn.commit()
-        finally:
-            conn.close()
+            send_welcome_email(email)
+            conn = get_db_connection()
+            try:
+                cursor = conn.cursor()
+                cursor.execute("UPDATE users SET welcome_email_sent = 1 WHERE id = %s", (user["id"],))
+                conn.commit()
+            finally:
+                conn.close()
+        except Exception as e:
+            print(f"Failed to send welcome email for {email}: {e}")
 
     response = RedirectResponse(url="/app1/", status_code=status.HTTP_303_SEE_OTHER)
     return response
