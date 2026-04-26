@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 8000
 
 # Better for production than plain uvicorn
-CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "app.main:app", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "Main.run:app", "--bind", "0.0.0.0:8000"]
