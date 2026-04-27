@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-04-26T15:43:28.856051Z",
+  "fetched_at": "2026-04-27T05:52:42.686563Z",
   "count": 12,
   "images": [
     {
@@ -13,7 +13,7 @@
       "date": "2026-04-23",
       "eonet_url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_19840",
       "description": "Wildfire detected near (45.85°, -92.65°) on 2026-04-23. Source: NASA EONET. True-colour MODIS Terra satellite imagery.",
-      "image_file": "wildfires_000_2026-04-23_20260426T154121Z.jpg"
+      "image_file": "wildfires_000_2026-04-23_20260427T055055Z.jpg"
     },
     {
       "id": "EONET_19839",
@@ -26,7 +26,7 @@
       "date": "2026-04-23",
       "eonet_url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_19839",
       "description": "Wildfire detected near (43.63°, -101.40°) on 2026-04-23. Source: NASA EONET. True-colour MODIS Terra satellite imagery.",
-      "image_file": "wildfires_001_2026-04-23_20260426T154139Z.jpg"
+      "image_file": "wildfires_001_2026-04-23_20260427T055105Z.jpg"
     },
     {
       "id": "EONET_19832",
@@ -39,7 +39,7 @@
       "date": "2026-04-23",
       "eonet_url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_19832",
       "description": "Wildfire detected near (43.88°, -85.90°) on 2026-04-23. Source: NASA EONET. True-colour MODIS Terra satellite imagery.",
-      "image_file": "wildfires_002_2026-04-23_20260426T154148Z.jpg"
+      "image_file": "wildfires_002_2026-04-23_20260427T055115Z.jpg"
     },
     {
       "id": "EONET_19843",
@@ -52,7 +52,7 @@
       "date": "2026-04-23",
       "eonet_url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_19843",
       "description": "Wildfire detected near (42.12°, -99.04°) on 2026-04-23. Source: NASA EONET. True-colour MODIS Terra satellite imagery.",
-      "image_file": "wildfires_003_2026-04-23_20260426T154159Z.jpg"
+      "image_file": "wildfires_003_2026-04-23_20260427T055124Z.jpg"
     },
     {
       "id": "EONET_19844",
@@ -65,7 +65,7 @@
       "date": "2026-04-22",
       "eonet_url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_19844",
       "description": "Wildfire detected near (42.76°, -101.00°) on 2026-04-22. Source: NASA EONET. True-colour MODIS Terra satellite imagery.",
-      "image_file": "wildfires_004_2026-04-22_20260426T154208Z.jpg"
+      "image_file": "wildfires_004_2026-04-22_20260427T055133Z.jpg"
     },
     {
       "id": "EONET_19841",
@@ -78,7 +78,7 @@
       "date": "2026-04-22",
       "eonet_url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_19841",
       "description": "Wildfire detected near (38.67°, -104.61°) on 2026-04-22. Source: NASA EONET. True-colour MODIS Terra satellite imagery.",
-      "image_file": "wildfires_005_2026-04-22_20260426T154218Z.jpg"
+      "image_file": "wildfires_005_2026-04-22_20260427T055142Z.jpg"
     },
     {
       "id": "EONET_19838",
@@ -91,7 +91,7 @@
       "date": "2026-04-22",
       "eonet_url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_19838",
       "description": "Wildfire detected near (42.86°, -97.65°) on 2026-04-22. Source: NASA EONET. True-colour MODIS Terra satellite imagery.",
-      "image_file": "wildfires_006_2026-04-22_20260426T154231Z.jpg"
+      "image_file": "wildfires_006_2026-04-22_20260427T055153Z.jpg"
     },
     {
       "id": "EONET_19834",
@@ -104,7 +104,7 @@
       "date": "2026-04-22",
       "eonet_url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_19834",
       "description": "Wildfire detected near (42.25°, -101.03°) on 2026-04-22. Source: NASA EONET. True-colour MODIS Terra satellite imagery.",
-      "image_file": "wildfires_007_2026-04-22_20260426T154245Z.jpg"
+      "image_file": "wildfires_007_2026-04-22_20260427T055204Z.jpg"
     },
     {
       "id": "EONET_19845",
@@ -117,7 +117,7 @@
       "date": "2026-04-22",
       "eonet_url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_19845",
       "description": "Wildfire detected near (47.02°, -95.91°) on 2026-04-22. Source: NASA EONET. True-colour MODIS Terra satellite imagery.",
-      "image_file": "wildfires_008_2026-04-22_20260426T154257Z.jpg"
+      "image_file": "wildfires_008_2026-04-22_20260427T055214Z.jpg"
     },
     {
       "id": "EONET_19850",
@@ -130,7 +130,7 @@
       "date": "2026-04-22",
       "eonet_url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_19850",
       "description": "Wildfire detected near (44.42°, -83.48°) on 2026-04-22. Source: NASA EONET. True-colour MODIS Terra satellite imagery.",
-      "image_file": "wildfires_009_2026-04-22_20260426T154308Z.jpg"
+      "image_file": "wildfires_009_2026-04-22_20260427T055223Z.jpg"
     },
     {
       "id": "EONET_19835",
@@ -143,7 +143,7 @@
       "date": "2026-04-21",
       "eonet_url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_19835",
       "description": "Wildfire detected near (29.28°, -82.63°) on 2026-04-21. Source: NASA EONET. True-colour MODIS Terra satellite imagery.",
-      "image_file": "wildfires_010_2026-04-21_20260426T154318Z.jpg"
+      "image_file": "wildfires_010_2026-04-21_20260427T055232Z.jpg"
     },
     {
       "id": "EONET_19854",
@@ -156,7 +156,7 @@
       "date": "2026-04-21",
       "eonet_url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_19854",
       "description": "Wildfire detected near (45.87°, -92.65°) on 2026-04-21. Source: NASA EONET. True-colour MODIS Terra satellite imagery.",
-      "image_file": "wildfires_011_2026-04-21_20260426T154328Z.jpg"
+      "image_file": "wildfires_011_2026-04-21_20260427T055242Z.jpg"
     }
   ]
 }

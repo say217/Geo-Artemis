@@ -1,126 +1,135 @@
 {
-  "saved_at": "2026-04-26T15:40:17.373612Z",
+  "saved_at": "2026-04-27T05:49:56.769232Z",
   "data": {
     "news": [
       {
         "type": "earthquake",
-        "title": "Japan wildfires rage: Over 1,000 firefighters battle flames as 3,000 flee Otsuchi",
-        "description": "The fires, which broke out earlier this week in mountainous terrain in Iwate Prefecture, have burned through around 730 hectares.",
-        "source": "The Indian Express",
-        "url": "https://indianexpress.com/article/world/japan-iwate-wildfires-evacuations-firefighters-response-10655840/",
-        "image": "https://images.indianexpress.com/2026/04/IE-Image-32-1.jpg",
-        "date": "2026-04-25T15:34:37Z"
+        "title": "Meta, Microsoft have joined tech layoff tsunami – but is AI really to blame?",
+        "description": "Meta and Microsoft announce significant layoffs, raising questions about AI's role in workforce changes and corporate strategy.",
+        "source": "BusinessLine",
+        "url": "https://www.thehindubusinessline.com/info-tech/meta-microsoft-have-joined-tech-layoff-tsunami-but-is-ai-really-to-blame/article70907843.ece",
+        "image": "https://bl-i.thgim.com/public/incoming/c8dtca/article70907884.ece/alternates/LANDSCAPE_1200/IMG_iStock-1217160806_2_1_0LAJ5446.jpg",
+        "date": "2026-04-26T05:46:12Z"
       },
       {
         "type": "earthquake",
-        "title": "Bank robber's cellphone gave him away; now Supreme Court hears his case",
-        "description": "Supreme Court weighs whether geofence warrants violate the Fourth Amendment.",
-        "source": "Abcnews.com",
-        "url": "https://abcnews.com/Technology/wireStory/bank-robbers-cellphone-gave-now-supreme-court-hearing-132376827",
-        "image": "https://i.abcnewsfe.com/a/c1868655-e89f-440c-94aa-35766eccf283/wirestory_a61c200a806cba89ded43685279eccae_16x9.jpg?w=1600",
-        "date": "2026-04-25T14:43:55Z"
+        "title": "Is Leitrim a figment of the imagination? Leo Varadkar once thought so",
+        "description": "Plus: The youthful protester pope, and a hiccup in a case against John Magnier",
+        "source": "The Irish Times",
+        "url": "https://www.irishtimes.com/ireland/2026/04/26/is-leitrim-a-figment-of-the-imagination-leo-varadkar-once-thought-so/",
+        "image": "https://www.irishtimes.com/resizer/v2/XM6NIZ36OVCXVGZMWDLRQ6ADOU.JPG?smart=true&auth=c2dbfa98e37561339614b1d4beb814d9bd317820d0fcce8591e434c9a627d457&width=1200&height=630",
+        "date": "2026-04-26T05:00:00Z"
       },
       {
         "type": "earthquake",
-        "title": "African governments need to take urgent action on fertiliser shortages",
-        "description": "Tensions in the Strait of Hormuz have slowed fertiliser shipments which could put harvests at risk.",
-        "source": "Al Jazeera English",
-        "url": "https://www.aljazeera.com/opinions/2026/4/25/african-governments-need-to-take-urgent-action-on-fertiliser-shortages",
-        "image": "https://www.aljazeera.com/wp-content/uploads/2026/04/2026-04-06T143247Z_28407230_RC2MJKAH1T4N_RTRMADP_3_NIGERIA-OIL-DANGOTE-1777120843.jpg?resize=1920%2C1440",
-        "date": "2026-04-25T14:27:27Z"
+        "title": "I was playing Jenga with my young son in Dublin when I received a threat from Moscow",
+        "description": "Though nothing compared with Ukraine’s suffering, in Russia the invasion has detonated a quieter, more insidious kind of destruction",
+        "source": "The Irish Times",
+        "url": "https://www.irishtimes.com/life-style/people/2026/04/26/i-was-playing-jenga-with-my-young-son-in-dublin-when-i-received-a-threat-from-moscow/",
+        "image": "https://www.irishtimes.com/resizer/v2/JCHBEDCBFCDVR6V7U62H7XLY5A.jpg?smart=true&auth=fc7b0a951778c311c1af7763f0a54d0e32783f08875da6eb003ca8063850ad66&width=1200&height=630",
+        "date": "2026-04-26T05:00:00Z"
       },
       {
         "type": "earthquake",
-        "title": "A bank robber's cellphone gave him away. His case is at the Supreme Court",
-        "description": "Okello Chatrie’s cellphone gave him away. Chatrie made off with $195,000 from the bank he robbed in suburban Richmond, Virginia, and he eluded the police. But then they turned to a powerful technologi",
-        "source": "Associated Press",
-        "url": "https://apnews.com/article/supreme-court-geofence-warrants-unreasonable-searches-constitution-a61c200a806cba89ded43685279eccae",
-        "image": "https://dims.apnews.com/dims4/default/da43be3/2147483647/strip/true/crop/4607x3070+428+0/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F25%2F51%2F757c4e4f75c901c7d035342112d1%2F2eb460692ed4422d80d4d92c20135adc",
-        "date": "2026-04-25T13:57:45Z"
+        "title": "Wojo: Detroit Lions GM Brad Holmes plays it safe, and perhaps smart, on draft",
+        "description": "The Lions were determined to reemphasize their deep-rooted beliefs, drafting players that fit their high-effort, high-character profile.",
+        "source": "The Detroit News",
+        "url": "https://www.detroitnews.com/story/sports/columnists/bob-wojnowski/2026/04/25/wojo-detroit-lions-gm-brad-holmes-plays-it-safe-and-perhaps-smart-on-draft/89804791007/",
+        "image": "https://s.yimg.com/ny/api/res/1.2/isIBwmte2V83U3QMT0DyRg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/detroit_news_articles_230/a0e8b9bec1d1601cfd74c12837af8881",
+        "date": "2026-04-26T03:03:45Z"
       },
       {
         "type": "earthquake",
-        "title": "Firefighters in northern Japan struggle to contain blazes as over 3,000 people evacuated",
-        "description": "OTSUCHI, Japan: More than 1,000 firefighters in northern Japan battled to contain two wildfires for a fourth straight day on Saturday, as the blazes pushed closer to residential areas and forced",
-        "source": "CNA",
-        "url": "https://www.channelnewsasia.com/east-asia/japan-fire-iwate-blazes-otsuchi-wildfires-6080516",
-        "image": "https://dam.mediacorp.sg/image/upload/s--sLXRcGHM--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2026-04-25T084545Z_1_LYNXMPEM3O0CI_RTROPTP_3_JAPAN-WILDFIRES.JPG?itok=Ana7zDoT",
-        "date": "2026-04-25T13:39:00Z"
+        "title": "Red Sox fire Alex Cora, and most of the coaching staff",
+        "description": "Pete Fatse and Rámon Vazquez have also been shown the door.",
+        "source": "Over The Monster",
+        "url": "https://www.overthemonster.com/red_sox_news/99633/red-sox-fire-alex-cora-and-most-of-the-coaching-staff",
+        "image": "https://s.yimg.com/ny/api/res/1.2/nMk5bQ6tkKc9E.JKVL32eg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04NjU7Y2Y9d2VicA--/https://media.zenfs.com/en/sb_nation_articles_115/a67d3d0f8c1eb68e993c59a954ca43f3",
+        "date": "2026-04-25T23:46:59Z"
       },
       {
         "type": "earthquake",
-        "title": "Firefighters in northern Japan struggle to contain blazes as over 3,000 people evacuated",
-        "description": "More than 1,000 firefighters in northern Japan battled to contain two wildfires for a fourth straight day on Saturday, as the blazes pushed closer to residential areas and forced more than 3,000 resid",
-        "source": "Independent.ie",
-        "url": "https://www.independent.ie/world-news/firefighters-in-northern-japan-struggle-to-contain-blazes-as-over-3000-people-evacuated/a576131008.html",
-        "image": "https://focus.independent.ie/thumbor/7XWg9jUJYsuK_7fZWpasqIhxCjk=/0x0:2452x1635/629x0/prod-mh-ireland/c14c1970-29f4-43db-a9b9-2ef2c582b4b2/fbec29ce-c716-4927-a913-813e04fc507a/c14c1970-29f4-43db-a9b9-2ef2c582b4b2.jpg",
-        "date": "2026-04-25T13:26:51Z"
+        "title": "GOP Rep. McCormick: Some Haitians Should Lose TPS, But Some Shouldn't",
+        "description": "During an interview with “The Joe Pags Show” that took place on Thursday and was released on Friday, Rep. Rich McCormick (R-GA) addressed his vote in favor of extended TPS for Haitians and said that h",
+        "source": "Breitbart News",
+        "url": "https://www.breitbart.com/clips/2026/04/25/gop-rep-mccormick-some-haitians-should-lose-tps-but-some-shouldnt/",
+        "image": "https://media.breitbart.com/media/2023/04/McCormick-427-Thumbnail-640x335.jpg",
+        "date": "2026-04-25T23:30:07Z"
       },
       {
         "type": "earthquake",
-        "title": "Invincible season 5: release window, likely cast, and what else we know about the Prime Video show's return",
-        "description": "Invincible season 5 is expected to premiere in early 2027 — here are the key details we know ahead of its eventual launch.",
-        "source": "TechRadar",
-        "url": "https://www.techradar.com/streaming/amazon-prime-video/invincible-season-5-hub",
-        "image": "https://cdn.mos.cms.futurecdn.net/fXGaJLMhauVd3KLgJknExb-1920-80.jpg",
-        "date": "2026-04-25T13:00:00Z"
+        "title": "'This is unamerican': Trump's new green card crackdown unleashes tsunami of backlash",
+        "description": "Hearing that the Trump administration plans to deny green cards for immigrants who express their political opinions has commentators sounding the alarm.Journalist Hamed Aleaziz reported on Saturday th",
+        "source": "Raw Story",
+        "url": "https://www.rawstory.com/green-card/",
+        "image": "https://www.rawstory.com/media-library/mimi-ziad-poses-with-a-palestine-sign-ahead-of-an-anti-protest-against-the-u-s-president-elect-donald-trump-at-meridian-hill-pa.jpg?id=56168265&width=1200&height=600&coordinates=0%2C312%2C0%2C312",
+        "date": "2026-04-25T23:25:35Z"
       },
       {
         "type": "earthquake",
-        "title": "eggseis 0.0.2",
-        "description": "An open-source desktop application for viewing and analyzing seismic data, with a Python plugin system.",
-        "source": "Pypi.org",
-        "url": "https://pypi.org/project/eggseis/0.0.2/",
+        "title": "Breaking | Gervasoni also stands down, AIA calls meeting!",
+        "description": "Italian football is going through a real earthquake triggered by the Milan Prosecutor’s investigation, which has put Gianluca Rocchi, the CAN refereeing appointor who has suspended himself, under in..",
+        "source": "Yahoo Entertainment",
+        "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_fa660af3-e685-48da-8f35-67bf5dc2cde0",
         "image": "",
-        "date": "2026-04-25T12:40:50Z"
+        "date": "2026-04-25T21:13:00Z"
       },
       {
         "type": "earthquake",
-        "title": "eggseis 0.0.1",
-        "description": "An open-source desktop application for viewing and analyzing seismic data, with a Python plugin system.",
-        "source": "Pypi.org",
-        "url": "https://pypi.org/project/eggseis/0.0.1/",
-        "image": "",
-        "date": "2026-04-25T12:40:49Z"
+        "title": "NASCAR’s New CEO Signals A Power Shift That Had Already Happened",
+        "description": "NASCAR has a new CEO for the first time outside the France family, but the real shift in power didn’t happen this week. It’s been unfolding quietly for years.",
+        "source": "Forbes",
+        "url": "https://www.forbes.com/sites/gregengle/2026/04/25/nascars-new-ceo-signals-a-power-shift-that-had-already-happened/",
+        "image": "https://imageio.forbes.com/specials-images/imageserve/69ed275ee26a46a97d7abec4/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds",
+        "date": "2026-04-25T20:54:20Z"
       },
       {
         "type": "earthquake",
-        "title": "eggseis added to PyPI",
-        "description": "An open-source desktop application for viewing and analyzing seismic data, with a Python plugin system.",
-        "source": "Pypi.org",
-        "url": "https://pypi.org/project/eggseis/",
-        "image": "",
-        "date": "2026-04-25T12:40:49Z"
+        "title": "Kentucky Derby ’26 Post Position Draw: Top Seed Renegade Gets The Rail",
+        "description": "Renegade, top favorite at 4-1, got the 1-hole, a nightmare in the Derby's massive gate. Further Ado, co-second favorite at 6-1, got the outside 18-stall.",
+        "source": "Forbes",
+        "url": "https://www.forbes.com/sites/guymartin/2026/04/25/kentucky-derby-26-post-position-draw-top-seed-renegade-gets-the-rail/",
+        "image": "https://imageio.forbes.com/specials-images/imageserve/69ecdc2c22da07eef12a7da4/0x0.jpg?format=jpg&crop=2000,1125,x0,y102,safe&height=900&width=1600&fit=bounds",
+        "date": "2026-04-25T19:57:00Z"
       },
       {
         "type": "earthquake",
-        "title": "Meta and Microsoft have joined the tech layoff tsunami – but is AI really to blame?",
-        "description": "Meta and Microsoft are the latest software companies to announce big cuts to their global workforce. Both companies are also making big investments in artificial intelligence (AI). The link seems obvi",
-        "source": "Khabarhub.com",
-        "url": "https://english.khabarhub.com/2026/25/545711/",
-        "image": "https://english.khabarhub.com/wp-content/uploads/2026/04/IT-Computer--scaled.jpg",
-        "date": "2026-04-25T12:15:45Z"
+        "title": "Disneyland Abu Dhabi Delayed? Conflicting Reports Swirl as Middle East Tensions Cloud Disney’s $10 Billion Dream",
+        "description": "In May 2025, the global theme park industry was rocked by a seismic announcement: The Walt Disney Company had finally set its sights on the Middle East. Partnering with the Abu Dhabi-based Miral Group",
+        "source": "Inside the Magic",
+        "url": "https://insidethemagic.net/2026/04/conflicting-reports-about-a-possible-delay-at-disneys-disneyland-abu-dhabi-project-over-iran-tensions-rl1/",
+        "image": "https://insidethemagic.net/wp-content/uploads/2025/05/Copy-of-Untitled-Design-14.jpg",
+        "date": "2026-04-25T19:24:59Z"
       },
       {
         "type": "earthquake",
-        "title": "Show HN: GitHub Directory for Public APIs",
-        "description": "Article URL: https://github.com/public-apis/public-apis/blob/master/README.md\nComments URL: https://news.ycombinator.com/item?id=47899891\nPoints: 1\n# Comments: 1",
-        "source": "Github.com",
-        "url": "https://github.com/public-apis/public-apis/blob/master/README.md",
-        "image": "https://repository-images.githubusercontent.com/54346799/e5ee272c-dfe1-40e5-b66b-b0a36e815254",
-        "date": "2026-04-25T09:03:03Z"
+        "title": "Forget ‘The Drama,’ Watch A24's 10/10 Romantic Tragedy Before It Leaves HBO Max",
+        "description": "A24's endlessly debated precursor to Materialists and The Drama, Past Lives, is leaving HBO Max soon. Find out when.",
+        "source": "Collider.com",
+        "url": "https://collider.com/past-lives-romantic-tragedy-a24-movie-leaving-hbo-max-may-2026/",
+        "image": "https://static0.colliderimages.com/wordpress/wp-content/uploads/2025/11/a24-logo.jpg?w=1200&h=675&fit=crop",
+        "date": "2026-04-25T19:06:27Z"
       },
       {
         "type": "earthquake",
-        "title": "Bengal polls: Tata exit still shapes Singur, 18 years on",
-        "description": "Singur's landscape is marked by abandoned factory remnants and damaged farmland. The Tata Motors Nano project's 2008 exit reshaped Bengal politics, bringing Mamata Banerjee to power. Eighteen years la",
-        "source": "The Times of India",
-        "url": "https://economictimes.indiatimes.com/news/elections/assembly-elections/west-bengal/bengal-polls-tata-exit-still-shapes-singur-18-years-on/articleshow/130510697.cms",
-        "image": "https://img.etimg.com/thumb/msid-130510762,width-1200,height-630,imgsize-238068,overlay-economictimes/articleshow.jpg",
-        "date": "2026-04-25T07:54:47Z"
+        "title": "57 Vintage Items From ‘Grandma’s Pantry’ People Found And Shared Online",
+        "description": "There’s a very specific kind of confidence in a pantry that hasn’t been cleaned out since 1997. You open the door and it’s less “food storage” and more time capsule. That’s the spirit of r/GrandmasPan",
+        "source": "Pleated-jeans.com",
+        "url": "https://pleated-jeans.com/2026/04/25/funny-grandmas-pantry-pictures/",
+        "image": "https://pleated-jeans.com/wp-content/uploads/2026/04/old-food-grandmas-pantry-reddit-pictures-4-21-26.jpg",
+        "date": "2026-04-25T18:30:11Z"
+      },
+      {
+        "type": "earthquake",
+        "title": "Inside Chernobyl is a toxic world where frogs have turned black",
+        "description": "Nuclear meltdown in 1986 reshaped ecosystems and human lives. Four decades on the legacy of the Chernobyl disaster is still unfolding.",
+        "source": "ABC News (AU)",
+        "url": "https://www.abc.net.au/news/2026-04-26/chernobyl-40-nuclear-explosion-power-plant-nature-survives/106588662",
+        "image": "https://live-production.wcms.abc-cdn.net.au/f4b64877e7100b4b51fc2b66b81230f3?impolicy=wcms_watermark_news&cropH=1947&cropW=3461&xPos=0&yPos=35&width=862&height=485&imformat=generic",
+        "date": "2026-04-25T18:30:00Z"
       }
     ],
     "filter": "earthquake",
-    "fetched_at": "2026-04-26T15:40:17.371586Z"
+    "fetched_at": "2026-04-27T05:49:56.769232Z"
   }
 }

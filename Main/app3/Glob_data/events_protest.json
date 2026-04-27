@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-26T15:40:00.437319Z",
+  "saved_at": "2026-04-27T05:49:45.169942Z",
   "data": {
     "type": "protest",
     "events": [
@@ -9,7 +9,7 @@
         "lat": 48.85,
         "lng": 2.35,
         "title": "Civil Unrest: Paris",
-        "date": "2026-04-26T15:39:48.458364Z"
+        "date": "2026-04-27T05:49:37.161861Z"
       },
       {
         "id": "pro-delhi",
@@ -17,7 +17,7 @@
         "lat": 28.61,
         "lng": 77.2,
         "title": "Farmers Protest: New Delhi",
-        "date": "2026-04-26T15:39:48.458364Z"
+        "date": "2026-04-27T05:49:37.161861Z"
       },
       {
         "id": "pro-london",
@@ -25,7 +25,7 @@
         "lat": 51.5,
         "lng": -0.12,
         "title": "Climate March: London",
-        "date": "2026-04-26T15:39:48.458364Z"
+        "date": "2026-04-27T05:49:37.161861Z"
       },
       {
         "id": "pro-dhaka",
@@ -33,7 +33,7 @@
         "lat": 23.81,
         "lng": 90.41,
         "title": "Student Protests: Dhaka",
-        "date": "2026-04-26T15:39:48.458364Z"
+        "date": "2026-04-27T05:49:37.161861Z"
       },
       {
         "id": "pro-tbilisi",
@@ -41,7 +41,7 @@
         "lat": 41.69,
         "lng": 44.83,
         "title": "Pro-EU March: Tbilisi",
-        "date": "2026-04-26T15:39:48.458364Z"
+        "date": "2026-04-27T05:49:37.161861Z"
       },
       {
         "id": "pro-belgrade",
@@ -49,10 +49,10 @@
         "lat": 44.8,
         "lng": 20.47,
         "title": "Anti-Govt Protests: Belgrade",
-        "date": "2026-04-26T15:39:48.458364Z"
+        "date": "2026-04-27T05:49:37.161861Z"
       }
     ],
     "count": 6,
-    "fetched_at": "2026-04-26T15:40:00.437319Z"
+    "fetched_at": "2026-04-27T05:49:45.169942Z"
   }
 }

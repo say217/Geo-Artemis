@@ -21,7 +21,7 @@ from .app3.routes import router as app3_router
 from .app4.routes import router as app4_router
 from .app5.routes import router as app5_router
 from .app6.routes import router as app6_router
-
+from .app7.routes import router as app7_router
 try:
     from dotenv import load_dotenv
     load_dotenv()
@@ -248,7 +248,7 @@ app.include_router(app3_router, prefix="/app3")
 app.include_router(app4_router, prefix="/app4")
 app.include_router(app5_router, prefix="/app5")
 app.include_router(app6_router, prefix="/app6")
-
+app.include_router(app7_router, prefix="/app7")
 @app.get("/")
 def root():
     return RedirectResponse(url="/app2/login")
