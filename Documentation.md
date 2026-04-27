@@ -88,6 +88,10 @@ graph TD
 
 ---
 
+
+<img width="1907" height="891" alt="Screenshot 2026-04-22 010121" src="https://github.com/user-attachments/assets/aeb8af43-1fb6-435b-b778-544537c6a88b" />
+
+
 ### 4. Machine Learning Workflow
 ```mermaid
 sequenceDiagram
@@ -117,6 +121,9 @@ sequenceDiagram
 
 ---
 
+<img width="1908" height="912" alt="Screenshot 2026-04-22 010332" src="https://github.com/user-attachments/assets/2c9e70c7-a750-4e9d-ba18-415922f15758" />
+
+
 ## 6. New Features & Updates (2026-04-27)
 
 ### Major New Features
@@ -132,6 +139,9 @@ sequenceDiagram
     - Per-event-type clustering with dynamic parameters and robust noise filtering.
     - Risk scoring combines frequency, intensity, recency, and growth for each region.
     - High-risk region detection and export for dashboard overlays.
+    - 
+<img width="1914" height="917" alt="Screenshot 2026-04-14 210336" src="https://github.com/user-attachments/assets/fb13c6d5-deae-4e34-9242-a0071410ccfe" />
+
 
 - **Interactive API Endpoints**:
     - REST endpoints for all major data products: clustered events, risk summaries, high-risk regions, satellite data, news, and videos.
