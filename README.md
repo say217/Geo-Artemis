@@ -13,5 +13,5 @@
 ```
 uvicorn Main.run:app --reload
 ```
-`It deploy it render so please wait 40 50 seconds it take to open`
+`It deployed in render so please wait 40 50 seconds it take to open`
 
