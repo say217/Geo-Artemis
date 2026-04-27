@@ -1,7 +1,115 @@
 {
-  "saved_at": "2026-04-27T05:49:49.199114Z",
+  "saved_at": "2026-04-27T18:51:15.908823Z",
   "data": {
     "news": [
+      {
+        "type": "wildfire",
+        "title": "Celebrities London Marathon finish times revealed: Exhausted Cynthia Erivo achieves new personal best as she completes iconic run alongside James Norton, Tilly Ramsay, Alexandra Burke and Daddy Pig",
+        "description": "A whole host of stars were amongst the 59,000 runners competing in the London Marathon on Sunday - with many achieving incredible times.",
+        "source": "Dailymail.com",
+        "url": "https://www.dailymail.com/tvshowbiz/article-15766957/Celebrities-London-Marathon-finish-times-Cynthia-Erivo-James-Norton-Tilly-Ramsay-Alexandra-Burke-Daddy-Pig.html",
+        "image": "https://i.dailymail.com/1s/2026/04/26/18/108175459-0-image-m-41_1777225296731.jpg",
+        "date": "2026-04-26T17:47:35Z"
+      },
+      {
+        "type": "wildfire",
+        "title": "More than 50 firefighters battle ‘devastating’ wildfires in the Mourne Mountains",
+        "description": "People were advised to stay away from the Co Down beauty spot as the blazes continued into Sunday",
+        "source": "The Irish Times",
+        "url": "https://www.irishtimes.com/ireland/2026/04/26/more-than-50-firefighters-battle-devastating-wildfires-in-the-mourne-mountains/",
+        "image": "https://www.irishtimes.com/resizer/v2/36MZI4VIBGWSVL4R5GIXUSL6AU.jpg?smart=true&auth=7e63d4f56959ced4373f12ec5ecbe634a3c676dd690144aed5e934dbc3580a2c&width=1200&height=630",
+        "date": "2026-04-26T17:19:42Z"
+      },
+      {
+        "type": "wildfire",
+        "title": "epwforge-mcp 0.0.1",
+        "description": "MCP server for EPWForge — generate, morph, and download EPW weather files for EnergyPlus, OpenStudio, IES VE, and eQUEST. TMYx, AMY, CMIP6 future-climate scenarios, and wildfire smoke overlays for AI ",
+        "source": "Pypi.org",
+        "url": "https://pypi.org/project/epwforge-mcp/0.0.1/",
+        "image": "",
+        "date": "2026-04-26T16:41:25Z"
+      },
+      {
+        "type": "wildfire",
+        "title": "epwforge-mcp added to PyPI",
+        "description": "MCP server for EPWForge — generate, morph, and download EPW weather files for EnergyPlus, OpenStudio, IES VE, and eQUEST. TMYx, AMY, CMIP6 future-climate scenarios, and wildfire smoke overlays for AI ",
+        "source": "Pypi.org",
+        "url": "https://pypi.org/project/epwforge-mcp/",
+        "image": "",
+        "date": "2026-04-26T16:41:25Z"
+      },
+      {
+        "type": "wildfire",
+        "title": "UPSC Essentials daily subject quiz : International Relations MCQs (Week 159) — Check out answers with explanations",
+        "description": "UPSC Prelims Quiz 2026: Sharpen your UPSC preparation with our International Relations quiz for Week 159. Attempt questions on Five Eyes alliance, town of Otsuchi, Yellow Line, and more to check your ",
+        "source": "The Indian Express",
+        "url": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-quiz-international-relations-week-159-five-eyes-alliance-yellow-line-10657036/",
+        "image": "https://images.indianexpress.com/2026/04/town-of-Otsuchi.jpg",
+        "date": "2026-04-26T14:53:27Z"
+      },
+      {
+        "type": "wildfire",
+        "title": "FCC Asked to Adopt Plan Taking Nine UHF TV Channels from Broadcasters for Reassignment to 6G Wireless",
+        "description": "Spectrum: A new proposal asked the FCC to clear out a large block of UHF broadcast spectrum -- a move that could force more than 40% of U.S. TV stations to relocate. In an April 15 petition, a group c",
+        "source": "Freerepublic.com",
+        "url": "https://freerepublic.com/focus/f-bloggers/4376495/posts",
+        "image": "",
+        "date": "2026-04-26T14:07:47Z"
+      },
+      {
+        "type": "wildfire",
+        "title": "Gordon Ramsay gives his daughter Tilly a congratulatory kiss on the cheek while Cynthia Erivo is helped by a member of staff as they lead stars finishing the London marathon",
+        "description": "A slew of stars are donning their running shoes today as they take on the London marathon and add an athletic string to their already impressive bows.",
+        "source": "Dailymail.com",
+        "url": "https://www.dailymail.com/tvshowbiz/article-15766727/Gordon-Ramsay-gives-daughter-Tilly-congratulatory-kiss-cheek-Cynthia-Erivo-helped-member-staff-lead-stars-finishing-London-marathon.html",
+        "image": "https://i.dailymail.com/1s/2026/04/26/14/108172803-0-image-m-40_1777211825824.jpg",
+        "date": "2026-04-26T14:00:02Z"
+      },
+      {
+        "type": "wildfire",
+        "title": "This ecologist looks to wildfire history to support communities navigating the fires of today",
+        "description": "Kira Hoffman, a fire ecologist at UBC who researches wildfire behavior and Indigenous-led fire stewardship, says her recent award from National Geographic is shared with the First Nations who've share",
+        "source": "CBC News",
+        "url": "https://www.cbc.ca/news/canada/british-columbia/fire-ecologist-kira-hoffman-9.7169044",
+        "image": "https://i.cbc.ca/ais/d296f4fb-1d7d-4c03-9e6b-8ff4855b538e,1777062840628/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C0%2C1920%2C1080%29%3BResize%3D620",
+        "date": "2026-04-26T14:00:00Z"
+      },
+      {
+        "type": "wildfire",
+        "title": "How New Mexico is ‘building a forest’ by solving a seedling shortage",
+        "description": "A Q&A with the New Mexico Reforestation Center director about what it takes to replant a burn scar post-wildfire.",
+        "source": "Grist",
+        "url": "https://grist.org/solutions/how-new-mexico-is-building-a-forest-by-solving-a-seedling-shortage/",
+        "image": "https://grist.org/wp-content/uploads/2026/04/Technicians-monitor-seedlings-after-planting.jpg?quality=75&strip=all",
+        "date": "2026-04-26T13:00:00Z"
+      },
+      {
+        "type": "wildfire",
+        "title": "Series of blazes across Scotland during 'extreme' wildfire alert",
+        "description": "The Scottish Fire and rescue Service (SFRS) said an 'extreme' wildfire warning for Western Scotland would remain until midnight.",
+        "source": "BBC News",
+        "url": "https://www.bbc.com/news/articles/cly7yvr8g97o",
+        "image": "https://ichef.bbci.co.uk/news/1024/branded_news/b787/live/a1a5fc10-4168-11f1-8a25-27287a9e092d.jpg",
+        "date": "2026-04-26T12:52:14Z"
+      },
+      {
+        "type": "wildfire",
+        "title": "Harry Styles fans convinced pop star is running in the London Marathon disguised as Daddy Pig as Joe Wicks is forced to address the rumours live on BBC",
+        "description": "Peppa Pig's dad is running the 26.2 mile course to raise awareness and funds for the National Deaf Children's Society, after his son George's recent hearing loss diagnosis.",
+        "source": "Dailymail.com",
+        "url": "https://www.dailymail.com/tvshowbiz/article-15766561/Harry-Styles-fans-convinced-pop-star-running-London-Marathon-disguised-Daddy-Pig-Joe-Wicks-forced-address-rumours-live-BBC.html",
+        "image": "https://i.dailymail.com/1s/2026/04/26/13/108171765-0-image-m-17_1777205494519.jpg",
+        "date": "2026-04-26T12:18:28Z"
+      },
+      {
+        "type": "wildfire",
+        "title": "Japan deploys 1,400 firefighters, SDF to battle raging wildfires in Iwate",
+        "description": "Japan has deployed 1,400 firefighters and 100 Self-Defense Force ‌personnel to battle mountain blazes in Iwate Prefecture, with the fires, now burning on Sunday for ‌a fifth straight day, continuing t",
+        "source": "Japan Today",
+        "url": "https://japantoday.com/category/national/japan-deploys-1-400-firefighters-to-battle-raging-wildfires-in-the-north",
+        "image": "",
+        "date": "2026-04-26T07:30:50Z"
+      },
       {
         "type": "wildfire",
         "title": "We heard pop, pop, pop, looked at the door… and waited under tables for the lunatic to unload: Inside the White House Correspondents' Dinner shooting",
@@ -19,117 +127,9 @@
         "url": "https://freerepublic.com/focus/f-news/4376466/posts",
         "image": "",
         "date": "2026-04-26T04:09:56Z"
-      },
-      {
-        "type": "wildfire",
-        "title": "Karoline Leavitt Goes Viral for Saying ‘There Will Be Shots Fired Tonight’ Right Before WHCD Incident | Video",
-        "description": "\"This will NOT help her fight against conspiracy theorists,\" one X user quips\nThe post Karoline Leavitt Goes Viral for Saying ‘There Will Be Shots Fired Tonight’ Right Before WHCD Incident | Video app",
-        "source": "TheWrap",
-        "url": "https://www.thewrap.com/culture-lifestyle/culture/karoline-leavitt-there-will-shots-fired-tonight-joke-before-whcd-video/",
-        "image": "https://www.thewrap.com/wp-content/uploads/2026/04/Untitled-design-2026-04-25T205430.880.jpg",
-        "date": "2026-04-26T04:02:23Z"
-      },
-      {
-        "type": "wildfire",
-        "title": "Tasmanian coastal community on bushfire watch again",
-        "description": "Dolphin Sands community recently ravaged by bushfire is again on alert in Tasmania.",
-        "source": "ABC News (AU)",
-        "url": "https://www.abc.net.au/news/2026-04-26/tasmania-bushfire-alert-for-dolphin-sands-area/106607904",
-        "image": "https://live-production.wcms.abc-cdn.net.au/da7f169149774de93ae0fa1de8b2f222?impolicy=wcms_watermark_news&cropH=551&cropW=980&xPos=0&yPos=684&width=862&height=485&imformat=generic",
-        "date": "2026-04-26T02:58:46Z"
-      },
-      {
-        "type": "wildfire",
-        "title": "WATCH: Shooting incident reported outside White House Correspondents' Dinner",
-        "description": "President Trump and other dignitaries were removed by security after a shooting incident outside the White House Correspondents' Dinner Saturday night. ABC News' Jay O'Brien reports.",
-        "source": "Abcnews.com",
-        "url": "https://abcnews.com/video/132389801/",
-        "image": "https://i.abcnewsfe.com/a/a3b712ff-9ec6-4b2a-a61d-6371f4493b19/260425_abcnl_whcd_obrien_evacuation_hpMain_16x9.jpg?w=992",
-        "date": "2026-04-26T02:41:45Z"
-      },
-      {
-        "type": "wildfire",
-        "title": "Wind fuels brush fire in OC, closing roads and forcing evacuation warnings",
-        "description": "A vegetation fire burning in the hills near Brea has grown to 40 acres, prompting evacuation warnings and a large-scale firefighting effort Saturday afternoon, according to CAL FIRE and Orange County ",
-        "source": "New York Post",
-        "url": "https://nypost.com/2026/04/25/us-news/wind-fuels-brush-fire-in-oc-closing-roads-and-forcing-evacuation-warnings/",
-        "image": "https://nypost.com/wp-content/uploads/sites/2/2026/04/comp-wildfire2.jpg?quality=75&strip=all&w=1200",
-        "date": "2026-04-25T23:44:29Z"
-      },
-      {
-        "type": "wildfire",
-        "title": "Game Of Thrones' 13 Best Lannisters, Ranked",
-        "description": "They may not be the most likable characters in all of Westeros, but their family drama is some of the most compelling in the entire fantasy saga.",
-        "source": "Screen Rant",
-        "url": "https://screenrant.com/game-of-thrones-lannisters-ranked/",
-        "image": "https://static0.srcdn.com/wordpress/wp-content/uploads/2026/04/lena-headey-as-cersei-lannister-in-game-of-thrones.jpg?w=1600&h=900&fit=crop",
-        "date": "2026-04-25T21:00:20Z"
-      },
-      {
-        "type": "wildfire",
-        "title": "Biggest controversies and debates of the 2026 NFL Draft",
-        "description": "The 2026 NFL Draft brought major drama, including Mike Vrabel's personal scandal, controversial picks and heated fan reactions across social media feeds.",
-        "source": "Fox News",
-        "url": "https://www.foxnews.com/sports/biggest-controversies-debates-2026-nfl-draft",
-        "image": "https://static.foxnews.com/foxnews.com/content/uploads/2026/04/mike-vrabel-arvell-reese-split.jpg",
-        "date": "2026-04-25T20:23:56Z"
-      },
-      {
-        "type": "wildfire",
-        "title": "Bear Alerts Issued at Record Pace",
-        "description": "Bear sightings are surging across northeastern Japan in an unusually early spring trend, prompting the fastest issuance on record of bear alerts in multiple prefectures including Aomori and Iwate. Inc",
-        "source": "Newsonjapan.com",
-        "url": "https://newsonjapan.com/article/149022.php",
-        "image": "https://i2.ytimg.com/vi/7RMvPD2RFkU/mqdefault.jpg",
-        "date": "2026-04-25T20:21:00Z"
-      },
-      {
-        "type": "wildfire",
-        "title": "Iwate Forest Fire Continues to Spread, Second Largest Since Heisei Era",
-        "description": "A wildfire in the town of Otsuchi, Iwate Prefecture, entered its fourth day with no sign of weakening, as flames continued to spread and more residents prepared to flee. (News On Japan)",
-        "source": "Newsonjapan.com",
-        "url": "https://newsonjapan.com/article/149021.php",
-        "image": "https://i2.ytimg.com/vi/OzCqvLlKN84/mqdefault.jpg",
-        "date": "2026-04-25T20:15:38Z"
-      },
-      {
-        "type": "wildfire",
-        "title": "Wildfires tear through Florida and Georgia killing at least one and destroying more than 120 homes, with one blaze getting sparked by a foil balloon touching power lines",
-        "description": "There are more than 150 active wildfires throughout Georgia and Florida. Extreme drought conditions have contributed to the natural disasters, scientists say.",
-        "source": "Dailymail.com",
-        "url": "https://www.dailymail.com/news/article-15764987/wildfires-florida-georgia-firefighter-dead-homes-destroyed.html",
-        "image": "https://i.dailymail.com/1s/2026/04/25/20/108156741-0-image-m-53_1777145131853.jpg",
-        "date": "2026-04-25T20:06:48Z"
-      },
-      {
-        "type": "wildfire",
-        "title": "Remote employee calls out their disruptive roommate by matching their energy and taking loud work calls in the common area: ‘We agreed that we would use headphones’",
-        "description": "When two employees work from home in the same household, does that make them coworkers? In my mind, I always thought that coworker beef started and ended at the edges of the cubicle, but in this story",
-        "source": "Cheezburger.com",
-        "url": "https://cheezburger.com/45127173/remote-employee-calls-out-their-disruptive-roommate-by-matching-their-energy-and-taking-loud-work",
-        "image": "https://i.chzbgr.com/thumb1200/45127173/h7F9FF7D0/their-disruptive-roommate-by-matching-their-energy-and-taking-loud-work-calls-in-the-common-area",
-        "date": "2026-04-25T20:00:00Z"
-      },
-      {
-        "type": "wildfire",
-        "title": "Wildfires in southeastern Georgia continue to threaten residents",
-        "description": "Two wildfires in southeastern Georgia continued to threaten homes and lives on Saturday as officials warned that strong winds could spread the flames.",
-        "source": "PBS",
-        "url": "https://www.pbs.org/newshour/nation/wildfires-in-southeastern-georgia-continue-to-threaten-residents",
-        "image": "https://d3i6fh83elv35t.cloudfront.net/static/2026/04/2026-04-25T044130Z_1755076522_RC2XUKA05DQY_RTRMADP_3_USA-WILDFIRES-1024x683.jpg",
-        "date": "2026-04-25T19:57:58Z"
-      },
-      {
-        "type": "wildfire",
-        "title": "Spencer Pratt’s fundraising haul puts Karen Bass on notice in mayor’s race",
-        "description": "Reality TV perosnality Spencer Pratt has emerged as a fundraising force in the Los Angeles mayor’s race, outpacing the incumbent Karen Bass as well as lefty Councilmember Nithya Raman in the first fil",
-        "source": "New York Post",
-        "url": "https://nypost.com/2026/04/25/us-news/spencer-pratt-outraises-karen-bass-in-mayors-race/",
-        "image": "https://nypost.com/wp-content/uploads/sites/2/2026/04/pratt_ead6b9.jpg?quality=75&strip=all&w=1200",
-        "date": "2026-04-25T19:21:38Z"
       }
     ],
     "filter": "wildfire",
-    "fetched_at": "2026-04-27T05:49:49.197147Z"
+    "fetched_at": "2026-04-27T18:51:15.902238Z"
   }
 }

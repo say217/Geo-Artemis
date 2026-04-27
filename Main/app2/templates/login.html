@@ -23,7 +23,6 @@
       --red: #e02020;
       --red-bright: #ff3333;
       --red-glow: rgba(255, 51, 51, 0.35);
-      --red-dim: rgba(224, 32, 32, 0.10);
       --white: #f0f0f0;
       --black: #060608;
       --border: rgba(240, 240, 240, 0.08);
@@ -43,7 +42,6 @@
       overflow: hidden;
     }
 
-    /* Grid overlay */
     body::before {
       content: '';
       position: fixed;
@@ -56,7 +54,6 @@
       pointer-events: none;
     }
 
-    /* Scanlines */
     body::after {
       content: '';
       position: fixed;
@@ -137,7 +134,6 @@
       text-align: center;
     }
 
-    /* Video */
     .video-wrap {
       width: 340px;
       height: 340px;
@@ -157,7 +153,6 @@
       display: block;
     }
 
-    /* Status bar */
     .status-bar {
       display: flex;
       gap: 1.2rem;
@@ -277,17 +272,6 @@
       line-height: 1.6;
     }
 
-    .error-box {
-      background: rgba(224, 32, 32, 0.12);
-      border: 1px solid rgba(255, 51, 51, 0.35);
-      border-left: 3px solid var(--red-bright);
-      padding: 0.6rem 0.8rem;
-      font-size: 0.7rem;
-      color: #ff8080;
-      letter-spacing: 1px;
-      margin-bottom: 1.2rem;
-    }
-
     .field-group {
       display: flex;
       flex-direction: column;
@@ -383,51 +367,6 @@
       transform: scale(0.99);
     }
 
-    .form-footer {
-      margin-top: 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      font-size: 0.65rem;
-      color: rgba(255, 255, 255, 0.25);
-      letter-spacing: 1px;
-    }
-
-    .form-footer a {
-      color: var(--red-bright);
-      text-decoration: none;
-      letter-spacing: 2px;
-      font-size: 0.65rem;
-      transition: text-shadow 0.2s;
-    }
-
-    .form-footer a:hover {
-      text-shadow: 0 0 8px var(--red-bright);
-    }
-
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin: 1.2rem 0;
-    }
-
-    .divider::before,
-    .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .divider span {
-      font-size: 0.55rem;
-      letter-spacing: 2px;
-      color: rgba(255, 255, 255, 0.2);
-    }
-
-    /* HUD corner brackets on form card */
     .hud-corner {
       position: absolute;
       width: 12px;
@@ -516,7 +455,6 @@
       }
     }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .page {
         grid-template-columns: 1fr;
@@ -563,7 +501,6 @@
 
     <!-- ── LEFT PANEL ── -->
     <div class="left-panel">
-
       <div class="brand-title">GEO <span>ARTEM</span></div>
       <div class="brand-sub">Geospatial Intelligence Platform</div>
 
@@ -578,7 +515,6 @@
         <div class="status-item"><span class="status-dot ok"></span>SECURE</div>
         <div class="status-item"><span class="status-dot ok"></span>ONLINE</div>
       </div>
-
     </div>
 
     <!-- ── RIGHT PANEL ── -->
@@ -592,38 +528,27 @@
 
           <div class="form-header">
             <div class="form-eyebrow">/// ACCESS PORTAL</div>
-            <div class="form-title">LOG IN</div>
-            <div class="form-desc">Enter credentials to access GEO ARTEM intelligence systems.</div>
+            <div class="form-title">ENTER</div>
+            <div class="form-desc">Identify yourself to access GEO ARTEM intelligence systems.</div>
           </div>
-
-          {% if error %}
-          <div class="error-box">⚠ {{ error }}</div>
-          {% endif %}
 
           <form method="post" action="/app2/login" autocomplete="off">
             <div class="field-group">
+              <div class="field">
+                <label>Your Name</label>
+                <input type="text" name="name" placeholder="John Doe" required />
+                <span class="prefix">◈</span>
+              </div>
               <div class="field">
                 <label>Email Address</label>
                 <input type="email" name="email" placeholder="user@domain.net" required />
                 <span class="prefix">✉</span>
               </div>
-              <div class="field">
-                <label>Password</label>
-                <input type="password" name="password" placeholder="••••••••••••" required
-                  autocomplete="current-password" />
-                <span class="prefix">🔒</span>
-              </div>
             </div>
 
-            <button type="submit" class="btn-submit">GRANT ACCESS</button>
+            <button type="submit" class="btn-submit">▶ ENTER THE NETWORK</button>
           </form>
 
-          <div class="divider"><span>NEW TO NETWORK?</span></div>
-
-          <div class="form-footer">
-            <span>Need an account?</span>
-            <a href="/app2/signup">REGISTER →</a>
-          </div>
         </div>
       </div>
     </div>
@@ -641,13 +566,11 @@
         DATA STREAM ENCRYPTED &nbsp;///&nbsp;
         COORDINATES LOCKED &nbsp;///&nbsp;
         ALL SECTORS NOMINAL &nbsp;///&nbsp;
-        WELCOME TO GEO ARTEM — LOG IN NOW &nbsp;///&nbsp;
+        WELCOME TO GEO ARTEM &nbsp;///&nbsp;
         SECURE CHANNEL ESTABLISHED &nbsp;///&nbsp;
       </div>
     </div>
   </div>
-
-  <!-- No JavaScript needed — video is handled natively by the browser -->
 
 </body>
 

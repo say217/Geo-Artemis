@@ -1,126 +1,135 @@
 {
-  "saved_at": "2026-04-27T05:49:41.618167Z",
+  "saved_at": "2026-04-27T18:51:07.931937Z",
   "data": {
     "news": [
       {
         "type": "all",
-        "title": "We heard pop, pop, pop, looked at the door… and waited under tables for the lunatic to unload: Inside the White House Correspondents' Dinner shooting",
-        "description": "Terror unfolded at the annual media event after a crazed gunman stormed through a security checkpoint and opened fire.",
+        "title": "Celebrities London Marathon finish times revealed: Exhausted Cynthia Erivo achieves new personal best as she completes iconic run alongside James Norton, Tilly Ramsay, Alexandra Burke and Daddy Pig",
+        "description": "A whole host of stars were amongst the 59,000 runners competing in the London Marathon on Sunday - with many achieving incredible times.",
         "source": "Dailymail.com",
-        "url": "https://www.dailymail.com/news/article-15766171/Inside-Trump-shooting-white-house-correspondents-dinner.html",
-        "image": "https://i.dailymail.com/1s/2026/04/26/06/108166227-0-image-m-22_1777179600324.jpg",
-        "date": "2026-04-26T05:17:51Z"
+        "url": "https://www.dailymail.com/tvshowbiz/article-15766957/Celebrities-London-Marathon-finish-times-Cynthia-Erivo-James-Norton-Tilly-Ramsay-Alexandra-Burke-Daddy-Pig.html",
+        "image": "https://i.dailymail.com/1s/2026/04/26/18/108175459-0-image-m-41_1777225296731.jpg",
+        "date": "2026-04-26T17:47:35Z"
       },
       {
         "type": "all",
-        "title": "‘This Is Not the First Time’: Trump Says WHCD Shooting Was Another Assassination Attempt",
-        "description": "During the White House Correspondents' Dinner on Saturday night, an as-yet-unidentified shooter fired multiple rounds in an entrance area near the event at the Washington Hilton, prompting Secret Serv",
-        "source": "Freerepublic.com",
-        "url": "https://freerepublic.com/focus/f-news/4376466/posts",
+        "title": "More than 50 firefighters battle ‘devastating’ wildfires in the Mourne Mountains",
+        "description": "People were advised to stay away from the Co Down beauty spot as the blazes continued into Sunday",
+        "source": "The Irish Times",
+        "url": "https://www.irishtimes.com/ireland/2026/04/26/more-than-50-firefighters-battle-devastating-wildfires-in-the-mourne-mountains/",
+        "image": "https://www.irishtimes.com/resizer/v2/36MZI4VIBGWSVL4R5GIXUSL6AU.jpg?smart=true&auth=7e63d4f56959ced4373f12ec5ecbe634a3c676dd690144aed5e934dbc3580a2c&width=1200&height=630",
+        "date": "2026-04-26T17:19:42Z"
+      },
+      {
+        "type": "all",
+        "title": "epwforge-mcp 0.0.1",
+        "description": "MCP server for EPWForge — generate, morph, and download EPW weather files for EnergyPlus, OpenStudio, IES VE, and eQUEST. TMYx, AMY, CMIP6 future-climate scenarios, and wildfire smoke overlays for AI ",
+        "source": "Pypi.org",
+        "url": "https://pypi.org/project/epwforge-mcp/0.0.1/",
         "image": "",
-        "date": "2026-04-26T04:09:56Z"
+        "date": "2026-04-26T16:41:25Z"
       },
       {
         "type": "all",
-        "title": "Karoline Leavitt Goes Viral for Saying ‘There Will Be Shots Fired Tonight’ Right Before WHCD Incident | Video",
-        "description": "\"This will NOT help her fight against conspiracy theorists,\" one X user quips\nThe post Karoline Leavitt Goes Viral for Saying ‘There Will Be Shots Fired Tonight’ Right Before WHCD Incident | Video app",
-        "source": "TheWrap",
-        "url": "https://www.thewrap.com/culture-lifestyle/culture/karoline-leavitt-there-will-shots-fired-tonight-joke-before-whcd-video/",
-        "image": "https://www.thewrap.com/wp-content/uploads/2026/04/Untitled-design-2026-04-25T205430.880.jpg",
-        "date": "2026-04-26T04:02:23Z"
+        "title": "epwforge-mcp added to PyPI",
+        "description": "MCP server for EPWForge — generate, morph, and download EPW weather files for EnergyPlus, OpenStudio, IES VE, and eQUEST. TMYx, AMY, CMIP6 future-climate scenarios, and wildfire smoke overlays for AI ",
+        "source": "Pypi.org",
+        "url": "https://pypi.org/project/epwforge-mcp/",
+        "image": "",
+        "date": "2026-04-26T16:41:25Z"
       },
       {
         "type": "all",
-        "title": "WATCH: Shooting incident reported outside White House Correspondents' Dinner",
-        "description": "President Trump and other dignitaries were removed by security after a shooting incident outside the White House Correspondents' Dinner Saturday night. ABC News' Jay O'Brien reports.",
-        "source": "Abcnews.com",
-        "url": "https://abcnews.com/video/132389801/",
-        "image": "https://i.abcnewsfe.com/a/a3b712ff-9ec6-4b2a-a61d-6371f4493b19/260425_abcnl_whcd_obrien_evacuation_hpMain_16x9.jpg?w=992",
-        "date": "2026-04-26T02:41:45Z"
+        "title": "Has Trump Actually Solved 9 Wars As He Claims? No—Here’s What’s True",
+        "description": "Trump said recently the Israel-Lebanon ceasefire that took effect April 16 would be his 10th war solved—even though U.S. attacks on Iran reignited the military conflict in Lebanon.",
+        "source": "Forbes",
+        "url": "https://www.forbes.com/sites/saradorn/2026/04/26/has-trump-actually-solved-9-wars-as-he-claims-no-heres-whats-true/",
+        "image": "https://imageio.forbes.com/specials-images/imageserve/69ee2ab98c5ebe891c02862e/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds",
+        "date": "2026-04-26T15:13:46Z"
       },
       {
         "type": "all",
-        "title": "FG registers 3,613 refugees as asylum-seekers rise by 322",
-        "description": "Nigeria’s Q1 2026 data shows a 21% rise in asylum-seekers. Learn about the latest statistics on refugees in Nigeria, with 3,613 registered by the FG.\n\nRead More: https://punchng.com/fg-registers-3613-",
-        "source": "The Punch",
-        "url": "https://punchng.com/fg-registers-3613-refugees-as-asylum-seekers-rise-by-322/",
-        "image": "https://cdn.punchng.com/wp-content/uploads/2019/08/23080717/Nigerian-returnees-from-Cameroon-refugee-camps2.jpg",
-        "date": "2026-04-26T00:48:11Z"
+        "title": "UPSC Essentials daily subject quiz : International Relations MCQs (Week 159) — Check out answers with explanations",
+        "description": "UPSC Prelims Quiz 2026: Sharpen your UPSC preparation with our International Relations quiz for Week 159. Attempt questions on Five Eyes alliance, town of Otsuchi, Yellow Line, and more to check your ",
+        "source": "The Indian Express",
+        "url": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-quiz-international-relations-week-159-five-eyes-alliance-yellow-line-10657036/",
+        "image": "https://images.indianexpress.com/2026/04/town-of-Otsuchi.jpg",
+        "date": "2026-04-26T14:53:27Z"
       },
       {
         "type": "all",
-        "title": "Trump evacuated from White House dinner amid US-Iran tensions",
-        "description": "The evacuation underscores potential for increased military conflict, impacting market speculation on US-Iran relations and military operations.\nThe post Trump evacuated from White House dinner amid U",
+        "title": "Hedge funds exit US tech stocks amid Iran conflict, Nvidia odds hold firm",
+        "description": "Hedge fund tech stock selloff amid geopolitical tensions may signal caution, potentially impacting tech valuations and market stability.\nThe post Hedge funds exit US tech stocks amid Iran conflict, Nv",
         "source": "Crypto Briefing",
-        "url": "https://cryptobriefing.com/trump-evacuated-from-white-house-dinner-amid-us-iran-tensions/",
-        "image": "https://static.cryptobriefing.com/wp-content/uploads/2026/04/25204637/trump-out-as-president-by-march-31-c3SENQhH7Ao1-18-366x457.jpg",
-        "date": "2026-04-26T00:46:43Z"
+        "url": "https://cryptobriefing.com/hedge-funds-exit-us-tech-stocks-amid-iran-conflict-nvidia-odds-hold-firm/",
+        "image": "https://static.cryptobriefing.com/wp-content/uploads/2026/04/26102806/largest-company-eoy-KS99l6lbxfCc-81-457x457.jpg",
+        "date": "2026-04-26T14:28:11Z"
       },
       {
         "type": "all",
-        "title": "Wind fuels brush fire in OC, closing roads and forcing evacuation warnings",
-        "description": "A vegetation fire burning in the hills near Brea has grown to 40 acres, prompting evacuation warnings and a large-scale firefighting effort Saturday afternoon, according to CAL FIRE and Orange County ",
-        "source": "New York Post",
-        "url": "https://nypost.com/2026/04/25/us-news/wind-fuels-brush-fire-in-oc-closing-roads-and-forcing-evacuation-warnings/",
-        "image": "https://nypost.com/wp-content/uploads/sites/2/2026/04/comp-wildfire2.jpg?quality=75&strip=all&w=1200",
-        "date": "2026-04-25T23:44:29Z"
-      },
-      {
-        "type": "all",
-        "title": "GOP Rep. McCormick: Some Haitians Should Lose TPS, But Some Shouldn't",
-        "description": "During an interview with “The Joe Pags Show” that took place on Thursday and was released on Friday, Rep. Rich McCormick (R-GA) addressed his vote in favor of extended TPS for Haitians and said that h",
-        "source": "Breitbart News",
-        "url": "https://www.breitbart.com/clips/2026/04/25/gop-rep-mccormick-some-haitians-should-lose-tps-but-some-shouldnt/",
-        "image": "https://media.breitbart.com/media/2023/04/McCormick-427-Thumbnail-640x335.jpg",
-        "date": "2026-04-25T23:30:07Z"
-      },
-      {
-        "type": "all",
-        "title": "EU’s €90 billion ‘may not be enough’ for Ukraine – WSJ",
-        "description": "The EU will need to provide more money to Ukraine next year on top of the newly approved €90 billion, the Wall Street Journal has reported Read Full Article at RT.com",
-        "source": "RT",
-        "url": "https://www.rt.com/news/639065-eu-ukraine-money-costa/",
-        "image": "https://mf.b37mrtl.ru/files/2026.04/article/69ed132f85f5401c411a3212.jpg",
-        "date": "2026-04-25T21:18:18Z"
-      },
-      {
-        "type": "all",
-        "title": "Breaking | Gervasoni also stands down, AIA calls meeting!",
-        "description": "Italian football is going through a real earthquake triggered by the Milan Prosecutor’s investigation, which has put Gianluca Rocchi, the CAN refereeing appointor who has suspended himself, under in..",
-        "source": "Yahoo Entertainment",
-        "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_fa660af3-e685-48da-8f35-67bf5dc2cde0",
+        "title": "FCC Asked to Adopt Plan Taking Nine UHF TV Channels from Broadcasters for Reassignment to 6G Wireless",
+        "description": "Spectrum: A new proposal asked the FCC to clear out a large block of UHF broadcast spectrum -- a move that could force more than 40% of U.S. TV stations to relocate. In an April 15 petition, a group c",
+        "source": "Freerepublic.com",
+        "url": "https://freerepublic.com/focus/f-bloggers/4376495/posts",
         "image": "",
-        "date": "2026-04-25T21:13:00Z"
+        "date": "2026-04-26T14:07:47Z"
       },
       {
         "type": "all",
-        "title": "Game Of Thrones' 13 Best Lannisters, Ranked",
-        "description": "They may not be the most likable characters in all of Westeros, but their family drama is some of the most compelling in the entire fantasy saga.",
-        "source": "Screen Rant",
-        "url": "https://screenrant.com/game-of-thrones-lannisters-ranked/",
-        "image": "https://static0.srcdn.com/wordpress/wp-content/uploads/2026/04/lena-headey-as-cersei-lannister-in-game-of-thrones.jpg?w=1600&h=900&fit=crop",
-        "date": "2026-04-25T21:00:20Z"
+        "title": "Gordon Ramsay gives his daughter Tilly a congratulatory kiss on the cheek while Cynthia Erivo is helped by a member of staff as they lead stars finishing the London marathon",
+        "description": "A slew of stars are donning their running shoes today as they take on the London marathon and add an athletic string to their already impressive bows.",
+        "source": "Dailymail.com",
+        "url": "https://www.dailymail.com/tvshowbiz/article-15766727/Gordon-Ramsay-gives-daughter-Tilly-congratulatory-kiss-cheek-Cynthia-Erivo-helped-member-staff-lead-stars-finishing-London-marathon.html",
+        "image": "https://i.dailymail.com/1s/2026/04/26/14/108172803-0-image-m-40_1777211825824.jpg",
+        "date": "2026-04-26T14:00:02Z"
       },
       {
         "type": "all",
-        "title": "Biggest controversies and debates of the 2026 NFL Draft",
-        "description": "The 2026 NFL Draft brought major drama, including Mike Vrabel's personal scandal, controversial picks and heated fan reactions across social media feeds.",
-        "source": "Fox News",
-        "url": "https://www.foxnews.com/sports/biggest-controversies-debates-2026-nfl-draft",
-        "image": "https://static.foxnews.com/foxnews.com/content/uploads/2026/04/mike-vrabel-arvell-reese-split.jpg",
-        "date": "2026-04-25T20:23:56Z"
+        "title": "This ecologist looks to wildfire history to support communities navigating the fires of today",
+        "description": "Kira Hoffman, a fire ecologist at UBC who researches wildfire behavior and Indigenous-led fire stewardship, says her recent award from National Geographic is shared with the First Nations who've share",
+        "source": "CBC News",
+        "url": "https://www.cbc.ca/news/canada/british-columbia/fire-ecologist-kira-hoffman-9.7169044",
+        "image": "https://i.cbc.ca/ais/d296f4fb-1d7d-4c03-9e6b-8ff4855b538e,1777062840628/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C0%2C1920%2C1080%29%3BResize%3D620",
+        "date": "2026-04-26T14:00:00Z"
       },
       {
         "type": "all",
-        "title": "Iwate Forest Fire Continues to Spread, Second Largest Since Heisei Era",
-        "description": "A wildfire in the town of Otsuchi, Iwate Prefecture, entered its fourth day with no sign of weakening, as flames continued to spread and more residents prepared to flee. (News On Japan)",
-        "source": "Newsonjapan.com",
-        "url": "https://newsonjapan.com/article/149021.php",
-        "image": "https://i2.ytimg.com/vi/OzCqvLlKN84/mqdefault.jpg",
-        "date": "2026-04-25T20:15:38Z"
+        "title": "War scholar flags chilling parallels between Trump's war in Iran and past conflict",
+        "description": "A contrast between President Donald Trump's war with Iran and a previous conflict has been flagged by a war scholar.Trump's military conflict with Iran has emerged as one of the most consequential fai",
+        "source": "Raw Story",
+        "url": "https://www.rawstory.com/trump-iran-2676815769/",
+        "image": "https://www.rawstory.com/media-library/donald-trump.jpg?id=61531729&width=1200&height=600&coordinates=0%2C312%2C0%2C312",
+        "date": "2026-04-26T13:34:26Z"
+      },
+      {
+        "type": "all",
+        "title": "How New Mexico is ‘building a forest’ by solving a seedling shortage",
+        "description": "A Q&A with the New Mexico Reforestation Center director about what it takes to replant a burn scar post-wildfire.",
+        "source": "Grist",
+        "url": "https://grist.org/solutions/how-new-mexico-is-building-a-forest-by-solving-a-seedling-shortage/",
+        "image": "https://grist.org/wp-content/uploads/2026/04/Technicians-monitor-seedlings-after-planting.jpg?quality=75&strip=all",
+        "date": "2026-04-26T13:00:00Z"
+      },
+      {
+        "type": "all",
+        "title": "NY Giants 2026 NFL Draft: NOW, are the 2026 Giants more talented than the 2025 Giants?",
+        "description": "Yes, but there’s one more thing to do.",
+        "source": "Big Blue View",
+        "url": "https://www.bigblueview.com/new-york-giants-analysis/160880/ny-giants-2026-nfl-draft-better-worse-roster-than-2025",
+        "image": "https://s.yimg.com/ny/api/res/1.2/bCBknsv_YPgwjYYfn6aM2g--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/sb_nation_articles_115/e4b1186b824ede65453f30005e8de10e",
+        "date": "2026-04-26T13:00:00Z"
+      },
+      {
+        "type": "all",
+        "title": "Series of blazes across Scotland during 'extreme' wildfire alert",
+        "description": "The Scottish Fire and rescue Service (SFRS) said an 'extreme' wildfire warning for Western Scotland would remain until midnight.",
+        "source": "BBC News",
+        "url": "https://www.bbc.com/news/articles/cly7yvr8g97o",
+        "image": "https://ichef.bbci.co.uk/news/1024/branded_news/b787/live/a1a5fc10-4168-11f1-8a25-27287a9e092d.jpg",
+        "date": "2026-04-26T12:52:14Z"
       }
     ],
     "filter": "all",
-    "fetched_at": "2026-04-27T05:49:41.618167Z"
+    "fetched_at": "2026-04-27T18:51:07.928086Z"
   }
 }

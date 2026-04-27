@@ -1,135 +1,144 @@
 {
-  "saved_at": "2026-04-27T05:49:56.769232Z",
+  "saved_at": "2026-04-27T18:51:23.679843Z",
   "data": {
     "news": [
       {
         "type": "earthquake",
-        "title": "Meta, Microsoft have joined tech layoff tsunami – but is AI really to blame?",
-        "description": "Meta and Microsoft announce significant layoffs, raising questions about AI's role in workforce changes and corporate strategy.",
-        "source": "BusinessLine",
-        "url": "https://www.thehindubusinessline.com/info-tech/meta-microsoft-have-joined-tech-layoff-tsunami-but-is-ai-really-to-blame/article70907843.ece",
-        "image": "https://bl-i.thgim.com/public/incoming/c8dtca/article70907884.ece/alternates/LANDSCAPE_1200/IMG_iStock-1217160806_2_1_0LAJ5446.jpg",
-        "date": "2026-04-26T05:46:12Z"
+        "title": "Elon Musk says saving for retirement is irrelevant because AI is going to create a world of abundance: ‘It won’t matter’",
+        "description": "Musk said a \"supersonic tsunami\" of AI and robotics will bring about a world of zero scarcity.",
+        "source": "Fortune",
+        "url": "https://fortune.com/article/elon-musk-ceo-tech-billionaires-dont-save-for-retirement-ai-future-of-work-american-workers/",
+        "image": "https://fortune.com/img-assets/wp-content/uploads/2026/04/GettyImages-2256970109_8a6b42-e1777063137466.jpg?resize=1200,600",
+        "date": "2026-04-26T17:47:05Z"
       },
       {
         "type": "earthquake",
-        "title": "Is Leitrim a figment of the imagination? Leo Varadkar once thought so",
-        "description": "Plus: The youthful protester pope, and a hiccup in a case against John Magnier",
+        "title": "Down shock Donegal to blow Ulster championship wide open",
+        "description": "Two late goals by Miceál Rooney knocked the holders out in Letterkenny",
         "source": "The Irish Times",
-        "url": "https://www.irishtimes.com/ireland/2026/04/26/is-leitrim-a-figment-of-the-imagination-leo-varadkar-once-thought-so/",
-        "image": "https://www.irishtimes.com/resizer/v2/XM6NIZ36OVCXVGZMWDLRQ6ADOU.JPG?smart=true&auth=c2dbfa98e37561339614b1d4beb814d9bd317820d0fcce8591e434c9a627d457&width=1200&height=630",
-        "date": "2026-04-26T05:00:00Z"
+        "url": "https://www.irishtimes.com/sport/gaelic-games/2026/04/26/down-shock-donegal-to-blow-ulster-championship-wide-open/",
+        "image": "https://www.irishtimes.com/resizer/v2/6GRENZ66NUUFRGY6M4FDTDENQA.jpg?smart=true&auth=8731f80a57bd9931ce30903c0c9df8960ab4b8fdba58326a61f207d765aa69f6&width=1200&height=630",
+        "date": "2026-04-26T17:28:40Z"
       },
       {
         "type": "earthquake",
-        "title": "I was playing Jenga with my young son in Dublin when I received a threat from Moscow",
-        "description": "Though nothing compared with Ukraine’s suffering, in Russia the invasion has detonated a quieter, more insidious kind of destruction",
-        "source": "The Irish Times",
-        "url": "https://www.irishtimes.com/life-style/people/2026/04/26/i-was-playing-jenga-with-my-young-son-in-dublin-when-i-received-a-threat-from-moscow/",
-        "image": "https://www.irishtimes.com/resizer/v2/JCHBEDCBFCDVR6V7U62H7XLY5A.jpg?smart=true&auth=fc7b0a951778c311c1af7763f0a54d0e32783f08875da6eb003ca8063850ad66&width=1200&height=630",
-        "date": "2026-04-26T05:00:00Z"
+        "title": "Why Lakers’ relatively quiet 2026 trade deadline is paying off in NBA playoffs",
+        "description": "The Lakers made just one minor move at the 2026 NBA trade deadline, but Luke Kennard, Rui Hachimura and team chemistry are proving why standing pat was the right call despite all the outside noise.",
+        "source": "New York Post",
+        "url": "https://nypost.com/2026/04/26/sports/lakers-quiet-2026-nba-trade-deadline-move-is-paying-off-in-playoffs/",
+        "image": "https://nypost.com/wp-content/uploads/sites/2/2026/04/LAKERS-5.jpg?quality=75&strip=all&w=1200",
+        "date": "2026-04-26T17:03:13Z"
       },
       {
         "type": "earthquake",
-        "title": "Wojo: Detroit Lions GM Brad Holmes plays it safe, and perhaps smart, on draft",
-        "description": "The Lions were determined to reemphasize their deep-rooted beliefs, drafting players that fit their high-effort, high-character profile.",
-        "source": "The Detroit News",
-        "url": "https://www.detroitnews.com/story/sports/columnists/bob-wojnowski/2026/04/25/wojo-detroit-lions-gm-brad-holmes-plays-it-safe-and-perhaps-smart-on-draft/89804791007/",
-        "image": "https://s.yimg.com/ny/api/res/1.2/isIBwmte2V83U3QMT0DyRg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/detroit_news_articles_230/a0e8b9bec1d1601cfd74c12837af8881",
-        "date": "2026-04-26T03:03:45Z"
+        "title": "Citi outlines the $1.8T ETF shift investors must watch",
+        "description": "Most investors focus on the S&P 500, the Nasdaq, and a small group of large U.S. companies that dominate index performance. Little attention goes to how...",
+        "source": "TheStreet",
+        "url": "https://www.thestreet.com/investing/citi-outlines-the-1-8t-etf-shift-investors-must-watch",
+        "image": "https://s.yimg.com/os/en/thestreet_881/e71319adfe48586edf081cee58cd4a68",
+        "date": "2026-04-26T16:47:00Z"
       },
       {
         "type": "earthquake",
-        "title": "Red Sox fire Alex Cora, and most of the coaching staff",
-        "description": "Pete Fatse and Rámon Vazquez have also been shown the door.",
-        "source": "Over The Monster",
-        "url": "https://www.overthemonster.com/red_sox_news/99633/red-sox-fire-alex-cora-and-most-of-the-coaching-staff",
-        "image": "https://s.yimg.com/ny/api/res/1.2/nMk5bQ6tkKc9E.JKVL32eg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04NjU7Y2Y9d2VicA--/https://media.zenfs.com/en/sb_nation_articles_115/a67d3d0f8c1eb68e993c59a954ca43f3",
-        "date": "2026-04-25T23:46:59Z"
+        "title": "Confirmed: Atletico Madrid without star midfielder for Arsenal matches",
+        "description": "Atletico Madrid will go into their Champions League semi-final tie with Arsenal at a significant disadvantage, as they will be without Pablo Barrios for both matches.Barrios made his first start since",
+        "source": "Football Espana",
+        "url": "https://www.football-espana.net/2026/04/26/atletico-madrid-without-star-midfielder-arsenal",
+        "image": "https://s.yimg.com/ny/api/res/1.2/fIOKGOhg94h.aSfgUYZjiQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/football_espana_articles_993/132e0c16c9cf673ca89745c0c8eb226f",
+        "date": "2026-04-26T14:45:00Z"
       },
       {
         "type": "earthquake",
-        "title": "GOP Rep. McCormick: Some Haitians Should Lose TPS, But Some Shouldn't",
-        "description": "During an interview with “The Joe Pags Show” that took place on Thursday and was released on Friday, Rep. Rich McCormick (R-GA) addressed his vote in favor of extended TPS for Haitians and said that h",
-        "source": "Breitbart News",
-        "url": "https://www.breitbart.com/clips/2026/04/25/gop-rep-mccormick-some-haitians-should-lose-tps-but-some-shouldnt/",
-        "image": "https://media.breitbart.com/media/2023/04/McCormick-427-Thumbnail-640x335.jpg",
-        "date": "2026-04-25T23:30:07Z"
+        "title": "Purple ube’s viral rise is turning a Filipino staple into a global trend — but supplies are tightening",
+        "description": "Ube, a naturally sweet, starchy vegetable grown in the Philippines, has transcended Filipino culture and become a social media sensation.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/04/26/ube-purple-yam-viral-trend-philippines-supply-crunch.html",
+        "image": "https://image.cnbcfm.com/api/v1/image/108296912-1777059968693-Kasa__Kin_Ube.png?v=1777119357&w=1920&h=1080",
+        "date": "2026-04-26T13:36:39Z"
       },
       {
         "type": "earthquake",
-        "title": "'This is unamerican': Trump's new green card crackdown unleashes tsunami of backlash",
-        "description": "Hearing that the Trump administration plans to deny green cards for immigrants who express their political opinions has commentators sounding the alarm.Journalist Hamed Aleaziz reported on Saturday th",
-        "source": "Raw Story",
-        "url": "https://www.rawstory.com/green-card/",
-        "image": "https://www.rawstory.com/media-library/mimi-ziad-poses-with-a-palestine-sign-ahead-of-an-anti-protest-against-the-u-s-president-elect-donald-trump-at-meridian-hill-pa.jpg?id=56168265&width=1200&height=600&coordinates=0%2C312%2C0%2C312",
-        "date": "2026-04-25T23:25:35Z"
+        "title": "Why the key to American drone dominance lies with blockchain",
+        "description": "The U.S. is at a pivotal moment when it comes to reclaiming its drone supply chain from China.",
+        "source": "Fortune",
+        "url": "https://fortune.com/2026/04/26/why-the-key-to-american-drone-dominance-lies-with-blockchain/",
+        "image": "https://fortune.com/img-assets/wp-content/uploads/2026/04/GettyImages-503831464.jpg?resize=1200,600",
+        "date": "2026-04-26T13:01:00Z"
       },
       {
         "type": "earthquake",
-        "title": "Breaking | Gervasoni also stands down, AIA calls meeting!",
-        "description": "Italian football is going through a real earthquake triggered by the Milan Prosecutor’s investigation, which has put Gianluca Rocchi, the CAN refereeing appointor who has suspended himself, under in..",
-        "source": "Yahoo Entertainment",
-        "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_fa660af3-e685-48da-8f35-67bf5dc2cde0",
+        "title": "NY Giants 2026 NFL Draft: NOW, are the 2026 Giants more talented than the 2025 Giants?",
+        "description": "Yes, but there’s one more thing to do.",
+        "source": "Big Blue View",
+        "url": "https://www.bigblueview.com/new-york-giants-analysis/160880/ny-giants-2026-nfl-draft-better-worse-roster-than-2025",
+        "image": "https://s.yimg.com/ny/api/res/1.2/bCBknsv_YPgwjYYfn6aM2g--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/sb_nation_articles_115/e4b1186b824ede65453f30005e8de10e",
+        "date": "2026-04-26T13:00:00Z"
+      },
+      {
+        "type": "earthquake",
+        "title": "When Porsche-loving £300k-a-year IT consultant Christopher Trybus's life was on the line as he stood trial for driving his wife to her suicide, there was one person who stood by him... his second wife",
+        "description": "It wasn't until Christopher Trybus's manslaughter trial that it emerged he had a second wife, as she accompanied him to court, never doubting the IT consultant's innocence.",
+        "source": "Dailymail.com",
+        "url": "https://www.dailymail.com/news/article-15762393/When-Porsche-loving-300k-year-consultant-Christopher-Trybuss-life-line-stood-trial-driving-wife-suicide-one-person-stood-second-wife.html",
+        "image": "https://i.dailymail.com/1s/2026/04/26/13/108136851-0-image-m-2_1777206189827.jpg",
+        "date": "2026-04-26T12:23:16Z"
+      },
+      {
+        "type": "earthquake",
+        "title": "Lalitpur Mayor Maharjan praises Dhangadhi development, says “We have a lot to learn”",
+        "description": "Dhangadhi: Lalitpur Metropolitan City Mayor Chiribabu Maharjan has praised the development efforts of Dhangadhi Sub-metropolitan City, stating that Lalitpur has much to learn from Dhangadhi. He expres",
+        "source": "Dineshkhabar.com",
+        "url": "https://dineshkhabar.com/article/135048",
+        "image": "https://dineshkhabar.com/sites/default/files/styles/featured/public/field/image/chiribabu_SprjElfIXy_0.jpg?itok=aepRhcaC",
+        "date": "2026-04-26T12:12:01Z"
+      },
+      {
+        "type": "earthquake",
+        "title": "Erdoğan says urban transformation ‘only solution’ in Istanbul",
+        "description": "President Recep Tayyip Erdoğan on April 25 said urban transformation is the “only solution” to Türkiye's housing needs and earthquake risks, as he attended a mass housing lottery ceremony in Istanbul ",
+        "source": "Hurriyet Daily News",
+        "url": "https://www.hurriyetdailynews.com/erdogan-says-urban-transformation-only-solution-in-istanbul-221490",
+        "image": "https://image.hurimg.com/i/hurriyet/75/200x200/69ede5683a5a98d212b10e35.jpg",
+        "date": "2026-04-26T10:14:03Z"
+      },
+      {
+        "type": "earthquake",
+        "title": "Alain Delon, dubbed the French James Dean exuded glamour and menace. A new book asks did he beat and kill a man for having an affair with his wife?",
+        "description": "Acclaimed author Edward Chisolm takes you into the glamorous world of 1960s Paris and the seediness that lay beneath the surface of the high life",
+        "source": "Dailymail.com",
+        "url": "https://www.dailymail.com/home/books/article-15762913/Alain-Delon-dubbed-French-James-Dean-exuded-glamour-menace-new-book-asks-did-beat-kill-man-having-affair-wife.html",
+        "image": "https://i.dailymail.com/1s/2026/04/24/16/108135463-0-image-a-16_1777045796577.jpg",
+        "date": "2026-04-26T09:00:46Z"
+      },
+      {
+        "type": "earthquake",
+        "title": "Alain Delon, dubbed the French James Dean exuded glamour and menace. A new book asks did he beat and kill a man for having an affair with his wife?",
+        "description": "Acclaimed author Edward Chisolm takes you into the glamorous world of 1960s Paris and the seediness that lay beneath the surface of the high life",
+        "source": "Dailymail.com",
+        "url": "https://www.dailymail.com/home/books/article-15762913/Alain-Delon-dubbed-French-James-Dean-exuded-glamour-menace-new-book-asks-did-beat-kill-man-having-affair-wife.html",
+        "image": "https://i.dailymail.com/1s/2026/04/24/16/108135463-0-image-a-16_1777045796577.jpg",
+        "date": "2026-04-26T09:00:46Z"
+      },
+      {
+        "type": "earthquake",
+        "title": "40 Years After the Chernobyl Disaster, More Countries Are Turning To Nuclear Power",
+        "description": "An anonymous reader shared this report from the Associated Press:\n\nThe 1986 Chernobyl disaster fueled global fears about nuclear power and slowed its development in Europe and elsewhere. Four decades ",
+        "source": "Slashdot.org",
+        "url": "https://hardware.slashdot.org/story/26/04/25/0928252/40-years-after-the-chernobyl-disaster-more-countries-are-turning-to-nuclear-power",
+        "image": "https://a.fsdn.com/sd/topics/power_64.png",
+        "date": "2026-04-26T07:34:00Z"
+      },
+      {
+        "type": "earthquake",
+        "title": "Japan deploys 1,400 firefighters, SDF to battle raging wildfires in Iwate",
+        "description": "Japan has deployed 1,400 firefighters and 100 Self-Defense Force ‌personnel to battle mountain blazes in Iwate Prefecture, with the fires, now burning on Sunday for ‌a fifth straight day, continuing t",
+        "source": "Japan Today",
+        "url": "https://japantoday.com/category/national/japan-deploys-1-400-firefighters-to-battle-raging-wildfires-in-the-north",
         "image": "",
-        "date": "2026-04-25T21:13:00Z"
-      },
-      {
-        "type": "earthquake",
-        "title": "NASCAR’s New CEO Signals A Power Shift That Had Already Happened",
-        "description": "NASCAR has a new CEO for the first time outside the France family, but the real shift in power didn’t happen this week. It’s been unfolding quietly for years.",
-        "source": "Forbes",
-        "url": "https://www.forbes.com/sites/gregengle/2026/04/25/nascars-new-ceo-signals-a-power-shift-that-had-already-happened/",
-        "image": "https://imageio.forbes.com/specials-images/imageserve/69ed275ee26a46a97d7abec4/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds",
-        "date": "2026-04-25T20:54:20Z"
-      },
-      {
-        "type": "earthquake",
-        "title": "Kentucky Derby ’26 Post Position Draw: Top Seed Renegade Gets The Rail",
-        "description": "Renegade, top favorite at 4-1, got the 1-hole, a nightmare in the Derby's massive gate. Further Ado, co-second favorite at 6-1, got the outside 18-stall.",
-        "source": "Forbes",
-        "url": "https://www.forbes.com/sites/guymartin/2026/04/25/kentucky-derby-26-post-position-draw-top-seed-renegade-gets-the-rail/",
-        "image": "https://imageio.forbes.com/specials-images/imageserve/69ecdc2c22da07eef12a7da4/0x0.jpg?format=jpg&crop=2000,1125,x0,y102,safe&height=900&width=1600&fit=bounds",
-        "date": "2026-04-25T19:57:00Z"
-      },
-      {
-        "type": "earthquake",
-        "title": "Disneyland Abu Dhabi Delayed? Conflicting Reports Swirl as Middle East Tensions Cloud Disney’s $10 Billion Dream",
-        "description": "In May 2025, the global theme park industry was rocked by a seismic announcement: The Walt Disney Company had finally set its sights on the Middle East. Partnering with the Abu Dhabi-based Miral Group",
-        "source": "Inside the Magic",
-        "url": "https://insidethemagic.net/2026/04/conflicting-reports-about-a-possible-delay-at-disneys-disneyland-abu-dhabi-project-over-iran-tensions-rl1/",
-        "image": "https://insidethemagic.net/wp-content/uploads/2025/05/Copy-of-Untitled-Design-14.jpg",
-        "date": "2026-04-25T19:24:59Z"
-      },
-      {
-        "type": "earthquake",
-        "title": "Forget ‘The Drama,’ Watch A24's 10/10 Romantic Tragedy Before It Leaves HBO Max",
-        "description": "A24's endlessly debated precursor to Materialists and The Drama, Past Lives, is leaving HBO Max soon. Find out when.",
-        "source": "Collider.com",
-        "url": "https://collider.com/past-lives-romantic-tragedy-a24-movie-leaving-hbo-max-may-2026/",
-        "image": "https://static0.colliderimages.com/wordpress/wp-content/uploads/2025/11/a24-logo.jpg?w=1200&h=675&fit=crop",
-        "date": "2026-04-25T19:06:27Z"
-      },
-      {
-        "type": "earthquake",
-        "title": "57 Vintage Items From ‘Grandma’s Pantry’ People Found And Shared Online",
-        "description": "There’s a very specific kind of confidence in a pantry that hasn’t been cleaned out since 1997. You open the door and it’s less “food storage” and more time capsule. That’s the spirit of r/GrandmasPan",
-        "source": "Pleated-jeans.com",
-        "url": "https://pleated-jeans.com/2026/04/25/funny-grandmas-pantry-pictures/",
-        "image": "https://pleated-jeans.com/wp-content/uploads/2026/04/old-food-grandmas-pantry-reddit-pictures-4-21-26.jpg",
-        "date": "2026-04-25T18:30:11Z"
-      },
-      {
-        "type": "earthquake",
-        "title": "Inside Chernobyl is a toxic world where frogs have turned black",
-        "description": "Nuclear meltdown in 1986 reshaped ecosystems and human lives. Four decades on the legacy of the Chernobyl disaster is still unfolding.",
-        "source": "ABC News (AU)",
-        "url": "https://www.abc.net.au/news/2026-04-26/chernobyl-40-nuclear-explosion-power-plant-nature-survives/106588662",
-        "image": "https://live-production.wcms.abc-cdn.net.au/f4b64877e7100b4b51fc2b66b81230f3?impolicy=wcms_watermark_news&cropH=1947&cropW=3461&xPos=0&yPos=35&width=862&height=485&imformat=generic",
-        "date": "2026-04-25T18:30:00Z"
+        "date": "2026-04-26T07:30:50Z"
       }
     ],
     "filter": "earthquake",
-    "fetched_at": "2026-04-27T05:49:56.769232Z"
+    "fetched_at": "2026-04-27T18:51:23.676595Z"
   }
 }

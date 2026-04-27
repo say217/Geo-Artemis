@@ -1,12 +1,7 @@
-import os
-import secrets
-import smtplib
-from datetime import datetime, timedelta
-from email.message import EmailMessage
+import sqlite3
+import traceback
 from pathlib import Path
 
-import bcrypt
-import sqlite3
 from fastapi import APIRouter, Form, Request, status
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
@@ -15,45 +10,13 @@ router = APIRouter()
 
 templates = Jinja2Templates(directory=str(Path(__file__).resolve().parent / "templates"))
 
-try:
-    from dotenv import load_dotenv
 
-    load_dotenv()
-except ImportError:
-    pass
-
-
-def get_env_int(name: str, default: int) -> int:
-    value = os.getenv(name)
-    if value is None or not value.strip():
-        return default
-    return int(value)
-
-SECRET_KEY = os.getenv("SECRET_KEY", "")
-
-DB_HOST = os.getenv("MYSQL_HOST", "localhost")
-DB_PORT = get_env_int("MYSQL_PORT", 3306)
-DB_USER = os.getenv("MYSQL_USER", "admin")
-DB_PASSWORD = os.getenv("MYSQL_PASSWORD", "admin")
-DB_NAME = os.getenv("MYSQL_DATABASE", "admin")
-
-SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
-SMTP_PORT = get_env_int("SMTP_PORT", 587)
-SMTP_USER = os.getenv("SMTP_USER", "")
-SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
-SMTP_SENDER = os.getenv("SMTP_SENDER", "")
-SMTP_USE_TLS = os.getenv("SMTP_USE_TLS", "true").lower() == "true"
-SMTP_USE_SSL = os.getenv("SMTP_USE_SSL", "false").lower() == "true"
-BASE_URL = os.getenv("BASE_URL", "http://127.0.0.1:8000")
-VERIFY_TOKEN_TTL_MINUTES = get_env_int("VERIFY_CODE_EXP_MINUTES", 10)
-WELCOME_EMAIL_ACTIVE = os.getenv("WELCOME_EMAIL_ACTIVE", "true").lower() == "true"
-
+# ── DB ─────────────────────────────────────────────────────────────────────────
 
 def get_db_connection():
-    INSTANCE_DIR = Path(__file__).resolve().parent.parent.parent / 'instance'
+    INSTANCE_DIR = Path(__file__).resolve().parent.parent.parent / "instance"
     INSTANCE_DIR.mkdir(parents=True, exist_ok=True)
-    db_path = INSTANCE_DIR / 'geoartemis.db'
-
+    db_path = INSTANCE_DIR / "geoartemis.db"
     conn = sqlite3.connect(str(db_path))
     conn.row_factory = sqlite3.Row
     return conn
@@ -62,310 +25,25 @@ def get_db_connection():
 def ensure_tables():
     conn = get_db_connection()
     try:
-        cursor = conn.cursor()
-        cursor.execute(
+        conn.execute(
             """
             CREATE TABLE IF NOT EXISTS users (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                email VARCHAR(255) NOT NULL UNIQUE,
-                username VARCHAR(100) NOT NULL UNIQUE,
-                password_hash VARCHAR(255) NOT NULL,
-                is_verified INTEGER NOT NULL DEFAULT 0,
-                verification_code VARCHAR(10),
-                code_expires_at DATETIME,
-                welcome_email_sent INTEGER NOT NULL DEFAULT 0
+                id    INTEGER PRIMARY KEY AUTOINCREMENT,
+                name  VARCHAR(100) NOT NULL,
+                email VARCHAR(255) NOT NULL UNIQUE
             )
             """
         )
-
-        cursor.execute("PRAGMA table_info(users)")
-        columns = [row['name'] for row in cursor.fetchall()]
-
-        if 'verification_code' not in columns:
-            cursor.execute("ALTER TABLE users ADD COLUMN verification_code VARCHAR(10)")
-        if 'code_expires_at' not in columns:
-            cursor.execute("ALTER TABLE users ADD COLUMN code_expires_at DATETIME")
-        if 'welcome_email_sent' not in columns:
-            cursor.execute("ALTER TABLE users ADD COLUMN welcome_email_sent INTEGER NOT NULL DEFAULT 0")
         conn.commit()
     finally:
         conn.close()
 
 
-def _parse_expires_at(value: str | None) -> datetime | None:
-    """Safely parse a SQLite DATETIME string into a datetime object."""
-    if not value:
-        return None
-    try:
-        return datetime.fromisoformat(value)
-    except (ValueError, TypeError):
-        return None
-
-
-def send_verification_email(recipient_email: str, code: str) -> str | None:
-    if not SMTP_USER or not SMTP_PASSWORD:
-        return "SMTP credentials are missing. Set SMTP_USER and SMTP_PASSWORD."
-
-    message = EmailMessage()
-    message["Subject"] = "Geo Artemis - Verify Your Account"
-    message["From"] = SMTP_SENDER or SMTP_USER
-    message["To"] = recipient_email
-    message.set_content(
-        f"Welcome to Geo Artemis.\n\n"
-        f"To verify your account, use the code: {code}\n\n"
-        f"This code expires in 24 hours.\n\n"
-        f"If you did not create this account, please ignore this email.\n\n"
-        f"— Geo Artemis Security Team"
-    )
-
-    html = f"""
-    <html><body style="margin:0;padding:0;background:#0a0a0e;">
-      <div style="background:#0a0a0e;padding:28px 12px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;color:#e5e5e5;">
-        <div style="max-width:540px;margin:0 auto;border:1px solid #ff4444;border-radius:2px;background:#0f0f14;box-shadow:0 0 24px rgba(255,68,68,0.2);overflow:hidden;">
-          <!-- Header -->
-          <div style="padding:18px 24px;border-bottom:1px solid rgba(255,68,68,0.3);background:linear-gradient(135deg,#0a0a0e 0%,#0f0f14 100%);">
-            <div style="color:#ff4444;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin:0;">SECURITY VERIFICATION</div>
-            <div style="font-size:18px;color:#ffffff;font-weight:300;margin:6px 0 0 0;letter-spacing:1px;">Account Verification Required</div>
-          </div>
-          <!-- Content -->
-          <div style="padding:24px;">
-            <p style="margin:0 0 14px 0;color:#d0d0d8;font-size:14px;line-height:1.6;">Welcome to Geo Artemis. To complete your account setup and access our hazard intelligence network, please verify your email address using the code below.</p>
-            <div style="margin:20px 0;padding:1px;background:linear-gradient(90deg,#ff4444 0%,rgba(255,68,68,0.4) 100%);border-radius:1px;">
-              <div style="padding:16px;background:#0f0f14;text-align:center;">
-                <div style="font-size:11px;color:#9a9a9e;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px 0;">Your Verification Code</div>
-                <div style="font-size:28px;color:#ffffff;letter-spacing:8px;font-weight:bold;font-family:'Courier New',monospace;margin:0;">{code}</div>
-              </div>
-            </div>
-            <p style="margin:14px 0 0 0;color:#9a9a9e;font-size:12px;line-height:1.5;"><strong>Note:</strong> This code expires in 24 hours. If you did not request this verification, please disregard this message or contact our support team.</p>
-          </div>
-          <!-- Footer -->
-          <div style="padding:12px 24px;border-top:1px solid rgba(255,68,68,0.2);background:#0a0a0e;color:#7a7a82;font-size:10px;line-height:1.5;">
-            <div style="margin:0;">Geo Artemis Security Layer | Protected Network</div>
-            <div style="margin:4px 0 0 0;">Questions? Visit our support portal or reply to this email.</div>
-          </div>
-        </div>
-      </div>
-    </body></html>
-    """
-    message.add_alternative(html, subtype="html")
-
-    if SMTP_USE_SSL:
-        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT) as server:
-            server.login(SMTP_USER, SMTP_PASSWORD)
-            server.send_message(message)
-    else:
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-            if SMTP_USE_TLS:
-                server.starttls()
-            server.login(SMTP_USER, SMTP_PASSWORD)
-            server.send_message(message)
-
-    return None
-
-
-def send_welcome_email(recipient_email: str) -> str | None:
-    if not SMTP_USER or not SMTP_PASSWORD:
-        return "SMTP credentials are missing. Set SMTP_USER and SMTP_PASSWORD."
-
-    message = EmailMessage()
-    message["Subject"] = "Geo Artemis - Welcome to the Network"
-    message["From"] = SMTP_SENDER or SMTP_USER
-    message["To"] = recipient_email
-    message.set_content(
-        "Welcome to Geo Artemis.\n\n"
-        "Your account has been verified and is now active.\n\n"
-        "You can now access the live hazard intelligence dashboard to:\n"
-        "• Monitor global disaster events in real-time\n"
-        "• View hazard clustering and hotspot analysis\n"
-        "• Access advanced predictive analytics\n"
-        "• Set up custom alerts and notifications\n\n"
-        "Thank you for joining Geo Artemis.\n"
-        "— The Geo Artemis Team"
-    )
-
-    html = """
-    <html><body style="margin:0;padding:0;background:#0a0a0e;">
-      <div style="background:#0a0a0e;padding:28px 12px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;color:#e5e5e5;">
-        <div style="max-width:540px;margin:0 auto;border:1px solid #ff4444;border-radius:2px;background:#0f0f14;box-shadow:0 0 24px rgba(255,68,68,0.2);overflow:hidden;">
-          <!-- Header -->
-          <div style="padding:18px 24px;border-bottom:1px solid rgba(255,68,68,0.3);background:linear-gradient(135deg,#0a0a0e 0%,#0f0f14 100%);">
-            <div style="color:#ff4444;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin:0;">✓ ACCESS CONFIRMED</div>
-            <div style="font-size:18px;color:#ffffff;font-weight:300;margin:6px 0 0 0;letter-spacing:1px;">Welcome to Geo Artemis</div>
-          </div>
-          <!-- Content -->
-          <div style="padding:24px;">
-            <p style="margin:0 0 16px 0;color:#d0d0d8;font-size:14px;line-height:1.6;">Your account is now verified and active. Welcome to the Geo Artemis hazard intelligence network. You now have full access to real-time global disaster monitoring, predictive analytics, and advanced event intelligence.</p>
-
-            <div style="margin:18px 0;padding:12px 16px;border-left:3px solid #ff4444;background:rgba(255,68,68,0.08);">
-              <div style="color:#ff4444;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin:0 0 8px 0;">What You Can Do Now</div>
-              <ul style="margin:0;padding:0 0 0 18px;color:#c0c0c8;font-size:13px;line-height:1.7;">
-                <li>Monitor live global hazard events 24/7</li>
-                <li>Access historical data and event clustering analysis</li>
-                <li>View AI-powered predictive maps and models</li>
-                <li>Download reports and visualizations</li>
-                <li>Configure custom alerts for regions of interest</li>
-              </ul>
-            </div>
-            <p style="margin:16px 0 0 0;color:#9a9a9e;font-size:12px;line-height:1.5;">If you have any questions or need assistance, our support team is available 24/7.</p>
-
-          </div>
-          <!-- Footer -->
-          <div style="padding:12px 24px;border-top:1px solid rgba(255,68,68,0.2);background:#0a0a0e;color:#7a7a82;font-size:10px;line-height:1.5;">
-            <div style="margin:0;">Geo Artemis Network | Global Hazard Intelligence</div>
-            <div style="margin:4px 0 0 0;">Secure. Real-time. Predictive. | Your trusted source for disaster awareness.</div>
-          </div>
-        </div>
-      </div>
-    </body></html>
-    """
-    message.add_alternative(html, subtype="html")
-
-    if SMTP_USE_SSL:
-        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT) as server:
-            server.login(SMTP_USER, SMTP_PASSWORD)
-            server.send_message(message)
-    else:
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-            if SMTP_USE_TLS:
-                server.starttls()
-            server.login(SMTP_USER, SMTP_PASSWORD)
-            server.send_message(message)
-
-    return None
-
+# ── Routes ─────────────────────────────────────────────────────────────────────
 
 @router.get("/")
 def home(request: Request):
     return RedirectResponse(url="/app2/login", status_code=status.HTTP_303_SEE_OTHER)
-
-
-@router.get("/signup")
-def signup_form(request: Request):
-    return templates.TemplateResponse("signup.html", {"request": request})
-
-
-@router.post("/signup")
-def signup(
-    request: Request,
-    email: str = Form(...),
-    username: str = Form(...),
-    password: str = Form(...),
-):
-    conn = get_db_connection()
-    try:
-        cursor = conn.cursor()
-        cursor.execute("SELECT id FROM users WHERE email = ? OR username = ?", (email, username))
-        if cursor.fetchone():
-            return templates.TemplateResponse(
-                "signup.html",
-                {"request": request, "error": "Email or username already exists."},
-            )
-
-        password_hash = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
-        verification_code = f"{secrets.randbelow(1000000):06d}"
-        expires_at = datetime.utcnow() + timedelta(minutes=VERIFY_TOKEN_TTL_MINUTES)
-
-        cursor.execute(
-            """
-            INSERT INTO users (email, username, password_hash, is_verified, verification_code, code_expires_at)
-            VALUES (?, ?, ?, 0, ?, ?)
-            """,
-            (email, username, password_hash, verification_code, expires_at.isoformat()),
-        )
-        conn.commit()
-    finally:
-        conn.close()
-
-    error = send_verification_email(email, verification_code)
-    if error:
-        return templates.TemplateResponse(
-            "verify.html",
-            {"request": request, "error": error, "email": email},
-        )
-
-    return templates.TemplateResponse(
-        "verify.html",
-        {"request": request, "email": email, "message": "Verification code sent."},
-    )
-
-
-@router.get("/verify")
-def verify_form(request: Request, email: str | None = None):
-    return templates.TemplateResponse(
-        "verify.html",
-        {"request": request, "email": email},
-    )
-
-
-@router.post("/verify")
-def verify_account(request: Request, email: str = Form(...), code: str = Form(...)):
-    conn = get_db_connection()
-    try:
-        cursor = conn.cursor()
-        cursor.execute(
-            """
-            SELECT id, code_expires_at, is_verified, verification_code, welcome_email_sent
-            FROM users
-            WHERE email = ?
-            """,
-            (email,),
-        )
-        user = cursor.fetchone()
-
-        if not user:
-            return templates.TemplateResponse(
-                "verify.html",
-                {"request": request, "error": "Email not found.", "email": email},
-            )
-
-        if user["is_verified"]:
-            request.session["user_id"] = user["id"]
-            request.session["is_verified"] = True
-            return RedirectResponse(url="/app1/", status_code=status.HTTP_303_SEE_OTHER)
-
-        # FIX: SQLite returns code_expires_at as a string; parse it before comparing.
-        expires_at = _parse_expires_at(user["code_expires_at"])
-        if expires_at and expires_at < datetime.utcnow():
-            return templates.TemplateResponse(
-                "verify.html",
-                {"request": request, "error": "Verification code has expired.", "email": email},
-            )
-
-        if user["verification_code"] != code:
-            return templates.TemplateResponse(
-                "verify.html",
-                {"request": request, "error": "Invalid verification code.", "email": email},
-            )
-
-        cursor.execute(
-            """
-            UPDATE users
-            SET is_verified = 1, verification_code = NULL, code_expires_at = NULL
-            WHERE id = ?
-            """,
-            (user["id"],),
-        )
-        conn.commit()
-    finally:
-        conn.close()
-
-    # FIX: welcome_email_sent is now included in the SELECT above, so this always works.
-    if WELCOME_EMAIL_ACTIVE and not user["welcome_email_sent"]:
-        try:
-            send_welcome_email(email)
-            conn = get_db_connection()
-            try:
-                cursor = conn.cursor()
-                cursor.execute("UPDATE users SET welcome_email_sent = 1 WHERE id = ?", (user["id"],))
-                conn.commit()
-            finally:
-                conn.close()
-        except Exception as e:
-            print(f"Failed to send welcome email for {email}: {e}")
-
-    request.session["user_id"] = user["id"]
-    request.session["is_verified"] = True
-    return RedirectResponse(url="/app1/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 @router.get("/login")
@@ -374,55 +52,34 @@ def login_form(request: Request):
 
 
 @router.post("/login")
-def login(request: Request, email: str = Form(...), password: str = Form(...)):
-    conn = get_db_connection()
+def login(
+    request: Request,
+    name: str = Form(...),
+    email: str = Form(...),
+):
     try:
-        cursor = conn.cursor()
-        cursor.execute(
-            "SELECT id, password_hash, is_verified, welcome_email_sent FROM users WHERE email = ?",
-            (email,),
-        )
-        user = cursor.fetchone()
-    finally:
-        conn.close()
-
-    if not user:
-        return templates.TemplateResponse(
-            "login.html",
-            {"request": request, "error": "Invalid email or password."},
-        )
-
-    if not user["is_verified"]:
-        return templates.TemplateResponse(
-            "login.html",
-            {
-                "request": request,
-                "error": "Please verify your email before logging in.",
-                "email": email,
-            },
-        )
-
-    if not bcrypt.checkpw(password.encode("utf-8"), user["password_hash"].encode("utf-8")):
-        return templates.TemplateResponse(
-            "login.html",
-            {"request": request, "error": "Invalid email or password."},
-        )
-
-    request.session["user_id"] = user["id"]
-    request.session["is_verified"] = True
-
-    if WELCOME_EMAIL_ACTIVE and not user["welcome_email_sent"]:
+        conn = get_db_connection()
         try:
-            send_welcome_email(email)
-            conn = get_db_connection()
-            try:
-                cursor = conn.cursor()
-                cursor.execute("UPDATE users SET welcome_email_sent = 1 WHERE id = ?", (user["id"],))
-                conn.commit()
-            finally:
-                conn.close()
-        except Exception as e:
-            print(f"Failed to send welcome email for {email}: {e}")
+            conn.execute(
+                "INSERT OR IGNORE INTO users (name, email) VALUES (?, ?)",
+                (name.strip(), email.strip().lower()),
+            )
+            conn.commit()
+            user = conn.execute(
+                "SELECT id FROM users WHERE email = ?",
+                (email.strip().lower(),),
+            ).fetchone()
+            user_id = user["id"] if user else None
+        finally:
+            conn.close()
+    except Exception as e:
+        print(f"[Login] DB error: {e}\n{traceback.format_exc()}")
+        user_id = None
+
+    # ── Set session keys — is_verified is required by app1 to let the user in ──
+    request.session["user_id"]    = user_id
+    request.session["name"]       = name.strip()
+    request.session["is_verified"] = True        # ← this is the key app1 checks
 
     return RedirectResponse(url="/app1/", status_code=status.HTTP_303_SEE_OTHER)
 
