@@ -7,7 +7,7 @@
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/d388e144-c701-49ee-b8fc-7391368b0276" />
 
 
-
+## More Info Read documentation.md
 ## RUN COMMAND IN TERMINAL
 
 ```
