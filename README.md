@@ -15,3 +15,10 @@ uvicorn Main.run:app --reload
 ```
 `It deployed in render so please wait 40 50 seconds it take to open`
 
+``
+## Render deploy command
+```
+uvicorn main.run:app --host 0.0.0.0 --port $PORT
+pip install --upgrade pip && pip install -r requirements.txt
+
+PYTHON_VESION=3.10.0
