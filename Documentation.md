@@ -28,6 +28,10 @@ Users can explore how hazards are distributed, compare different event types, an
 Together, these features create a complete decision-support system that improves situational awareness and supports faster, more informed responses. While the current system focuses on detection, clustering, and risk analysis, it also provides a strong base for future improvements such as predictive modeling and advanced forecasting.
 
 ---
+# System Diagram
+
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/decdc051-e1f5-4542-9083-16d8b6c30358" />
+
 
 ## Technical Specifications & Architecture
 
