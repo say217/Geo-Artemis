@@ -110,3 +110,93 @@ sequenceDiagram
 
 ---
 *Document Version: 4.0.1 | Last Updated: 2026-04-25*
+
+---
+
+## 6. New Features & Updates (2026-04-27)
+
+### Major New Features
+
+- **Multi-App Modular Backend**: The backend is organized into multiple FastAPI apps (app1–app7), each handling a distinct domain: user authentication, news/video aggregation, geospatial clustering, AI chat, and more. This modularity enables rapid feature expansion and robust separation of concerns.
+
+- **Automated Data Fetching & Caching**:
+    - NASA EONET and USGS earthquake data are fetched and refreshed automatically with 6-hour cache logic, ensuring up-to-date hazard monitoring.
+    - News and YouTube video feeds are aggregated and cached, with support for multiple news APIs (GNews, NewsAPI) and YouTube channels.
+
+- **End-to-End ML Pipeline**:
+    - Data ingestion, cleaning, feature engineering, clustering (HDBSCAN), risk scoring, and visualization are fully automated.
+    - Per-event-type clustering with dynamic parameters and robust noise filtering.
+    - Risk scoring combines frequency, intensity, recency, and growth for each region.
+    - High-risk region detection and export for dashboard overlays.
+
+- **Interactive API Endpoints**:
+    - REST endpoints for all major data products: clustered events, risk summaries, high-risk regions, satellite data, news, and videos.
+    - AJAX endpoints for real-time map/chart updates and region overlays.
+
+- **AI-Powered Intelligence Terminal**:
+    - Integrated Gemini 2.5 Flash LLM chat (app7) with context-aware responses grounded in live geospatial data.
+    - Session-based chat history and data citation for traceability.
+
+- **Comprehensive Testing Utilities**:
+    - Scripts for backend endpoint verification, data file checks, and backend-frontend integration.
+    - Automated news/image fetching and video aggregation for test/dev workflows.
+
+### Improvements
+
+- **Enhanced Data Preprocessing**: Unified data cleaning, normalization, and feature engineering for all event types.
+- **Dynamic Plot Generation**: Automated creation of interactive Plotly/Matplotlib charts and HTML map overlays for all major analytics views.
+- **Robust Error Handling**: Graceful fallback for missing data, API failures, and cache expiration.
+- **Email Verification & Welcome Flows**: Secure user onboarding with email verification, code expiry, and welcome notifications.
+- **Scalable CSV Data Strategy**: All major data products (raw, prepared, clustered, risk summaries) are persisted as CSV for transparency and speed.
+
+---
+
+### Complete Technology Stack (2026-04-27)
+
+**Backend & API**:
+- Python 3.10+
+- FastAPI (async, modular multi-app)
+- Starlette (middleware, sessions)
+- Uvicorn (ASGI server)
+- SQLite (user auth, session persistence)
+- dotenv (env config)
+
+**Machine Learning & Data Science**:
+- Pandas, NumPy (data wrangling)
+- Scikit-Learn (HDBSCAN, clustering)
+- Joblib (model persistence)
+- SciPy (Convex Hull, spatial ops)
+- Matplotlib, Seaborn (EDA, static plots)
+- Plotly (interactive geo/EDA charts)
+
+**Geospatial & Visualization**:
+- Leaflet.js (3D/2D map rendering)
+- Chart.js (dashboard charts)
+- Plotly.js (frontend interactive charts)
+- AJAX (real-time updates)
+
+**Frontend & UI/UX**:
+- Vanilla JavaScript (ES6+)
+- CSS3 (Cyberpunk HUD theme)
+- Jinja2 (template rendering)
+
+**External Data/APIs**:
+- NASA EONET API (event data)
+- USGS Earthquake API
+- NewsAPI, GNews (news aggregation)
+- YouTube Data API (video feeds)
+- SerpAPI (image search)
+
+**Testing & Utilities**:
+- Requests (API calls)
+- Pytest (test scripts)
+- Custom verification scripts (endpoint/data checks)
+
+---
+
+*Document Version: 4.1.0 | Last Updated: 2026-04-27*
+
+
+
+
+
