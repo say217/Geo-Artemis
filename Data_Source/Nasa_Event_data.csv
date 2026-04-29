@@ -1,7 +1,15 @@
 event,date,magnitude,lat,lon
+"Tucker Wildfire, Hooker, Nebraska",2026-04-26T15:43:00Z,1100.0,41.8008,-101.2498
+"Tyndall 469 &amp; 143 RX Prescribed Fire, Mason, Michigan",2026-04-26T08:16:00Z,611.0,44.11771,-86.048555
+"Yellow Bank East RX Prescribed Fire, Lac qui Parle, Minnesota",2026-04-25T08:56:00Z,1303.0,45.226197,-96.339308
+"Poitrey Canyon Wildfire, Las Animas, Colorado",2026-04-24T18:29:00Z,2113.0,37.317111,-103.6385
+"Thomas Ranch Fire Wildfire, Sully, South Dakota",2026-04-24T16:23:00Z,1800.0,44.65,-99.7361111
+"rx-Kimberly Clark NW Prescribed Fire, Price, Wisconsin",2026-04-24T10:53:00Z,580.6,45.7851589,-90.6275479
+"RX Blanchard 1 Prescribed Fire, Stone, Arkansas",2026-04-24T09:32:00Z,726.0,35.966217,-92.19055
 "rx-66 Prescribed Fire, Burnett, Wisconsin",2026-04-23T14:23:00Z,1490.3,45.8508587,-92.6535178
 "Bauman Wildfire, Jackson, South Dakota",2026-04-23T12:13:00Z,1000.0,43.631,-101.3950833
 "Baldwin Fuels 6 RX Prescribed Fire, Lake, Michigan",2026-04-23T11:03:00Z,658.0,43.88275,-85.896883
+"FB 17 Wildfire, Todd, South Dakota",2026-04-23T10:40:00Z,900.0,43.18306,-101.03325
 "Peterson Wildfire, Holt, Nebraska",2026-04-23T09:06:00Z,1000.0,42.12483,-99.04273
 "Andrews Wildfire, Cherry, Nebraska",2026-04-22T21:43:00Z,2500.0,42.763583,-101.004
 "Hammer Wildfire, El Paso, Colorado",2026-04-22T21:07:00Z,4900.0,38.67,-104.61
@@ -12,6 +20,7 @@ event,date,magnitude,lat,lon
 "COW CREEK Wildfire, Levy, Florida",2026-04-21T23:15:00Z,2000.0,29.2822222,-82.6311111
 "rx-73 Prescribed Fire, Burnett, Wisconsin",2026-04-21T17:12:00Z,557.3,45.8694852,-92.645347
 "MM-45- Broward (06) Wildfire, Broward, Florida",2026-04-21T16:28:00Z,9600.0,26.3002778,-80.5
+"Hummingbird Wildfire, Catron, New Mexico",2026-04-21T14:48:00Z,3264.0,33.36595,-108.62195
 "Hwy 82 Wildfire, Brantley, Georgia",2026-04-21T12:01:00Z,5531.0,31.2222222,-81.8438889
 "DeSoto BB 9370 C507 508 509 RX Prescribed Fire, Jackson, Mississippi",2026-04-21T10:19:00Z,2564.0,30.698133,-88.86195
 "RX CALE BU 44-367 Prescribed Fire, Rapides, Louisiana",2026-04-21T09:00:00Z,1701.0,31.132467,-92.615933
@@ -47,6 +56,7 @@ event,date,magnitude,lat,lon
 "NEWMAN DR Wildfire, Collier, Florida",2026-04-13T20:18:00Z,1733.0,26.1502778,-81.6330556
 "PDT South-FFR RX Prescribed Fire, Grant, Minnesota",2026-04-13T16:52:00Z,502.0,46.012,-95.8944
 "Ciba Road Wildfire, Washington, Alabama",2026-04-13T13:31:00Z,807.0,31.2669444,-88.0188889
+"DeSoto BB 9365 C605 C606 RX Prescribed Fire, Stone, Mississippi",2026-04-13T10:59:00Z,1028.0,30.712778,-89.260833
 "APQ CPT 10 Rx 0413 Prescribed Fire, Highlands, Florida",2026-04-13T09:16:00Z,1197.0,27.630425,-81.158752
 "rx-Young 1 Prescribed Fire, Jefferson, Wisconsin",2026-04-13T08:42:00Z,802.3,42.8455985,-88.630401
 "RAFEY Wildfire, Mobile, Alabama",2026-04-12T23:30:00Z,1700.0,31.0927778,-88.2997222
@@ -100,6 +110,7 @@ event,date,magnitude,lat,lon
 "RX County Liine Prescribed Fire, Newton, Arkansas",2026-04-08T08:08:00Z,1747.0,35.845119,-93.523297
 "Piton de la Fournaise, Reunion (France)",2026-04-08T00:00:00Z,,-21.244,55.708
 "School House B RX Prescribed Fire, Clay, Alabama",2026-04-07T20:00:00Z,545.0,33.155833,-86.091944
+"Porters Mill RX Prescribed Fire, Bath, Virginia",2026-04-07T18:21:00Z,1195.0,37.9668,-79.790533
 "Compartment 156 RX Prescribed Fire, Putnam, Georgia",2026-04-07T17:48:00Z,1178.0,33.407033,-83.376383
 "RX D2 Hog Sapphire Prescribed Fire, Ravalli, Montana",2026-04-07T13:34:00Z,800.0,46.164317,-113.877617
 "Homochitto BB 6 South RX Prescribed Fire, Lincoln, Mississippi",2026-04-07T10:38:00Z,808.0,31.635,-90.73
@@ -414,6 +425,7 @@ event,date,magnitude,lat,lon
 "Eldorado Wildfire, Teton, Montana",2026-03-08T15:17:00Z,500.0,47.909896,-112.26804
 "South Patrol North RX Prescribed Fire, Will, Illinois",2026-03-08T11:35:00Z,609.0,41.35475,-88.15605
 "RX Interior Pastures 2 Prescribed Fire, Comanche, Oklahoma",2026-03-08T08:07:00Z,1209.0,34.74737,-98.700088
+"Akan Volcano, Japan",2026-03-08T00:00:00Z,,43.384,144.013
 "440 Wildfire, Dixie, Florida",2026-03-07T19:54:00Z,750.0,29.6138889,-83.2216667
 "OLD BOWLING GREEN Wildfire, Polk, Florida",2026-03-07T19:11:00Z,3297.0,27.6811111,-81.8244444
 "Bienville CPT 30 Sub1 CPT 20 Sub1 RX Prescribed Fire, Scott, Mississippi",2026-03-07T09:45:00Z,1539.0,32.4147,-89.6184
@@ -856,7 +868,6 @@ Iceberg D15C,2026-04-24T00:00:00Z,98.0,-67.09,79.82
 "RX CALV BU 234-235-236 Prescribed Fire, Vernon, Louisiana",2026-01-15T09:15:00Z,2997.0,31.052,-92.965
 "RX Milam Prescribed Fire, Milam, Texas",2026-01-15T09:05:00Z,500.0,30.89277778,-96.72333333
 "RX KIS BU 61-62 Prescribed Fire, Natchitoches, Louisiana",2026-01-15T09:00:00Z,2478.0,31.377667,-93.1537
-"Krasheninnikov Volcano, Russia",2026-01-15T00:00:00Z,,54.596,160.27
 "RX Kleberg Prescribed Fire, Kleberg, Texas",2026-01-14T17:12:00Z,629.0,27.309122,-97.619391
 "RX BILLY HOWELL Prescribed Fire, Pontotoc, Oklahoma",2026-01-13T12:39:00Z,1296.0,34.550156,-96.578549
 "Hanks RX Prescribed Fire, Texas, Missouri",2026-01-13T09:25:00Z,846.0,37.537536,-92.038889
@@ -879,7 +890,6 @@ Iceberg D15C,2026-04-24T00:00:00Z,98.0,-67.09,79.82
 "MIR 5.1 ABC Rx 0109 Prescribed Fire, Brevard, Florida",2026-01-09T07:19:00Z,1400.0,28.631728,-80.675053
 "CY26 TRD- DISTRICT PILES Rx Prescribed Fire, Coconino, Arizona",2026-01-08T09:57:00Z,985.0,35.941284,-112.105746
 "APQ Rec Area 10 Rx 0108 Prescribed Fire, Highlands, Florida",2026-01-08T09:16:00Z,742.0,27.623545,-81.179397
-"Ambrym Volcano, Vanuatu",2026-01-08T00:00:00Z,,-16.25,168.12
 "Mayon Volcano, Philippines",2026-01-07T00:00:00Z,,13.257,123.685
 "South Pen Rx Piles - East Prescribed Fire, Wasco, Oregon",2026-01-05T17:03:00Z,561.0,45.295069,-121.348145
 "Central Zone Programmatic Piles RX Prescribed Fire, Carbon, Wyoming",2026-01-05T13:32:00Z,953.0,41.300849,-106.369774
@@ -887,7 +897,6 @@ Iceberg D15C,2026-04-24T00:00:00Z,98.0,-67.09,79.82
 "Madley Wildfire, Shelby, Texas",2026-01-02T23:07:00Z,674.0,31.64805,-93.879367
 "Rx Newton 6078 Prescribed Fire, Newton, Texas",2026-01-02T07:55:00Z,874.0,31.12194444,-93.79361111
 "Rx Liberty 6069 Prescribed Fire, Liberty, Texas",2026-01-02T07:54:00Z,538.0,30.42638889,-94.96972222
-"Masaya Volcano, Nicaragua",2026-01-02T00:00:00Z,,11.9844,-86.1688
 "Rx Jasper 6074 Prescribed Fire, Jasper, Texas",2026-01-01T16:13:00Z,500.0,31.05655,-93.98622
 "Sabancaya Volcano, Peru",2025-12-29T00:00:00Z,,-15.787,-71.857
 "Addington Wildfire, Cherokee, Oklahoma",2025-12-23T09:43:00Z,654.0,35.6455556,-95.0722222
@@ -1047,7 +1056,6 @@ Iceberg C18C,2026-04-24T00:00:00Z,20.0,-68.47,39.08
 "SMR Unit 5/120 Rx 0827 Prescribed Fire, Wakulla, Florida",2025-08-28T10:43:00Z,827.0,30.160267,-84.144083
 "SMR Unit 108/122 Rx 0828 Prescribed Fire, Wakulla, Florida",2025-08-28T10:42:00Z,882.0,30.136267,-84.14165
 "BUTTE Wildfire, Malheur, Oregon",2025-08-28T02:13:00Z,4912.0,42.687883,-117.512
-"Bagana Volcano, Papua New Guinea",2025-08-28T00:00:00Z,,-6.137,155.196
 "Whakaari/White Island Volcano, New Zealand",2025-08-28T00:00:00Z,,-37.52,177.18
 "Perry Wildfire, Whatcom, Washington",2025-08-27T22:06:00Z,737.0,48.922702,-121.104893
 "BLUE Wildfire, Siskiyou, California",2025-08-27T17:44:00Z,1236.0,41.790117,-123.185
@@ -1188,7 +1196,6 @@ Iceberg C18C,2026-04-24T00:00:00Z,20.0,-68.47,39.08
 "BURDOIN Wildfire, Klickitat, Washington",2025-07-18T18:46:00Z,8776.0,45.701499,-121.427851
 "BRADFORD BRANCH Wildfire, Riverside, California",2025-07-16T15:51:00Z,1071.59,33.501354,-116.79812
 "DALE Wildfire, Riverside, California",2025-07-16T15:38:00Z,1071.59,33.526501,-116.787954
-"Reykjanes Volcano, Iceland",2025-07-16T00:00:00Z,,63.817,-22.717
 "Buckboard Wildfire, Oneida, Idaho",2025-07-15T20:59:00Z,1698.0,42.0147,-112.412383
 "Cabin Wildfire, Coconino, Arizona",2025-07-15T19:38:00Z,1048.0,34.61695,-110.948117
 "TINDALL Wildfire, Owyhee, Idaho",2025-07-15T19:12:00Z,1697.7,42.978896,-115.89549

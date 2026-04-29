@@ -1,144 +1,135 @@
 {
-  "saved_at": "2026-04-27T18:51:23.679843Z",
+  "saved_at": "2026-04-29T17:05:47.969054Z",
   "data": {
     "news": [
       {
         "type": "earthquake",
-        "title": "Elon Musk says saving for retirement is irrelevant because AI is going to create a world of abundance: ‘It won’t matter’",
-        "description": "Musk said a \"supersonic tsunami\" of AI and robotics will bring about a world of zero scarcity.",
-        "source": "Fortune",
-        "url": "https://fortune.com/article/elon-musk-ceo-tech-billionaires-dont-save-for-retirement-ai-future-of-work-american-workers/",
-        "image": "https://fortune.com/img-assets/wp-content/uploads/2026/04/GettyImages-2256970109_8a6b42-e1777063137466.jpg?resize=1200,600",
-        "date": "2026-04-26T17:47:05Z"
+        "title": "TINA BROWN: Citizenry of the dazed and confused...",
+        "description": "God, it was nice for British embassy guests to see King Charles and Queen Camilla in person yesterday afternoon!",
+        "source": "Substack.com",
+        "url": "https://tinabrown.substack.com/p/the-king-the-queen-and-the-ballroom",
+        "image": "https://substackcdn.com/image/fetch/$s_!Yv0R!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff2721d62-4083-4e60-b8e8-119bb668f266_1168x788.png",
+        "date": "2026-04-28T17:00:13Z"
       },
       {
         "type": "earthquake",
-        "title": "Down shock Donegal to blow Ulster championship wide open",
-        "description": "Two late goals by Miceál Rooney knocked the holders out in Letterkenny",
-        "source": "The Irish Times",
-        "url": "https://www.irishtimes.com/sport/gaelic-games/2026/04/26/down-shock-donegal-to-blow-ulster-championship-wide-open/",
-        "image": "https://www.irishtimes.com/resizer/v2/6GRENZ66NUUFRGY6M4FDTDENQA.jpg?smart=true&auth=8731f80a57bd9931ce30903c0c9df8960ab4b8fdba58326a61f207d765aa69f6&width=1200&height=630",
-        "date": "2026-04-26T17:28:40Z"
+        "title": "Justice Amy Coney Barrett poses unique problem for Trump in immigration case: WaPo",
+        "description": "A pivotal Wednesday Supreme Court hearing on the limits of Donald Trump’s immigration policies will contain a wild card in the form of how Associate Justice Amy Coney Barrett will vote due to personal",
+        "source": "Raw Story",
+        "url": "https://www.rawstory.com/coney-barrett-immigrants-wapo/",
+        "image": "https://www.rawstory.com/media-library/image.jpg?id=61117520&width=1200&height=600&coordinates=0%2C34%2C0%2C35",
+        "date": "2026-04-28T17:00:09Z"
       },
       {
         "type": "earthquake",
-        "title": "Why Lakers’ relatively quiet 2026 trade deadline is paying off in NBA playoffs",
-        "description": "The Lakers made just one minor move at the 2026 NBA trade deadline, but Luke Kennard, Rui Hachimura and team chemistry are proving why standing pat was the right call despite all the outside noise.",
-        "source": "New York Post",
-        "url": "https://nypost.com/2026/04/26/sports/lakers-quiet-2026-nba-trade-deadline-move-is-paying-off-in-playoffs/",
-        "image": "https://nypost.com/wp-content/uploads/sites/2/2026/04/LAKERS-5.jpg?quality=75&strip=all&w=1200",
-        "date": "2026-04-26T17:03:13Z"
+        "title": "5 Strongest Pokémon To Dominate Ranked Matches In Pokémon Champions",
+        "description": "Courtesy of The Pokemon Company\n\nThe first Season of Pokémon Champions has seen competitive multiplayer develop in a new way, with the game’s unique Pokémon roster and certain gameplay restrictions ma",
+        "source": "ComicBook.com",
+        "url": "http://comicbook.com/gaming/list/5-strongest-pokemon-to-dominate-ranked-matches-in-pokemon-champions/",
+        "image": "https://comicbook.com/wp-content/uploads/sites/4/2026/04/Pokemon-Champions-several-strong-Pokemon-1.jpg?resize=2000,1125",
+        "date": "2026-04-28T17:00:00Z"
       },
       {
         "type": "earthquake",
-        "title": "Citi outlines the $1.8T ETF shift investors must watch",
-        "description": "Most investors focus on the S&P 500, the Nasdaq, and a small group of large U.S. companies that dominate index performance. Little attention goes to how...",
-        "source": "TheStreet",
-        "url": "https://www.thestreet.com/investing/citi-outlines-the-1-8t-etf-shift-investors-must-watch",
-        "image": "https://s.yimg.com/os/en/thestreet_881/e71319adfe48586edf081cee58cd4a68",
-        "date": "2026-04-26T16:47:00Z"
+        "title": "\"There was that period in time, pre-Sonic, where it was, 'You're so lucky that Hollywood is even looking at you'\"",
+        "description": "You might not have heard of the name Story Kitchen, but you've definitely heard of the movies and TV shows it's been involved with. The production company specialises in adaptations of video games, an",
+        "source": "GamesIndustry.biz",
+        "url": "https://www.gamesindustry.biz/there-was-that-period-in-time-pre-sonic-where-it-was-youre-so-lucky-that-hollywood-is-even-looking-at-you",
+        "image": "https://assetsio.gnwcdn.com/sonic-2_tiJf698.jpg?width=1200&height=630&fit=crop&enable=upscale&auto=webp",
+        "date": "2026-04-28T16:14:15Z"
       },
       {
         "type": "earthquake",
-        "title": "Confirmed: Atletico Madrid without star midfielder for Arsenal matches",
-        "description": "Atletico Madrid will go into their Champions League semi-final tie with Arsenal at a significant disadvantage, as they will be without Pablo Barrios for both matches.Barrios made his first start since",
-        "source": "Football Espana",
-        "url": "https://www.football-espana.net/2026/04/26/atletico-madrid-without-star-midfielder-arsenal",
-        "image": "https://s.yimg.com/ny/api/res/1.2/fIOKGOhg94h.aSfgUYZjiQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/football_espana_articles_993/132e0c16c9cf673ca89745c0c8eb226f",
-        "date": "2026-04-26T14:45:00Z"
+        "title": "Giant lineup of Tuesday Apple TV deals: Star Wars trilogies, Spider-Verse collection, Venom, Justice League, more",
+        "description": "Tuesday’s lineup of the best Apple TV deals is jam packed, including the Star Wars Original Trilogy, Star Wars Prequel Trilogy, and Star Wars Sequel Trilogy, alongside Spider-Verse 2-Movie Collection,",
+        "source": "9to5Toys",
+        "url": "http://9to5toys.com/2026/04/28/tuesday-apple-tv-deals-star-wars-spider-verse-justice-league/",
+        "image": "https://i0.wp.com/9to5toys.com/wp-content/uploads/sites/5/2026/04/Apple-TV-Apr-28.webp?resize=1200%2C628&quality=82&strip=all&ssl=1",
+        "date": "2026-04-28T15:59:08Z"
       },
       {
         "type": "earthquake",
-        "title": "Purple ube’s viral rise is turning a Filipino staple into a global trend — but supplies are tightening",
-        "description": "Ube, a naturally sweet, starchy vegetable grown in the Philippines, has transcended Filipino culture and become a social media sensation.",
-        "source": "CNBC",
-        "url": "https://www.cnbc.com/2026/04/26/ube-purple-yam-viral-trend-philippines-supply-crunch.html",
-        "image": "https://image.cnbcfm.com/api/v1/image/108296912-1777059968693-Kasa__Kin_Ube.png?v=1777119357&w=1920&h=1080",
-        "date": "2026-04-26T13:36:39Z"
-      },
-      {
-        "type": "earthquake",
-        "title": "Why the key to American drone dominance lies with blockchain",
-        "description": "The U.S. is at a pivotal moment when it comes to reclaiming its drone supply chain from China.",
-        "source": "Fortune",
-        "url": "https://fortune.com/2026/04/26/why-the-key-to-american-drone-dominance-lies-with-blockchain/",
-        "image": "https://fortune.com/img-assets/wp-content/uploads/2026/04/GettyImages-503831464.jpg?resize=1200,600",
-        "date": "2026-04-26T13:01:00Z"
-      },
-      {
-        "type": "earthquake",
-        "title": "NY Giants 2026 NFL Draft: NOW, are the 2026 Giants more talented than the 2025 Giants?",
-        "description": "Yes, but there’s one more thing to do.",
-        "source": "Big Blue View",
-        "url": "https://www.bigblueview.com/new-york-giants-analysis/160880/ny-giants-2026-nfl-draft-better-worse-roster-than-2025",
-        "image": "https://s.yimg.com/ny/api/res/1.2/bCBknsv_YPgwjYYfn6aM2g--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/sb_nation_articles_115/e4b1186b824ede65453f30005e8de10e",
-        "date": "2026-04-26T13:00:00Z"
-      },
-      {
-        "type": "earthquake",
-        "title": "When Porsche-loving £300k-a-year IT consultant Christopher Trybus's life was on the line as he stood trial for driving his wife to her suicide, there was one person who stood by him... his second wife",
-        "description": "It wasn't until Christopher Trybus's manslaughter trial that it emerged he had a second wife, as she accompanied him to court, never doubting the IT consultant's innocence.",
+        "title": "Warning over 'America's most dangerous' fault as overdue earthquake threatens millions",
+        "description": "Scientists warn that the next 'Big One' in California may be worse than anymore has predicted after factoring in new information from underground.",
         "source": "Dailymail.com",
-        "url": "https://www.dailymail.com/news/article-15762393/When-Porsche-loving-300k-year-consultant-Christopher-Trybuss-life-line-stood-trial-driving-wife-suicide-one-person-stood-second-wife.html",
-        "image": "https://i.dailymail.com/1s/2026/04/26/13/108136851-0-image-m-2_1777206189827.jpg",
-        "date": "2026-04-26T12:23:16Z"
+        "url": "https://www.dailymail.com/sciencetech/article-15772173/hayward-fault-oakland-earthquake-warning.html",
+        "image": "https://i.dailymail.com/1s/2026/04/28/16/83473965-0-image-m-25_1777390885928.jpg",
+        "date": "2026-04-28T15:53:42Z"
       },
       {
         "type": "earthquake",
-        "title": "Lalitpur Mayor Maharjan praises Dhangadhi development, says “We have a lot to learn”",
-        "description": "Dhangadhi: Lalitpur Metropolitan City Mayor Chiribabu Maharjan has praised the development efforts of Dhangadhi Sub-metropolitan City, stating that Lalitpur has much to learn from Dhangadhi. He expres",
-        "source": "Dineshkhabar.com",
-        "url": "https://dineshkhabar.com/article/135048",
-        "image": "https://dineshkhabar.com/sites/default/files/styles/featured/public/field/image/chiribabu_SprjElfIXy_0.jpg?itok=aepRhcaC",
-        "date": "2026-04-26T12:12:01Z"
+        "title": "verifiable-labs-envs added to PyPI",
+        "description": "Reinforcement-learning environments for scientific reasoning: physics-grounded inverse problems with uncertainty-calibrated rewards.",
+        "source": "Pypi.org",
+        "url": "https://pypi.org/project/verifiable-labs-envs/",
+        "image": "https://pypi.org/static/images/twitter.abaf4b19.webp",
+        "date": "2026-04-28T15:36:34Z"
       },
       {
         "type": "earthquake",
-        "title": "Erdoğan says urban transformation ‘only solution’ in Istanbul",
-        "description": "President Recep Tayyip Erdoğan on April 25 said urban transformation is the “only solution” to Türkiye's housing needs and earthquake risks, as he attended a mass housing lottery ceremony in Istanbul ",
-        "source": "Hurriyet Daily News",
-        "url": "https://www.hurriyetdailynews.com/erdogan-says-urban-transformation-only-solution-in-istanbul-221490",
-        "image": "https://image.hurimg.com/i/hurriyet/75/200x200/69ede5683a5a98d212b10e35.jpg",
-        "date": "2026-04-26T10:14:03Z"
+        "title": "Main Street Braces for ‘Silver Tsunami’ as Small Business Owners Plan for Retirement",
+        "description": "Sixty percent of small business owners do not have a formal succession plan, while 41 percent would permanently close their doors if they cannot find a buyer.",
+        "source": "Theepochtimes.com",
+        "url": "https://www.theepochtimes.com/business/main-street-braces-for-silver-tsunami-as-small-business-owners-plan-for-retirement-6018179",
+        "image": "https://img.theepochtimes.com/assets/uploads/2026/04/07/id6009005-Retirement-Alabama-5_JF_04072026-1080x720.jpg",
+        "date": "2026-04-28T15:36:01Z"
       },
       {
         "type": "earthquake",
-        "title": "Alain Delon, dubbed the French James Dean exuded glamour and menace. A new book asks did he beat and kill a man for having an affair with his wife?",
-        "description": "Acclaimed author Edward Chisolm takes you into the glamorous world of 1960s Paris and the seediness that lay beneath the surface of the high life",
+        "title": "Watch: IDF destroys enormous Hezbollah terror tunnel",
+        "description": "The tunnel was the largest ever discovered in southern Lebanon.",
+        "source": "Israelnationalnews.com",
+        "url": "https://www.israelnationalnews.com/news/426224",
+        "image": "https://2.a7.org/files/pictures/000/1216099.jpg",
+        "date": "2026-04-28T15:32:00Z"
+      },
+      {
+        "type": "earthquake",
+        "title": "MAO ‒ Episode 4",
+        "description": "It's still a bit too early to tell whether or not MAO works as a mystery series.",
+        "source": "Anime News Network",
+        "url": "https://www.animenewsnetwork.com/review/mao/episode-4/.236867",
+        "image": "https://www.animenewsnetwork.com/thumbnails/crop600x315gKC/cms/episode-review.5/236867/mao-1.jpg",
+        "date": "2026-04-28T15:30:00Z"
+      },
+      {
+        "type": "earthquake",
+        "title": "Steel Fiber Industry Report 2026 with Analyst Recommendations and Global Forecasts to 2031 - Advancements in Manufacturing & Material Science / Diversification of Product Portfolio",
+        "description": "The global steel fiber market is poised for growth due to increasing infrastructure investments and advancements in material science. Key opportunities lie in construction, particularly in high-perfor",
+        "source": "GlobeNewswire",
+        "url": "https://www.globenewswire.com/news-release/2026/04/28/3282890/28124/en/Steel-Fiber-Industry-Report-2026-with-Analyst-Recommendations-and-Global-Forecasts-to-2031-Advancements-in-Manufacturing-Material-Science-Diversification-of-Product-Portfolio.html",
+        "image": "https://ml.globenewswire.com/Resource/Download/908fb457-7f8e-4a08-9081-5565e3dfb3d7",
+        "date": "2026-04-28T14:29:00Z"
+      },
+      {
+        "type": "earthquake",
+        "title": "Broadway’s Spring 2026 Season: All Of Deadline’s Reviews From ‘Every Brilliant Thing’ To ‘The Lost Boys’",
+        "description": "With Tony Award nominations for the 2025-2026 season a week away (announcements are on Tuesday, May 5), now might be a good time to refresh your memory of what Deadline had to say about the fruits of ",
+        "source": "Deadline",
+        "url": "http://deadline.com/2026/04/broadway-spring-2026-reviews-1236859028/",
+        "image": "https://deadline.com/wp-content/uploads/2026/04/Deadline-Spring-Broadway-Reviews-2026.jpg?w=1024",
+        "date": "2026-04-28T14:10:00Z"
+      },
+      {
+        "type": "earthquake",
+        "title": "Why is the UAE, OPEC’s third-largest oil producer, leaving OPEC? Will Iraq or Kuwait leave next, and what it means for oil prices and the cartel’s future",
+        "description": "Why is UAE leaving OPEC, will Iraq or Kuwait leave next? Nearly 3.5 million barrels per day are now at stake. The Organization of the Petroleum Exporting Countries faces a rare rupture as the UAE leav",
+        "source": "The Times of India",
+        "url": "https://economictimes.indiatimes.com/news/international/us/why-is-the-uae-opecs-third-largest-oil-producer-leaving-opec-will-iraq-or-kuwait-leave-next-and-what-it-means-for-oil-prices-and-the-cartels-future/articleshow/130582545.cms",
+        "image": "https://img.etimg.com/thumb/msid-130582680,width-1200,height-630,imgsize-54938,overlay-economictimes/articleshow.jpg",
+        "date": "2026-04-28T14:07:04Z"
+      },
+      {
+        "type": "earthquake",
+        "title": "Terror at 130mph: First images from inside Spanish train crash disaster that claimed 46 lives are revealed by investigators",
+        "description": "The pictures, included in a Civil Guard report now submitted to a judge in Montoro, show the impact of tearing through the rear carriages just before the lights went out.",
         "source": "Dailymail.com",
-        "url": "https://www.dailymail.com/home/books/article-15762913/Alain-Delon-dubbed-French-James-Dean-exuded-glamour-menace-new-book-asks-did-beat-kill-man-having-affair-wife.html",
-        "image": "https://i.dailymail.com/1s/2026/04/24/16/108135463-0-image-a-16_1777045796577.jpg",
-        "date": "2026-04-26T09:00:46Z"
-      },
-      {
-        "type": "earthquake",
-        "title": "Alain Delon, dubbed the French James Dean exuded glamour and menace. A new book asks did he beat and kill a man for having an affair with his wife?",
-        "description": "Acclaimed author Edward Chisolm takes you into the glamorous world of 1960s Paris and the seediness that lay beneath the surface of the high life",
-        "source": "Dailymail.com",
-        "url": "https://www.dailymail.com/home/books/article-15762913/Alain-Delon-dubbed-French-James-Dean-exuded-glamour-menace-new-book-asks-did-beat-kill-man-having-affair-wife.html",
-        "image": "https://i.dailymail.com/1s/2026/04/24/16/108135463-0-image-a-16_1777045796577.jpg",
-        "date": "2026-04-26T09:00:46Z"
-      },
-      {
-        "type": "earthquake",
-        "title": "40 Years After the Chernobyl Disaster, More Countries Are Turning To Nuclear Power",
-        "description": "An anonymous reader shared this report from the Associated Press:\n\nThe 1986 Chernobyl disaster fueled global fears about nuclear power and slowed its development in Europe and elsewhere. Four decades ",
-        "source": "Slashdot.org",
-        "url": "https://hardware.slashdot.org/story/26/04/25/0928252/40-years-after-the-chernobyl-disaster-more-countries-are-turning-to-nuclear-power",
-        "image": "https://a.fsdn.com/sd/topics/power_64.png",
-        "date": "2026-04-26T07:34:00Z"
-      },
-      {
-        "type": "earthquake",
-        "title": "Japan deploys 1,400 firefighters, SDF to battle raging wildfires in Iwate",
-        "description": "Japan has deployed 1,400 firefighters and 100 Self-Defense Force ‌personnel to battle mountain blazes in Iwate Prefecture, with the fires, now burning on Sunday for ‌a fifth straight day, continuing t",
-        "source": "Japan Today",
-        "url": "https://japantoday.com/category/national/japan-deploys-1-400-firefighters-to-battle-raging-wildfires-in-the-north",
-        "image": "",
-        "date": "2026-04-26T07:30:50Z"
+        "url": "https://www.dailymail.com/news/article-15771803/Terror-130mph-images-inside-Spanish-train-crash-disaster-claimed-46-lives-revealed-investigators.html",
+        "image": "https://i.dailymail.com/1s/2026/04/28/14/108218439-0-image-a-10_1777384076421.jpg",
+        "date": "2026-04-28T13:57:48Z"
       }
     ],
     "filter": "earthquake",
-    "fetched_at": "2026-04-27T18:51:23.676595Z"
+    "fetched_at": "2026-04-29T17:05:47.968032Z"
   }
 }

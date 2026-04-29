@@ -1,135 +1,144 @@
 {
-  "saved_at": "2026-04-27T18:51:07.931937Z",
+  "saved_at": "2026-04-29T17:05:31.860639Z",
   "data": {
     "news": [
       {
         "type": "all",
-        "title": "Celebrities London Marathon finish times revealed: Exhausted Cynthia Erivo achieves new personal best as she completes iconic run alongside James Norton, Tilly Ramsay, Alexandra Burke and Daddy Pig",
-        "description": "A whole host of stars were amongst the 59,000 runners competing in the London Marathon on Sunday - with many achieving incredible times.",
-        "source": "Dailymail.com",
-        "url": "https://www.dailymail.com/tvshowbiz/article-15766957/Celebrities-London-Marathon-finish-times-Cynthia-Erivo-James-Norton-Tilly-Ramsay-Alexandra-Burke-Daddy-Pig.html",
-        "image": "https://i.dailymail.com/1s/2026/04/26/18/108175459-0-image-m-41_1777225296731.jpg",
-        "date": "2026-04-26T17:47:35Z"
+        "title": "TINA BROWN: Citizenry of the dazed and confused...",
+        "description": "God, it was nice for British embassy guests to see King Charles and Queen Camilla in person yesterday afternoon!",
+        "source": "Substack.com",
+        "url": "https://tinabrown.substack.com/p/the-king-the-queen-and-the-ballroom",
+        "image": "https://substackcdn.com/image/fetch/$s_!Yv0R!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff2721d62-4083-4e60-b8e8-119bb668f266_1168x788.png",
+        "date": "2026-04-28T17:00:13Z"
       },
       {
         "type": "all",
-        "title": "More than 50 firefighters battle ‘devastating’ wildfires in the Mourne Mountains",
-        "description": "People were advised to stay away from the Co Down beauty spot as the blazes continued into Sunday",
-        "source": "The Irish Times",
-        "url": "https://www.irishtimes.com/ireland/2026/04/26/more-than-50-firefighters-battle-devastating-wildfires-in-the-mourne-mountains/",
-        "image": "https://www.irishtimes.com/resizer/v2/36MZI4VIBGWSVL4R5GIXUSL6AU.jpg?smart=true&auth=7e63d4f56959ced4373f12ec5ecbe634a3c676dd690144aed5e934dbc3580a2c&width=1200&height=630",
-        "date": "2026-04-26T17:19:42Z"
-      },
-      {
-        "type": "all",
-        "title": "epwforge-mcp 0.0.1",
-        "description": "MCP server for EPWForge — generate, morph, and download EPW weather files for EnergyPlus, OpenStudio, IES VE, and eQUEST. TMYx, AMY, CMIP6 future-climate scenarios, and wildfire smoke overlays for AI ",
-        "source": "Pypi.org",
-        "url": "https://pypi.org/project/epwforge-mcp/0.0.1/",
-        "image": "",
-        "date": "2026-04-26T16:41:25Z"
-      },
-      {
-        "type": "all",
-        "title": "epwforge-mcp added to PyPI",
-        "description": "MCP server for EPWForge — generate, morph, and download EPW weather files for EnergyPlus, OpenStudio, IES VE, and eQUEST. TMYx, AMY, CMIP6 future-climate scenarios, and wildfire smoke overlays for AI ",
-        "source": "Pypi.org",
-        "url": "https://pypi.org/project/epwforge-mcp/",
-        "image": "",
-        "date": "2026-04-26T16:41:25Z"
-      },
-      {
-        "type": "all",
-        "title": "Has Trump Actually Solved 9 Wars As He Claims? No—Here’s What’s True",
-        "description": "Trump said recently the Israel-Lebanon ceasefire that took effect April 16 would be his 10th war solved—even though U.S. attacks on Iran reignited the military conflict in Lebanon.",
-        "source": "Forbes",
-        "url": "https://www.forbes.com/sites/saradorn/2026/04/26/has-trump-actually-solved-9-wars-as-he-claims-no-heres-whats-true/",
-        "image": "https://imageio.forbes.com/specials-images/imageserve/69ee2ab98c5ebe891c02862e/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds",
-        "date": "2026-04-26T15:13:46Z"
-      },
-      {
-        "type": "all",
-        "title": "UPSC Essentials daily subject quiz : International Relations MCQs (Week 159) — Check out answers with explanations",
-        "description": "UPSC Prelims Quiz 2026: Sharpen your UPSC preparation with our International Relations quiz for Week 159. Attempt questions on Five Eyes alliance, town of Otsuchi, Yellow Line, and more to check your ",
-        "source": "The Indian Express",
-        "url": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-quiz-international-relations-week-159-five-eyes-alliance-yellow-line-10657036/",
-        "image": "https://images.indianexpress.com/2026/04/town-of-Otsuchi.jpg",
-        "date": "2026-04-26T14:53:27Z"
-      },
-      {
-        "type": "all",
-        "title": "Hedge funds exit US tech stocks amid Iran conflict, Nvidia odds hold firm",
-        "description": "Hedge fund tech stock selloff amid geopolitical tensions may signal caution, potentially impacting tech valuations and market stability.\nThe post Hedge funds exit US tech stocks amid Iran conflict, Nv",
-        "source": "Crypto Briefing",
-        "url": "https://cryptobriefing.com/hedge-funds-exit-us-tech-stocks-amid-iran-conflict-nvidia-odds-hold-firm/",
-        "image": "https://static.cryptobriefing.com/wp-content/uploads/2026/04/26102806/largest-company-eoy-KS99l6lbxfCc-81-457x457.jpg",
-        "date": "2026-04-26T14:28:11Z"
-      },
-      {
-        "type": "all",
-        "title": "FCC Asked to Adopt Plan Taking Nine UHF TV Channels from Broadcasters for Reassignment to 6G Wireless",
-        "description": "Spectrum: A new proposal asked the FCC to clear out a large block of UHF broadcast spectrum -- a move that could force more than 40% of U.S. TV stations to relocate. In an April 15 petition, a group c",
-        "source": "Freerepublic.com",
-        "url": "https://freerepublic.com/focus/f-bloggers/4376495/posts",
-        "image": "",
-        "date": "2026-04-26T14:07:47Z"
-      },
-      {
-        "type": "all",
-        "title": "Gordon Ramsay gives his daughter Tilly a congratulatory kiss on the cheek while Cynthia Erivo is helped by a member of staff as they lead stars finishing the London marathon",
-        "description": "A slew of stars are donning their running shoes today as they take on the London marathon and add an athletic string to their already impressive bows.",
-        "source": "Dailymail.com",
-        "url": "https://www.dailymail.com/tvshowbiz/article-15766727/Gordon-Ramsay-gives-daughter-Tilly-congratulatory-kiss-cheek-Cynthia-Erivo-helped-member-staff-lead-stars-finishing-London-marathon.html",
-        "image": "https://i.dailymail.com/1s/2026/04/26/14/108172803-0-image-m-40_1777211825824.jpg",
-        "date": "2026-04-26T14:00:02Z"
-      },
-      {
-        "type": "all",
-        "title": "This ecologist looks to wildfire history to support communities navigating the fires of today",
-        "description": "Kira Hoffman, a fire ecologist at UBC who researches wildfire behavior and Indigenous-led fire stewardship, says her recent award from National Geographic is shared with the First Nations who've share",
-        "source": "CBC News",
-        "url": "https://www.cbc.ca/news/canada/british-columbia/fire-ecologist-kira-hoffman-9.7169044",
-        "image": "https://i.cbc.ca/ais/d296f4fb-1d7d-4c03-9e6b-8ff4855b538e,1777062840628/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C0%2C1920%2C1080%29%3BResize%3D620",
-        "date": "2026-04-26T14:00:00Z"
-      },
-      {
-        "type": "all",
-        "title": "War scholar flags chilling parallels between Trump's war in Iran and past conflict",
-        "description": "A contrast between President Donald Trump's war with Iran and a previous conflict has been flagged by a war scholar.Trump's military conflict with Iran has emerged as one of the most consequential fai",
+        "title": "Justice Amy Coney Barrett poses unique problem for Trump in immigration case: WaPo",
+        "description": "A pivotal Wednesday Supreme Court hearing on the limits of Donald Trump’s immigration policies will contain a wild card in the form of how Associate Justice Amy Coney Barrett will vote due to personal",
         "source": "Raw Story",
-        "url": "https://www.rawstory.com/trump-iran-2676815769/",
-        "image": "https://www.rawstory.com/media-library/donald-trump.jpg?id=61531729&width=1200&height=600&coordinates=0%2C312%2C0%2C312",
-        "date": "2026-04-26T13:34:26Z"
+        "url": "https://www.rawstory.com/coney-barrett-immigrants-wapo/",
+        "image": "https://www.rawstory.com/media-library/image.jpg?id=61117520&width=1200&height=600&coordinates=0%2C34%2C0%2C35",
+        "date": "2026-04-28T17:00:09Z"
       },
       {
         "type": "all",
-        "title": "How New Mexico is ‘building a forest’ by solving a seedling shortage",
-        "description": "A Q&A with the New Mexico Reforestation Center director about what it takes to replant a burn scar post-wildfire.",
-        "source": "Grist",
-        "url": "https://grist.org/solutions/how-new-mexico-is-building-a-forest-by-solving-a-seedling-shortage/",
-        "image": "https://grist.org/wp-content/uploads/2026/04/Technicians-monitor-seedlings-after-planting.jpg?quality=75&strip=all",
-        "date": "2026-04-26T13:00:00Z"
+        "title": "5 Strongest Pokémon To Dominate Ranked Matches In Pokémon Champions",
+        "description": "Courtesy of The Pokemon Company\n\nThe first Season of Pokémon Champions has seen competitive multiplayer develop in a new way, with the game’s unique Pokémon roster and certain gameplay restrictions ma",
+        "source": "ComicBook.com",
+        "url": "http://comicbook.com/gaming/list/5-strongest-pokemon-to-dominate-ranked-matches-in-pokemon-champions/",
+        "image": "https://comicbook.com/wp-content/uploads/sites/4/2026/04/Pokemon-Champions-several-strong-Pokemon-1.jpg?resize=2000,1125",
+        "date": "2026-04-28T17:00:00Z"
       },
       {
         "type": "all",
-        "title": "NY Giants 2026 NFL Draft: NOW, are the 2026 Giants more talented than the 2025 Giants?",
-        "description": "Yes, but there’s one more thing to do.",
-        "source": "Big Blue View",
-        "url": "https://www.bigblueview.com/new-york-giants-analysis/160880/ny-giants-2026-nfl-draft-better-worse-roster-than-2025",
-        "image": "https://s.yimg.com/ny/api/res/1.2/bCBknsv_YPgwjYYfn6aM2g--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/sb_nation_articles_115/e4b1186b824ede65453f30005e8de10e",
-        "date": "2026-04-26T13:00:00Z"
+        "title": "Giant lineup of Tuesday Apple TV deals: Star Wars trilogies, Spider-Verse collection, Venom, Justice League, more",
+        "description": "Tuesday’s lineup of the best Apple TV deals is jam packed, including the Star Wars Original Trilogy, Star Wars Prequel Trilogy, and Star Wars Sequel Trilogy, alongside Spider-Verse 2-Movie Collection,",
+        "source": "9to5Toys",
+        "url": "http://9to5toys.com/2026/04/28/tuesday-apple-tv-deals-star-wars-spider-verse-justice-league/",
+        "image": "https://i0.wp.com/9to5toys.com/wp-content/uploads/sites/5/2026/04/Apple-TV-Apr-28.webp?resize=1200%2C628&quality=82&strip=all&ssl=1",
+        "date": "2026-04-28T15:59:08Z"
       },
       {
         "type": "all",
-        "title": "Series of blazes across Scotland during 'extreme' wildfire alert",
-        "description": "The Scottish Fire and rescue Service (SFRS) said an 'extreme' wildfire warning for Western Scotland would remain until midnight.",
-        "source": "BBC News",
-        "url": "https://www.bbc.com/news/articles/cly7yvr8g97o",
-        "image": "https://ichef.bbci.co.uk/news/1024/branded_news/b787/live/a1a5fc10-4168-11f1-8a25-27287a9e092d.jpg",
-        "date": "2026-04-26T12:52:14Z"
+        "title": "Warning over 'America's most dangerous' fault as overdue earthquake threatens millions",
+        "description": "Scientists warn that the next 'Big One' in California may be worse than anymore has predicted after factoring in new information from underground.",
+        "source": "Dailymail.com",
+        "url": "https://www.dailymail.com/sciencetech/article-15772173/hayward-fault-oakland-earthquake-warning.html",
+        "image": "https://i.dailymail.com/1s/2026/04/28/16/83473965-0-image-m-25_1777390885928.jpg",
+        "date": "2026-04-28T15:53:42Z"
+      },
+      {
+        "type": "all",
+        "title": "Watch: IDF destroys enormous Hezbollah terror tunnel",
+        "description": "The tunnel was the largest ever discovered in southern Lebanon.",
+        "source": "Israelnationalnews.com",
+        "url": "https://www.israelnationalnews.com/news/426224",
+        "image": "https://2.a7.org/files/pictures/000/1216099.jpg",
+        "date": "2026-04-28T15:32:00Z"
+      },
+      {
+        "type": "all",
+        "title": "MAO ‒ Episode 4",
+        "description": "It's still a bit too early to tell whether or not MAO works as a mystery series.",
+        "source": "Anime News Network",
+        "url": "https://www.animenewsnetwork.com/review/mao/episode-4/.236867",
+        "image": "https://www.animenewsnetwork.com/thumbnails/crop600x315gKC/cms/episode-review.5/236867/mao-1.jpg",
+        "date": "2026-04-28T15:30:00Z"
+      },
+      {
+        "type": "all",
+        "title": "Sustainable Green Team, Ltd. (OTC: SGTM) Files Seven Provisional Patents Positioning Restore.Earth as the Physical Truth Layer Beneath the AI Economy",
+        "description": "ASTATULA, Fla., April 28, 2026 (GLOBE NEWSWIRE) -- Sustainable Green Team, Ltd. (OTC: SGTM) today announced the filing of seven new U.S. provisional patent applications — P-170 through P-176 — bringin",
+        "source": "GlobeNewswire",
+        "url": "https://www.globenewswire.com/news-release/2026/04/28/3282961/0/en/Sustainable-Green-Team-Ltd-OTC-SGTM-Files-Seven-Provisional-Patents-Positioning-Restore-Earth-as-the-Physical-Truth-Layer-Beneath-the-AI-Economy.html",
+        "image": "https://ml.globenewswire.com/Resource/Download/986b3dd3-8bb1-4e2d-98ef-043b584d36fc",
+        "date": "2026-04-28T15:19:00Z"
+      },
+      {
+        "type": "all",
+        "title": "Feds Raid Infamous ‘Quality Learing Center,’ Other Businesses Tied To Alleged Somali Fraud",
+        "description": "Federal agents raided multiple locations across Minneapolis on Tuesday as part of ongoing fraud investigations, officials say.",
+        "source": "The Daily Caller",
+        "url": "https://dailycaller.com/2026/04/28/feds-raid-quality-learning-center-alleged-somali-fraud-nick-shirley-minnesota/",
+        "image": "https://images.dailycaller.com/image/width=1280,height=549,fit=cover,format=webp,f=auto/https://cdn01.dailycaller.com/wp-content/uploads/2025/12/Screenshot-2025-12-30-1.20.37-PM-e1767118923833.png",
+        "date": "2026-04-28T14:29:46Z"
+      },
+      {
+        "type": "all",
+        "title": "Here’s Why The Bitcoin And Ethereum Prices Have Been Rising And Falling Sharply",
+        "description": "Bitcoin and Ethereum have spent the past few weeks moving like assets caught between two powerful forces. On one side, institutional demand has returned through Spot ETFs, treasury purchases, and dip-",
+        "source": "newsBTC",
+        "url": "http://www.newsbtc.com/news/bitcoin-and-ethereum-prices-2/",
+        "image": "https://www.newsbtc.com/wp-content/uploads/2026/04/Bitcoin-from-Getty-Images-43.jpg?fit=612%2C408",
+        "date": "2026-04-28T14:00:51Z"
+      },
+      {
+        "type": "all",
+        "title": "Terror at 130mph: First images from inside Spanish train crash disaster that claimed 46 lives are revealed by investigators",
+        "description": "The pictures, included in a Civil Guard report now submitted to a judge in Montoro, show the impact of tearing through the rear carriages just before the lights went out.",
+        "source": "Dailymail.com",
+        "url": "https://www.dailymail.com/news/article-15771803/Terror-130mph-images-inside-Spanish-train-crash-disaster-claimed-46-lives-revealed-investigators.html",
+        "image": "https://i.dailymail.com/1s/2026/04/28/14/108218439-0-image-a-10_1777384076421.jpg",
+        "date": "2026-04-28T13:57:48Z"
+      },
+      {
+        "type": "all",
+        "title": "Simulations Predict Ground Motion for Earthquakes on Bay Area’s Hayward Fault",
+        "description": "NEWSWISE — The Hayward fault, part of the larger San Andreas fault system, runs 74 miles through the East Bay of the San Francisco Bay Area. The fault is overdue for an earthquake that could cause ext",
+        "source": "Insurance Journal",
+        "url": "https://www.insurancejournal.com/news/west/2026/04/28/867522.htm",
+        "image": "https://www.insurancejournal.com/img/social/opengraph/ij-social-default-1200x630.png",
+        "date": "2026-04-28T13:49:22Z"
+      },
+      {
+        "type": "all",
+        "title": "California is angry about billionaires: the one-time wealth tax will be on the ballot in November",
+        "description": "“Hospitals are closing and people will die,\" said union leader said Liz Perlman. \"Why? So billionaires can get another tax cut that they don’t need.”",
+        "source": "Fortune",
+        "url": "https://fortune.com/2026/04/28/california-billionaire-tax-makes-november-ballot-wealth-inequality/",
+        "image": "https://fortune.com/img-assets/wp-content/uploads/2026/04/AP26117616709422-e1777380803858.jpg?resize=1200,600",
+        "date": "2026-04-28T13:23:57Z"
+      },
+      {
+        "type": "all",
+        "title": "Supreme Court to weigh Trump's bid to end deportation shield for Haitians, Syrians",
+        "description": "The Supreme Court is set to consider Wednesday the Department of Homeland Security's effort to terminate TPS both for Syria and Haiti.",
+        "source": "CBS News",
+        "url": "https://www.cbsnews.com/news/supreme-court-temporary-protected-status-trump-haiti-syria/",
+        "image": "https://assets2.cbsnewsstatic.com/hub/i/r/2026/04/28/383c3333-0240-4733-a2b5-d74704400d26/thumbnail/1200x630g2/3ae166f0098a12ec1f79fee573c6cd3d/gettyimages-2266550659.jpg",
+        "date": "2026-04-28T13:23:56Z"
+      },
+      {
+        "type": "all",
+        "title": "This B.C. mayor knows a 10% tax increase could hurt re-election chances, but says need for funds is great",
+        "description": "This fall, communities across B.C. will vote in municipal elections. While a significant tax hike could be a dealbreaker for some voters, Clearwater Mayor Merlin Blackwell said he can live with that.",
+        "source": "CBC News",
+        "url": "https://www.cbc.ca/news/canada/british-columbia/clearwater-tax-increase-2026-9.7179188",
+        "image": "https://i.cbc.ca/ais/1.5470947,1582263131000/full/max/0/default.jpg?im=Crop%2Crect%3D%28364%2C0%2C2834%2C1594%29%3BResize%3D620",
+        "date": "2026-04-28T13:16:37Z"
       }
     ],
     "filter": "all",
-    "fetched_at": "2026-04-27T18:51:07.928086Z"
+    "fetched_at": "2026-04-29T17:05:31.860639Z"
   }
 }
