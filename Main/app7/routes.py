@@ -1,21 +1,16 @@
 """
-app7/routes.py  -  Geo Artemis AI Intelligence Terminal
-Gemini 2.5 Flash-powered chat with JSON data context awareness.
-
-Data loading strategy:
-  - Each JSON file is serialised line-by-line (one JSON line per record/key).
-  - Only the first MAX_LINES_PER_FILE lines are fed to the AI.
-  - Lines are sampled with equal spacing (load-balanced) so the AI sees a
-    representative spread across the whole file, not just the top.
-  - Total context is further capped at MAX_TOTAL_LINES across all files.
+app7 Geo Artemis AI Intelligence Terminal
+Gemini 2.5 Flash-powered chat with dynamic tool-based data retrieval.
+just chat with ai if u need any query
 """
 from __future__ import annotations
 
 import json
 import os
+import re
 import uuid
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 import google.generativeai as genai
 from fastapi import APIRouter, Request, status
@@ -23,32 +18,27 @@ from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 
-# -----------------------------------------------------------------------------
-#  Path Resolution
-# -----------------------------------------------------------------------------
-_HERE  = Path(__file__).resolve().parent   # Main/app7/
-_MAIN  = _HERE.parent                      # Main/
+
+_HERE = Path(__file__).resolve().parent   # Main/app7/
+_MAIN = _HERE.parent                       # Main/
 
 router    = APIRouter()
 templates = Jinja2Templates(directory=str(_HERE / "templates"))
 
-# -----------------------------------------------------------------------------
-#  Gemini API Keys — Primary + Fallback
-# -----------------------------------------------------------------------------
-GEMINI_API_KEY  = os.getenv("GEMINI_API_KEY", "")
+GEMINI_API_KEY  = os.getenv("GEMINI_API_KEY",  "")
 GEMINI_API_KEY2 = os.getenv("GEMINI_API_KEY2", "")
+GEMINI_MODEL    = "gemini-2.5-flash"
 
-GEMINI_MODEL = "gemini-2.5-flash"
 
-# -----------------------------------------------------------------------------
-#  Data Source Config
-# -----------------------------------------------------------------------------
-EXCLUDED_FILES     = {"events_earthquake.json"}
-MAX_LINES_PER_FILE = 200   # Hard cap: lines fed to AI per JSON file
-MAX_TOTAL_LINES    = 800 # Hard cap: total lines across ALL files combined
+EXCLUDED_FILES = {"events_earthquake.json"}
+MAX_RESULTS    = 30    # Max records returned per tool call
+MAX_TOOL_CALLS = 5     # Max search iterations per user turn (safety cap)
+
 
 _chat_sessions: dict[str, list[dict]] = {}
-_SYSTEM_PROMPT: str = ""
+_data_index:    dict[str, Any] | None = None   # metadata index (built once)
+_data_cache:    dict[str, list[dict]] = {}     # file-name → parsed records
+
 
 
 def _resolve_glob_dir() -> Path:
@@ -57,211 +47,273 @@ def _resolve_glob_dir() -> Path:
         Path.cwd() / "Main" / "app3" / "Glob_data",
         Path.cwd() / "app3" / "Glob_data",
     ]
-    for path in candidates:
-        if path.exists():
-            return path
+    for p in candidates:
+        if p.exists():
+            return p
     return candidates[0]
 
 
-def _json_to_lines(data: object) -> list[str]:
+def _normalize_record(item: Any) -> dict:
+    """Ensure every record is a flat dict (wrap scalars/lists as needed)."""
+    if isinstance(item, dict):
+        return item
+    return {"value": item}
+
+
+def _load_all_data() -> dict[str, list[dict]]:
     """
-    Convert any parsed JSON value into a flat list of human-readable lines.
-
-    Strategy by type:
-      • list of dicts  → one compact JSON object per line (most common: event arrays)
-      • list of others → one item per line
-      • dict           → one "key: value" line per top-level key
-      • scalar         → single line
+    Load every eligible JSON file into memory as a list of dicts.
+    Runs once on first call; result is cached in _data_cache.
     """
-    if isinstance(data, list):
-        lines: list[str] = []
-        for item in data:
-            if isinstance(item, dict):
-                lines.append(json.dumps(item, separators=(",", ":"), ensure_ascii=False))
-            else:
-                lines.append(str(item))
-        return lines
+    global _data_cache
+    if _data_cache:
+        return _data_cache
 
-    if isinstance(data, dict):
-        lines = []
-        for k, v in data.items():
-            if isinstance(v, (dict, list)):
-                lines.append(f"{k}: {json.dumps(v, separators=(',', ':'), ensure_ascii=False)}")
-            else:
-                lines.append(f"{k}: {v}")
-        return lines
-
-    return [str(data)]
-
-
-def _balanced_sample(lines: list[str], n: int) -> list[str]:
-    """
-    Return exactly `n` lines sampled with uniform spacing across `lines`.
-    Guarantees the first and last line are always included so the AI
-    sees the beginning and end of the dataset.
-
-    If len(lines) <= n, returns all lines unchanged.
-    """
-    total = len(lines)
-    if total <= n:
-        return lines
-
-    # Build n evenly-spaced indices across [0, total-1]
-    indices: list[int] = []
-    for i in range(n):
-        # Linear interpolation: maps i in [0, n-1] → index in [0, total-1]
-        idx = int(round(i * (total - 1) / (n - 1)))
-        indices.append(idx)
-
-    # Deduplicate while preserving order (can occur when n is close to total)
-    seen: set[int] = set()
-    unique: list[int] = []
-    for idx in indices:
-        if idx not in seen:
-            seen.add(idx)
-            unique.append(idx)
-
-    return [lines[i] for i in unique]
-
-
-def _load_glob_data() -> str:
-    """
-    Load every *.json in Glob_data/ (except EXCLUDED_FILES).
-
-    Per-file budget  : MAX_LINES_PER_FILE lines, sampled with equal spacing.
-    Global budget    : MAX_TOTAL_LINES across all files; each file gets an
-                       equal share (floor division), remainder distributed to
-                       the first files — this is the load-balancing step.
-    """
     data_dir = _resolve_glob_dir()
-
-    print(f"[App7/Intel] Glob_data path  -> {data_dir}")
-    print(f"[App7/Intel] Path exists     -> {data_dir.exists()}")
-
     if not data_dir.exists():
-        print(f"[App7/Intel] WARNING: Glob_data directory not found at: {data_dir}")
-        return "[DATA UNAVAILABLE: Source directory not found.]"
+        print(f"[App7] WARNING: Glob_data not found at {data_dir}")
+        return {}
 
     json_files = sorted(
         f for f in data_dir.glob("*.json")
         if f.name not in EXCLUDED_FILES
     )
-    print(f"[App7/Intel] Files to load   -> {[f.name for f in json_files]}")
 
-    if not json_files:
-        return "[DATA UNAVAILABLE: No usable data files found after exclusions.]"
-
-    n_files = len(json_files)
-
-    # ── Load-balancing: divide the global line budget evenly across files ──
-    # Each file gets at most MAX_LINES_PER_FILE AND at most its fair global share.
-    base_share    = MAX_TOTAL_LINES // n_files          # floor share per file
-    remainder     = MAX_TOTAL_LINES % n_files           # extra lines for first N files
-    # Clamp each share to the per-file hard cap
-    file_budgets  = [
-        min(MAX_LINES_PER_FILE, base_share + (1 if i < remainder else 0))
-        for i in range(n_files)
-    ]
-
-    print(
-        f"[App7/Intel] Line budget     -> {MAX_TOTAL_LINES} total / "
-        f"{MAX_LINES_PER_FILE} per file / shares={file_budgets}"
-    )
-
-    summaries: list[str] = []
-
-    for json_file, budget in zip(json_files, file_budgets):
-        label = json_file.stem.replace("_", " ").title()
+    for jf in json_files:
         try:
-            with open(json_file, "r", encoding="utf-8", errors="replace") as fh:
-                data = json.load(fh)
+            with open(jf, "r", encoding="utf-8", errors="replace") as fh:
+                raw = json.load(fh)
 
-            all_lines  = _json_to_lines(data)
-            total_recs = len(all_lines)
+            records: list[dict] = []
+            if isinstance(raw, list):
+                records = [_normalize_record(item) for item in raw]
+            elif isinstance(raw, dict):
+                # Treat each top-level key as a record
+                records = [{"_key": k, **(_normalize_record(v))} for k, v in raw.items()]
+            else:
+                records = [{"value": raw}]
 
-            if total_recs == 0:
-                summaries.append(f"### DATASET: {label}\n[No records found]")
-                print(f"[App7/Intel] {json_file.name} → 0 records, skipped")
-                continue
+            _data_cache[jf.name] = records
+            print(f"[App7] Loaded {jf.name}: {len(records)} records")
 
-            sampled    = _balanced_sample(all_lines, budget)
-            kept       = len(sampled)
-            truncated  = kept < total_recs
-
-            header = (
-                f"### DATASET: {label}\n"
-                f"# Records in dataset: {total_recs} | "
-                f"Lines fed to AI: {kept}"
-                + (" (evenly sampled)" if truncated else "")
-                + "\n"
-            )
-            block = header + "\n".join(sampled)
-            summaries.append(block)
-
-            print(
-                f"[App7/Intel] {json_file.name} → "
-                f"{total_recs} records, fed {kept} lines "
-                f"(budget={budget}, sampled={truncated})"
-            )
-
-        except json.JSONDecodeError as exc:
-            summaries.append(f"### DATASET: {label}\n[Parse error — data unavailable]")
-            print(f"[App7/Intel] JSON error in {json_file.name}: {exc}")
         except Exception as exc:
-            summaries.append(f"### DATASET: {label}\n[Load error — data unavailable]")
-            print(f"[App7/Intel] Error reading {json_file.name}: {exc}")
+            print(f"[App7] Failed to load {jf.name}: {exc}")
 
-    if not summaries:
-        return "[DATA UNAVAILABLE: All files failed to load.]"
+    return _data_cache
 
-    return "\n\n".join(summaries)
 
+def _build_data_index() -> dict[str, Any]:
+    """
+    Build a lightweight metadata index: file names, record counts, sample fields.
+    This is what goes into the system prompt — NOT the actual data.
+    """
+    global _data_index
+    if _data_index is not None:
+        return _data_index
+
+    all_data = _load_all_data()
+    index: dict[str, Any] = {}
+
+    for fname, records in all_data.items():
+        label = fname.replace("_", " ").replace(".json", "").title()
+        # Collect all field names from the first 20 records
+        fields: set[str] = set()
+        for rec in records[:20]:
+            fields.update(rec.keys())
+        # Sample 3 records as examples
+        sample_values: dict[str, list] = {}
+        for field in list(fields)[:8]:
+            vals = [str(r.get(field, ""))[:60] for r in records[:5] if field in r]
+            if vals:
+                sample_values[field] = vals[:3]
+
+        index[fname] = {
+            "label":         label,
+            "record_count":  len(records),
+            "fields":        sorted(fields - {"_key"}),
+            "sample_values": sample_values,
+        }
+
+    _data_index = index
+    return _data_index
+
+
+
+def search_geospatial_data(
+    query: str,
+    dataset: str | None = None,
+    field_filter: dict[str, str] | None = None,
+    sort_by: str | None = None,
+    limit: int = MAX_RESULTS,
+) -> dict:
+    """
+    Search the geospatial datasets.
+
+    Args:
+        query:        Free-text search string (matched against all string fields).
+        dataset:      Optional filename (e.g. "events_fire.json") to restrict search.
+                      If omitted, all datasets are searched.
+        field_filter: Optional dict of {field: value} for exact/substring matching.
+        sort_by:      Optional field name to sort results by (ascending).
+        limit:        Max number of records to return (hard-capped at MAX_RESULTS).
+
+    Returns:
+        A dict with keys: results, total_matched, datasets_searched, query_info
+    """
+    limit = min(limit, MAX_RESULTS)
+    all_data = _load_all_data()
+
+    if not all_data:
+        return {
+            "results":          [],
+            "total_matched":    0,
+            "datasets_searched": [],
+            "query_info":       {"error": "No data available"},
+        }
+
+    # Determine which files to search
+    if dataset:
+       
+        target_files = [
+            fname for fname in all_data
+            if dataset.lower() in fname.lower()
+        ]
+        if not target_files:
+            return {
+                "results":          [],
+                "total_matched":    0,
+                "datasets_searched": [],
+                "query_info":       {"error": f"Dataset '{dataset}' not found. Available: {list(all_data.keys())}"},
+            }
+    else:
+        target_files = list(all_data.keys())
+
+    # Build keyword tokens from query
+    query_tokens = [t.lower() for t in re.split(r"\W+", query) if len(t) > 2]
+
+    matched: list[dict] = []
+
+    for fname in target_files:
+        records = all_data[fname]
+        label   = fname.replace("_", " ").replace(".json", "").title()
+
+        for rec in records:
+            # 1. Field filter (exact / substring match, case-insensitive)
+            if field_filter:
+                if not all(
+                    str(rec.get(k, "")).lower().find(str(v).lower()) >= 0
+                    for k, v in field_filter.items()
+                ):
+                    continue
+
+            # 2. Keyword search across all string fields
+            if query_tokens:
+                rec_text = " ".join(str(v) for v in rec.values()).lower()
+                if not any(tok in rec_text for tok in query_tokens):
+                    continue
+
+            matched.append({"_dataset": label, "_file": fname, **rec})
+
+    # Sort if requested
+    if sort_by and matched:
+        try:
+            matched.sort(key=lambda r: r.get(sort_by, ""), reverse=False)
+        except Exception:
+            pass
+
+    total_matched = len(matched)
+    results       = matched[:limit]
+
+    # Sanitise output — truncate very long string values
+    clean_results = []
+    for rec in results:
+        clean = {}
+        for k, v in rec.items():
+            if isinstance(v, str) and len(v) > 300:
+                clean[k] = v[:300] + "…"
+            elif isinstance(v, (dict, list)):
+                clean[k] = json.dumps(v, ensure_ascii=False)[:300]
+            else:
+                clean[k] = v
+        clean_results.append(clean)
+
+    return {
+        "results":           clean_results,
+        "total_matched":     total_matched,
+        "datasets_searched": target_files,
+        "query_info": {
+            "query":        query,
+            "dataset":      dataset,
+            "field_filter": field_filter,
+            "sort_by":      sort_by,
+            "limit":        limit,
+        },
+    }
+
+
+# ===========================================================================
+#  System Prompt (lean — metadata only)
+# ===========================================================================
 
 def _build_system_prompt() -> str:
-    data_context = _load_glob_data()
+    index = _build_data_index()
 
-    prompt = (
+    # Compact metadata block
+    meta_lines = []
+    for fname, info in index.items():
+        fields_str = ", ".join(info["fields"][:12])
+        meta_lines.append(
+            f"  • {info['label']} ({fname}): {info['record_count']} records | "
+            f"fields: {fields_str}"
+        )
+    meta_block = "\n".join(meta_lines) if meta_lines else "  [No datasets loaded]"
+
+    return (
         "You are GEO-ARTEMIS INTEL, an advanced geospatial intelligence AI embedded "
         "in the Geo Artemis monitoring platform.\n\n"
 
-        "## Communication Style\n"
-        "- Be concise and analytical. No walls of text unless detail is explicitly requested.\n"
-        "- Interpret and summarize data — never dump raw JSON, numbers, or arrays at the user.\n"
-        "- Translate data into meaningful insights: trends, anomalies, comparisons, context.\n"
-        "- Use plain language first; use technical terms only when they add precision.\n"
-        "- Format with bullet points or short tables only when it genuinely aids clarity.\n"
+        "## How you access data\n"
+        "You have a tool: `search_geospatial_data`. Call it whenever you need data to answer "
+        "a question. Do NOT guess or fabricate — always search first.\n"
+        "- You may call the tool multiple times per turn (e.g. refine a query, search a "
+        "  different dataset, filter by field).\n"
+        "- Pass `dataset` to restrict to a specific file; omit it to search all datasets.\n"
+        "- Use `field_filter` for precise filtering (e.g. {\"country\": \"Indonesia\"}).\n"
+        "- Use `sort_by` to order results (e.g. sort by magnitude, date, severity).\n"
+        "- Increase `limit` for aggregate questions (up to 30); keep it low (5–10) for "
+        "  specific lookups.\n\n"
+
+        "## Available datasets (metadata only — search for actual records)\n"
+        + meta_block + "\n\n"
+
+        "## Communication style\n"
+        "- Interpret and summarise data — never dump raw JSON or arrays at the user.\n"
+        "- Translate data into insights: trends, anomalies, comparisons, context.\n"
+        "- Use plain language first; technical terms only when they add precision.\n"
+        "- Bullet points or short tables only when they genuinely aid clarity.\n"
         "- When referencing data, say 'based on fetched data' or 'according to platform data' — "
-        "never expose filenames, file paths, or internal dataset names to the user.\n\n"
+        "  never expose filenames, paths, or internal dataset names.\n"
+        "- Round numbers naturally: magnitudes to 1 decimal, coordinates only if asked.\n\n"
 
-        "## Response Rules\n"
-        "- Summarize findings, not raw values. E.g. instead of listing 40 coordinates, "
-        "say 'Activity is concentrated in Southeast Asia, with the highest density near [region]'.\n"
-        "- If a user asks 'how many', give the count plus a brief pattern or highlight.\n"
-        "- If a user asks 'where', give region/country names, not raw lat/lon unless asked.\n"
-        "- If a user asks 'what happened', give a narrative summary with key facts.\n"
-        "- Always round/clean numbers naturally: magnitudes to 1 decimal, coordinates only if explicitly asked.\n"
-        "- If the data is absent or incomplete for a query, say: "
-        "'I don't have sufficient data to answer that right now.' — never fabricate.\n"
-        "- If asked about earthquakes specifically, say: "
-        "'Earthquake event data is currently excluded from my active dataset due to its size. "
-        "I can discuss general seismic patterns if helpful.'\n"
-        "- Never reproduce raw JSON, array dumps, or internal structure in your reply.\n"
-        "- Never fabricate events, coordinates, or statistics not present in the loaded data.\n\n"
+        "## Response rules\n"
+        "- If asked 'how many', give the count + a brief pattern or highlight.\n"
+        "- If asked 'where', give region/country names, not raw lat/lon unless asked.\n"
+        "- If asked 'what happened', give a narrative summary with key facts.\n"
+        "- If the search returns no results, say so and suggest what might be available.\n"
+        "- If asked about earthquakes specifically: 'Earthquake event data is currently "
+        "  excluded from my active dataset due to its size. I can discuss general seismic "
+        "  patterns if helpful.'\n"
+        "- Never fabricate events, coordinates, or statistics.\n\n"
 
-        "## Edge Case Handling\n"
-        "- Empty or vague query → ask one clarifying question.\n"
-        "- Query outside geospatial scope → politely redirect: "
-        "'I'm specialized in geospatial intelligence. Could you ask something related to "
-        "geographic events, natural phenomena, or location-based data?'\n"
-        "- Sensitive/harmful query → decline professionally without explanation of internals.\n"
-        "- Data unavailable for a region → say so clearly and suggest what is available.\n\n"
-
-        "=== PLATFORM DATA (INTERNAL — DO NOT EXPOSE TO USER) ===\n"
-        + data_context
-        + "\n=== END OF PLATFORM DATA ===\n"
+        "## Edge cases\n"
+        "- Vague query → ask one clarifying question.\n"
+        "- Outside geospatial scope → 'I'm specialised in geospatial intelligence. Could you "
+        "  ask something related to geographic events, natural phenomena, or location-based data?'\n"
+        "- Sensitive/harmful query → decline professionally.\n"
     )
-    return prompt
 
+
+_SYSTEM_PROMPT: str = ""
 
 def _get_system_prompt() -> str:
     global _SYSTEM_PROMPT
@@ -270,8 +322,78 @@ def _get_system_prompt() -> str:
     return _SYSTEM_PROMPT
 
 
+# ===========================================================================
+#  Gemini Tool Definition
+# ===========================================================================
+
+GEMINI_TOOLS = [
+    genai.types.Tool(
+        function_declarations=[
+            genai.types.FunctionDeclaration(
+                name="search_geospatial_data",
+                description=(
+                    "Search the geospatial platform datasets. Use this to find events, "
+                    "incidents, locations, statistics, or any other data needed to answer "
+                    "the user's question. You can call this multiple times per turn to "
+                    "refine results or search different datasets."
+                ),
+                parameters=genai.types.Schema(
+                    type=genai.types.Type.OBJECT,
+                    properties={
+                        "query": genai.types.Schema(
+                            type=genai.types.Type.STRING,
+                            description=(
+                                "Free-text search string. Keywords are matched against all "
+                                "text fields in the records. E.g. 'wildfire California 2024', "
+                                "'flooding Southeast Asia', 'magnitude 7'."
+                            ),
+                        ),
+                        "dataset": genai.types.Schema(
+                            type=genai.types.Type.STRING,
+                            description=(
+                                "Optional: restrict search to a specific dataset file. "
+                                "Use a partial name, e.g. 'fire', 'flood', 'cyclone'. "
+                                "Omit to search all datasets."
+                            ),
+                        ),
+                        "field_filter": genai.types.Schema(
+                            type=genai.types.Type.OBJECT,
+                            description=(
+                                "Optional: exact/substring field matching. "
+                                'E.g. {"country": "Indonesia"} or {"severity": "high"}.'
+                            ),
+                            additional_properties=genai.types.Schema(
+                                type=genai.types.Type.STRING
+                            ),
+                        ),
+                        "sort_by": genai.types.Schema(
+                            type=genai.types.Type.STRING,
+                            description=(
+                                "Optional: sort results by this field name (ascending). "
+                                "E.g. 'magnitude', 'date', 'severity', 'deaths'."
+                            ),
+                        ),
+                        "limit": genai.types.Schema(
+                            type=genai.types.Type.INTEGER,
+                            description=(
+                                "Max records to return (1–30). Use 5–10 for specific lookups, "
+                                "30 for aggregate/counting questions. Default: 20."
+                            ),
+                        ),
+                    },
+                    required=["query"],
+                ),
+            )
+        ]
+    )
+]
+
+
+# ===========================================================================
+#  Gemini Call with Tool Loop
+# ===========================================================================
+
 def _is_rate_limit_or_auth_error(exc: Exception) -> bool:
-    """Detect quota exhaustion, rate limiting, or invalid key errors from Gemini."""
     err_str = str(exc).lower()
     keywords = [
         "quota", "rate limit", "rate_limit", "resource exhausted",
@@ -281,27 +403,114 @@ def _is_rate_limit_or_auth_error(exc: Exception) -> bool:
     return any(kw in err_str for kw in keywords)
 
 
-async def _call_gemini(api_key: str, history: list[dict], message: str) -> str:
-    """Configure Gemini with a given key and send the message. Returns reply text."""
+async def _call_gemini_with_tools(
+    api_key: str,
+    history: list[dict],
+    message: str,
+) -> str:
+    """
+    Send a message to Gemini with the search tool available.
+    Handles the tool-call loop: Gemini calls search_geospatial_data,
+    we execute it locally and feed the result back, repeat until done.
+    """
     genai.configure(api_key=api_key)
     model = genai.GenerativeModel(
         model_name=GEMINI_MODEL,
         system_instruction=_get_system_prompt(),
+        tools=GEMINI_TOOLS,
     )
+
+    # Convert our simple history to Gemini format
     gemini_history = [
         {"role": msg["role"], "parts": [msg["content"]]}
         for msg in history
     ]
-    chat_session = model.start_chat(history=gemini_history)
-    response = await chat_session.send_message_async(message)
-    return response.text
+
+    chat = model.start_chat(history=gemini_history)
+    response = await chat.send_message_async(message)
+
+    tool_calls_made = 0
+
+    # Agentic loop: keep responding to tool calls until we get a text reply
+    while True:
+        # Check if any part is a function call
+        fn_calls = [
+            part.function_call
+            for part in response.parts
+            if hasattr(part, "function_call") and part.function_call
+        ]
+
+        if not fn_calls:
+            # Final text response
+            break
+
+        if tool_calls_made >= MAX_TOOL_CALLS:
+            # Safety valve — stop tool loop and ask AI to answer with what it has
+            print(f"[App7] Tool call limit ({MAX_TOOL_CALLS}) reached — forcing final answer")
+            tool_results = [
+                genai.types.Part(
+                    function_response=genai.types.FunctionResponse(
+                        name=fc.name,
+                        response={"result": "Search limit reached. Please summarise with available information."},
+                    )
+                )
+                for fc in fn_calls
+            ]
+            response = await chat.send_message_async(tool_results)
+            break
+
+        # Execute each function call
+        tool_results = []
+        for fc in fn_calls:
+            if fc.name == "search_geospatial_data":
+                args = dict(fc.args)
+                # field_filter comes as a MapComposite — convert to plain dict
+                if "field_filter" in args and args["field_filter"]:
+                    args["field_filter"] = dict(args["field_filter"])
+                if "limit" in args:
+                    args["limit"] = int(args["limit"])
+
+                print(f"[App7] Tool call #{tool_calls_made + 1}: search_geospatial_data({args})")
+                result = search_geospatial_data(**args)
+                print(f"[App7] → matched {result['total_matched']} records, returning {len(result['results'])}")
+
+                tool_results.append(
+                    genai.types.Part(
+                        function_response=genai.types.FunctionResponse(
+                            name="search_geospatial_data",
+                            response={"result": json.dumps(result, ensure_ascii=False)},
+                        )
+                    )
+                )
+            else:
+                # Unknown tool — return an error
+                tool_results.append(
+                    genai.types.Part(
+                        function_response=genai.types.FunctionResponse(
+                            name=fc.name,
+                            response={"result": f"Unknown tool: {fc.name}"},
+                        )
+                    )
+                )
+
+        tool_calls_made += len(fn_calls)
+        response = await chat.send_message_async(tool_results)
+
+    # Extract text from final response
+    text_parts = [
+        part.text
+        for part in response.parts
+        if hasattr(part, "text") and part.text
+    ]
+    return "\n".join(text_parts).strip()
 
 
-# -----------------------------------------------------------------------------
+# ===========================================================================
 #  Pydantic Models
-# -----------------------------------------------------------------------------
+# ===========================================================================
+
 class ChatMessage(BaseModel):
-    message: str
+    message:    str
     session_id: Optional[str] = None
 
 
@@ -309,9 +518,10 @@ class ClearSession(BaseModel):
     session_id: str
 
 
-# -----------------------------------------------------------------------------
+# ===========================================================================
 #  Routes
-# -----------------------------------------------------------------------------
+# ===========================================================================
+
 @router.get("/")
 def home(request: Request):
     if not request.session.get("is_verified"):
@@ -323,53 +533,50 @@ def home(request: Request):
 async def chat(payload: ChatMessage):
     """
     Accept a user message, maintain per-session history, and return
-    a Gemini 2.5 Flash response grounded in the geospatial data context.
-    Automatically falls back to GEMINI_API_KEY2 on rate limit or auth errors.
+    a Gemini 2.5 Flash response that dynamically searches geospatial data
+    using tool calls — no bulk data dump in the prompt.
     """
     if not GEMINI_API_KEY and not GEMINI_API_KEY2:
         return JSONResponse(
             status_code=500,
-            content={"error": "No Gemini API keys configured. Set GEMINI_API_KEY or GEMINI_API_KEY2 in your .env file."},
+            content={"error": "No Gemini API keys configured. Set GEMINI_API_KEY or GEMINI_API_KEY2."},
         )
 
     session_id = payload.session_id or str(uuid.uuid4())
     if session_id not in _chat_sessions:
         _chat_sessions[session_id] = []
 
-    history = _chat_sessions[session_id]
+    history    = _chat_sessions[session_id]
     reply: str = ""
     last_error: Exception | None = None
 
-    # Build ordered list of available keys: primary first, fallback second
     keys_to_try: list[tuple[str, str]] = []
     if GEMINI_API_KEY:
-        keys_to_try.append(("primary", GEMINI_API_KEY))
+        keys_to_try.append(("primary",  GEMINI_API_KEY))
     if GEMINI_API_KEY2:
         keys_to_try.append(("fallback", GEMINI_API_KEY2))
 
     for label, api_key in keys_to_try:
         try:
-            print(f"[App7/Intel] Attempting Gemini call with {label} key...")
-            reply = await _call_gemini(api_key, history, payload.message)
-            print(f"[App7/Intel] Success with {label} key.")
-            break  # Got a valid response — stop trying
+            print(f"[App7] Attempting Gemini call with {label} key...")
+            reply = await _call_gemini_with_tools(api_key, history, payload.message)
+            print(f"[App7] Success with {label} key.")
+            break
 
         except Exception as exc:
             last_error = exc
             if _is_rate_limit_or_auth_error(exc):
-                print(f"[App7/Intel] {label} key failed (rate limit / auth): {exc}")
-                continue  # Try next key
+                print(f"[App7] {label} key rate-limited/auth error: {exc}")
+                continue
             else:
-                # Non-recoverable error — don't try fallback
-                print(f"[App7/Intel] {label} key failed (non-recoverable): {exc}")
+                print(f"[App7] {label} key non-recoverable error: {exc}")
                 return JSONResponse(
                     status_code=500,
                     content={"error": "The intelligence system encountered an unexpected error. Please try again."},
                 )
 
     if not reply:
-        # All keys exhausted
-        print(f"[App7/Intel] All API keys exhausted. Last error: {last_error}")
+        print(f"[App7] All keys exhausted. Last error: {last_error}")
         return JSONResponse(
             status_code=429,
             content={"error": "All API keys are currently rate-limited or unavailable. Please try again shortly."},
@@ -379,7 +586,7 @@ async def chat(payload: ChatMessage):
     history.append({"role": "user",  "content": payload.message})
     history.append({"role": "model", "content": reply})
 
-    # Cap at 40 entries (20 exchanges)
+    # Cap history at 40 entries (20 exchanges)
     if len(history) > 40:
         _chat_sessions[session_id] = history[-40:]
 
@@ -395,5 +602,27 @@ async def clear_chat(payload: ClearSession):
 
 @router.get("/chat/sessions")
 async def list_sessions():
-    """Debug endpoint - active session IDs and message counts."""
+    """Debug endpoint — active session IDs and message counts."""
     return JSONResponse({sid: len(msgs) for sid, msgs in _chat_sessions.items()})
+
+
+@router.get("/data/index")
+async def data_index():
+    """Debug endpoint — shows the metadata index (what datasets are loaded)."""
+    return JSONResponse(_build_data_index())
+
+
+@router.post("/data/search")
+async def data_search(payload: dict):
+    """
+    Direct search endpoint — bypasses AI, useful for debugging tool calls.
+    Body: {"query": "...", "dataset": "...", "field_filter": {...}, "limit": 10}
+    """
+    result = search_geospatial_data(
+        query=payload.get("query", ""),
+        dataset=payload.get("dataset"),
+        field_filter=payload.get("field_filter"),
+        sort_by=payload.get("sort_by"),
+        limit=int(payload.get("limit", MAX_RESULTS)),
+    )
+    return JSONResponse(result)
