@@ -30,7 +30,7 @@ Together, these features create a complete decision-support system that improves
 ---
 # System Diagram
 
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/decdc051-e1f5-4542-9083-16d8b6c30358" />
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/e8b43479-197d-4675-8b42-0c60c9d0c4c5" />
 
 
 ## Technical Specifications & Architecture
