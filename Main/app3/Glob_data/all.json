@@ -1,144 +1,135 @@
 {
-  "saved_at": "2026-04-29T17:05:31.860639Z",
+  "saved_at": "2026-05-05T15:15:19.084188Z",
   "data": {
     "news": [
       {
         "type": "all",
-        "title": "TINA BROWN: Citizenry of the dazed and confused...",
-        "description": "God, it was nice for British embassy guests to see King Charles and Queen Camilla in person yesterday afternoon!",
-        "source": "Substack.com",
-        "url": "https://tinabrown.substack.com/p/the-king-the-queen-and-the-ballroom",
-        "image": "https://substackcdn.com/image/fetch/$s_!Yv0R!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff2721d62-4083-4e60-b8e8-119bb668f266_1168x788.png",
-        "date": "2026-04-28T17:00:13Z"
-      },
-      {
-        "type": "all",
-        "title": "Justice Amy Coney Barrett poses unique problem for Trump in immigration case: WaPo",
-        "description": "A pivotal Wednesday Supreme Court hearing on the limits of Donald Trump’s immigration policies will contain a wild card in the form of how Associate Justice Amy Coney Barrett will vote due to personal",
-        "source": "Raw Story",
-        "url": "https://www.rawstory.com/coney-barrett-immigrants-wapo/",
-        "image": "https://www.rawstory.com/media-library/image.jpg?id=61117520&width=1200&height=600&coordinates=0%2C34%2C0%2C35",
-        "date": "2026-04-28T17:00:09Z"
-      },
-      {
-        "type": "all",
-        "title": "5 Strongest Pokémon To Dominate Ranked Matches In Pokémon Champions",
-        "description": "Courtesy of The Pokemon Company\n\nThe first Season of Pokémon Champions has seen competitive multiplayer develop in a new way, with the game’s unique Pokémon roster and certain gameplay restrictions ma",
-        "source": "ComicBook.com",
-        "url": "http://comicbook.com/gaming/list/5-strongest-pokemon-to-dominate-ranked-matches-in-pokemon-champions/",
-        "image": "https://comicbook.com/wp-content/uploads/sites/4/2026/04/Pokemon-Champions-several-strong-Pokemon-1.jpg?resize=2000,1125",
-        "date": "2026-04-28T17:00:00Z"
-      },
-      {
-        "type": "all",
-        "title": "Giant lineup of Tuesday Apple TV deals: Star Wars trilogies, Spider-Verse collection, Venom, Justice League, more",
-        "description": "Tuesday’s lineup of the best Apple TV deals is jam packed, including the Star Wars Original Trilogy, Star Wars Prequel Trilogy, and Star Wars Sequel Trilogy, alongside Spider-Verse 2-Movie Collection,",
-        "source": "9to5Toys",
-        "url": "http://9to5toys.com/2026/04/28/tuesday-apple-tv-deals-star-wars-spider-verse-justice-league/",
-        "image": "https://i0.wp.com/9to5toys.com/wp-content/uploads/sites/5/2026/04/Apple-TV-Apr-28.webp?resize=1200%2C628&quality=82&strip=all&ssl=1",
-        "date": "2026-04-28T15:59:08Z"
-      },
-      {
-        "type": "all",
-        "title": "Warning over 'America's most dangerous' fault as overdue earthquake threatens millions",
-        "description": "Scientists warn that the next 'Big One' in California may be worse than anymore has predicted after factoring in new information from underground.",
-        "source": "Dailymail.com",
-        "url": "https://www.dailymail.com/sciencetech/article-15772173/hayward-fault-oakland-earthquake-warning.html",
-        "image": "https://i.dailymail.com/1s/2026/04/28/16/83473965-0-image-m-25_1777390885928.jpg",
-        "date": "2026-04-28T15:53:42Z"
-      },
-      {
-        "type": "all",
-        "title": "Watch: IDF destroys enormous Hezbollah terror tunnel",
-        "description": "The tunnel was the largest ever discovered in southern Lebanon.",
-        "source": "Israelnationalnews.com",
-        "url": "https://www.israelnationalnews.com/news/426224",
-        "image": "https://2.a7.org/files/pictures/000/1216099.jpg",
-        "date": "2026-04-28T15:32:00Z"
-      },
-      {
-        "type": "all",
-        "title": "MAO ‒ Episode 4",
-        "description": "It's still a bit too early to tell whether or not MAO works as a mystery series.",
-        "source": "Anime News Network",
-        "url": "https://www.animenewsnetwork.com/review/mao/episode-4/.236867",
-        "image": "https://www.animenewsnetwork.com/thumbnails/crop600x315gKC/cms/episode-review.5/236867/mao-1.jpg",
-        "date": "2026-04-28T15:30:00Z"
-      },
-      {
-        "type": "all",
-        "title": "Sustainable Green Team, Ltd. (OTC: SGTM) Files Seven Provisional Patents Positioning Restore.Earth as the Physical Truth Layer Beneath the AI Economy",
-        "description": "ASTATULA, Fla., April 28, 2026 (GLOBE NEWSWIRE) -- Sustainable Green Team, Ltd. (OTC: SGTM) today announced the filing of seven new U.S. provisional patent applications — P-170 through P-176 — bringin",
-        "source": "GlobeNewswire",
-        "url": "https://www.globenewswire.com/news-release/2026/04/28/3282961/0/en/Sustainable-Green-Team-Ltd-OTC-SGTM-Files-Seven-Provisional-Patents-Positioning-Restore-Earth-as-the-Physical-Truth-Layer-Beneath-the-AI-Economy.html",
-        "image": "https://ml.globenewswire.com/Resource/Download/986b3dd3-8bb1-4e2d-98ef-043b584d36fc",
-        "date": "2026-04-28T15:19:00Z"
-      },
-      {
-        "type": "all",
-        "title": "Feds Raid Infamous ‘Quality Learing Center,’ Other Businesses Tied To Alleged Somali Fraud",
-        "description": "Federal agents raided multiple locations across Minneapolis on Tuesday as part of ongoing fraud investigations, officials say.",
-        "source": "The Daily Caller",
-        "url": "https://dailycaller.com/2026/04/28/feds-raid-quality-learning-center-alleged-somali-fraud-nick-shirley-minnesota/",
-        "image": "https://images.dailycaller.com/image/width=1280,height=549,fit=cover,format=webp,f=auto/https://cdn01.dailycaller.com/wp-content/uploads/2025/12/Screenshot-2025-12-30-1.20.37-PM-e1767118923833.png",
-        "date": "2026-04-28T14:29:46Z"
-      },
-      {
-        "type": "all",
-        "title": "Here’s Why The Bitcoin And Ethereum Prices Have Been Rising And Falling Sharply",
-        "description": "Bitcoin and Ethereum have spent the past few weeks moving like assets caught between two powerful forces. On one side, institutional demand has returned through Spot ETFs, treasury purchases, and dip-",
-        "source": "newsBTC",
-        "url": "http://www.newsbtc.com/news/bitcoin-and-ethereum-prices-2/",
-        "image": "https://www.newsbtc.com/wp-content/uploads/2026/04/Bitcoin-from-Getty-Images-43.jpg?fit=612%2C408",
-        "date": "2026-04-28T14:00:51Z"
-      },
-      {
-        "type": "all",
-        "title": "Terror at 130mph: First images from inside Spanish train crash disaster that claimed 46 lives are revealed by investigators",
-        "description": "The pictures, included in a Civil Guard report now submitted to a judge in Montoro, show the impact of tearing through the rear carriages just before the lights went out.",
-        "source": "Dailymail.com",
-        "url": "https://www.dailymail.com/news/article-15771803/Terror-130mph-images-inside-Spanish-train-crash-disaster-claimed-46-lives-revealed-investigators.html",
-        "image": "https://i.dailymail.com/1s/2026/04/28/14/108218439-0-image-a-10_1777384076421.jpg",
-        "date": "2026-04-28T13:57:48Z"
-      },
-      {
-        "type": "all",
-        "title": "Simulations Predict Ground Motion for Earthquakes on Bay Area’s Hayward Fault",
-        "description": "NEWSWISE — The Hayward fault, part of the larger San Andreas fault system, runs 74 miles through the East Bay of the San Francisco Bay Area. The fault is overdue for an earthquake that could cause ext",
+        "title": "California Taking Action Against State Farm Over LA Wildfire Claims",
+        "description": "The California Department of Insurance is taking action against State Farm over an investigation that reportedly shows the carrier has been mishandling insurance claims from the January 2025 Los Angel",
         "source": "Insurance Journal",
-        "url": "https://www.insurancejournal.com/news/west/2026/04/28/867522.htm",
-        "image": "https://www.insurancejournal.com/img/social/opengraph/ij-social-default-1200x630.png",
-        "date": "2026-04-28T13:49:22Z"
+        "url": "https://www.insurancejournal.com/news/west/2026/05/04/868482.htm",
+        "image": "https://www.insurancejournal.com/app/uploads/2025/01/2025-Eaton-Fire-by-CalFire-scaled.jpg",
+        "date": "2026-05-04T15:00:44Z"
       },
       {
         "type": "all",
-        "title": "California is angry about billionaires: the one-time wealth tax will be on the ballot in November",
-        "description": "“Hospitals are closing and people will die,\" said union leader said Liz Perlman. \"Why? So billionaires can get another tax cut that they don’t need.”",
-        "source": "Fortune",
-        "url": "https://fortune.com/2026/04/28/california-billionaire-tax-makes-november-ballot-wealth-inequality/",
-        "image": "https://fortune.com/img-assets/wp-content/uploads/2026/04/AP26117616709422-e1777380803858.jpg?resize=1200,600",
-        "date": "2026-04-28T13:23:57Z"
+        "title": "Infrasound Waves Stop Kitchen Fires, But Can They Replace Sprinklers?",
+        "description": "An anonymous reader quotes a report from Ars Technica: In a makeshift demonstration kitchen in Concord, California, cooking oil splatters in and around a frying pan, which catches fire on an unattende",
+        "source": "Slashdot.org",
+        "url": "https://science.slashdot.org/story/26/05/04/0357217/infrasound-waves-stop-kitchen-fires-but-can-they-replace-sprinklers",
+        "image": "https://a.fsdn.com/sd/topics/science_64.png",
+        "date": "2026-05-04T15:00:00Z"
       },
       {
         "type": "all",
-        "title": "Supreme Court to weigh Trump's bid to end deportation shield for Haitians, Syrians",
-        "description": "The Supreme Court is set to consider Wednesday the Department of Homeland Security's effort to terminate TPS both for Syria and Haiti.",
-        "source": "CBS News",
-        "url": "https://www.cbsnews.com/news/supreme-court-temporary-protected-status-trump-haiti-syria/",
-        "image": "https://assets2.cbsnewsstatic.com/hub/i/r/2026/04/28/383c3333-0240-4733-a2b5-d74704400d26/thumbnail/1200x630g2/3ae166f0098a12ec1f79fee573c6cd3d/gettyimages-2266550659.jpg",
-        "date": "2026-04-28T13:23:56Z"
+        "title": "Naduar assembly polls 2026: BJP's Padma Hazarika contesting against Sunil Kumar Chhetri of Congress",
+        "description": "Naduar constituency gears up for the 2026 assembly elections with incumbent Padma Hazarika defending the newly named seat. Facing challenges from the INC and AAP, Hazarika's \"strongman\" image and agri",
+        "source": "The Times of India",
+        "url": "https://timesofindia.indiatimes.com/india/naduar-assembly-polls-2026-bjps-padma-hazarika-contesting-against-sunil-kumar-chhetri-of-congress/articleshow/130719622.cms",
+        "image": "https://static.toiimg.com/thumb/msid-130719666,width-1280,height-720,imgsize-66978,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+        "date": "2026-05-04T14:56:00Z"
       },
       {
         "type": "all",
-        "title": "This B.C. mayor knows a 10% tax increase could hurt re-election chances, but says need for funds is great",
-        "description": "This fall, communities across B.C. will vote in municipal elections. While a significant tax hike could be a dealbreaker for some voters, Clearwater Mayor Merlin Blackwell said he can live with that.",
-        "source": "CBC News",
-        "url": "https://www.cbc.ca/news/canada/british-columbia/clearwater-tax-increase-2026-9.7179188",
-        "image": "https://i.cbc.ca/ais/1.5470947,1582263131000/full/max/0/default.jpg?im=Crop%2Crect%3D%28364%2C0%2C2834%2C1594%29%3BResize%3D620",
-        "date": "2026-04-28T13:16:37Z"
+        "title": "Rangapara assembly polls 2026: BJP's Krishna Kamal Tanti won against Congress' Kartik Chandra Kurmi",
+        "description": "Barchalla, Assam, gears up for a high-stakes 2026 election with a key contest between BJP's Ritu Baran Sarmah and INC's Ripun Bora. The constituency's Gorkha and Tea Tribe voters are central, with cam",
+        "source": "The Times of India",
+        "url": "https://timesofindia.indiatimes.com/india/rangapara-assembly-polls-2026-bjps-krishna-kamal-tanti-in-fray-against-congress-kartik-chandra-kurmi/articleshow/130719431.cms",
+        "image": "https://static.toiimg.com/thumb/msid-130719544,width-1280,height-720,imgsize-67960,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+        "date": "2026-05-04T14:55:00Z"
+      },
+      {
+        "type": "all",
+        "title": "Tezpur assembly polls 2026: Prithiraj Rava of AGP won against Alok Nath of Raijor Dal",
+        "description": "Tezpur, Assam's cultural heartland, gears up for a multi-cornered 2026 assembly election. Incumbent Prithiraj Rava, son of cultural icon Bishnu Prasad Rabha, faces stiff competition. The highly litera",
+        "source": "The Times of India",
+        "url": "https://timesofindia.indiatimes.com/india/tezpur-assembly-polls-2026-prithiraj-rava-of-agp-against-nayan-moni-of-suci/articleshow/130718888.cms",
+        "image": "https://static.toiimg.com/thumb/msid-130719312,width-1280,height-720,imgsize-47530,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+        "date": "2026-05-04T14:55:00Z"
+      },
+      {
+        "type": "all",
+        "title": "Happpiness is in the minute",
+        "description": "Lasting happiness is found not in the past or future, but in the present minute. By living each moment with awareness, intention, and joy, we create happiness now. Embracing peace, purpose, and pleasu",
+        "source": "The Times of India",
+        "url": "https://timesofindia.indiatimes.com/speaking-tree/daily-ecstasy/happpiness-is-in-the-minute/articleshow/130804491.cms",
+        "image": "https://static.toiimg.com/thumb/msid-130804493,width-1280,height-720,imgsize-259352,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+        "date": "2026-05-04T14:51:48Z"
+      },
+      {
+        "type": "all",
+        "title": "Balarampur election results 2026: BJP’s Jaladhar Mahato defeats TMC’s Shantiram Mahato in West Bengal",
+        "description": "India News: In the 2026 West Bengal Assembly election for Balarampur (239), Jaladhar Mahato of the Bharatiya Janata Party secured victory with 1,18,421 votes, def.",
+        "source": "The Times of India",
+        "url": "https://timesofindia.indiatimes.com/india/balarampur-election-results-2026-tmcs-shantiram-mahato-vs-bjp-mla-baneswar-mahato/articleshow/130647888.cms",
+        "image": "https://static.toiimg.com/thumb/msid-130647876,width-1280,height-720,imgsize-73166,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+        "date": "2026-05-04T14:50:46Z"
+      },
+      {
+        "type": "all",
+        "title": "Tamil Nadu poll results 2026: This mandate reflects the rising voice of youth which can’t be ignored, Rahul Gandhi says",
+        "description": "CHENNAI: Congress leader Rahul Gandhi on Monday extended his wishes to actor Vijay and his Tamilaga Vettri Kazhagam (TVK) for the TVK becoming the sin.",
+        "source": "The Times of India",
+        "url": "https://timesofindia.indiatimes.com/city/chennai/tamil-nadu-poll-results-2026-this-mandate-reflects-the-rising-voice-of-youth-which-cant-be-ignored-rahul-gandhi-says/articleshow/130804409.cms",
+        "image": "https://static.toiimg.com/thumb/msid-130804398,width-1280,height-720,imgsize-482631,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+        "date": "2026-05-04T14:48:17Z"
+      },
+      {
+        "type": "all",
+        "title": "Katwa election results 2026: BJP’s Krishna Ghosh defeats TMC’s Rabindranath Chatterjee in West Bengal",
+        "description": "India News: In the 2026 West Bengal Assembly election for Katwa (270), Krishna Ghosh of the Bharatiya Janata Party secured victory with 1,22,020 votes, defeating .",
+        "source": "The Times of India",
+        "url": "https://timesofindia.indiatimes.com/india/katwa-election-results-2026-tmcs-rabindranath-chatterjee-against-congresss-ranajit-chatterjee/articleshow/130647197.cms",
+        "image": "https://static.toiimg.com/thumb/msid-130647177,width-1280,height-720,imgsize-80800,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+        "date": "2026-05-04T14:47:35Z"
+      },
+      {
+        "type": "all",
+        "title": "Purbasthali Uttar election results 2026: BJP’s Gopal Chattopadhyay defeats TMC’s Vasundhara Goswami in West Bengal",
+        "description": "India News: In the 2026 West Bengal Assembly election for Purbasthali Uttar (269), Gopal Chattopadhyay of the Bharatiya Janata Party won with 1,11,379 votes, defe.",
+        "source": "The Times of India",
+        "url": "https://timesofindia.indiatimes.com/india/purbasthali-uttar-election-results-2026-tmcs-vasundhara-goswami-vs-bjps-gopal-chattopadhyay/articleshow/130647153.cms",
+        "image": "https://static.toiimg.com/thumb/msid-130647144,width-1280,height-720,imgsize-103406,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+        "date": "2026-05-04T14:45:47Z"
+      },
+      {
+        "type": "all",
+        "title": "Purbasthali Dakshin election results 2026: BJP’s Pran Krishna Tapadar defeats TMC’s Swapan Debnath in West Bengal",
+        "description": "India News: In the 2026 West Bengal Assembly election for Purbasthali Dakshin (268), Pran Krishna Tapadar of the Bharatiya Janata Party secured victory with 1,11,.",
+        "source": "The Times of India",
+        "url": "https://timesofindia.indiatimes.com/india/purbasthali-dakshin-election-results-2026-tmcs-swapan-debnath-against-congresss-rabindranath-mondal/articleshow/130647011.cms",
+        "image": "https://static.toiimg.com/thumb/msid-130646988,width-1280,height-720,imgsize-73360,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+        "date": "2026-05-04T14:43:58Z"
+      },
+      {
+        "type": "all",
+        "title": "Melur assembly polls 2026: Congress candidate P Viswanathan wins",
+        "description": "Melur, an AIADMK stronghold in Madurai, has consistently elected the party, with P. Selvam retaining the seat in 2021 by a significant margin. The upcoming Tamil Nadu Assembly elections feature a cont",
+        "source": "The Times of India",
+        "url": "https://timesofindia.indiatimes.com/india/melur-assembly-polls-2026-congress-candidate-p-viswanathan-wins/articleshow/130675533.cms",
+        "image": "https://static.toiimg.com/thumb/msid-130675587,width-1280,height-720,imgsize-116636,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+        "date": "2026-05-04T14:40:00Z"
+      },
+      {
+        "type": "all",
+        "title": "Karaikudi election results 2026: TVK’s Prabhu TK wins",
+        "description": "India News: After a prolonged see-saw contest, the results for the Karaikudi Assembly seat in the Tamil Nadu elections 2026 are finally out, with Tamilaga Vettri .",
+        "source": "The Times of India",
+        "url": "https://timesofindia.indiatimes.com/india/karaikudi-election-results-2026/articleshow/130640434.cms",
+        "image": "https://static.toiimg.com/thumb/msid-130640398,width-1280,height-720,imgsize-76150,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+        "date": "2026-05-04T14:38:28Z"
+      },
+      {
+        "type": "all",
+        "title": "Tamil Nadu election results: This is how Udhayanidhi Stalin extended his wishes to ‘new govt to be formed’",
+        "description": "Udhayanidhi received his certificate of victory from the election officials in Queen Mary's College in Chennai. Speaking to reporters after receiving the campaign, he thanked the people of his constit",
+        "source": "The Times of India",
+        "url": "https://timesofindia.indiatimes.com/city/chennai/tamil-nadu-election-results-this-is-how-udhayanidhi-stalin-extended-his-wishes-to-new-govt-to-be-formed/articleshow/130804151.cms",
+        "image": "https://static.toiimg.com/thumb/msid-130804131,width-1280,height-720,imgsize-696774,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+        "date": "2026-05-04T14:37:41Z"
       }
     ],
     "filter": "all",
-    "fetched_at": "2026-04-29T17:05:31.860639Z"
+    "fetched_at": "2026-05-05T15:15:19.084188Z"
   }
 }

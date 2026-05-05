@@ -23,7 +23,7 @@ DATA_FOLDER = Path(__file__).resolve().parent / "Glob_data"
 DATA_FOLDER.mkdir(parents=True, exist_ok=True)
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-#  🔧 DEVELOPMENT FLAG
+#  DEVELOPMENT FLAG
 #  Set FETCH_ENABLED = True  → app fetches live data from all APIs on startup
 #  Set FETCH_ENABLED = False → app skips all external API calls and serves only
 #                              from whatever JSON files already exist on disk.

@@ -1,4 +1,19 @@
 event,date,magnitude,lat,lon
+"Black Rush Lake RX Prescribed Fire, Swift, Minnesota",2026-05-04T11:05:00Z,669.0,45.3272,-95.9166
+"32nd Avenue Wildfire, Rolette, North Dakota",2026-05-04T10:38:00Z,581.7,48.856667,-99.985
+"TOWER Wildfire, Kern, California",2026-05-03T18:27:00Z,2500.0,35.3644444,-118.8036111
+"AFM - Hazen Wildfire, Maricopa, Arizona",2026-05-02T22:36:00Z,980.0,33.345111,-112.612123
+"Guide Wildfire, Oglala Lakota, South Dakota",2026-05-02T18:52:00Z,1104.48,43.266956,-102.905231
+"Mio Prairie RX Prescribed Fire, Oscoda, Michigan",2026-05-01T14:22:00Z,520.0,44.543833,-84.218833
+"rx-82 Prescribed Fire, Burnett, Wisconsin",2026-05-01T13:29:00Z,655.1,45.8940373,-92.5961834
+"Buzzard Feather Wildfire, Roosevelt, Montana",2026-04-30T12:53:00Z,612.0,48.52908,-105.55355
+"Downing RX Prescribed Fire, Mahnomen, Minnesota",2026-04-30T10:25:00Z,505.0,47.1572,-95.991
+"rx-Millville Oak Woodlands SNA South Prescribed Fire, Grant, Wisconsin",2026-04-29T12:13:00Z,562.0,43.039137,-90.929398
+"Ogden Bay RX Prescribed Fire, Weber, Utah",2026-04-29T09:51:00Z,2050.0,41.204062,-112.16423
+"Rx Parker 3877 Prescribed Fire, Parker, Texas",2026-04-29T09:10:00Z,500.0,32.85722222,-98.04277778
+"Sparks Wildfire, Quay, New Mexico",2026-04-28T20:06:00Z,1500.0,34.846208,-104.055975
+"SHADY GROVE Wildfire, Russell, Alabama",2026-04-28T17:35:00Z,522.0,32.2958333,-85.3177778
+"HWY 41 Wildfire, Miami-Dade, Florida",2026-04-27T18:50:00Z,8500.0,25.7609,-80.55105
 "Tucker Wildfire, Hooker, Nebraska",2026-04-26T15:43:00Z,1100.0,41.8008,-101.2498
 "Tyndall 469 &amp; 143 RX Prescribed Fire, Mason, Michigan",2026-04-26T08:16:00Z,611.0,44.11771,-86.048555
 "Yellow Bank East RX Prescribed Fire, Lac qui Parle, Minnesota",2026-04-25T08:56:00Z,1303.0,45.226197,-96.339308
@@ -56,6 +71,7 @@ event,date,magnitude,lat,lon
 "NEWMAN DR Wildfire, Collier, Florida",2026-04-13T20:18:00Z,1733.0,26.1502778,-81.6330556
 "PDT South-FFR RX Prescribed Fire, Grant, Minnesota",2026-04-13T16:52:00Z,502.0,46.012,-95.8944
 "Ciba Road Wildfire, Washington, Alabama",2026-04-13T13:31:00Z,807.0,31.2669444,-88.0188889
+"Old House Branch Wildfire, Mingo, West Virginia",2026-04-13T11:41:00Z,1000.0,37.639725,-81.941859
 "DeSoto BB 9365 C605 C606 RX Prescribed Fire, Stone, Mississippi",2026-04-13T10:59:00Z,1028.0,30.712778,-89.260833
 "APQ CPT 10 Rx 0413 Prescribed Fire, Highlands, Florida",2026-04-13T09:16:00Z,1197.0,27.630425,-81.158752
 "rx-Young 1 Prescribed Fire, Jefferson, Wisconsin",2026-04-13T08:42:00Z,802.3,42.8455985,-88.630401
@@ -99,6 +115,7 @@ event,date,magnitude,lat,lon
 "RX BO/MAG Chickalah Mtn Prescribed Fire, Yell, Arkansas",2026-04-08T10:52:00Z,810.0,35.1749,-93.426325
 "DeSoto BB 7310 C-7 RX Prescribed Fire, Perry, Mississippi",2026-04-08T10:49:00Z,1360.0,31.05635,-88.859583
 "Bienville CPT 5 7 RX Prescribed Fire, Scott, Mississippi",2026-04-08T10:25:00Z,1860.0,32.5163,-89.6524
+"RX POORMAN Prescribed Fire, Boise, Idaho",2026-04-08T10:11:00Z,700.0,44.07671,-115.89314
 "Holly Springs IU 14-1 RX Prescribed Fire, Tippah, Mississippi",2026-04-08T10:08:00Z,933.0,34.8459,-89.0287
 "Homochitto BB51 Sub2 RX Prescribed Fire, Franklin, Mississippi",2026-04-08T09:42:00Z,985.0,31.402,-90.984
 "SNF Stark Tract RX Prescribed Fire, Newton, Texas",2026-04-08T09:40:00Z,3645.0,31.174617,-93.626833
@@ -920,7 +937,6 @@ Iceberg D15C,2026-04-24T00:00:00Z,98.0,-67.09,79.82
 "APQ Area 12 Rx 1209 Prescribed Fire, Highlands, Florida",2025-12-09T09:20:00Z,520.0,27.562976,-81.313239
 "SNF Clarktown RX Blk C &amp; D Prescribed Fire, Sabine, Texas",2025-12-09T09:01:00Z,1626.0,31.18175,-93.7993
 "RX CALV BU 237-264 Prescribed Fire, Vernon, Louisiana",2025-12-08T09:20:00Z,2818.0,31.031,-92.947
-"Nyamulagira Volcano, DR Congo",2025-12-07T00:00:00Z,,-1.408,29.2
 "APQ South Tactical Range Rx 1206 Prescribed Fire, Highlands, Florida",2025-12-06T09:34:00Z,1269.0,27.548611,-81.240721
 "APQ South Tactical Range Rx 1205 Prescribed Fire, Highlands, Florida",2025-12-05T08:44:00Z,936.0,27.549446,-81.240809
 "UBC Upper Jacks RX Prescribed Fire, Coconino, Arizona",2025-12-04T10:09:00Z,1600.0,34.738139,-111.447201
@@ -929,9 +945,7 @@ Iceberg D15C,2026-04-24T00:00:00Z,98.0,-67.09,79.82
 "Slicker RX Prescribed Fire, Lawrence, South Dakota",2025-12-02T09:35:00Z,540.0,44.177044,-104.025504
 "Puracé Volcano, Colombia",2025-12-02T00:00:00Z,,2.3095,-76.3948
 "Carex RX Prescribed Fire, Crook, Wyoming",2025-12-01T18:32:00Z,520.0,44.53875,-104.3865
-"Manam Volcano, Papua New Guinea",2025-11-30T00:00:00Z,,-4.08,145.037
 "Barren Island Volcano, India",2025-11-29T00:00:00Z,,12.278,93.858
-"Hayli Gubbi Volcano, Ethiopia",2025-11-23T12:23:00Z,,13.5111,40.7161
 "RX Coleman 5431 Prescribed Fire, Coleman, Texas",2025-11-20T09:18:00Z,580.0,31.95083333,-99.39083333
 "FY25 WEST CASTLE ROCK RX Prescribed Fire, Malheur, Oregon",2025-11-18T17:59:00Z,1748.0,44.027127,-118.183545
 "NZ Timber Pile RX Prescribed Fire, Sanpete, Utah",2025-11-18T17:10:00Z,502.0,39.3549,-111.45956
@@ -945,7 +959,6 @@ Iceberg D15C,2026-04-24T00:00:00Z,98.0,-67.09,79.82
 "RX Rains 5318 Prescribed Fire, Rains, Texas",2025-11-14T08:07:00Z,1200.0,32.738759,-95.68231
 "PACK Wildfire, Mono, California",2025-11-13T15:00:00Z,1000.0,37.555334,-118.794566
 "UBC Bill Dick RX Prescribed Fire, Coconino, Arizona",2025-11-13T09:38:00Z,938.0,34.784677,-111.477585
-"Planchón-Peteroa Volcano, Chile",2025-11-13T00:00:00Z,,-35.223,-70.568
 "Odart RX Prescribed Fire, Apache, Arizona",2025-11-12T21:10:00Z,1014.0,33.711183,-109.69602
 "Bienville CPT 207 208 210 Release RX Prescribed Fire, Jasper, Mississippi",2025-11-12T10:50:00Z,2719.0,32.1603,-89.2859
 "Whitney Bear RX Prescribed Fire, Summit, Utah",2025-11-08T15:02:00Z,1300.0,40.914467,-110.826383
@@ -1042,7 +1055,6 @@ Iceberg C18C,2026-04-24T00:00:00Z,20.0,-68.47,39.08
 "ROOT Wildfire, Shasta, California",2025-09-01T15:38:00Z,758.0,41.160217,-122.397417
 "Rattlesnake Wildfire, Ferry, Washington",2025-09-01T12:58:00Z,6030.0,47.873166,-118.374666
 "TACOMA CREEK Wildfire, Stevens, Washington",2025-09-01T11:45:00Z,651.0,48.49425,-117.511367
-"Ioto Volcano, Japan",2025-09-01T00:00:00Z,,24.751,141.289
 "White Pine Wildfire, Latah, Idaho",2025-08-31T22:33:00Z,797.0,47.018117,-116.655633
 "KATY CREEK Wildfire, Ferry, Washington",2025-08-31T20:52:00Z,600.0,48.6766667,-118.16
 "Ulm Creek Wildfire, Shoshone, Idaho",2025-08-30T15:49:00Z,1800.0,47.879833,-115.987167
@@ -1129,7 +1141,6 @@ Iceberg C18C,2026-04-24T00:00:00Z,20.0,-68.47,39.08
 "Mission Butte Wildfire, Big Horn, Montana",2025-08-13T02:37:00Z,500.0,45.459,-107.642833
 "MOUNTAIN Wildfire, Modoc, California",2025-08-11T19:41:00Z,980.0,41.808115,-121.334396
 "Crosho Wildfire, Rio Blanco, Colorado",2025-08-11T18:37:00Z,1700.0,40.192667,-107.055967
-"Nevado del Ruiz Volcano, Colombia",2025-08-11T00:00:00Z,,4.892,-75.324
 "Big Springs Wildfire, Tooele, Utah",2025-08-09T15:10:00Z,1486.0,40.700733,-112.657717
 "VEREDA BLANCA Wildfire, Sandoval, New Mexico",2025-08-08T19:29:00Z,1551.0,35.4805,-107.2865
 "CANYON Wildfire, Ventura, California",2025-08-07T16:29:00Z,5370.0,34.439631,-118.735536
@@ -1208,7 +1219,6 @@ Iceberg C18C,2026-04-24T00:00:00Z,20.0,-68.47,39.08
 "Mutal Aid 231 Wildfire, Umatilla, Oregon",2025-07-14T19:13:00Z,700.0,45.9453,-118.721533
 "Camp Wildfire, Fairbanks North Star, Alaska",2025-07-14T17:48:00Z,1636.16,64.477117,-145.532217
 "New Holland Wildfire, Jackson, South Dakota",2025-07-14T17:03:00Z,583.0,43.62067728,-101.6569035
-"Telica Volcano, Nicaragua",2025-07-14T00:00:00Z,,12.606,-86.84
 "Ute 63 Wildfire, La Plata, Colorado",2025-07-13T22:19:00Z,515.0,37.02525,-108.255465
 "0545 CRAM Wildfire, Jefferson, Oregon",2025-07-13T20:42:00Z,1400.0,44.79655,-120.94205
 "Monroe Canyon Wildfire, Sevier, Utah",2025-07-13T16:39:00Z,700.0,38.561317,-112.080083
@@ -1229,6 +1239,7 @@ Iceberg B22H,2026-03-06T00:00:00Z,48.0,-71.91,-178.51
 Iceberg B22H,2026-03-20T00:00:00Z,48.0,-72.28,-179.77
 Iceberg B22H,2026-04-10T00:00:00Z,48.0,-72.46,178.02
 Iceberg B22H,2026-04-24T00:00:00Z,48.0,-72.13,176.25
+Iceberg B22H,2026-04-30T00:00:00Z,48.0,-71.85,174.5
 "Johnny Buck Wildfire, Miami-Dade, Florida",2025-07-11T11:26:00Z,1034.0,25.618717,-80.726917
 "PALM TREE Wildfire, Broward, Florida",2025-07-10T19:12:00Z,1800.0,26.3336111,-80.5466667
 "Sowbelly Wildfire, Mesa, Colorado",2025-07-10T18:53:00Z,2192.0,38.665033,-108.389883
@@ -1305,7 +1316,6 @@ Iceberg B22H,2026-04-24T00:00:00Z,48.0,-72.13,176.25
 "Ikpikpuk Wildfire, North Slope, Alaska",2025-06-22T13:41:00Z,1355.16,69.54,-154.87
 "Bronx Wildfire, North Slope, Alaska",2025-06-22T13:09:00Z,617.82,69.47,-155.25
 "Nenana Ridge Complex Incident Complex, Fairbanks North Star, Alaska",2025-06-22T00:19:00Z,6430.26,64.724717,-148.602775
-"Kirishimayama Volcano, Japan",2025-06-22T00:00:00Z,,31.934,130.862
 "Roundabout Complex Incident Complex, Yukon-Koyukuk, Alaska",2025-06-21T20:03:00Z,14079.16,65.851001,-156.590973
 "Yellow Wildfire, Yukon-Koyukuk, Alaska",2025-06-21T18:32:00Z,852.0,65.7275,-146.588333
 "East Gakona River Wildfire, Copper River, Alaska",2025-06-21T17:29:00Z,936.0,62.766833,-145.008333
@@ -2498,7 +2508,6 @@ Wildfire in Central African Republic 1023265,2024-12-31T19:00:00Z,,8.80458353624
 Wildfire in Central African Republic 1023266,2024-12-31T19:00:00Z,,7.035208922425168,24.432461879308494
 Wildfire in Sudan 1023275,2024-12-31T19:00:00Z,,9.636456734238907,32.82646701499584
 Wildfire in Nigeria 1023276,2024-12-31T19:00:00Z,,9.019905871814057,10.556407306837032
-"Yasur Volcano, Vanuatu",2024-12-31T00:00:00Z,,-19.532,169.447
 Wildfire in Sudan 1023202,2024-12-30T19:00:00Z,,8.374277877520441,24.330016349942017
 Wildfire in Sudan 1023212,2024-12-30T19:00:00Z,,6.7273560490286295,34.23122225076278
 Wildfire in Sudan 1023228,2024-12-30T19:00:00Z,,6.465793080806328,27.026129872183947
@@ -5430,7 +5439,6 @@ Wildfire in Zambia 1020843,2024-07-24T19:00:00Z,,-11.7106288297172,29.1472442557
 "Stockade Canyon Wildfire, Washoe, Nevada",2024-07-24T15:51:00Z,16251.0,40.77735,-119.738017
 "Quartz Wildfire, Lane, Oregon",2024-07-24T13:38:00Z,974.0,43.557383,-122.757367
 "RITTER Wildfire, Harney, Oregon",2024-07-24T01:47:00Z,556.0,43.58575,-118.49725
-"Bezymianny Volcano, Russia",2024-07-24T00:00:00Z,,55.972,160.595
 "Apache Wildfire, Ventura, California",2024-07-23T21:34:00Z,1500.0,34.7557,-119.409
 "0523 CAMP CREEK Wildfire, Crook, Oregon",2024-07-23T20:50:00Z,1581.0,44.007775,-120.16455
 "RETREAT Wildfire, Yakima, Washington",2024-07-23T19:35:00Z,31514.0,46.670833,-120.991717
@@ -6462,7 +6470,6 @@ Wildfire in Australia 1019803,2024-06-06T19:00:00Z,,-12.083547147354954,134.1077
 "Sanitary Landfill Wildfire, Roosevelt, Montana",2024-06-06T12:36:00Z,1.25,48.095278,-105.660833
 "Sunflower Lane 180 Wildfire, Josephine, Oregon",2024-06-06T12:33:00Z,0.1,42.4878218,-123.3584315
 "Easy Lane Wildfire, Lane, Oregon",2024-06-06T11:58:00Z,0.25,44.07816667,-122.9235
-"Etna Volcano, Italy",2024-06-06T00:00:00Z,,37.748,14.999
 "WARREN Wildfire, Calaveras, California",2024-06-05T23:27:00Z,0.03,38.102942,-120.922042
 "training Wildfire, Del Norte, California",2024-06-05T19:24:00Z,0.01,41.883499,-123.818001
 "GIRD 3 Wildfire, San Diego, California",2024-06-05T19:14:00Z,0.01,33.315333,-117.195115
@@ -6592,6 +6599,7 @@ Iceberg A83,2026-02-06T00:00:00Z,84.0,-68.55,-51.87
 Iceberg A83,2026-02-13T00:00:00Z,84.0,-68.11,-52.31
 Iceberg A83,2026-03-13T00:00:00Z,84.0,-67.48,-52.08
 Iceberg A83,2026-04-17T00:00:00Z,84.0,-67.13,-53.11
+Iceberg A83,2026-04-30T00:00:00Z,84.0,-66.53,-53.18
 "SHOOTER Wildfire, Pima, Arizona",2024-05-23T18:02:00Z,0.1,32.247434,-110.666828
 Wildfire in Russian Federation 1019796,2024-05-22T19:00:00Z,,56.28980608913218,115.24246554767954
 "Chitty Wildfire, Greenlee, Arizona",2024-05-22T15:38:00Z,10.4,33.57065,-109.37915
@@ -6658,6 +6666,7 @@ Iceberg D33C,2025-09-18T00:00:00Z,105.0,-67.39,-58.3
 Iceberg D33C,2025-10-16T00:00:00Z,105.0,-66.61,-58.34
 Iceberg D33C,2025-11-14T00:00:00Z,105.0,-66.14,-58.17
 Iceberg D33C,2026-04-17T00:00:00Z,105.0,-65.63,-58.13
+Iceberg D33C,2026-04-30T00:00:00Z,105.0,-65.21,-57.72
 "RX WEST LOWMAN Wildfire, Boise, Idaho",2024-04-18T15:54:00Z,893.0,44.08256,-115.5997
 "ANF Boykin Spring C88 RX Wildfire, Jasper, Texas",2024-04-17T11:35:00Z,935.0,31.044331,-94.283295
 "SHNF C92 RX Wildfire, San Jacinto, Texas",2024-04-16T09:17:00Z,1705.0,30.5248,-95.1174
@@ -6837,6 +6846,7 @@ Iceberg A81,2025-10-09T00:00:00Z,700.0,-65.8,-58.33
 Iceberg A81,2025-11-14T00:00:00Z,700.0,-65.3,-57.93
 Iceberg A81,2026-01-09T00:00:00Z,700.0,-64.87,-58.32
 Iceberg A81,2026-04-03T00:00:00Z,700.0,-64.82,-57.15
+Iceberg A81,2026-04-30T00:00:00Z,700.0,-64.4,-55.34
 Iceberg D32,2022-10-21T00:00:00Z,90.0,-68.36,70.68
 Iceberg D32,2022-11-11T00:00:00Z,90.0,-67.87,70.97
 Iceberg D32,2022-12-16T00:00:00Z,90.0,-67.25,71.07
@@ -6885,6 +6895,7 @@ Iceberg D32,2026-02-13T00:00:00Z,54.0,-67.13,-44.33
 Iceberg D32,2026-02-26T00:00:00Z,54.0,-66.8,-45.65
 Iceberg D32,2026-03-26T00:00:00Z,54.0,-66.25,-46.3
 Iceberg D32,2026-04-10T00:00:00Z,54.0,-66.36,-47.66
+Iceberg D32,2026-04-30T00:00:00Z,54.0,-66.16,-46.48
 "Stromboli Volcano, Italy",2022-08-07T00:00:00Z,,38.789,15.213
 "Aira Volcano, Japan",2022-06-27T00:00:00Z,,31.593,130.657
 "Fish Wildfire, Greenlee, Arizona",2022-06-10T18:12:00Z,3704.0,33.63276,-109.3973
@@ -6907,6 +6918,7 @@ Iceberg C39,2025-11-21T00:00:00Z,120.0,-67.7,77.49
 Iceberg C39,2026-03-20T00:00:00Z,32.0,-68.31,77.23
 Iceberg C39,2026-04-10T00:00:00Z,32.0,-69.16,75.08
 Iceberg C39,2026-04-24T00:00:00Z,32.0,-68.81,74.24
+Iceberg C39,2026-04-30T00:00:00Z,32.0,-68.52,72.81
 "Great Sitkin Volcano, Andreanof Islands (U.S.)",2021-10-19T09:49:45Z,,52.076,-176.13
 Iceberg A76C,2021-05-28T00:00:00Z,112.0,-75.57,-57.04
 Iceberg A76C,2021-06-11T00:00:00Z,112.0,-74.98,-56.38

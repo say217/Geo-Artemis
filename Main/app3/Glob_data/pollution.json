@@ -1,135 +1,144 @@
 {
-  "saved_at": "2026-04-29T17:06:10.754674Z",
+  "saved_at": "2026-05-05T15:15:59.683602Z",
   "data": {
     "news": [
       {
         "type": "pollution",
-        "title": "Dyson Purifier Humidify+Cool PH2 De-NOx",
-        "description": "The Dyson Purifier Humidify+Cool PH2 De-NOx is a multifunction smart air purifier that uses HEPA and carbon filtration to remove harmful airborne pollutants and employs ultraviolet cleansing technolog",
-        "source": "PCMag.com",
-        "url": "https://uk.pcmag.com/air-purifiers/164647/dyson-purifier-humidifycool-ph2-de-nox",
-        "image": "https://sm.pcmag.com/t/pcmag_uk/review/d/dyson-puri/dyson-purifier-humidifycool-ph2-de-nox_29zs.1200.jpg",
-        "date": "2026-04-28T16:53:07Z"
+        "title": "Show HN: KIP Pattern – A React architecture pattern for true encapsulation",
+        "description": "️ Keep It Private (KIP) Pattern: An encapsulation-first component architecture for React to stop leaking internal logic and prevent God files. - Miladxsar23/kip-pattern",
+        "source": "Github.com",
+        "url": "https://github.com/Miladxsar23/kip-pattern",
+        "image": "https://opengraph.githubassets.com/21e81f1af6f0e634924a51ae84db551963ea67cf242cb673b6b14c5e33b96be1/Miladxsar23/kip-pattern",
+        "date": "2026-05-04T15:01:09Z"
       },
       {
         "type": "pollution",
-        "title": "Dyson Purifier Humidify+Cool PH2 De-NOx",
-        "description": "The Dyson Purifier Humidify+Cool PH2 De-NOx is a multifunction smart air purifier that uses HEPA and carbon filtration to remove harmful airborne pollutants and employs ultraviolet cleansing technolog",
-        "source": "PCMag.com",
-        "url": "https://me.pcmag.com/en/air-purifiers/36811/dyson-purifier-humidifycool-ph2-de-nox",
-        "image": "https://sm.pcmag.com/t/pcmag_me/review/d/dyson-puri/dyson-purifier-humidifycool-ph2-de-nox_3by4.1200.jpg",
-        "date": "2026-04-28T16:53:07Z"
+        "title": "Scientists Identify Another Contributor to Global Warming—and It’s Everywhere",
+        "description": "Researchers found that airborne microplastics trap nearly one-fifth as much heat as black carbon.",
+        "source": "Gizmodo.com",
+        "url": "https://gizmodo.com/scientists-identify-another-contributor-to-global-warming-and-its-everywhere-2000754080",
+        "image": "https://gizmodo.com/app/uploads/2026/05/dust-1200x675.jpg",
+        "date": "2026-05-04T15:00:32Z"
       },
       {
         "type": "pollution",
-        "title": "Small print on page 26 of Newsom's billionaire's bill that reveals his real plans and how everyone could be hit",
-        "description": "The ballot initiative is being presented as a one-time levy on the ultra-wealthy, targeting roughly 200 California residents with net worths above $1 billion.",
+        "title": "1979 Alfa Romeo Alfetta Sprint Veloce 2.0",
+        "description": "This 1979 Alfa Romeo Alfetta Sprint Veloce was purchased in 1984 by the seller's brother, believed to be its second owner, and subsequently refurbished and modified with work carried out from 1988 to ",
+        "source": "Bringatrailer.com",
+        "url": "https://bringatrailer.com/listing/1979-alfa-romeo-alfetta-18/",
+        "image": "https://bringatrailer.com/wp-content/uploads/2026/04/1979_alfa-romeo_alfetta-gtv_rightfront-91875.png",
+        "date": "2026-05-04T14:40:15Z"
+      },
+      {
+        "type": "pollution",
+        "title": "Thousands in multiple states told to 'shut windows now' as heart attack-causing toxins fill the air",
+        "description": "Nearly a million Americans in the Southwest have been warned to keep their windows shut and stay indoors as levels of airborne toxic particles skyrocket.",
         "source": "Dailymail.com",
-        "url": "https://www.dailymail.com/yourmoney/article-15771337/newsom-billionaire-tax-california-backlash.html",
-        "image": "https://i.dailymail.com/1s/2026/04/28/14/108218061-0-image-a-9_1777383870594.jpg",
-        "date": "2026-04-28T16:45:09Z"
+        "url": "https://www.dailymail.com/sciencetech/article-15788595/air-quality-toxic-particles-california-arizona.html",
+        "image": "https://i.dailymail.com/1s/2026/05/04/14/108358409-0-image-m-17_1777902936253.jpg",
+        "date": "2026-05-04T14:25:35Z"
       },
       {
         "type": "pollution",
-        "title": "Trump lifts ban on mining near Boundary Waters, clearing way for Chilean company to seek permits",
-        "description": "President Donald Trump has lifted a federal ban on mining near Minnesota's Boundary Waters Canoe Area Wilderness, clearing the way for a Chilean company eying the region's precious metals to begin app",
-        "source": "Abcnews.com",
-        "url": "https://abcnews.com/Business/wireStory/trump-lifts-ban-mining-boundary-waters-clearing-chilean-132460085",
-        "image": "https://i.abcnewsfe.com/a/c95b22af-68ae-4060-b78f-24c457437764/wirestory_3d32cd0f591e0de0bfa3a85e3a7d8ebd_16x9.jpg?w=1600",
-        "date": "2026-04-28T16:39:49Z"
+        "title": "Distribution and seasonal abundance of medically important flies in Sharkia Governorate, Egypt and their associated bacteria",
+        "description": "Due to the medical importance of flies as mechanical vectors of numerous pathogens, accurate information on their distribution, abundance, and associated bacterial communities is essential. This study",
+        "source": "Plos.org",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0348022",
+        "image": "https://journals.plos.org/plosone/article/figure/image?id=10.1371/journal.pone.0348022.g004&size=inline",
+        "date": "2026-05-04T14:00:00Z"
       },
       {
         "type": "pollution",
-        "title": "Trump lifts ban on mining near Boundary Waters, clearing way for Chilean company to seek permits",
-        "description": "President Donald Trump has lifted a federal ban on mining near Minnesota's Boundary Waters Canoe Area Wilderness, clearing the way for a Chilean company eying the region's precious metals to begin app",
-        "source": "seattlepi.com",
-        "url": "https://www.seattlepi.com/news/article/trump-lifts-ban-on-mining-near-boundary-waters-22230243.php",
+        "title": "I'm a Google Maps power user — here are 10 tips and features I can't live without",
+        "description": "After using Google's popular mapping app for the best part of two decades, I've learned a thing or two — here are my top tips and features.",
+        "source": "TechRadar",
+        "url": "https://www.techradar.com/phones/im-a-google-maps-power-user-here-are-10-tips-and-features-i-cant-live-without",
+        "image": "https://cdn.mos.cms.futurecdn.net/34M7Se2JE26T3SNtmcNDjM-1920-80.jpg",
+        "date": "2026-05-04T14:00:00Z"
+      },
+      {
+        "type": "pollution",
+        "title": "Improving tomato yield and production economics with Nano-NPK fertilization and salicylic acid chemigation",
+        "description": "Nanotechnology-enabled NPK fertilization combined with biostimulants offers a sustainable approach to enhance crop productivity, resource-use efficiency, and environmental performance in specialty cro",
+        "source": "Plos.org",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0348207",
+        "image": "https://journals.plos.org/plosone/article/figure/image?id=10.1371/journal.pone.0348207.g007&size=inline",
+        "date": "2026-05-04T14:00:00Z"
+      },
+      {
+        "type": "pollution",
+        "title": "Triggered chain reaction: The meanings of symptom clusters for patients with chronic obstructive pulmonary disease: A cross-sectional qualitative study",
+        "description": "Purpose Symptoms in chronic obstructive pulmonary disease (COPD) commonly co-occur as ‘symptom clusters’, yet little is known about how patients interpret and make sense of these experiences. This stu",
+        "source": "Plos.org",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0348370",
+        "image": "https://journals.plos.org/plosone/article/figure/image?id=10.1371/journal.pone.0348370.g003&size=inline",
+        "date": "2026-05-04T14:00:00Z"
+      },
+      {
+        "type": "pollution",
+        "title": "Biomphalaria pfeifferi infected with Schistosoma spp. in Kakamega and Bungoma counties, western Kenya confirms autochthonous transmission of intestinal schistosomiasis",
+        "description": "Author summary Recent mapping in Kakamega and Bungoma Counties of western Kenya showed many cases of intestinal schistosomiasis (bilharzia). However, it was unclear whether the transmission of the dis",
+        "source": "Plos.org",
+        "url": "https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0014276",
+        "image": "https://journals.plos.org/plosntds/article/figure/image?id=10.1371/journal.pntd.0014276.g005&size=inline",
+        "date": "2026-05-04T14:00:00Z"
+      },
+      {
+        "type": "pollution",
+        "title": "Flows of justice? Situating environmental justice in urban river restoration",
+        "description": "The environmental justice (EJ) movement in the United States has long focused on water quality due to the threats that polluted surface and groundwaters pose to human health in historically marginaliz",
+        "source": "Plos.org",
+        "url": "https://journals.plos.org/water/article?id=10.1371/journal.pwat.0000302",
+        "image": "https://journals.plos.org/water/article/figure/image?id=10.1371/journal.pwat.0000302.g004&size=inline",
+        "date": "2026-05-04T14:00:00Z"
+      },
+      {
+        "type": "pollution",
+        "title": "18 EV Fast Chargers Running On 100% Renewable Electricity Installed In Germany",
+        "description": "Eighteen new EV fast chargers that can charge up to 400 kW have been installed in Germany at these locations: A6 in Landstuhl, Rheinland-Pfalz, and the A7 in Ellwangen Jagst, Bavaria. “Our fast chargi",
+        "source": "CleanTechnica",
+        "url": "https://cleantechnica.com/2026/05/04/18-ev-fast-chargers-running-on-100-renewable-electricity-installed-in-germany/",
+        "image": "https://cleantechnica.com/wp-content/uploads/2026/05/enbw.png",
+        "date": "2026-05-04T13:58:24Z"
+      },
+      {
+        "type": "pollution",
+        "title": "Midwestern families on the hook for $180 million to keep Michigan coal plant open under Trump administration’s mandates",
+        "description": "A coal plant in Michigan kept open by the Trump administration is costing Midwestern ratepayers an extra $180 million, effectively doubling their bills.",
+        "source": "Environmental Defense Fund",
+        "url": "https://www.edf.org/media/midwestern-families-hook-180-million-keep-michigan-coal-plant-open-under-trump",
+        "image": "https://www.edf.org/sites/default/files/styles/share_1200_630_focal_point/public/2026-05/JH%20Campbell%20Coal%20Plant-6.jpg?h=a1e1a043&itok=9BcoQx57",
+        "date": "2026-05-04T13:53:20Z"
+      },
+      {
+        "type": "pollution",
+        "title": "Scientists turn plastic waste into clean hydrogen fuel using sunlight",
+        "description": "Scientists are using sunlight to turn plastic waste into clean fuels like hydrogen, offering a breakthrough solution to both pollution and energy challenges. While still in development, the approach c",
+        "source": "Science Daily",
+        "url": "https://www.sciencedaily.com/releases/2026/05/260504023841.htm",
+        "image": "https://www.sciencedaily.com/images/1920/plastic-recycling-sunlight-energy.webp",
+        "date": "2026-05-04T13:48:17Z"
+      },
+      {
+        "type": "pollution",
+        "title": "« Rethinking Intelligence in the Age of Artificial Minds. A Plea for a Human-AI Covenant »",
+        "description": "",
+        "source": "Pauljorion.com",
+        "url": "https://www.pauljorion.com/blog/2026/05/04/rethinking-intelligence-in-the-age-of-artificial-minds-a-plea-for-a-human-ai-covenant/",
         "image": "",
-        "date": "2026-04-28T16:08:58Z"
+        "date": "2026-05-04T13:48:14Z"
       },
       {
         "type": "pollution",
-        "title": "Brussels weighs letting fossil fuel companies break EU pollution limits",
-        "description": "The European Commission is considering temporary relief from methane penalties as energy firms warn of supply risks.",
-        "source": "POLITICO.eu",
-        "url": "https://www.politico.eu/article/brussels-weighs-a-no-fines-holiday-for-fossil-fuel-companies/",
-        "image": "https://www.politico.eu/cdn-cgi/image/width=1200,height=630,fit=crop,quality=80,onerror=redirect/wp-content/uploads/2026/04/28/GettyImages-2272309875-scaled.jpg",
-        "date": "2026-04-28T15:54:25Z"
-      },
-      {
-        "type": "pollution",
-        "title": "40-Feet Electric Boats Strategic Business Report 2026: Market to Reach $10.3 Billion by 2030 from $2.7 Billion in 2024 - Expansion of Marina Electrification Infrastructure Strengthens Business Case",
-        "description": "The 40-feet electric boat market is ripe for growth, driven by consumer demand for eco-friendly recreational and transportation options, regulatory incentives, and advancements in electric technology.",
-        "source": "GlobeNewswire",
-        "url": "https://www.globenewswire.com/news-release/2026/04/28/3282944/28124/en/40-Feet-Electric-Boats-Strategic-Business-Report-2026-Market-to-Reach-10-3-Billion-by-2030-from-2-7-Billion-in-2024-Expansion-of-Marina-Electrification-Infrastructure-Strengthens-B.html",
-        "image": "https://ml.globenewswire.com/Resource/Download/746214b1-15f1-4f3a-b506-ca84ccefca38",
-        "date": "2026-04-28T15:05:00Z"
-      },
-      {
-        "type": "pollution",
-        "title": "Guidance: Assess air quality impacts",
-        "description": "Techniques that analysts, consultants and academics can use to assess the effect of air pollution on human health and the environment.",
-        "source": "Www.gov.uk",
-        "url": "https://www.gov.uk/government/publications/assess-air-quality-impacts",
-        "image": "https://www.gov.uk/assets/frontend/govuk-opengraph-image-4196a4d6333cf92aaf720047f56cfd91b3532d7635fc21ebcf0d5897df6b5f77.png",
-        "date": "2026-04-28T14:48:02Z"
-      },
-      {
-        "type": "pollution",
-        "title": "Vatican warns of political promotion of abortion as an instrument of population control",
-        "description": "“Integral Ecology in the Life of the Family” is a comprehensive overview of environmental and human ecology drawing on the teachings of the previous four popes.",
-        "source": "Ewtnnews.com",
-        "url": "https://www.ewtnnews.com/vatican/vatican-warns-of-political-promotion-of-abortion-as-an-instrument-of-population-control",
-        "image": "https://res.cloudinary.com/ewtn/image/upload/v1777322777/ewtn-news/en/vaticano-1773065403_jdmyie.webp",
-        "date": "2026-04-28T14:37:52Z"
-      },
-      {
-        "type": "pollution",
-        "title": "Famed biohacker Gary Brecka reveals his exact routine — including an ‘overlooked performance enhancer’",
-        "description": "\"I don’t just start my morning, I activate it,\" Brecka told The Post.",
-        "source": "New York Post",
-        "url": "https://nypost.com/2026/04/28/health/inside-biohacker-gary-breckas-exact-morning-night-routine/",
-        "image": "https://nypost.com/wp-content/uploads/sites/2/2026/04/126555899.jpg?quality=75&strip=all&w=1200",
-        "date": "2026-04-28T14:20:58Z"
-      },
-      {
-        "type": "pollution",
-        "title": "Counting What Counts Amid AI",
-        "description": "It is time to shift from ROI to ROV. The hybrid return on values measures ROI across all the arenas that matter for human well-being and planetary health in a hybrid world.",
-        "source": "Psychology Today",
-        "url": "https://www.psychologytoday.com/us/blog/harnessing-hybrid-intelligence/202604/counting-what-counts-amid-ai",
-        "image": "https://cdn2.psychologytoday.com/assets/styles/manual_crop_1_91_1_1528x800/public/teaser_image/blog_entry/2026-04/2026-04_gemini_rov__no_text_.png.jpg?itok=MoACt4CQ",
-        "date": "2026-04-28T14:09:54Z"
-      },
-      {
-        "type": "pollution",
-        "title": "Stellantis Employees Complain Of 'Nose Bleeds, Migraines, Vomiting, Skin Issues, Digestive Issues' After Returning To The Office Five Days A Week",
-        "description": "Plus, NHTSA says it's not worried about detaching Tesla Model Y steering wheels, General Motors didn't have the best Q1 and Bollinger is coming to an end.",
-        "source": "Jalopnik",
-        "url": "https://www.jalopnik.com/2159139/stellantis-employees-complain-health-issues-return-to-office/",
-        "image": "https://www.jalopnik.com/img/gallery/stellantis-employees-complain-of-nose-bleeds-migraines-vomiting-skin-issues-digestive-issues-after-returning-to-the-office-five-days-a-week/l-intro-1777384895.jpg",
-        "date": "2026-04-28T14:04:41Z"
-      },
-      {
-        "type": "pollution",
-        "title": "Metagenomic and taxonomic profiling of phyllosphere bacteria from Mangifera indica in response to urban air pollutants in Medellín, Colombia",
-        "description": "Urban trees and their phyllosphere-associated microbiota constitute a promising nature-based solution for mitigating urban air pollution. In this study, we characterized the taxonomic composition, div",
-        "source": "Plos.org",
-        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0347959",
-        "image": "https://journals.plos.org/plosone/article/figure/image?id=10.1371/journal.pone.0347959.g005&size=inline",
-        "date": "2026-04-28T14:00:00Z"
-      },
-      {
-        "type": "pollution",
-        "title": "Ecological patterns in the Porto-Novo Lagoon (Benin, West Africa): A review with implications for SDG 6.3.2 and EU-WFD readiness toward ecological status classification",
-        "description": "Urban tropical lagoons provide vital services yet face nutrient loading, macrophyte blooms, and episodic hypoxia. This scoping review compiles four decades of hydromorphological, physico-chemical, and",
-        "source": "Plos.org",
-        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0348113",
-        "image": "https://journals.plos.org/plosone/article/figure/image?id=10.1371/journal.pone.0348113.g004&size=inline",
-        "date": "2026-04-28T14:00:00Z"
+        "title": "Some Renewable Energy Updates",
+        "description": "I came across a few news items that I could possibly write about today and couldn’t decide which to cover, so I will write about all of them, since they all relate to renewable energy. The first is a ",
+        "source": "Theness.com",
+        "url": "https://theness.com/neurologicablog/some-renewable-energy-updates/",
+        "image": "https://theness.com/neurologicablog/wp-content/uploads/sites/3/2026/05/plug-in-solar-panel.jpg",
+        "date": "2026-05-04T13:29:52Z"
       }
     ],
     "filter": "pollution",
-    "fetched_at": "2026-04-29T17:06:10.754674Z"
+    "fetched_at": "2026-05-05T15:15:59.683602Z"
   }
 }
