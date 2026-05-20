@@ -32,7 +32,7 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.log
-test/
+
 
 
 # Large data files (exceed GitHub limits)

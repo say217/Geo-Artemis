@@ -1,10 +1,10 @@
 Event_type,num_events,eps_km,min_samples,num_clusters,noise_%
 Complex,11,200.0,3,2,0.0
-Iceberg_A,143,300.0,3,2,0.0
-Iceberg_B,87,300.0,3,3,1.1
-Iceberg_C,90,300.0,3,2,0.0
-Iceberg_D,175,300.0,3,3,0.0
+Iceberg_A,150,300.0,3,2,0.0
+Iceberg_B,93,300.0,3,3,1.1
+Iceberg_C,92,300.0,3,2,0.0
+Iceberg_D,181,300.0,3,3,0.0
 Other,4,200.0,3,0,100.0
-Prescribed_Fire,772,120.0,3,29,1.9
-Volcano,45,700.0,3,7,11.1
-Wildfire,5732,120.0,20,31,19.2
+Prescribed_Fire,809,120.0,4,24,5.1
+Volcano,31,700.0,3,5,6.5
+Wildfire,5781,120.0,20,32,19.6

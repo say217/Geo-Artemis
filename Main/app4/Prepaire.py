@@ -15,6 +15,7 @@ _EVENT_RULES: list[tuple[str, str]] = [
     ("iceberg",          "Iceberg_A"),   # fallback for un-lettered icebergs
     ("typhoon",          "Typhoon"),
     ("cyclone",          "Cyclone"),
+    ("storm",            "Storm"),
     ("wildfire",         "Wildfire"),
     ("prescribed fire",  "Prescribed_Fire"),
     ("volcano",          "Volcano"),

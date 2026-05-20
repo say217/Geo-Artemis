@@ -32,7 +32,7 @@
   --font-ui: 'Rajdhani', sans-serif;
   --font-hud: 'Orbitron', sans-serif;
   --panel-w: 290px;
-  --header-h: 58px;
+  --header-h: 60px;
   --footer-h: 34px;
 
   /* app3 colour aliases used by header */
@@ -672,6 +672,7 @@ footer {
 .footer-text { font-family: var(--font-mono); font-size: 7px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
 .footer-live { display: flex; align-items: center; gap: 5px; font-family: var(--font-mono); font-size: 7px; color: var(--red-bright); letter-spacing: 1px; }
 .footer-live::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--red-bright); box-shadow: 0 0 5px var(--red-bright); animation: pulse 1.5s infinite; display: inline-block; }
+  body { padding-top: 60px; }
 </style>
 </head>
 <body>
@@ -708,7 +709,7 @@ footer {
     </div>
     <div class="clock-wrap">
       <div class="clock-utc" id="hdr-clock">--:--:--</div>
-      <div class="clock-label">UTC SYNC</div>
+      <div class="clock-label">IST SYNC</div>
     </div>
     <div class="status-pill">
       <div class="status-dot-hdr"></div>
@@ -1222,9 +1223,10 @@ function updateClock(){
   if(document.getElementById('clockS')) document.getElementById('clockS').textContent = s;
   if(document.getElementById('footerTime')) document.getElementById('footerTime').textContent = hm + ':' + s;
   
-  const utcStr = now.toUTCString().slice(17, 25);
+  const istOptions = { timeZone: 'Asia/Kolkata', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  const istStr = new Intl.DateTimeFormat('en-IN', istOptions).format(now);
   const hdrClock = document.getElementById('hdr-clock');
-  if(hdrClock) hdrClock.textContent = utcStr;
+  if(hdrClock) hdrClock.textContent = istStr;
 
   const d = now.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'});
   if(document.getElementById('dateDisplay')) document.getElementById('dateDisplay').textContent = d;

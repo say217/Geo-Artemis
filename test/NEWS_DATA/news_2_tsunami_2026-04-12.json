@@ -1,0 +1,45 @@
+{
+    "fetched_at": "2026-04-13T08:15:59.505548",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "tsunami",
+    "total_articles": 4,
+    "articles": [
+        {
+            "headline": "Cruise companies to Alaska are avoiding a popular excursion to Tracy Arm after a massive landslide",
+            "source": "Abcnews.com",
+            "url": "https://abcnews.com/US/wireStory/cruise-companies-alaska-avoiding-popular-excursion-tracy-arm-131965163",
+            "image": "https://i.abcnewsfe.com/a/12c8ef0e-7f0c-4630-bbe0-7ecf1d24cab2/wirestory_b7d5171aed649de82b52bf4138a69919_16x9.jpg?w=1600",
+            "published_at": "2026-04-12T06:12:35Z",
+            "description": "For years, a popular part of many cruises in southeast Alaska has been sailing up Tracy Arm, a long, narrow fjord marked by steep mountains, glittering waterfalls and calving glaciers"
+        },
+        {
+            "headline": "Cruise companies to Alaska are avoiding a popular excursion to Tracy Arm after a massive landslide",
+            "source": "seattlepi.com",
+            "url": "https://www.seattlepi.com/business/article/cruise-companies-to-alaska-are-avoiding-a-popular-22201888.php",
+            "image": null,
+            "published_at": "2026-04-12T04:08:52Z",
+            "description": "For years, a popular part of many cruises in southeast Alaska has been sailing up Tracy Arm, a long, narrow fjord marked by steep mountains, glittering waterfalls and calving glaciers. But this season, major cruise lines are skipping it. A massive landslide l\u2026"
+        },
+        {
+            "headline": "Cruise companies to Alaska are avoiding a popular excursion to Tracy Arm after a massive landslide",
+            "source": "Yahoo Entertainment",
+            "url": "https://travel.yahoo.com/cruises/articles/cruise-companies-alaska-avoiding-popular-040356315.html",
+            "image": "https://s.yimg.com/ny/api/res/1.2/Tjcg6EMDuPQfCSRbAD3lvQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA-/https://media.zenfs.com/en/ap.org/3021bd4264ec47f90abfc48edbb9911b",
+            "published_at": "2026-04-12T04:03:56Z",
+            "description": "For years, a popular part of many cruises in southeast Alaska has been sailing up Tracy Arm, a long, narrow fjord marked by steep mountains, glittering..."
+        },
+        {
+            "headline": "Buzzy, starry-eyed YA titles argue for the importance of the arts",
+            "source": "The Irish Times",
+            "url": "https://www.irishtimes.com/culture/books/review/2026/04/12/buzzy-starry-eyed-ya-titles-argue-for-the-importance-of-the-arts/",
+            "image": "https://www.irishtimes.com/resizer/v2/G2KMLVAMXZAARFWBEW5MLOOGWM.jpg?smart=true&auth=fc0dc6eb7ba08bc25619ab293cf7721714b99dd52db58560a3a5081dbf717104&width=1200&height=630",
+            "published_at": "2026-04-12T03:53:00Z",
+            "description": "YA fiction reads for April from Caryl Lewis, M\u00e9abh Collins, Derek Landy, Susie Nadler and a debut from Stephen Daly"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\test\\NEWS_DATA\\news_2_images_tsunami_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\test\\NEWS_DATA\\news_2_images_tsunami_2026-04-12_2.jpg"
+    ]
+}

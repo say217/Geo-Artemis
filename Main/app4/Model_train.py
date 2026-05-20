@@ -27,6 +27,7 @@ EARTH_RADIUS_KM = 6371.0088          # WGS-84 mean radius
 EPS_KM_BY_EVENT: dict[str, float] = {
     'Cyclone':         500.0,
     'Typhoon':         500.0,
+    'Storm':           350.0,
     'Wildfire':        120.0,
     'Prescribed_Fire': 120.0,
     'Fire':            120.0,

@@ -1,0 +1,20 @@
+[
+  {
+    "role": "user",
+    "content": "hi artemis"
+  },
+  {
+    "role": "model",
+    "content": "Hello! How can I assist you today?",
+    "images": []
+  },
+  {
+    "role": "user",
+    "content": "tell me some recent newses"
+  },
+  {
+    "role": "model",
+    "content": "Here are some recent news items:\n\n*   **Wildfires:** Crews are bracing for gusting winds near Whitecourt, Canada, which could intensify a fire threatening homes, according to CBC News.\n*   **Economic & Labor:** A Minneapolis Fed study indicates that the $15 minimum wage in the Twin Cities is linked to reduced employment and hours, Fox News reports. In Belgium, a general strike",
+    "images": []
+  }
+]

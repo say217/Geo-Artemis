@@ -1,0 +1,53 @@
+{
+    "fetched_at": "2026-04-13T08:15:43.993175",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "storm",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "Europe missed AI bus, but India has potential to catch up: Former WEF director",
+            "source": "The Times of India",
+            "url": "https://economictimes.indiatimes.com/tech/artificial-intelligence/europe-missed-ai-bus-but-india-has-potential-to-catch-up-former-wef-director/articleshow/130204583.cms",
+            "image": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-40266,resizemode-75,msid-130204583/tech/artificial-intelligence/europe-missed-ai-bus-but-india-has-potential-to-catch-up-former-wef-director.jpg",
+            "published_at": "2026-04-12T08:02:13Z",
+            "description": "As the world grapples with the challenges of a perfect storm - war, energy crisis, and the upcoming AI crisis - India emerges as a bright spot in an otherwise gloomy global landscape. Frank-Jurgen Richter, former Director of the World Economic Forum and Chair\u2026"
+        },
+        {
+            "headline": "Cyclone lashes New Zealand's North Island, hundreds evacuated",
+            "source": "CNA",
+            "url": "https://www.channelnewsasia.com/world/new-zealand-cyclone-vaianu-north-island-hundreds-evacuate-6051366",
+            "image": "https://dam.mediacorp.sg/image/upload/s--jGkY5NeS--/c_crop,h_509,w_905,x_1,y_16/c_fill,g_auto,h_676,w_1200/f_auto,q_auto/v1/mediacorp/cna/image/2026/04/12/screenshot_2026-04-12_153806.png?itok=_tR1NKZL",
+            "published_at": "2026-04-12T07:43:00Z",
+            "description": "Conditions will ease as Cyclone\u00a0Vaianu works its way down the North Island before exiting on Sunday evening at Hawke's Bay, New Zealand's MetService said."
+        },
+        {
+            "headline": "IPL 2026: Gill\u2019s Titans take on Pant\u2019s LSG pace storm in Lucknow",
+            "source": "The Times of India",
+            "url": "https://timesofindia.indiatimes.com/sports/cricket/lsg-vs-gt-ipl-2026-live-score-cricket-live-match-today-lucknow-super-giants-vs-gujarat-titans-scorecard-playing-11-records-live-streaming-ipl-news-toi-sports/liveblog/130203972.cms",
+            "image": "https://static.toiimg.com/thumb/msid-130203972,width-1280,height-720,imgsize-986963,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+            "published_at": "2026-04-12T07:00:14Z",
+            "description": "LSG vs GT Live Score, IPL 2026: Hello and welcome to the live coverage of GT vs LSG.The encounter at Ekana Cricket Stadium in Lucknow sets up a class"
+        },
+        {
+            "headline": "'You leave everything and sit back...': Amitabh Bachchan pens introspective note on internet anxiety | Mint",
+            "source": "Livemint",
+            "url": "https://www.livemint.com/entertainment/you-leave-everything-and-sit-back-amitabh-bachchan-pens-introspective-note-on-internet-anxiety-11775965992163.html",
+            "image": "https://www.livemint.com/lm-img/img/2025/03/17/1600x900/logo/entertainmentlm3_1742215964360_1742216012203.webp",
+            "published_at": "2026-04-12T06:58:45Z",
+            "description": "Veteran actor Amitabh Bachchan has shared a deeply introspective note on anxiety and the overwhelming nature of the internet, offering fans a rare glimpse into his inner thoughts amid the noise of social media."
+        },
+        {
+            "headline": "How Chelsea could line up vs Man City in blockbuster Premier League clash at the Bridge",
+            "source": "Sportsview.co.uk",
+            "url": "https://sportsview.co.uk/2026/04/how-chelsea-could-line-up-vs-man-city-in-blockbuster-premier-league-clash-at-the-bridge?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=how-chelsea-could-line-up-vs-man-city-in-blockbuster-premier-league-clash-at-the-bridge",
+            "image": "https://s.yimg.com/os/en/sportsview_articles_932/1b7d8bfeefd74c01c9bb0cc73657ea3e",
+            "published_at": "2026-04-12T06:45:00Z",
+            "description": "Chelsea welcome Manchester City to Stamford Bridge for Sunday\u2019s box office showdown, with both sides ready to go for the jugular in a quest to realise their ambitions.The Blues have been a shadow of..."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\test\\NEWS_DATA\\news_2_images_storm_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\test\\NEWS_DATA\\news_2_images_storm_2026-04-12_2.jpg"
+    ]
+}

@@ -1,0 +1,33 @@
+[
+  {
+    "role": "user",
+    "content": "wat is ur name"
+  },
+  {
+    "role": "model",
+    "content": "My name is ARTEMIS. I am a geospatial intelligence AI.",
+    "images": []
+  },
+  {
+    "role": "user",
+    "content": "tell me new whether evnets"
+  },
+  {
+    "role": "model",
+    "content": "I don't have sufficient data to provide information on specific weather events right now. My current datasets focus on wildfires, pollution, protests, and conflict zones.",
+    "images": []
+  },
+  {
+    "role": "user",
+    "content": "recents newses"
+  },
+  {
+    "role": "model",
+    "content": "Based on fetched data and recent web search, here's a summary of recent news:\n\n**Latest Updates (May 7-8, 2026):**\n*   Asian-American voters are showing a shift ahead of the November midterms, according to cnn.com.\n*   A protest occurred at the Tennessee Capitol, as reported by nbcnews.com.\n\n**Other Recent News (May 4, 2026):**\n*   **California:** The California Department of Insurance is taking action against State Farm following an investigation into mishandled insurance claims from the January 2025 Los Angeles wildfires, according to Insurance Journal. Additionally, research in Concord, California, is exploring the use of infrasound waves to extinguish kitchen fires, as reported by Slashdot.org.\n*   **India - Assembly Polls 2026:** Several election results were reported across India:\n    *   In West Bengal, BJP candidates secured victories in Balarampur (Jaladhar Mahato), Katwa (Krishna Ghosh), Purbasthali Uttar (Gopal Chattopadhyay), and Purbasthali Dakshin (Pran Krishna Tapadar).\n    *   In Assam, BJP's Krishna Kamal Tanti won in Rangapara, and AGP's Prithiraj Rava won in Tezpur. The Naduar constituency saw BJP's Padma Hazarika contesting against Sunil Kumar Chhetri of Congress.\n    *   In Tamil Nadu, Congress candidate P Viswanathan won in Melur, and TVK’s Prabhu TK won in Karaikudi. Congress leader Rahul Gandhi commented on the Tamil Nadu poll results, highlighting the rising voice of youth.",
+    "images": [
+      "https://media.cnn.com/api/v1/images/stellar/prod/still-22606609-2610845-714-still.jpg",
+      "https://media-cldnry.s-nbcnews.com/image/upload/t_focal-762x508,f_auto,q_auto:best/rockcms/2026-05/260507-tennessee-capitol-protest-1-ew-317p-7afe18.jpg",
+      "https://static.foxnews.com/static/orion/img/clear-16x9.gif"
+    ]
+  }
+]

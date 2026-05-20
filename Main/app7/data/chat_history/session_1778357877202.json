@@ -1,0 +1,20 @@
+[
+  {
+    "role": "user",
+    "content": "What regions have storm activity?"
+  },
+  {
+    "role": "model",
+    "content": "I don't have sufficient data to answer that right now.",
+    "images": []
+  },
+  {
+    "role": "user",
+    "content": "what is the cureent news related to modi"
+  },
+  {
+    "role": "model",
+    "content": "Platform records indicate that a divided US Federal Reserve kept interest rates unchanged for a third consecutive meeting due to high uncertainty from the Middle East war, which was likely the last policy gathering led by Jerome Powell. This information mentions \"Modi\" in the context of news highlights, but the primary content is about the US Federal Reserve, according to economictimes.indiatimes.com.",
+    "images": []
+  }
+]

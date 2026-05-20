@@ -1,0 +1,11 @@
+[
+  {
+    "role": "user",
+    "content": "Any volcanic activity detected?"
+  },
+  {
+    "role": "model",
+    "content": "I don't have sufficient data to answer that right now.",
+    "images": []
+  }
+]

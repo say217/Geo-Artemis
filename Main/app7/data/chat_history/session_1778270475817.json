@@ -1,0 +1,11 @@
+[
+  {
+    "role": "user",
+    "content": "hi"
+  },
+  {
+    "role": "model",
+    "content": "Hello! How can I assist you today? I can provide updates on recent events, news, or specific geospatial data.",
+    "images": []
+  }
+]

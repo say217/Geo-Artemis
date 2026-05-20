@@ -1,0 +1,24 @@
+[
+  {
+    "role": "user",
+    "content": "Any volcanic activity detected?"
+  },
+  {
+    "role": "model",
+    "content": "I don't have sufficient data to answer that right now.",
+    "images": []
+  },
+  {
+    "role": "user",
+    "content": "recent events natral hazards"
+  },
+  {
+    "role": "model",
+    "content": "Based on fetched data and recent web searches, here are the recent natural hazard events:\n\n**Wildfires:**\nPlatform data indicates several wildfires across the US:\n*   **May 4, 2026:** Black Rush Lake RX Prescribed Fire in Swift, Minnesota, and 32nd Avenue Wildfire in Rolette, North Dakota.\n*   **May 3, 2026:** TOWER Wildfire in Kern, California.\n*   **May 2, 2026:** AFM - Hazen Wildfire in Maricopa, Arizona, and Guide Wildfire in Oglala Lakota, South Dakota.\n*   **May 1, 2026:** Mio Prairie RX Prescribed Fire in Oscoda, Michigan, and rx-82 Prescribed Fire in Burnett, Wisconsin.\n\nNews related to wildfires includes California taking action against State Farm over mishandled claims from January 2025 Los Angeles wildfires, and Westland Insurance releasing a wildfire guide for Canadian businesses for the 2026 season (according to insurancejournal.com and financialpost.com). Greece has also launched the world's first national wildfire satellite system with OroraTech (according to globnewswire.com).\n\n**Air Quality:**\nCurrent air quality data from the platform shows:\n*   **Chengdu:** AQI 153 (PM2.5 59.74)\n*   **New Delhi:** AQI 127 (PM2.5 46.21)\n*   **Beijing:** AQI 116 (PM2.5 41.72)\n\nAccording to dailymail.com, millions in the US Southwest have been warned to stay indoors due to high levels of airborne toxic particles. Researchers also identified airborne microplastics as a contributor to global warming (gizmodo.com).\n\n**Other Natural Hazards (from web search):**\n*   **Floods:**\n    *   Lake Bangweulu and surrounding wetlands in Zambia showed flood information on April 27, 2026 (NASA Earthdata).\n    *   Zimbabwe is experiencing ongoing floods (reliefweb.int).\n    *   Portugal experienced heavy rains and floods in Alcácer do Sal on February 6, 2026, leading to the interior minister's resignation amid criticism (APNews.com).\n*   **Typhoon:** A search for five missing crew members of a cargo ship that overturned during a typhoon near the Northern Mariana Islands was suspended on April 29, 2026 (USNews.com).\n*   **Tornado:** A tornado with winds of at least 120 mph tore through a small city in Texas, injuring 5 people and causing significant damage (USNews.com).\n*   **Severe Weather:** Syria experienced severe weather in December 2025 (reliefweb.int).\n\nEarthquake event data is currently excluded from my active dataset due to its size. I can discuss general seismic patterns if helpful.",
+    "images": [
+      "https://www.insurancejournal.com/app/uploads/2025/01/2025-Eaton-Fire-by-CalFire-scaled.jpg",
+      "https://gizmodo.com/app/uploads/2026/05/dust-1200x675.jpg",
+      "https://i.dailymail.com/1s/2026/05/04/14/108358409-0-image-m-17_1777902936253.jpg"
+    ]
+  }
+]

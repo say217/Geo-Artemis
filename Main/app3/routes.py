@@ -49,6 +49,7 @@ NEWS_FILES = {
     "war":        DATA_FOLDER / "war.json",
     "protest":    DATA_FOLDER / "protest.json",
     "pollution":  DATA_FOLDER / "pollution.json",
+    "noaa":       DATA_FOLDER / "noaa.json",
 }
 
 NEWS_API_KEY    = os.getenv("NEWS_API_KEY_GLOB")
@@ -68,6 +69,7 @@ GLOBE_CAP = {
     "pollution":  20,
     "war":        10,
     "protest":    10,
+    "noaa":       15,
 }
 
 
@@ -368,6 +370,7 @@ _QUERY_MAP = {
     "war":        '("war" OR "military" OR "missiles" OR "conflict")',
     "protest":    '("protest" OR "riot" OR "civil unrest" OR "strike")',
     "pollution":  '("air quality" OR "smog" OR "AQI" OR "pollution")',
+    "noaa":       '("NOAA" OR "climate" OR "weather" OR "atmospheric" OR "oceanic" OR "fisheries" OR "marine")',
 }
 
 

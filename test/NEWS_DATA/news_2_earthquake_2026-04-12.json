@@ -1,0 +1,53 @@
+{
+    "fetched_at": "2026-04-13T08:15:35.686740",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "earthquake",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "$3.99 | The Hero of Ages: Book Three of Mistborn Kindle Edition (Kindle eBook) by",
+            "source": "Slickdeals.net",
+            "url": "https://slickdeals.net/f/19410492-3-99-the-hero-of-ages-book-three-of-mistborn-kindle-edition-kindle-ebook-by",
+            "image": "https://slickdeals.net/attachment/1/1/7/1/5/2/7/450x450/20089416.thumb",
+            "published_at": "2026-04-12T07:34:39Z",
+            "description": "[list][*]The Hero of Ages [amazon.com] (The Mistborn Saga Book 3) - *$3.99*[*]The Alloy of Law [amazon.com] (The Mistborn Saga Book 4) - *$3.99*[*]Shadows of Self [amazon.com] (The Mistborn Saga Book..."
+        },
+        {
+            "headline": "The panic cascade: 10 Crises that could empty store shelves overnight and how to secure your family\u2019s food supply now",
+            "source": "Naturalnews.com",
+            "url": "https://www.naturalnews.com/2026-04-12-panic-cascade-crises-empty-store-shelves-overnight.html",
+            "image": "https://www.naturalnews.com/wp-content/uploads/sites/91/2026/04/Coronavirus-Empty-Grocery-Store-Shelves.jpg",
+            "published_at": "2026-04-12T06:00:00Z",
+            "description": "Panic buying is driven by fear, not need, and it quickly empties stores, creating real shortages that endanger unprepared families. Many types of crises can trigger panic overnight, including government emergencies, natural disasters, supply chain breaks, pow\u2026"
+        },
+        {
+            "headline": "Haiti\u2019s iconic Laferri\u00e8re Citadel stampede kills 30 amid crowded celebrations",
+            "source": "The Times of India",
+            "url": "https://economictimes.indiatimes.com/news/international/world-news/haitis-iconic-laferrire-citadel-stampede-kills-30-amid-crowded-celebrations/articleshow/130202339.cms",
+            "image": "https://img.etimg.com/thumb/msid-130202364,width-1200,height-630,imgsize-417070,overlay-economictimes/articleshow.jpg",
+            "published_at": "2026-04-12T04:11:21Z",
+            "description": "A tragic stampede at Haiti's historic Laferriere Citadel has claimed at least 30 lives. The incident occurred during an annual celebration attended by many students and visitors. Heavy rain reportedly worsened the situation. This disaster adds to Haiti's ongo\u2026"
+        },
+        {
+            "headline": "India's economic growth journey huge opportunity for international partners: Vinay Mohan Kwatra",
+            "source": "The Times of India",
+            "url": "https://economictimes.indiatimes.com/news/india/indias-economic-growth-journey-huge-opportunity-for-international-partners-vinay-mohan-kwatra/articleshow/130202327.cms",
+            "image": "https://img.etimg.com/thumb/msid-130202342,width-1200,height-630,imgsize-164848,overlay-economictimes/articleshow.jpg",
+            "published_at": "2026-04-12T04:04:28Z",
+            "description": "India's economic growth presents a significant opportunity for international partners, with the US being a central and consequential ally, Ambassador Vinay Mohan Kwatra stated. He emphasized the transformative phase of India's economic and societal evolution,\u2026"
+        },
+        {
+            "headline": "'iComply to 'iComplain': Workers out of pocket after labour hire firm's demise",
+            "source": "ABC News (AU)",
+            "url": "https://www.abc.net.au/news/2026-04-12/icomply-labour-hire-collapse-leaves-palm-workers-unpaid/106546184",
+            "image": "https://live-production.wcms.abc-cdn.net.au/df03f9a6afad2be5861d1dc79b67f4fc?impolicy=wcms_watermark_news&cropH=879&cropW=1563&xPos=184&yPos=112&width=862&height=485&imformat=generic",
+            "published_at": "2026-04-12T04:00:51Z",
+            "description": "Prominent labour hire company iComply owed more than $12 million when it collapsed, according to a damning liquidator's report, with workers chasing millions in superannuation."
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\test\\NEWS_DATA\\news_2_images_earthquake_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\test\\NEWS_DATA\\news_2_images_earthquake_2026-04-12_2.jpg"
+    ]
+}

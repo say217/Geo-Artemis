@@ -16,10 +16,6 @@ templates = Jinja2Templates(
     directory=str(Path(__file__).resolve().parent / "templates")
 )
 
-# ── News cache: read from app3's Glob_data folder (already fetched & saved) ──
-# app3 saves: all.json, wildfire.json, earthquake.json, war.json,
-#             protest.json, pollution.json
-# Each file structure: { "saved_at": "...", "data": { "news": [...], "filter": "..." } }
 GLOB_DATA_DIR = Path(__file__).resolve().parent.parent / "app3" / "Glob_data"
 
 # Category → filename mapping (mirrors app3/routes.py NEWS_FILES)
@@ -30,6 +26,7 @@ NEWS_CACHE_FILES = {
     "war":        GLOB_DATA_DIR / "war.json",
     "protest":    GLOB_DATA_DIR / "protest.json",
     "pollution":  GLOB_DATA_DIR / "pollution.json",
+    "noaa":       GLOB_DATA_DIR / "noaa.json",
 }
 
 # ── YouTube video cache (unchanged) ──────────────────────────────────────────
@@ -38,36 +35,54 @@ VIDEO_DATA_DIR.mkdir(exist_ok=True)
 VIDEO_FILE_PATH = VIDEO_DATA_DIR / "videos.json"
 
 YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
+# Enable/Disable real API fetching. Set to False to always use hardcoded Sample data.
+YOUTUBE_FETCH_ENABLED = os.getenv("YOUTUBE_FETCH_ENABLED", "True").lower() == "true"
+
 VIDEO_REFRESH_INTERVAL = 6 * 60 * 60   # 6 hours
-MAX_VIDEOS = 12
+MAX_VIDEOS = 20
 
 NEWS_CHANNEL_IDS = [
+    # ── General News Networks ────────────────────────────────────────────────
     "UCupvZG-5ko_eiXAupbDfxWw",  # CNN
     "UCBx6eQ1x7ly_d8_4DtrS5DA",  # NDTV
     "UC16niRr50-MSBwiO3YDb3RA",  # BBC News
-    "UCNye-wNBqNL5ZzHSJj3l8Bg",  # Al Jazeera English
-    "UCkQO3QsgTpNTsOw6ujimT5Q",  # Reuters
-    "UC52X5wxOL_s5yw0dQk7NtgA",  # Associated Press
-    "UCsytnH6PDjPz0pgfzbqpeDw",  # Sky News
-    "UCt4t-jeY85JegMlZ-E5UWtA",  # India Today
-    "UCIRYBXDze5krPDzAEOxFGVA",  # WION
-    "UCwqusr8YDwM-3mEYTDeJHzw",  # Republic World
-    "UCIvaYmXn910QMdemBG3v1pQ",  # Zee News
-    "UCknLrEdhRCp1aegoMqRaCZg",  # DW News
-    "UCQfwfsi5VrQ8yKZ-UWmAEFg",  # France 24
-    "UCBi2mrWuNuyYy4gbM6fU18Q",  # ABC News
-    "UC8p1vwvWtl6T73JiExfWs1g",  # CBS News
-    "UCeY0bbntWzzVIaj2z3QigXg",  # NBC News
-    "UCGTUbwceCMibvpbd2NaIP7A",  # The Weather Channel
-    "UCuYqi3hOfz6-3Hdp6tEJjAg",  # AccuWeather
-    "UCIALMKvObZNtJ6AmdCLP7Lg",  # Bloomberg Television
-    "UCKwucPzHZ7zCUIf7If-Wo1g",  # DD News
+  
+ 
+    
+    # ── Environmental & Wildlife News ────────────────────────────────────────
+    "UCpDojzidHks6yNVEUodZ62w",  # National Geographic Official
+    "UCxp2gLe8s_8fRxWr_qyqfKw",  # TED-Ed
+    "UCkRfArvrzheW2E7b6SVVLLw",  # Kurzgesagt – In a Nutshell
+    "UC3Ow7g0fmqy8A0BKOp4mxgQ",  # BBC Wildlife
+    "UCtFayL7QUgH2qNzpIxlpFAg",  # Vox
+    "UCt7IfZPvbCbmzU1L7bXqe2Q",  # Veritasium
+    "UC_x5XG1OV2P6uZZ5FSM9Ttw",  # Crash Course
+    "UCwWhs_6x42DyiJoQq0i5L0w",  # CGP Grey
+    "UCi7GJPp5fJHqoWUFWkaSvzQ",  # World Wildlife Fund (WWF)
+    "UC9-XoASoKe66sNKAE8RKnfg",  # Our Changing Climate
+    "UCsKCJXY5QsztS88axjEUP4A",  # Climate Reality Project
+    "UC4p4kgrJ-1_S6TFgUlbfO9A",  # Planet Patrol
+    "UCMxsYvOJ4k7eXjVQN6X8Eow",  # Earth's Last Chance
+    "UC5N9V4Aym8o9I9T2zPjoxyw",  # Planetary TV
+    "UCEKBLj5PK9ydJ8WdlrO7DXg",  # NOVA PBS
+    "UCsPLqYDcSwd9Z1Y0W2SEzAA",  # BBC Earth
+    "UCJPWcaLS6-vKNMv0VYKpHFA",  # Nature League
+    "UC73UOuoqvwL9G08pWx7YQLA",  # Survival of the Fittest
+    "UCvDi7j8MYkL5RfOZaKFmZXA",  # Nature's Best Moments
+    "UCRvmouFLgOSl0sNW9CwHfqA",  # Environmental News
+    "UCELxZJ7gGrTscq5cJa1ZSlA",  # Green Living
+    "UC_FIEbL__Lk2iJrCpn8c-tg",  # Earth Matters
+    "UCWvWZE3aZk4eDfZL7EF1Vaw",  # Climate Matters
 ]
 
 VIDEO_SEARCH_QUERY = (
     "climate change OR natural disaster OR flood OR earthquake OR wildfire "
     "OR cyclone OR heatwave OR tsunami OR war OR conflict OR pollution "
-    "OR environmental hazard OR international summit OR geopolitics OR weather forecast"
+    "OR environmental hazard OR international summit OR geopolitics OR weather forecast "
+    "OR wildlife conservation OR endangered species OR biodiversity OR habitat destruction "
+    "OR ocean acidification OR deforestation OR carbon emissions OR renewable energy "
+    "OR environmental protection OR animal rescue OR nature documentary OR ecological crisis "
+    "OR sustainable development OR climate summit OR extreme weather "
 )
 
 
@@ -84,7 +99,7 @@ def _fetch_video_items(
         f"q={requests.utils.quote(query)}",
         "type=video",
         "videoDuration=medium",
-        "maxResults=5",
+        "maxResults=10",
         "order=date",
         "relevanceLanguage=en",
         f"key={YOUTUBE_API_KEY}",
@@ -105,27 +120,27 @@ def _fetch_video_items(
 
 def fetch_videos() -> dict:
     """Fetch recent English news videos about hazards / world events."""
-    if not YOUTUBE_API_KEY:
+    if not YOUTUBE_FETCH_ENABLED or not YOUTUBE_API_KEY:
         return {
             "last_updated": time.time(),
             "videos": [
                 {
                     "title": "Climate change & extreme weather news",
-                    "thumbnail": "https://via.placeholder.com/320x180?text=Climate+News",
+                    "thumbnail": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=320&h=180&fit=crop",
                     "videoId": "dQw4w9WgXcQ",
-                    "channel": "Sample",
+                    "channel": "Global Intel",
                 },
                 {
-                    "title": "Global conflicts & humanitarian updates",
-                    "thumbnail": "https://via.placeholder.com/320x180?text=World+News",
+                    "title": "Earthquake & Tsunami Risk Assessment 2026",
+                    "thumbnail": "https://images.unsplash.com/photo-1511044491364-b0b2eff28ee1?w=320&h=180&fit=crop",
                     "videoId": "dQw4w9WgXcQ",
-                    "channel": "Sample",
+                    "channel": "Hazard Watch",
                 },
                 {
-                    "title": "Natural disaster response & relief",
-                    "thumbnail": "https://via.placeholder.com/320x180?text=Disaster+News",
+                    "title": "Wildfire Containment: Live Ops Update",
+                    "thumbnail": "https://images.unsplash.com/photo-1542385151-efd9000785a0?w=320&h=180&fit=crop",
                     "videoId": "dQw4w9WgXcQ",
-                    "channel": "Sample",
+                    "channel": "Fire Control",
                 },
             ],
         }
@@ -157,9 +172,22 @@ def fetch_videos() -> dict:
             }
 
         videos = list(videos_by_id.values())[:MAX_VIDEOS]
+        
+        # If we fetched 0 videos (e.g. quota exceeded or empty results), 
+        # try to return whatever we have in the local cache file instead of empty/sample.
+        if not videos:
+            cached = _load_video_data()
+            if cached and cached.get("videos"):
+                return cached
+
         return {"last_updated": time.time(), "videos": videos}
 
     except Exception:
+        # On error, try to return cache first, then sample data as ultimate fallback
+        cached = _load_video_data()
+        if cached and cached.get("videos"):
+            return cached
+            
         return {
             "last_updated": time.time(),
             "videos": [
@@ -361,4 +389,4 @@ async def startup_video_prefetch():
     import threading
     # Run in a thread to not block startup if fetching takes time
     thread = threading.Thread(target=get_or_refresh_videos)
-    thread.start()
+    thread.start()

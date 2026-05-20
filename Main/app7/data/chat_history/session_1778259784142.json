@@ -1,0 +1,10 @@
+[
+  {
+    "role": "user",
+    "content": "tell me recent hazards newses"
+  },
+  {
+    "role": "model",
+    "content": "Based on fetched data and live web search, here is a summary of recent hazard news:\n\n**Natural Disasters & Severe Weather:**\n*   **Missouri Hailstorm:** A severe hailstorm in Missouri on May 6, 2026, resulted in the death of an emu at the Springfield zoo, injuries to drivers, widespread power outages, and damage to hundreds of vehicles and aircraft (according to usnews.com).\n*   **Rwanda Flash Floods:** Flash floods and rainstorms in January 2026 severely impacted multiple provinces across Rwanda, including the Southern, Western, and Eastern Provinces, as well as Kigali City. This is an ongoing disaster (according to reliefweb.int).\n*   **Portugal Floods:** Heavy rains caused the Sado River to overflow in Alcácer do Sal, southern Portugal, in February 2026. Portugal's interior minister resigned amid criticism of the storm response (according to apnews.com).\n*   **Colombia Floods:** Flooding in Colombia was also reported as an ongoing disaster from January 2026 (according to reliefweb.int).\n*   **US Hazards Outlook:** The U.S. Day 3-7 Hazards Outlook, created May 7, 2026, indicates potential for wildfires and flooding between May 10-14, 2026 (according to wpc.ncep.noaa.gov).\n*   **Ship Overturn:** Search was suspended for 5 missing crew members of an overturned ship on April 29, 2026 (according to usnews.com).\n\n**Wildfires:**\n*   **Recent Events:** Several wildfires and prescribed fires were reported on May 4, 2026, including:\n    *   Black Rush Lake RX Prescribed Fire in Swift, Minnesota.\n    *   32nd Avenue Wildfire in Rolette, North Dakota.\n*   **California Actions:** The California Department of Insurance is taking action against State Farm following an investigation into mishandled"
+  }
+]

@@ -22,6 +22,7 @@ from .app4.routes import router as app4_router
 from .app5.routes import router as app5_router
 from .app6.routes import router as app6_router
 from .app7.routes import router as app7_router
+
 try:
     from dotenv import load_dotenv
     load_dotenv()
@@ -40,25 +41,14 @@ NASA_OUT_FILE = DATA_SOURCE / "Nasa_Event_data.csv"
 USGS_OUT_FILE = USGS_OUT_DIR / "earthquakes.csv"
 
 
-# ─────────────────────────────────────────────
-#  Feature flags
-# ─────────────────────────────────────────────
 NASA_EVENT_FETCH_ENABLED      = True   # Enabled: 6h cache logic protects against overloading
 USGS_EARTHQUAKE_FETCH_ENABLED = True   # Enabled: 6h cache logic protects against overloading
 
-
-# ─────────────────────────────────────────────
-#  USGS config
-# ─────────────────────────────────────────────
 USGS_URL        = "https://earthquake.usgs.gov/fdsnws/event/1/query"
 USGS_MAX_LIMIT  = 2000    # max records to fetch and store
 USGS_CHUNK_DAYS = 60      # days per API chunk to avoid timeouts
 USGS_DAYS_BACK  = 20      # how far back to look
 
-
-# ─────────────────────────────────────────────
-#  Helpers
-# ─────────────────────────────────────────────
 def _usgs_fetch_raw(days_back: int = USGS_DAYS_BACK, data_limit: int = USGS_MAX_LIMIT) -> list:
     end_dt   = dt.date.today()
     start_dt = end_dt - dt.timedelta(days=days_back)
@@ -198,9 +188,6 @@ async def background_data_sync_task():
         await asyncio.sleep(1800)
 
 
-# ─────────────────────────────────────────────
-#  Lifespan & App Setup
-# ─────────────────────────────────────────────
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("=" * 50)
@@ -236,6 +223,7 @@ app.mount("/app1/static", StaticFiles(directory=str(_HERE / "app1" / "static")),
 app.mount("/app3/static", StaticFiles(directory=str(_HERE / "app3" / "static")), name="app3_static")
 app.mount("/app4/static", StaticFiles(directory=str(_HERE / "app4" / "static")), name="app4_static")
 app.mount("/app4/componets", StaticFiles(directory=str(_HERE / "app4" / "componets")), name="app4_componets")
+app.mount("/app7/static", StaticFiles(directory=str(_HERE / "app7" / "static")), name="app7_static")
 
 _sat_dir = _HERE / "app6" / "Satelite_images"
 _sat_dir.mkdir(parents=True, exist_ok=True)
@@ -249,6 +237,7 @@ app.include_router(app4_router, prefix="/app4")
 app.include_router(app5_router, prefix="/app5")
 app.include_router(app6_router, prefix="/app6")
 app.include_router(app7_router, prefix="/app7")
+
 @app.get("/")
 def root():
     return RedirectResponse(url="/app2/login")

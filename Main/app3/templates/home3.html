@@ -46,7 +46,7 @@
       </div>
       <div class="clock-wrap">
         <div class="clock-utc" id="hdr-clock">--:--:--</div>
-        <div class="clock-label">UTC SYNC</div>
+        <div class="clock-label">IST SYNC</div>
       </div>
       <div class="status-pill">
         <div class="status-dot-hdr"></div>
@@ -95,12 +95,44 @@
     </div>
   </div>
 
-  <!-- PROXIMITY ALERT -->
+  <!-- PROXIMITY ALERT — Mini HUD Screen -->
   <div id="proximity-alert">
-    <div class="alert-dot"></div>
-    <div class="alert-label">Local Alert</div>
-    <div class="alert-divider"></div>
-    <div class="alert-text"></div>
+    <div class="alert-head">
+      <div class="alert-head-title">
+        <div class="alert-head-icon" id="alert-icon">◈</div>
+        <div class="alert-head-text">
+          <div class="alert-head-name" id="alert-name">Event Detected</div>
+          <div class="alert-head-sub" id="alert-type">ANALYZING...</div>
+        </div>
+      </div>
+      <div class="alert-close" onclick="closeAlert()">✕</div>
+    </div>
+    <div class="alert-content" id="alert-content">
+      <div class="alert-row">
+        <div class="alert-label">Latitude</div>
+        <div class="alert-value" id="alert-lat">--.-°</div>
+      </div>
+      <div class="alert-row">
+        <div class="alert-label">Longitude</div>
+        <div class="alert-value" id="alert-lon">--.-°</div>
+      </div>
+      <div class="alert-row">
+        <div class="alert-label">Magnitude</div>
+        <div class="alert-value" id="alert-mag">-- </div>
+      </div>
+      <div class="alert-row">
+        <div class="alert-label">Depth / Alt</div>
+        <div class="alert-value" id="alert-depth">-- km</div>
+      </div>
+      <div class="alert-row">
+        <div class="alert-label">Time</div>
+        <div class="alert-value" id="alert-time">--:--</div>
+      </div>
+      <div class="alert-row">
+        <div class="alert-label">Distance</div>
+        <div class="alert-value" id="alert-distance">-- mi</div>
+      </div>
+    </div>
   </div>
 
   <!-- ══════════════ NEW HUD (replaces old legend) ══════════════ -->
@@ -234,8 +266,8 @@
       const el = document.getElementById('hdr-clock');
       const tick = () => {
         const d = new Date();
-        el.textContent = [d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds()]
-          .map(n => String(n).padStart(2, '0')).join(':');
+        const options = { timeZone: 'Asia/Kolkata', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        el.textContent = new Intl.DateTimeFormat('en-IN', options).format(d);
       };
       tick(); setInterval(tick, 1000);
     })();
@@ -285,7 +317,7 @@
 
     const COLORS = {
       wildfire: '#ff5a1f',
-      earthquake: '#00d4c8',
+      earthquake: '#ffff00',
       war: '#ff2040',
       protest: '#ffb020',
       pollution: '#70d040',
@@ -388,6 +420,53 @@
       const lat = event.lat ?? event.startLat;
       const lng = event.lng ?? event.startLng;
       globe.pointOfView({ lat, lng, altitude: 0.75 }, 1100);
+      
+      // Show mini HUD with event details
+      showEventDetails(event);
+    }
+
+    /* ── Show event details in mini HUD ── */
+    function showEventDetails(event) {
+      const alert = document.getElementById('proximity-alert');
+      const type = event.type || 'unknown';
+      
+      // Update header
+      document.getElementById('alert-icon').textContent = ({ wildfire: '◉', earthquake: '◎', war: '⬡', protest: '◆', pollution: '◇' }[type] || '◈');
+      document.getElementById('alert-name').textContent = event.title || 'Event Detected';
+      document.getElementById('alert-type').textContent = type.toUpperCase();
+      
+      // Update details
+      const lat = event.lat ?? event.startLat;
+      const lng = event.lng ?? event.startLng;
+      const mag = event.mag ? event.mag.toFixed(2) : '--';
+      const depth = event.depth ? event.depth.toFixed(1) : event.altitude ? event.altitude.toFixed(1) : '--';
+      const time = event.time ? new Date(event.time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : (event.date ? new Date(event.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '--:--');
+      const distance = userLocation ? Math.round(haversine(userLocation.lat, userLocation.lng, lat, lng)) : '--';
+      
+      document.getElementById('alert-lat').textContent = lat ? lat.toFixed(4) + '°' : '--.-°';
+      document.getElementById('alert-lon').textContent = lng ? lng.toFixed(4) + '°' : '--.-°';
+      document.getElementById('alert-mag').textContent = mag;
+      document.getElementById('alert-depth').textContent = depth + ' ' + (event.type === 'earthquake' ? 'km' : 'm');
+      document.getElementById('alert-time').textContent = time;
+      document.getElementById('alert-distance').textContent = distance + (distance !== '--' ? ' mi' : '');
+      
+      // Determine severity level
+      if (type === 'earthquake' && event.mag > 6.5) {
+        alert.className = 'danger';
+      } else if (type === 'war' || (type === 'wildfire' && event.aqi > 150)) {
+        alert.className = 'danger';
+      } else {
+        alert.className = 'normal';
+      }
+      
+      // Show alert
+      alert.style.display = 'flex';
+    }
+
+    /* ── Close mini HUD ── */
+    function closeAlert() {
+      const alert = document.getElementById('proximity-alert');
+      alert.style.display = 'none';
     }
 
     /* ── Update globe + HUD bars ── */

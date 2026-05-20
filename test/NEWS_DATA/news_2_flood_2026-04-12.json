@@ -1,0 +1,53 @@
+{
+    "fetched_at": "2026-04-13T08:15:38.104787",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "flood",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "2026 SkS Weekly Climate Change & Global Warming News Roundup #15",
+            "source": "Skepticalscience.com",
+            "url": "https://skepticalscience.com/2026-SkS-Weekly-News-Roundup_15.html",
+            "image": "https://skepticalscience.com/public/assets/images/og/button_sks_200.jpg",
+            "published_at": "2026-04-12T07:35:04Z",
+            "description": "A listing of 29 news and opinion articles we found interesting and shared on social media during the past week: Sun, April 5, 2026 thru Sat, April 11, 2026.\nStories we promoted this week, by category:\nClimate Change Impacts (9 articles)\n<ul>\n<li>The US is now\u2026"
+        },
+        {
+            "headline": "'You leave everything and sit back...': Amitabh Bachchan pens introspective note on internet anxiety | Mint",
+            "source": "Livemint",
+            "url": "https://www.livemint.com/entertainment/you-leave-everything-and-sit-back-amitabh-bachchan-pens-introspective-note-on-internet-anxiety-11775965992163.html",
+            "image": "https://www.livemint.com/lm-img/img/2025/03/17/1600x900/logo/entertainmentlm3_1742215964360_1742216012203.webp",
+            "published_at": "2026-04-12T06:58:45Z",
+            "description": "Veteran actor Amitabh Bachchan has shared a deeply introspective note on anxiety and the overwhelming nature of the internet, offering fans a rare glimpse into his inner thoughts amid the noise of social media."
+        },
+        {
+            "headline": "USA\u2019s First BLM Mayor Convicted, Evicted, Kicked Out Of Office Now Claims Racism.",
+            "source": "Freerepublic.com",
+            "url": "https://freerepublic.com/focus/f-bloggers/4374577/posts",
+            "image": null,
+            "published_at": "2026-04-12T06:52:04Z",
+            "description": "Key Events in Kamau's Story Trespassing Conviction (2023 incident): In July 2023, Kamau was arrested after entering a private lakefront home (on Cascade Palmetto Highway) that he apparently thought was abandoned. The homeowner held him at gunpoint after seein\u2026"
+        },
+        {
+            "headline": "World Bank releases $340 mn for Amaravati development, additional $150 mn likely in April",
+            "source": "The Times of India",
+            "url": "https://economictimes.indiatimes.com/news/india/world-bank-releases-340-mn-for-amaravati-development-additional-150-mn-likely-in-april/articleshow/130203804.cms",
+            "image": "https://img.etimg.com/thumb/msid-130203823,width-1200,height-630,imgsize-142582,overlay-economictimes/articleshow.jpg",
+            "published_at": "2026-04-12T06:42:00Z",
+            "description": "The World Bank has released USD 340 million so far for the Amaravati Capital Phase-I project in Andhra Pradesh, a senior official said. The Asian Development Bank (ADB) is co-financing the project, which together with the World Bank has committed a total of U\u2026"
+        },
+        {
+            "headline": "'Sarabhai vs Sarabhai' fame Roshesh reveals how he reduced Rs 2 crore debt to just 10 percent, opens up about his sisters' role in farming venture",
+            "source": "The Times of India",
+            "url": "https://economictimes.indiatimes.com/news/new-updates/sarabhai-vs-sarabhai-fame-roshesh-rajesh-kumar-reveals-how-he-reduced-rs-2-crore-debt-to-just-10-percent-opens-up-about-his-sisters-support-in-farming-venture/articleshow/130203687.cms",
+            "image": "https://img.etimg.com/thumb/msid-130203766,width-1200,height-630,imgsize-31360,overlay-economictimes/articleshow.jpg",
+            "published_at": "2026-04-12T06:38:38Z",
+            "description": "Rajesh Kumar, best known as the iconic Rosesh from Sarabhai vs Sarabhai, has revealed that his Rs 2 crore debt has been reduced and only a small portion is left to be paid. Rajesh Kumar also shared how his two sisters, both living in US and Finland for more t\u2026"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\test\\NEWS_DATA\\news_2_images_flood_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\test\\NEWS_DATA\\news_2_images_flood_2026-04-12_2.jpg"
+    ]
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "role": "user",
+    "content": "What regions have storm activity?"
+  },
+  {
+    "role": "model",
+    "content": "Based on fetched data and live web search, the following regions currently have tropical cyclone activity:\n\n*   **Western Pacific:** Tropical Depression Nuri was active as of March 11, 2026, and Tropical Storm Hagupit has been active for the past day, according to wunderground.com and accuweather.com.\n\nThere is no tropical storm activity reported for the Central Pacific, according to wunderground.com. The Southern Hemisphere is a known basin for tropical cyclones, but no current active storms were specified.",
+    "images": []
+  }
+]

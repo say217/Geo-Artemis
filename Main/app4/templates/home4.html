@@ -48,7 +48,7 @@
       </div>
       <div class="clock-wrap">
         <div class="clock-utc" id="hdr-clock">--:--:--</div>
-        <div class="clock-label">UTC SYNC</div>
+        <div class="clock-label">IST SYNC</div>
       </div>
       <div class="status-pill">
         <div class="status-dot"></div>
@@ -449,10 +449,15 @@
     // ── Footer + Header clocks ──
     function tickClock() {
       const now = new Date();
-      const utcStr = now.toUTCString().slice(17, 25);
-      document.getElementById('footerClock').textContent = utcStr;
+      // Convert UTC to IST (UTC+5:30)
+      const istDate = new Date(now.getTime() + (5.5 * 60 * 60 * 1000));
+      const hours = String(istDate.getUTCHours()).padStart(2, '0');
+      const minutes = String(istDate.getUTCMinutes()).padStart(2, '0');
+      const seconds = String(istDate.getUTCSeconds()).padStart(2, '0');
+      const istStr = `${hours}:${minutes}:${seconds}`;
+      document.getElementById('footerClock').textContent = istStr;
       const hdrClock = document.getElementById('hdr-clock');
-      if (hdrClock) hdrClock.textContent = utcStr;
+      if (hdrClock) hdrClock.textContent = istStr;
     }
     tickClock(); setInterval(tickClock, 1000);
 
@@ -759,7 +764,7 @@
           }
           earthquakeMarkers.forEach(marker => window.map && window.map.removeLayer(marker));
           earthquakeMarkers = [];
-          const eqColor = '#c4a575', eqBorderColor = '#8b5a2b';
+          const eqColor = '#ffff00', eqBorderColor = '#ffffff';
           let plotCount = 0;
           eqDataCache.data.forEach(eq => {
             const lat = parseFloat(eq.lat), lon = parseFloat(eq.lon);
@@ -770,10 +775,10 @@
             const radius = Math.max(2, Math.min(6, magnitude + 2));
             const marker = L.circleMarker([lat, lon], {
               radius, fillColor: eqColor, color: eqBorderColor,
-              weight: 1, opacity: 0.9, fillOpacity: 0.6, className: 'earthquake-marker'
+              weight: 2, opacity: 0.9, fillOpacity: 0.6, className: 'earthquake-marker'
             });
-            const popupContent = `<div style="font-family:'Share Tech Mono',monospace;font-size:8px;color:#fff;text-shadow:0 0 4px #8b5a2b;padding:3px 0;line-height:1.5;border-top:1px solid #c4a575;border-bottom:1px solid #c4a575;">
-                <b style="color:#ffaa00;letter-spacing:0.5px;">EARTHQUAKE</b><br/>━━━━━━━━━━━<br/>
+            const popupContent = `<div style="font-family:'Share Tech Mono',monospace;font-size:8px;color:#fff;text-shadow:0 0 4px #ffffff;padding:3px 0;line-height:1.5;border-top:1px solid #ffff00;border-bottom:1px solid #ffff00;">
+                <b style="color:#ffff00;letter-spacing:0.5px;">EARTHQUAKE</b><br/>━━━━━━━━━━━<br/>
                  Lat: ${lat.toFixed(4)}<br/>Lon: ${lon.toFixed(4)}<br/>
                  Depth: ${depth.toFixed(2)} km<br/>Mag: ${magnitude.toFixed(2)}<br/>
                  Place: ${place.substring(0, 40)}<br/>Time: ${time}<br/></div>`;

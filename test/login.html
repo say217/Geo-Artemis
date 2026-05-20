@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEO ARTEM — Log In</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Bebas+Neue&display=swap"
+    rel="stylesheet">
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --red: #e02020;
+      --red-bright: #ff3333;
+      --red-glow: rgba(255, 51, 51, 0.35);
+      --white: #f0f0f0;
+      --black: #060608;
+      --border: rgba(240, 240, 240, 0.08);
+      --border-red: rgba(255, 51, 51, 0.3);
+      --mono: 'Share Tech Mono', monospace;
+      --hud: 'Orbitron', sans-serif;
+      --display: 'Bebas Neue', sans-serif;
+    }
+
+    html,
+    body {
+      height: 100%;
+      min-height: 100vh;
+      background: var(--black);
+      font-family: var(--mono);
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px,
+          rgba(0, 0, 0, 0.04) 3px, rgba(0, 0, 0, 0.04) 4px);
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── LEFT PANEL ── */
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      border-right: 1px solid var(--border-red);
+      overflow: hidden;
+    }
+
+    .left-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 60px;
+      border-top: 2px solid var(--red-bright);
+      border-left: 2px solid var(--red-bright);
+      filter: drop-shadow(0 0 8px var(--red-bright));
+    }
+
+    .left-panel::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      border-bottom: 2px solid var(--red-bright);
+      border-right: 2px solid var(--red-bright);
+      filter: drop-shadow(0 0 8px var(--red-bright));
+    }
+
+    .brand-title {
+      font-family: var(--display);
+      font-size: 3.8rem;
+      letter-spacing: 6px;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      line-height: 1;
+      text-align: center;
+    }
+
+    .brand-title span {
+      color: var(--red-bright);
+      text-shadow: 0 0 20px var(--red-glow);
+    }
+
+    .brand-sub {
+      font-family: var(--hud);
+      font-size: 0.55rem;
+      letter-spacing: 5px;
+      color: rgba(255, 255, 255, 0.35);
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+      text-align: center;
+    }
+
+    .video-wrap {
+      width: 340px;
+      height: 340px;
+      margin: 1.4rem 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .video-wrap video {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .status-bar {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+      margin-top: 0.6rem;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, 0.3);
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--red-bright);
+      box-shadow: 0 0 6px var(--red-bright);
+      animation: pulse 2s infinite;
+    }
+
+    .status-dot.ok {
+      background: #3dba78;
+      box-shadow: 0 0 6px #3dba78;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.2
+      }
+    }
+
+    /* ── RIGHT PANEL ── */
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 2.5rem;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    .right-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      border-top: 1px solid var(--border-red);
+      border-right: 1px solid var(--border-red);
+    }
+
+    .right-panel::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      border-bottom: 1px solid var(--border-red);
+      border-left: 1px solid var(--border-red);
+    }
+
+    .form-card {
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .form-header {
+      margin-bottom: 1.8rem;
+    }
+
+    .form-eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 4px;
+      color: var(--red-bright);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--red-bright), transparent);
+    }
+
+    .form-title {
+      font-family: var(--display);
+      font-size: 2.6rem;
+      letter-spacing: 4px;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .form-desc {
+      margin-top: 0.4rem;
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 1px;
+      line-height: 1.6;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .field {
+      position: relative;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.58rem;
+      letter-spacing: 3px;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .field input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.7rem 0.9rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+
+    .field input::placeholder {
+      color: rgba(255, 255, 255, 0.18);
+    }
+
+    .field input:focus {
+      border-color: var(--red-bright);
+      background: rgba(255, 51, 51, 0.06);
+      box-shadow: 0 0 12px rgba(255, 51, 51, 0.15), inset 0 0 6px rgba(255, 51, 51, 0.05);
+    }
+
+    .field .prefix {
+      position: absolute;
+      bottom: 0.72rem;
+      right: 0.8rem;
+      font-size: 0.6rem;
+      color: rgba(255, 255, 255, 0.2);
+      pointer-events: none;
+      letter-spacing: 1px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--red-bright);
+      border: none;
+      color: #ffffff;
+      font-family: var(--hud);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 20px var(--red-glow);
+    }
+
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.12) 50%, transparent 100%);
+      transform: translateX(-100%);
+      transition: transform 0.5s;
+    }
+
+    .btn-submit:hover::before {
+      transform: translateX(100%);
+    }
+
+    .btn-submit:hover {
+      background: #ff0000;
+      box-shadow: 0 0 30px var(--red-glow), 0 0 60px rgba(255, 0, 0, 0.2);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.99);
+    }
+
+    .hud-corner {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+    }
+
+    .hud-corner.tl {
+      top: -1px;
+      left: -1px;
+      border-top: 1px solid var(--red-bright);
+      border-left: 1px solid var(--red-bright);
+    }
+
+    .hud-corner.tr {
+      top: -1px;
+      right: -1px;
+      border-top: 1px solid var(--red-bright);
+      border-right: 1px solid var(--red-bright);
+    }
+
+    .hud-corner.bl {
+      bottom: -1px;
+      left: -1px;
+      border-bottom: 1px solid var(--red-bright);
+      border-left: 1px solid var(--red-bright);
+    }
+
+    .hud-corner.br {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 1px solid var(--red-bright);
+      border-right: 1px solid var(--red-bright);
+    }
+
+    /* ── ALERTS ── */
+    .alert {
+      padding: 0.6rem 0.9rem;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+
+    .alert-error {
+      background: rgba(255, 51, 51, 0.12);
+      border: 1px solid rgba(255, 51, 51, 0.4);
+      color: var(--red-bright);
+    }
+
+    .alert-success {
+      background: rgba(61, 186, 120, 0.1);
+      border: 1px solid rgba(61, 186, 120, 0.4);
+      color: #3dba78;
+    }
+
+    /* ── REGISTER LINK ── */
+    .link-row {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.62rem;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 1px;
+    }
+
+    .link-row a {
+      color: var(--red-bright);
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
+
+    .link-row a:hover {
+      text-shadow: 0 0 8px var(--red-bright);
+    }
+
+    /* ── TICKER ── */
+    .ticker {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 24px;
+      background: rgba(6, 6, 8, 0.97);
+      border-top: 1px solid var(--border-red);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      z-index: 100;
+    }
+
+    .ticker-label {
+      background: var(--red-bright);
+      padding: 0 10px;
+      font-family: var(--hud);
+      font-size: 0.5rem;
+      letter-spacing: 3px;
+      color: #fff;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    }
+
+    .ticker-track {
+      flex: 1;
+      overflow: hidden;
+      padding-left: 10px;
+    }
+
+    .ticker-inner {
+      display: inline-block;
+      white-space: nowrap;
+      animation: ticker 30s linear infinite;
+      font-size: 0.58rem;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 2px;
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(100vw);
+      }
+
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        overflow-y: auto;
+      }
+
+      .left-panel {
+        border-right: none;
+        border-bottom: 1px solid var(--border-red);
+        padding: 1.5rem 1rem;
+      }
+
+      .brand-title {
+        font-size: 2.6rem;
+      }
+
+      .video-wrap {
+        width: 220px;
+        height: 220px;
+        margin: 1rem 0 0.8rem;
+      }
+
+      .video-wrap video {
+        width: 208px;
+        height: 208px;
+      }
+
+      .right-panel {
+        padding: 1.5rem 1rem;
+      }
+
+      html,
+      body {
+        overflow: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- ── LEFT PANEL ── -->
+    <div class="left-panel">
+      <div class="brand-title">GEO <span>ARTEMIS</span></div>
+      <div class="brand-sub">Geospatial Intelligence Platform</div>
+
+      <div class="video-wrap">
+        <video autoplay loop muted playsinline>
+          <source src="/static/vedio/10949305-hd_1280_720_25fps.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="status-bar">
+        <div class="status-item"><span class="status-dot"></span>LIVE</div>
+        <div class="status-item"><span class="status-dot ok"></span>SECURE</div>
+        <div class="status-item"><span class="status-dot ok"></span>ONLINE</div>
+      </div>
+    </div>
+
+    <!-- ── RIGHT PANEL ── -->
+    <div class="right-panel">
+      <div class="form-card">
+        <div style="position:relative; padding: 1.5rem;">
+          <div class="hud-corner tl"></div>
+          <div class="hud-corner tr"></div>
+          <div class="hud-corner bl"></div>
+          <div class="hud-corner br"></div>
+
+          <div class="form-header">
+            <div class="form-eyebrow">/// ACCESS PORTAL</div>
+            <div class="form-title">SIGN IN</div>
+            <div class="form-desc">Identify yourself to access GEO ARTEM intelligence systems.</div>
+          </div>
+
+          <!-- FIX 1: Error message display (was missing entirely) -->
+          {% if error %}
+          <div class="alert alert-error">⚠ {{ error }}</div>
+          {% endif %}
+
+          <!-- FIX 2: Success/info message display (e.g. "EMAIL VERIFIED") -->
+          {% if message %}
+          <div class="alert alert-success">✔ {{ message }}</div>
+          {% endif %}
+
+          <!-- FIX 3: Form now has 'email' + 'password' matching the backend login() route -->
+          <!--        Previously had 'name' + 'email' which caused HTTP 422                -->
+          <form method="post" action="/app2/login" autocomplete="off">
+            <div class="field-group">
+              <div class="field">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="user@domain.net" required autocomplete="username" />
+                <span class="prefix">✉</span>
+              </div>
+              <div class="field">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Your password" required minlength="8"
+                  autocomplete="current-password" />
+                <span class="prefix">🔒</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-submit">▶ ENTER THE NETWORK</button>
+          </form>
+
+          <!-- FIX 4: Register link (was missing) -->
+          <div class="link-row">
+            NEW OPERATIVE? <a href="/app2/register">REGISTER</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── TICKER ── -->
+  <div class="ticker">
+    <div class="ticker-label">SYS FEED</div>
+    <div class="ticker-track">
+      <div class="ticker-inner">
+        GEO ARTEM v2.4 — SYSTEM OPERATIONAL &nbsp;///&nbsp;
+        GEOSPATIAL INTELLIGENCE ACTIVE &nbsp;///&nbsp;
+        NODE NETWORK: 2,847 ONLINE &nbsp;///&nbsp;
+        DATA STREAM ENCRYPTED &nbsp;///&nbsp;
+        COORDINATES LOCKED &nbsp;///&nbsp;
+        ALL SECTORS NOMINAL &nbsp;///&nbsp;
+        WELCOME TO GEO ARTEM &nbsp;///&nbsp;
+        SECURE CHANNEL ESTABLISHED &nbsp;///&nbsp;
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+{
+    "fetched_at": "2026-04-13T08:15:56.153275",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "landslide",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "Takaichi keen on early constitutional amendment",
+            "source": "Japan Today",
+            "url": "https://japantoday.com/category/politics/japan-pm-takaichi-keen-on-early-constitutional-amendment",
+            "image": null,
+            "published_at": "2026-04-12T07:34:35Z",
+            "description": "Prime Minister Sanae Takaichi on Sunday expressed eagerness for an early amendment to Japan's pacifist Constitution, as the conservative leader, known for her hawkish security views, aims to stipulate the existence of the Self-Defense Forces in what would be \u2026"
+        },
+        {
+            "headline": "Cruise companies to Alaska are avoiding a popular excursion to Tracy Arm after a massive landslide",
+            "source": "Abcnews.com",
+            "url": "https://abcnews.com/US/wireStory/cruise-companies-alaska-avoiding-popular-excursion-tracy-arm-131965163",
+            "image": "https://i.abcnewsfe.com/a/12c8ef0e-7f0c-4630-bbe0-7ecf1d24cab2/wirestory_b7d5171aed649de82b52bf4138a69919_16x9.jpg?w=1600",
+            "published_at": "2026-04-12T06:12:35Z",
+            "description": "For years, a popular part of many cruises in southeast Alaska has been sailing up Tracy Arm, a long, narrow fjord marked by steep mountains, glittering waterfalls and calving glaciers"
+        },
+        {
+            "headline": "Report: U.S. Officials Linked Medical Support to Mineral Access in African Nations",
+            "source": "Naturalnews.com",
+            "url": "https://www.naturalnews.com/2026-04-12-us-officials-medical-support-mineral-access-africa.html",
+            "image": "https://www.naturalnews.com/wp-content/uploads/sites/91/2026/04/us-diplomacy-health-aid-mineral-access-842-original.jpg",
+            "published_at": "2026-04-12T06:00:00Z",
+            "description": "Introduction The Department of State has proposed linking U.S.-funded medical support programs to secure preferential American access to critical mineral deposits in several African nations, according to diplomatic sources and recent reports. The initiative w\u2026"
+        },
+        {
+            "headline": "Between the Impossible and the Inevitable: The Case for Defiance (aka Never F**king Surrender)",
+            "source": "Meditationsinanemergency.com",
+            "url": "https://www.meditationsinanemergency.com/between-the-impossible-and-the-inevitable-the-case-for-defiance-aka-never-f-king-surrender/",
+            "image": "https://storage.ghost.io/c/1f/95/1f95c964-ecf4-4437-b307-3870c46ede56/content/images/size/w1200/2026/04/IMG_4074-1.JPG",
+            "published_at": "2026-04-12T05:47:01Z",
+            "description": "I have been hesitating to hit send on this one, because across the world we are all under the shadow of Trump's threat to commit war crimes that will \"eradicate a whole civilization\" in Iran while Iranians bravely surround threatened infrastructure with human\u2026"
+        },
+        {
+            "headline": "Nagdhunga Tunnel in final preparations for operation",
+            "source": "Khabarhub.com",
+            "url": "https://english.khabarhub.com/2026/12/543803/",
+            "image": "https://english.khabarhub.com/wp-content/uploads/2026/04/Nigdhunga-Tunnel.jpg",
+            "published_at": "2026-04-12T05:39:45Z",
+            "description": "KATHMANDU: The Nagdhunga-Sisnekhola Tunnel, Nepal\u2019s first modern road tunnel connecting Kathmandu and Dhading, has reached the final stage of preparation for operation. The project is expected to usher in a new era in the country\u2019s transport infrastructure an\u2026"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\test\\NEWS_DATA\\news_2_images_landslide_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\test\\NEWS_DATA\\news_2_images_landslide_2026-04-12_2.jpg"
+    ]
+}

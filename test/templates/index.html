@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Video Dashboard</title>
+
+<style>
+body {
+  background: #05050a;
+  color: white;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+h2 {
+  margin: 0;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: #0b0b12;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid rgba(255, 68, 68, 0.2);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(255, 68, 68, 0.3);
+  border-color: rgba(255, 68, 68, 0.5);
+}
+
+.content {
+  padding: 12px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.channel {
+  font-size: 12px;
+  color: #888;
+}
+</style>
+</head>
+
+<body>
+
+
+
+<div class="container" id="videoContainer"></div>
+
+<script>
+async function loadVideos() {
+    try {
+        // Load from FastAPI endpoint
+        const res = await fetch("/video/videos.json");
+        if (!res.ok) throw new Error("Failed to load videos");
+        
+        const data = await res.json();
+        displayVideos(data.videos);
+    } catch (error) {
+        console.error("Failed to load videos:", error);
+        document.getElementById("videoContainer").innerHTML = 
+            "<p style='padding:20px; color:#ff6b6b;'>⚠️ Unable to load videos. Make sure videos.json exists in test/video/ folder.</p>";
+    }
+}
+
+function displayVideos(videos) {
+    const container = document.getElementById("videoContainer");
+    container.innerHTML = "";
+
+    if (!videos || videos.length === 0) {
+        container.innerHTML = "<p style='padding:20px;'>No videos available.</p>";
+        return;
+    }
+
+    videos.forEach(video => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+            <div style="position: relative; width: 100%; height: 200px; background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                <img src="${video.thumbnail}" style="width: 100%; height: 100%; object-fit: cover; transition: 0.3s;">
+                <div style="position: absolute; width: 50px; height: 50px; background: rgba(255,68,68,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 20px; z-index: 10;" 
+                     onclick="playVideo('${video.videoId}', this)">
+                    ▶
+                </div>
+            </div>
+            <div class="content">
+                <div class="title">${video.title}</div>
+                <div class="channel">${video.channel}</div>
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+function playVideo(videoId, playBtn) {
+    const card = playBtn.closest('.card');
+    const title = card.querySelector('.title').textContent;
+    
+    // Create modal
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    `;
+    
+    modal.innerHTML = `
+        <div style="position: relative; width: 90%; max-width: 1000px; background: #000;">
+            <button onclick="this.closest('div').parentElement.remove()" style="position: absolute; top: 10px; right: 10px; background: #ff4444; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; z-index: 10000; font-size: 14px; font-weight: bold;">✕ Close</button>
+            <iframe 
+                width="100%" 
+                height="600" 
+                src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+            <div style="background: #0b0b12; padding: 15px; color: white;">
+                <h3>${title}</h3>
+                <p style="color: #888; font-size: 12px; margin-top: 5px;">Powered by YouTube API</p>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+}
+
+loadVideos();
+</script>
+
+</body>
+</html>

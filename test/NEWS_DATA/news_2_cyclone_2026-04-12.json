@@ -1,0 +1,53 @@
+{
+    "fetched_at": "2026-04-13T08:15:41.410965",
+    "day_index": 2,
+    "day_date": "2026-04-12",
+    "incident": "cyclone",
+    "total_articles": 5,
+    "articles": [
+        {
+            "headline": "Cyclone lashes New Zealand's North Island, hundreds evacuated",
+            "source": "CNA",
+            "url": "https://www.channelnewsasia.com/world/new-zealand-cyclone-vaianu-north-island-hundreds-evacuate-6051366",
+            "image": "https://dam.mediacorp.sg/image/upload/s--jGkY5NeS--/c_crop,h_509,w_905,x_1,y_16/c_fill,g_auto,h_676,w_1200/f_auto,q_auto/v1/mediacorp/cna/image/2026/04/12/screenshot_2026-04-12_153806.png?itok=_tR1NKZL",
+            "published_at": "2026-04-12T07:43:00Z",
+            "description": "Conditions will ease as Cyclone\u00a0Vaianu works its way down the North Island before exiting on Sunday evening at Hawke's Bay, New Zealand's MetService said."
+        },
+        {
+            "headline": "Cyclone Vaianu: \u014chope couple flee home as winds batter Bay of Plenty",
+            "source": "New Zealand Herald",
+            "url": "https://www.nzherald.co.nz/nz/cyclone-vaianu-ohope-couple-flee-home-as-winds-batter-bay-of-plenty/RCEZRQDWBBF3NH5T6OQ3QUOUQA/",
+            "image": "https://www.nzherald.co.nz/resizer/v2/EMRBABBO7JBBDAOCVYM6I4X3SA.jpg?auth=60981df5431634ed65f6e1f34850e2a62e510cc09ad9c9b04c16542146a6c4b0&width=1200&height=675&quality=70&focal=828%2C242&smart=false",
+            "published_at": "2026-04-12T06:00:00Z",
+            "description": "Kylee Kast had to evacuate as Cyclone Vaianu's winds suddenly intensified."
+        },
+        {
+            "headline": "Category 3 cyclone pummels New Zealand",
+            "source": "The Times of India",
+            "url": "https://timesofindia.indiatimes.com/world/rest-of-world/category-3-cyclone-pummels-new-zealand/articleshow/130202928.cms",
+            "image": "https://static.toiimg.com/thumb/msid-130203213,width-1280,height-720,imgsize-170291,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+            "published_at": "2026-04-12T05:48:15Z",
+            "description": "A category 3 tropical cyclone pummelled New Zealand's North Island on Sunday, triggering flooding and damaging infrastructure but authorities were relieved it bypassed Auckland, the country's most populous city. The storm was expected to cross the eastern Nor\u2026"
+        },
+        {
+            "headline": "32-Foot Cyclone Swell Pummels New Zealand as Thousands Flee (Video)",
+            "source": "Surfer.com",
+            "url": "https://www.surfer.com/news/32-foot-cyclone-swell-new-zealand-video",
+            "image": "https://s.yimg.com/os/en/surfer_magazine_140/9f2975ccbd321e8b908f3bb2e890e318",
+            "published_at": "2026-04-12T03:10:08Z",
+            "description": "Tropical Cyclone Vaianu hit New Zealand over the weekend, sending large and stormy surf to the nation, along with evacuation warnings due to flooding."
+        },
+        {
+            "headline": "\u3010\u3042\u3063\u305f\u306a\u3011Amazon luna\u30b5\u30fc\u30d3\u30b9\u7d42\u4e86",
+            "source": "Livedoor.biz",
+            "url": "https://lifehack2ch.livedoor.biz/archives/51923712.html",
+            "image": "https://livedoor.blogimg.jp/sg3lqj86/imgs/7/a/7a6f54fe.jpg",
+            "published_at": "2026-04-12T02:00:35Z",
+            "description": "1 \uff1a\u540d\u7121\u3057\u3055\u3093\u5fc5\u6b7b\u3060\u306a Amazon's game streaming service Luna is removing access to purchased games and offering no refunds: https://t.co/CFRRa3ga3A\u2014 Kotaku (@Kotaku) April 10, 2026   2026/04/10(\u91d1) 23:20:53.72 ID:IzFSuSDm0"
+        }
+    ],
+    "image_files": [
+        "C:\\PROJECTS\\Geo Artemis\\test\\NEWS_DATA\\news_2_images_cyclone_2026-04-12_1.jpg",
+        "C:\\PROJECTS\\Geo Artemis\\test\\NEWS_DATA\\news_2_images_cyclone_2026-04-12_2.jpg"
+    ]
+}
